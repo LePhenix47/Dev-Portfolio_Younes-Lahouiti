@@ -1,6 +1,13 @@
 @media (prefers-color-scheme: dark) {
-
     //SASS
+    $bg-primary: #050505;
+    $bg-secondary: black;
+
+    $color-primary: #cdcdcd;
+    $color-secondary: #848484;
+
+    $border-color: #242424;
+
     $scrollbar-track-bg-color: black;
     $scrollbar-thumb-bg-color: #ababab;
     $scrollbar-thumb-bg-color--hover: #8a8a8a;
@@ -8,6 +15,14 @@
 
     //CSS
     :root {
+        --bg-primary: #{$bg-primary};
+        --bg-secondary: #{$bg-secondary};
+
+        --color-primary: #{$color-primary};
+        --color-secondary: #{$color-secondary};
+        --border-color: #{$border-color};
+
+
         --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
 
         --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};

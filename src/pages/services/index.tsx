@@ -2,7 +2,7 @@
 import Head from "next/head";
 import Image from "next/image";
 
-export default function Services() {
+export default function Services(): JSX.Element {
   return (
     <>
       <Head>

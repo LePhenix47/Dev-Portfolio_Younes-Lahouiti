@@ -17,7 +17,7 @@ export default function Error500(): JSX.Element {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Internal Server Error - HRnet" />
+        <meta property="og:title" content="Error 500 - Portfolio" />
         <meta
           property="og:description"
           content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
@@ -32,7 +32,7 @@ export default function Error500(): JSX.Element {
         {/*
          <!--Title--> 
          */}
-        <title>Internal Server Error - Portfolio</title>
+        <title>Error 500 - Portfolio</title>
 
         {/*     Canonical link     */}
 

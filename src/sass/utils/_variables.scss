@@ -1,4 +1,12 @@
 //SASS
+$bg-primary: #FAFAFA;
+$bg-secondary: white;
+
+$color-primary: #323232;
+$color-secondary: #7b7b7b;
+
+$border-color: #DBDBDB;
+
 $scrollbar-track-bg-color: white;
 $scrollbar-thumb-bg-color: #545454;
 $scrollbar-thumb-bg-color--hover: #757575;
@@ -6,6 +14,14 @@ $scrollbar-thumb-bg-color--active: #b0b0b0;
 
 //CSS
 :root {
+    --bg-primary: #{$bg-primary};
+    --bg-secondary: #{$bg-secondary};
+
+    --color-primary: #{$color-primary};
+    --color-secondary: #{$color-secondary};
+    --border-color: #{$border-color};
+
+
     --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
 
     --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};

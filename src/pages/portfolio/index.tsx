@@ -2,7 +2,7 @@
 import Head from "next/head";
 import Image from "next/image";
 
-export default function Portfolio() {
+export default function Portfolio(): JSX.Element {
   return (
     <>
       <Head>
