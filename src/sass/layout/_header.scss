@@ -1,3 +1,28 @@
 @use "../utils/" as *;
 
-.header {}
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 30px;
+
+    border-bottom: 2px solid var(--border-color);
+
+    &__nav {
+        width: 50%;
+
+        display: flex;
+    }
+
+    &__list {
+        width: 100%;
+
+        display: inherit;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    &__item {}
+}

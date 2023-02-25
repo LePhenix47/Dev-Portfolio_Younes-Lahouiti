@@ -1,3 +1,5 @@
 @use "../utils/" as *;
 
-.footer {}
+.footer {
+    border-top: 2px solid var(--border-color);
+}
