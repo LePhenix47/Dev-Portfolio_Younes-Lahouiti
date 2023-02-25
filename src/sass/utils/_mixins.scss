@@ -1,0 +1,63 @@
+//Media queries
+@mixin mobile-only {
+    @media screen and (width <=768px) {
+        @content;
+    }
+}
+
+@mixin tablet-only {
+    @media screen and (768px <=width <=992px) {
+        @content;
+    }
+}
+
+@mixin laptop-only {
+    @media screen and (992px <=width <=1150px) {
+        @content;
+    }
+}
+
+@mixin desktop-small-only {
+    @media screen and (1150px <=width <=1475px) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media screen and (width>=1475px) {
+        @content;
+    }
+}
+
+//Other
+//Flex mixins
+@mixin center-flex($gap: 0px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+}
+
+@mixin center-flex-column($gap: 0px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+}
+
+
+//Grid mixins
+@mixin grid($rows: auto-fill, $columns: auto-fill, $gap: 0px) {
+    display: grid;
+    grid-template-rows: repeat($rows, 1fr);
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+//Mixin to center in the middle
+@mixin absolute-center {
+    translate: -50% -50%;
+    inset: 50%;
+}

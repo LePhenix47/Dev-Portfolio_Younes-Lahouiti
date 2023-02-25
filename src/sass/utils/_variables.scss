@@ -1,0 +1,22 @@
+//SASS
+$scrollbar-track-bg-color: white;
+$scrollbar-thumb-bg-color: #545454;
+$scrollbar-thumb-bg-color--hover: #757575;
+$scrollbar-thumb-bg-color--active: #b0b0b0;
+
+//CSS
+:root {
+    --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
+
+    --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};
+    --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
+    --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
+}
+
+::backdrop {
+    --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
+
+    --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};
+    --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
+    --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
+}

@@ -1,0 +1,118 @@
+@use "../utils/" as *;
+
+//Removes ANY animation if the user has the reduced motion option enabled in their device
+@media (prefers-reduced-motion) {
+
+    *,
+    :before,
+    ::after {
+        -webkit-animation: none !important;
+        animation: none !important;
+
+        transition: none !important;
+    }
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::selection {}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 50%;
+}
+
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition:
+        background-color 350ms ease-in-out,
+        color 350ms ease-in-out;
+}
+
+:is(ul, ol) {
+    list-style-type: none;
+}
+
+/*
+//⚠ We make the border transparent so that if the user has a high contrast text mode enable the border will still appear for them
+//Good for accessibility
+*/
+button {
+    border-color: transparent;
+    background-color: transparent;
+    font-family: inherit;
+
+    &:hover {
+        cursor: pointer;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+}
+
+
+input {
+    font-family: inherit;
+    border-color: transparent;
+
+    &:focus {
+        border-color: transparent;
+        outline: transparent;
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:visited {
+        color: currentColor;
+    }
+}
+
+label {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+fieldset {
+    border-color: transparent;
+}
+
+legend {
+    position: static;
+}
+
+dialog {
+    position: fixed;
+    border: transparent;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+    @include absolute-center;
+}
+
+select {
+    border: transparent;
+    font-family: inherit;
+}
+
+option {
+    font-family: inherit;
+}
+
+//Makes empty text blocks elements disappear
+:empty:is(p, h1, h2, h3, h4,
+    h5, h6, span) {
+    display: none;
+}

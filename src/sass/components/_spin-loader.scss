@@ -1,0 +1,16 @@
+@use "../utils/" as *;
+
+@use "../utils/" as *;
+
+.spin-loader {
+    aspect-ratio: 1/1;
+
+
+    &__circle {
+        fill: none;
+        stroke: var(--color-quinary);
+        stroke-width: 5px;
+        animation: buffer-animation 1s ease-in-out infinite normal forwards;
+        transform-origin: center;
+    }
+}
