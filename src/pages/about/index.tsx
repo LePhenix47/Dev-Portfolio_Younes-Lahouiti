@@ -35,6 +35,10 @@ export default function About(): JSX.Element {
          */}
         <title>About page</title>
       </Head>
+      <section className="about-page">
+        <h1 className="about-page">About me</h1>
+        <h2 className="about-page__subtitle">My introduction</h2>
+      </section>
     </>
   );
 }

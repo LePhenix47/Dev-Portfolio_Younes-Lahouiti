@@ -35,6 +35,10 @@ export default function Services(): JSX.Element {
          */}
         <title>Services page</title>
       </Head>
+      <section className="services-page">
+        <h1 className="services-page">Services</h1>
+        <h2 className="services-page__subtitle">My expertise and offerings</h2>
+      </section>
     </>
   );
 }

@@ -13,8 +13,6 @@ export default function Header(): JSX.Element {
 
   const { route, pathname, query, asPath } = router;
 
-  log({ route, pathname, query, asPath });
-
   return (
     <header className="header">
       <div className="header__dev">

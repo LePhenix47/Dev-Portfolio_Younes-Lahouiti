@@ -35,6 +35,13 @@ export default function Skills() {
          */}
         <title>Skills page</title>
       </Head>
+      <section className="skills-page">
+        <h1 className="skills-page">Skills</h1>
+        <h2 className="skills-page__subtitle">My technical level</h2>
+
+        <h2>Qualifications</h2>
+        <h3>My path of growth and development</h3>
+      </section>
     </>
   );
 }

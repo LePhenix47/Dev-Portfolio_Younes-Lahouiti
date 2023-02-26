@@ -1,0 +1,5 @@
+@use "../utils/" as *;
+
+.link-button {
+    @include link-btn-styling;
+}

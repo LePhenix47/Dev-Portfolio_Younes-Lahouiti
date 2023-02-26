@@ -3,16 +3,36 @@
 .home-page {
     display: flex;
 
+
+    @include tablet-only {
+        margin-bottom: 50px;
+    }
+
+    @include mobile-only {
+        flex-direction: column;
+    }
+
+
+
     //Classes for the <aside>
     &__socials {
         flex: 1;
 
         display: flex;
+
+        @include mobile-only {
+            flex-direction: column;
+        }
+
         margin: 35px 20px;
     }
 
     &__social-list {
         @include center-flex-column(25px);
+
+        @include mobile-only {
+            @include center-flex(25px);
+        }
     }
 
 
@@ -61,15 +81,32 @@
         flex: 10;
         display: flex;
 
+        @include mobile-only {
+            flex-direction: column-reverse;
+
+            width: 85%;
+
+            margin: auto;
+        }
+
         margin-top: 50px;
     }
 
     &__description {
         flex: 2;
+
+        @include mobile-only {
+            @include center-flex-column(20px);
+            margin-bottom: 60px;
+        }
     }
 
     &__title {
-        font-size: 48px;
+
+        @include mobile-only {
+            text-align: center;
+        }
+
     }
 
     &__title-hand {
@@ -89,12 +126,13 @@
     }
 
     &__subtitle {
-        font-size: 24px;
-        font-weight: 500;
-
         margin: 25px 50px;
 
         position: relative;
+
+        @include mobile-only {
+            text-align: center;
+        }
 
         &::before {
             content: "";
@@ -102,6 +140,10 @@
             position: absolute;
             top: 55%;
             left: -50px;
+
+            @include mobile-only {
+                left: -25%;
+            }
 
             width: 45px;
             height: 1px;
@@ -117,7 +159,8 @@
     }
 
     &__contact-button {
-        @include button-styling;
+        @include link-btn-styling;
+
     }
 
 
@@ -131,9 +174,25 @@
         aspect-ratio: 1/1;
         height: 400px;
 
+
+        @include mobile-only {
+            margin-right: 0;
+
+
+            height: 200px;
+
+            margin-block: 0.5%;
+
+            @include center-flex;
+        }
+
         &>svg {
             transition: scale 250ms ease-out;
             stroke-linecap: round;
+
+            @include mobile-only {
+                display: none;
+            }
         }
 
         & path {
@@ -148,6 +207,10 @@
         &:hover {
             &>svg {
                 scale: 150%;
+
+                @include mobile-only {
+                    scale: 105%
+                }
             }
 
             & path {
@@ -158,6 +221,14 @@
             &>.home-page__profile-picture {
                 scale: 150%;
                 translate: -30% -25%;
+
+                @include mobile-only {
+                    filter: drop-shadow(0px 0px 30px var(--color-primary));
+
+                    translate: 0 0;
+
+                    scale: 100%;
+                }
             }
         }
 
@@ -177,5 +248,18 @@
         ;
 
         border-radius: 25px;
+
+        @include mobile-only {
+            position: static;
+
+            translate: 0 0;
+
+
+            aspect-ratio: 1/1;
+            width: 300px;
+            height: 350px;
+
+            @include fit-image;
+        }
     }
 }

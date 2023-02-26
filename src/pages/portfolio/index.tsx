@@ -35,6 +35,12 @@ export default function Portfolio(): JSX.Element {
          */}
         <title>Portfolio page</title>
       </Head>
+      <section className="portfolio-page">
+        <h1 className="portfolio-page">Portfolio</h1>
+        <h2 className="portfolio-page__subtitle">
+          A showcase of my personal and professional work
+        </h2>
+      </section>
     </>
   );
 }

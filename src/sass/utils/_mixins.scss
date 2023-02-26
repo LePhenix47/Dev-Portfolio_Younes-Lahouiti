@@ -63,16 +63,17 @@
 }
 
 //Mixin for the styling of a button
-@mixin button-styling {
+@mixin link-btn-styling {
     @include center-flex(15px);
 
+    width: 240px;
+
     font-weight: 500;
+    font-size: 22px;
 
     padding: 20px 25px;
 
     border-radius: 15px;
-
-    font-size: 22px;
 
     background-color: var(--color-primary);
     color: var(--bg-secondary);
@@ -88,4 +89,19 @@
     &:active {
         background-color: var(--color-primary--active);
     }
+
+    &:visited {
+        color: var(--bg-secondary);
+    }
+
+    @include mobile-only {
+        padding: 10px 15px;
+        font-size: 18px;
+    }
+}
+
+//Mixin to make the image fit
+@mixin fit-image {
+    object-fit: cover;
+    object-position: center;
 }

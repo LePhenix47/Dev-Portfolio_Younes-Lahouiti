@@ -4,7 +4,7 @@
     $bg-secondary: black;
 
     $color-primary: #cdcdcd;
-    $color-primary--hover: darken($color-primary, 10%);
+    $color-primary--hover: darken($color-primary, 5%);
     $color-primary--active: darken($color-primary, 20%);
     $color-secondary: #848484;
 
@@ -21,6 +21,8 @@
         --bg-secondary: #{$bg-secondary};
 
         --color-primary: #{$color-primary};
+        --color-primary--hover: #{$color-primary--hover};
+        --color-primary--active: #{$color-primary--active};
         --color-secondary: #{$color-secondary};
         --border-color: #{$border-color};
 
