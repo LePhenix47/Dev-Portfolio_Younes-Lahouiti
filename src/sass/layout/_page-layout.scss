@@ -1,3 +1,5 @@
 @use "../utils/" as *;
 
-.page-layout {}
+.page-layout {
+    min-height: 75vh;
+}

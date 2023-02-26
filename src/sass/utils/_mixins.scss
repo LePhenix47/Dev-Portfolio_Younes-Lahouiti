@@ -61,3 +61,31 @@
     translate: -50% -50%;
     inset: 50%;
 }
+
+//Mixin for the styling of a button
+@mixin button-styling {
+    @include center-flex(15px);
+
+    font-weight: 500;
+
+    padding: 20px 25px;
+
+    border-radius: 15px;
+
+    font-size: 22px;
+
+    background-color: var(--color-primary);
+    color: var(--bg-secondary);
+
+    transition:
+        background-color 150ms ease-in-out,
+        color 150ms ease-in-out;
+
+    &:hover {
+        background-color: var(--color-primary--hover);
+    }
+
+    &:active {
+        background-color: var(--color-primary--active);
+    }
+}

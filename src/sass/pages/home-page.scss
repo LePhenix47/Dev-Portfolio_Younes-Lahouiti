@@ -6,11 +6,52 @@
     //Classes for the <aside>
     &__socials {
         flex: 1;
+
+        display: flex;
+        margin: 35px 20px;
     }
 
-    &__social-list {}
+    &__social-list {
+        @include center-flex-column(25px);
+    }
 
-    &__social-item {}
+
+    &__social-link {
+        aspect-ratio: 1/1;
+    }
+
+    &__social-item {
+        position: relative;
+
+        filter: grayscale(100%);
+
+        &:hover {
+            filter: grayscale(0%);
+
+
+            &::before {
+                box-shadow: 0px 0px 7px currentColor;
+            }
+        }
+
+        &::before {
+            content: "";
+
+            position: absolute;
+            @include absolute-center;
+
+            aspect-ratio: 1/1;
+            height: 50px;
+
+            z-index: -1;
+
+
+            background-image: radial-gradient();
+            box-shadow: 0px 0px 0px currentColor;
+            border-radius: 50%;
+        }
+
+    }
 
     &__social-image {}
 
@@ -31,6 +72,55 @@
         font-size: 48px;
     }
 
+    &__title-hand {
+        scale: -100% 100%;
+
+        animation-name: wave-hand;
+        animation-duration: 2.5s;
+        animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+        animation-iteration-count: infinite;
+
+        display: inline-block;
+
+        transform-origin: center bottom;
+    }
+
+    &__subtitle {
+        font-size: 24px;
+        font-weight: 500;
+
+        margin: 25px 50px;
+
+        position: relative;
+
+        &::before {
+            content: "";
+
+            position: absolute;
+            top: 55%;
+            left: -50px;
+
+            width: 45px;
+            height: 1px;
+
+            background-color: var(--color-primary);
+        }
+    }
+
+    &__paragraph {
+        color: var(--color-secondary);
+        ;
+        margin: 50px 0;
+    }
+
+    &__contact-button {
+        @include button-styling;
+    }
+
+
     &__blob {
         position: relative;
 
@@ -43,6 +133,16 @@
 
         &>svg {
             transition: scale 250ms ease-out;
+            stroke-linecap: round;
+        }
+
+        & path {
+            transition:
+                stroke-dasharray 650ms ease-in-out,
+                stroke-dashoffset 650ms ease-in-out,
+            ;
+            stroke-dasharray: 355;
+            stroke-dashoffset: 355;
         }
 
         &:hover {
@@ -50,10 +150,14 @@
                 scale: 150%;
             }
 
+            & path {
+                stroke-dasharray: 710;
+                stroke-dashoffset: 355;
+            }
+
             &>.home-page__profile-picture {
                 scale: 150%;
-                filter: grayscale(0%);
-                translate: -50% -45%;
+                translate: -30% -25%;
             }
         }
 
@@ -65,15 +169,12 @@
         left: 50%;
         top: 22%;
         translate: -50% 0;
-        filter: grayscale(100%);
 
         transition:
             translate 250ms ease-out,
             scale 250ms ease-out,
             filter 250ms ease-out,
         ;
-
-
 
         border-radius: 25px;
     }

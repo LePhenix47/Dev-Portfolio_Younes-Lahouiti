@@ -30,3 +30,26 @@
         opacity: 1;
     }
 }
+
+//Animation for the hand emoji
+@keyframes wave-hand {
+
+    0%,
+    44%,
+    100% {
+        rotate: 0deg;
+    }
+
+    11% {
+        rotate: 20deg;
+    }
+
+    22% {
+        rotate: -20deg;
+    }
+
+    33% {
+        rotate: 20deg;
+    }
+
+}

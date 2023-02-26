@@ -16,6 +16,8 @@
     }
 
     &__list {
+        position: relative;
+
         width: 100%;
 
         display: inherit;
@@ -28,4 +30,6 @@
 
 
     &__item {}
+
+    &__item-follow {}
 }

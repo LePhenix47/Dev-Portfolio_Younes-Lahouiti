@@ -4,6 +4,8 @@
     $bg-secondary: black;
 
     $color-primary: #cdcdcd;
+    $color-primary--hover: darken($color-primary, 10%);
+    $color-primary--active: darken($color-primary, 20%);
     $color-secondary: #848484;
 
     $border-color: #242424;
@@ -28,6 +30,17 @@
         --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};
         --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
         --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
+
+        //
+        .home-page__social-image {
+            &-github {
+                filter: invert(100%);
+            }
+
+            &-codepen {
+                filter: invert(100%);
+            }
+        }
     }
 
     ::backdrop {

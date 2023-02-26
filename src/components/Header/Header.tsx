@@ -30,6 +30,7 @@ export default function Header(): JSX.Element {
           <li className="header__item">
             <NavLink href="/contact">Contact</NavLink>
           </li>
+          <li className="header__item header__item-follow">&nbsp;</li>
         </ul>
       </nav>
     </header>
