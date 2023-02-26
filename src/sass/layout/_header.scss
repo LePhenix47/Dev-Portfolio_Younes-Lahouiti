@@ -1,9 +1,16 @@
 @use "../utils/" as *;
 
 .header {
+    z-index: 69;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include tablet-only {
+        flex-direction: column;
+        gap: 15px;
+    }
 
     @include mobile-only {
         flex-direction: column;
@@ -42,32 +49,32 @@
 
         & .header__item-home.active~.header__item-follow {
             left: 0px;
-            width: 50px;
+            width: 54px;
         }
 
         & .header__item-about.active~.header__item-follow {
-            left: 69px;
-            width: 53px;
+            left: 74px;
+            width: 55px;
         }
 
         & .header__item-skills.active~.header__item-follow {
-            left: 140px;
-            width: 42px;
+            left: 149px;
+            width: 45px;
         }
 
         & .header__item-services.active~.header__item-follow {
-            left: 201px;
-            width: 68px;
+            left: 213px;
+            width: 76px;
         }
 
         & .header__item-portfolio.active~.header__item-follow {
-            left: 289px;
-            width: 70px;
+            left: 309px;
+            width: 74px;
         }
 
         & .header__item-contact.active~.header__item-follow {
-            left: 380px;
-            width: 64px;
+            left: 403px;
+            width: 74px;
         }
     }
 

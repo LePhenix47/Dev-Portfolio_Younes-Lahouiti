@@ -36,9 +36,36 @@ export default function About(): JSX.Element {
         <title>About page</title>
       </Head>
       <section className="about-page">
-        <h1 className="about-page">About me</h1>
+        <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>
+        <section className="about-page__content">
+          <section className="about-page__image-container">
+            <Image
+              src="/profile-pic.jpg"
+              alt="Profile picture"
+              height={170}
+              width={130}
+              className="about-page__image"
+            />
+          </section>
+          <section className="about-page__text-cards-container">
+            <div className="about-page__cards">
+              <div className="about-page__card"></div>
+            </div>
+            <div className="about-page__text"></div>
+          </section>
+        </section>
       </section>
     </>
   );
 }
+
+/*
+
+ I started programming with Scratch at 13 and later explored Python in high school for math problems.
+ Although I struggled with C++, C, Java, and PHP in college and eventually dropped out, I didn't give up.
+
+ Instead, I took a self-taught path to become a web developer.
+ Through two internships at OpenClassrooms, I earned diplomas in Fullstack and Front-End web development.
+
+ */

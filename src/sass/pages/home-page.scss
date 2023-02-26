@@ -38,6 +38,9 @@
 
     &__social-link {
         aspect-ratio: 1/1;
+
+        display: inline-block;
+        margin-top: 5px;
     }
 
     &__social-item {
@@ -73,7 +76,7 @@
 
     }
 
-    &__social-image {}
+    // &__social-image {}
 
 
     //Classes  for the main
