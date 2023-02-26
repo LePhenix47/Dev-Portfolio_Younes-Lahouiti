@@ -20,11 +20,12 @@ export default function NavLink({
    */
   const linkIsActive: boolean = router.asPath === href;
   /**
+   * Function that redirects the user to the `href` value added as props in the `<NavLink />` component
    *
    * @param {any} event Takes in parameters the click event
    * @returns {void}
    */
-  function pushHref(event: any): void {
+  function pushToHref(event: any): void {
     //Prevents the page from reloading when switching page
     event.preventDefault();
 
@@ -35,8 +36,8 @@ export default function NavLink({
   return (
     <a
       href={href}
-      onClick={pushHref}
-      className={linkIsActive ? "active" : "inactive"}
+      onClick={pushToHref}
+      // className={linkIsActive ? "active" : "inactive"}
     >
       {children}
     </a>

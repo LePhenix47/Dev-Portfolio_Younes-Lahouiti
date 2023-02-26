@@ -21,15 +21,57 @@
         width: 100%;
 
         display: inherit;
-        justify-content: space-around;
         align-items: center;
+        gap: 20px;
 
         font-weight: 500;
         font-size: 18px;
+
+        & .header__item-home.active~.header__item-follow {
+            left: 0px;
+            width: 50px;
+        }
+
+        & .header__item-about.active~.header__item-follow {
+            left: 69px;
+            width: 53px;
+        }
+
+        & .header__item-skills.active~.header__item-follow {
+            left: 140px;
+            width: 42px;
+        }
+
+        & .header__item-services.active~.header__item-follow {
+            left: 201px;
+            width: 68px;
+        }
+
+        & .header__item-portfolio.active~.header__item-follow {
+            left: 289px;
+            width: 70px;
+        }
+
+        & .header__item-contact.active~.header__item-follow {
+            left: 380px;
+            width: 64px;
+        }
     }
 
 
     &__item {}
 
-    &__item-follow {}
+    &__item-follow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        transition:
+            left 300ms ease-in-out,
+            width 250ms ease-in-out;
+
+        background-color: red;
+        width: 25px;
+        height: 2px;
+    }
 }
