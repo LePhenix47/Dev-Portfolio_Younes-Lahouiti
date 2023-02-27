@@ -1,0 +1,31 @@
+@use "../utils/" as *;
+
+.card {
+    @include center-flex-column(10px);
+
+    min-width: 160px;
+    min-height: 130px;
+
+    background-color: var(--bg-secondary);
+
+    border: 2px solid var(--border-color);
+
+    border-radius: 10px;
+
+    &__title {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & svg {
+            aspect-ratio: 1/1;
+            height: 25px !important;
+        }
+    }
+
+    &__description {
+        color: var(--color-secondary);
+        font-size: 14px;
+    }
+}

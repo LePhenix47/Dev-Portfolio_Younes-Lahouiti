@@ -36,11 +36,11 @@
         @include center-flex-column(25px);
 
         @include tablet-only {
-            @include center-flex(25px);
+            @include grid(1, 5, 50px);
         }
 
         @include mobile-only {
-            @include center-flex(25px);
+            @include grid(1, 2, 25px);
         }
     }
 
@@ -83,6 +83,10 @@
             border-radius: 50%;
         }
 
+        @include mobile-only {
+            @include center-flex;
+        }
+
     }
 
     // &__social-image {}
@@ -93,6 +97,12 @@
         flex: 10;
         display: flex;
 
+
+        @include tablet-only {
+            width: 80%;
+            margin: 25px auto;
+        }
+
         @include mobile-only {
             flex-direction: column-reverse;
 
@@ -100,6 +110,7 @@
 
             margin: auto;
         }
+
 
         margin-top: 50px;
     }

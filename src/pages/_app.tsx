@@ -1,6 +1,6 @@
 //Next
 import type { AppProps } from "next/app";
-
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 //SASS
@@ -9,7 +9,9 @@ import "../sass/main.scss";
 //Components
 import PageLayout from "../components/PageLayout/PageLayout";
 
-import { useRouter } from "next/router";
+//Framer motion library
+import { motion } from "framer-motion";
+
 /**
  * Root component where all the pages will pass through
  *
@@ -25,7 +27,6 @@ import { useRouter } from "next/router";
 /*
   
 */
-import { motion } from "framer-motion";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           }}
           transition={{
             type: "tween",
-            ease: "anticipate",
+            ease: "easeInOut",
             duration: 0.5,
           }}
         >

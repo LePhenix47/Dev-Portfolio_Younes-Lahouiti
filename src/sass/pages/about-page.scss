@@ -1,7 +1,7 @@
 @use "../utils/" as *;
 
 .about-page {
-    @include center-flex-column(15px);
+    @include center-flex-column(50px);
 
     &__title {}
 
@@ -34,7 +34,7 @@
     &__image {
         @include fit-image;
         height: 425px;
-        width: 425px;
+        width: 80%;
 
         @include tablet-only {}
 
@@ -48,18 +48,18 @@
 
     &__text-cards-container {
         flex: 1;
-        padding-right: 50px;
+        padding: 0 50px;
 
         @include tablet-only {
             width: 75%;
             margin: auto;
-            padding-right: 0px;
+            padding: 0 0px;
         }
 
         @include mobile-only {
             width: 75%;
             margin: auto;
-            padding-right: 0px;
+            padding: 0 0px;
         }
     }
 

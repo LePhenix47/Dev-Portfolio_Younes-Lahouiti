@@ -4,6 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function About(): JSX.Element {
+  /**
+   * Year of my birth
+   */
+  let yearOfBirth = new Date("06/13/2002").getFullYear();
+
+  /**
+   * Current year
+   */
+  let currentYear = new Date().getFullYear();
+
+  /**
+   * My actual age
+   */
+  const myAge = currentYear - yearOfBirth;
+
   return (
     <>
       <Head>
@@ -51,8 +66,8 @@ export default function About(): JSX.Element {
           </section>
           <section className="about-page__text-cards-container">
             <div className="about-page__cards">
-              <div className="about-page__card">
-                <h3 className="about-page__card-title">
+              <div className="card">
+                <h3 className="card__title">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -61,10 +76,10 @@ export default function About(): JSX.Element {
                   </svg>
                   Experience
                 </h3>
-                <p className="about-page__card-description">+1 year</p>
+                <p className="card__description">+1 year</p>
               </div>
-              <div className="about-page__card">
-                <h3 className="about-page__card-title">
+              <div className="card">
+                <h3 className="card__title">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g data-name="Layer 2">
                       <path
@@ -76,10 +91,10 @@ export default function About(): JSX.Element {
                   </svg>
                   Completed
                 </h3>
-                <p className="about-page__card-description">20+ Projects</p>
+                <p className="card__description">20+ Projects</p>
               </div>
-              <div className="about-page__card">
-                <h3 className="about-page__card-title">
+              <div className="card">
+                <h3 className="card__title">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -92,16 +107,16 @@ export default function About(): JSX.Element {
                   </svg>
                   Support
                 </h3>
-                <p className="about-page__card-description">7/7 days</p>
+                <p className="card__description">7/7 days</p>
               </div>
             </div>
             <div className="about-page__text">
               <p className="about-page__description">
-                I&apos;m a 20 years old Italian full-stack developer with
-                expertise in developing web applications, including the
-                integration of UI/UX interface. While my primary focus is on
-                developing the functionality of the applications, I am also
-                proficient in integrating Figma mockups.
+                I&apos;m a {myAge.toString()} years old Italian full-stack
+                developer with expertise in developing web applications,
+                including the integration of UI/UX interface. While my primary
+                focus is on developing the functionality of the applications, I
+                am also proficient in integrating Figma mockups.
               </p>
               <Link
                 href="/Younes-Lahouiti_Resume-CV.pdf"
