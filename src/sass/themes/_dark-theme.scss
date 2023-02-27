@@ -36,11 +36,11 @@
         //
         .home-page__social-image {
             &-github {
-                filter: invert(100%);
+                filter: invert(100%) hue-rotate(180deg);
             }
 
             &-codepen {
-                filter: invert(100%);
+                filter: invert(100%) hue-rotate(180deg);
             }
         }
     }

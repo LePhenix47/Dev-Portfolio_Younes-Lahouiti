@@ -38,6 +38,11 @@ export default function Document(): JSX.Element {
           rel="stylesheet"
         />
 
+        <link
+          rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+        />
+
         <Script
           src="https://kit.fontawesome.com/904e9ee361.js"
           crossOrigin="anonymous"

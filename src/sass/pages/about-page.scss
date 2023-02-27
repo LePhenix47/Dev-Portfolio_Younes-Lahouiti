@@ -1,3 +1,62 @@
 @use "../utils/" as *;
 
-.about-page {}
+.about-page {
+    @include center-flex-column(15px);
+
+    &__title {}
+
+    &__subtitle {}
+
+    &__content {
+        display: flex;
+        margin-bottom: 100px;
+    }
+
+    &__image-container {
+        flex: 1;
+
+        @include center-flex-column;
+    }
+
+    &__image {
+        @include fit-image;
+        height: 425px;
+        width: 425px;
+
+        border-radius: 25px;
+    }
+
+    &__text-cards-container {
+        flex: 1;
+    }
+
+    &__cards {
+        display: flex;
+    }
+
+    &__card {
+        background-color: var(--bg-secondary);
+
+        border: 2px solid var(--border-color);
+
+        border-radius: 5px;
+
+        &-title {}
+
+        &-description {
+            color: var(--color-secondary);
+            font-size: 14px;
+        }
+    }
+
+    &__text {}
+
+    &__description {
+        color: var(--color-secondary);
+        font-size: 18px;
+    }
+
+    &__resume-button {
+        width: 400px;
+    }
+}
