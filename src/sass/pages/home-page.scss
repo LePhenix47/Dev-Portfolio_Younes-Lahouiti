@@ -6,6 +6,7 @@
 
     @include tablet-only {
         margin-bottom: 50px;
+        flex-direction: column;
     }
 
     @include mobile-only {
@@ -20,6 +21,10 @@
 
         display: flex;
 
+        @include tablet-only {
+            justify-content: center;
+        }
+
         @include mobile-only {
             flex-direction: column;
         }
@@ -29,6 +34,10 @@
 
     &__social-list {
         @include center-flex-column(25px);
+
+        @include tablet-only {
+            @include center-flex(25px);
+        }
 
         @include mobile-only {
             @include center-flex(25px);
@@ -187,6 +196,9 @@
             margin-block: 0.5%;
 
             @include center-flex;
+
+            overflow: hidden;
+            border-radius: 25px;
         }
 
         &>svg {

@@ -10,6 +10,19 @@
     &__content {
         display: flex;
         margin-bottom: 100px;
+
+
+        @include tablet-only {
+            flex-direction: column;
+            gap: 50px;
+
+        }
+
+        @include mobile-only {
+            flex-direction: column;
+            gap: 50px;
+
+        }
     }
 
     &__image-container {
@@ -23,25 +36,72 @@
         height: 425px;
         width: 425px;
 
+        @include tablet-only {}
+
+        @include mobile-only {
+            height: 75%;
+            width: 75%;
+        }
+
         border-radius: 25px;
     }
 
     &__text-cards-container {
         flex: 1;
+        padding-right: 50px;
+
+        @include tablet-only {
+            width: 75%;
+            margin: auto;
+            padding-right: 0px;
+        }
+
+        @include mobile-only {
+            width: 75%;
+            margin: auto;
+            padding-right: 0px;
+        }
     }
 
     &__cards {
-        display: flex;
+        @include grid(1, 3, 10px);
+
+        @include tablet-only {
+            @include grid(1, 2, 15px)
+        }
+
+        @include mobile-only {
+            @include grid(1, 1, 15px)
+        }
+
     }
 
+
     &__card {
+
+
+        @include center-flex-column(10px);
+
+        min-width: 160px;
+        min-height: 130px;
+
         background-color: var(--bg-secondary);
 
         border: 2px solid var(--border-color);
 
-        border-radius: 5px;
+        border-radius: 10px;
 
-        &-title {}
+        &-title {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            & svg {
+                aspect-ratio: 1/1;
+                height: 25px;
+            }
+        }
 
         &-description {
             color: var(--color-secondary);
@@ -49,14 +109,32 @@
         }
     }
 
-    &__text {}
+    &__text {
+        @include tablet-only {
+            @include center-flex-column;
+        }
+
+        @include mobile-only {
+            @include center-flex-column;
+        }
+    }
 
     &__description {
         color: var(--color-secondary);
-        font-size: 18px;
+
+        padding: 20px 0;
+
+        margin-block: 20px;
+
     }
 
     &__resume-button {
+        margin-top: 20px;
+
         width: 400px;
+
+        @include mobile-only {
+            width: auto;
+        }
     }
 }

@@ -1,5 +1,26 @@
 @use "../utils/" as *;
 
-.active {
-    // text-decoration: underline;
+.active {}
+
+//React transition group classes
+.transition {
+    &-enter {
+        translate: 100% 0;
+
+        &--active {
+            translate: 0% 0;
+            transition: translate 500ms ease-in-out;
+        }
+    }
+
+
+    &-exit {
+        translate: 0% 0;
+
+        &--active {
+            translate: -100% 0;
+            transition: translate 500ms ease-in-out;
+        }
+    }
+
 }
