@@ -124,29 +124,37 @@
             text-align: center;
         }
 
+        &-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+
         &-container {}
 
         &-content {
+
+            min-height: 650px;
+
             //Properties for the 3D effect on the container
             transform-style: preserve-3d;
             perspective: 800px;
             perspective-origin: center;
-
-            &.show__card {
-                &>.skills-page__qualifications-education {
-                    background-color: red;
-                }
-
-                &>.skills-page__qualifications-experience {
-                    background-color: blue;
-                }
-            }
         }
 
 
         &-education {
+            position: absolute;
+
             backface-visibility: hidden;
-            // transform: rotateY(0deg) translateZ(10%);
+
+            transform: rotateY(180deg);
+
+            &--active {
+                transform: rotateY(0deg);
+            }
+
 
             transition: transform 500ms ease-out;
 
@@ -154,8 +162,15 @@
         }
 
         &-experience {
+            position: absolute;
+
             backface-visibility: hidden;
-            // transform: rotateY(-180deg) translateZ(10%);
+
+            transform: rotateY(-180deg);
+
+            &--active {
+                transform: rotateY(0deg);
+            }
 
             transition: transform 500ms ease-out;
 

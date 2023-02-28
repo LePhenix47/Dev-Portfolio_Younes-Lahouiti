@@ -1,3 +1,6 @@
+//React
+import { useRef, useState } from "react";
+
 //Next
 import Head from "next/head";
 import Image from "next/image";
@@ -16,8 +19,16 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
+import { log } from "@/react-utils/functions/helper-functions";
 
 export default function Skills() {
+  const [isRotated, setIsRotated] = useState<boolean>(false);
+
+  let rotateRef = useRef<boolean>(true);
+  rotateRef.current = true;
+
+  log(!!rotateRef.current);
+
   return (
     <>
       <Head>
@@ -96,13 +107,51 @@ export default function Skills() {
         <h3 className="skills-page__qualifications-subtitle">
           My path of growth and development
         </h3>
+        <div className="skills-page__qualifications-buttons">
+          <button
+            type="button"
+            className="skills-page__qualifications-button"
+            onClick={() => {
+              setIsRotated(false);
+              rotateRef.current = false;
+              log(rotateRef.current);
+            }}
+          >
+            Experience
+          </button>
+          <button
+            type="button"
+            className="skills-page__qualifications-button"
+            onClick={() => {
+              setIsRotated(true);
+              rotateRef.current = true;
+              log(rotateRef.current);
+            }}
+          >
+            Education
+          </button>
+        </div>
         <div className="skills-page__qualifications-container">
           <div className={`skills-page__qualifications-content`}>
-            <div className="skills-page__qualifications-education">
+            <div
+              className={`skills-page__qualifications-education ${
+                !!isRotated
+                  ? "skills-page__qualifications-education--active"
+                  : ""
+              }`}
+            >
+              {/* @ts-ignore               */}
               <Timeline arrayOfTimeLines={educationTimeline} />
             </div>
-            <div className="skills-page__qualifications-experience">
-              <Timeline arrayOfTimeLines={experienceTimeline} />
+            <div
+              className={`skills-page__qualifications-experience  ${
+                !isRotated
+                  ? "skills-page__qualifications-experience--active"
+                  : ""
+              }`}
+            >
+              {/* @ts-ignore               */}
+              <Timeline arrayOfTimeLines={experienceTimeline} reverse />
             </div>
           </div>
         </div>
