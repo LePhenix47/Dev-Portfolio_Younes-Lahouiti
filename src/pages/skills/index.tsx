@@ -44,7 +44,7 @@ export default function Skills() {
             <ul className="skills-page__skills-front-end">
               <li className="skills-page__skill-front-end">
                 <div className="skill-card-test">
-                  test
+                  <h4>Test</h4>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.0"

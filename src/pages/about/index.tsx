@@ -7,17 +7,24 @@ export default function About(): JSX.Element {
   /**
    * Year of my birth
    */
-  let yearOfBirth = new Date("06/13/2002").getFullYear();
+  let dateOfBirth = new Date("06/13/2002").getTime();
 
   /**
    * Current year
    */
-  let currentYear = new Date().getFullYear();
+  let currentDate = new Date().getTime();
+
+  /**
+   * Milliseconds per year : 1 second * 1 min * 1 hour * 1 day * 1 year (including leap years)
+   */
+  const MILLISECONDS_IN_A_YEAR = 1000 * 60 * 60 * 24 * 365.25;
 
   /**
    * My actual age
    */
-  const myAge = currentYear - yearOfBirth;
+  const myAge = Math.floor(
+    (currentDate - dateOfBirth) / MILLISECONDS_IN_A_YEAR
+  );
 
   return (
     <>
