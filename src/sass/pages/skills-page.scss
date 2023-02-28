@@ -131,6 +131,16 @@
             gap: 25px;
         }
 
+        &-button {
+            padding: 5px 10px;
+            border-radius: 5px;
+
+            &--active {
+                background-color: var(--color-primary);
+                color: var(--bg-primary);
+            }
+        }
+
         &-container {}
 
         &-content {

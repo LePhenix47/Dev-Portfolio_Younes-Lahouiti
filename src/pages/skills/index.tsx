@@ -110,7 +110,9 @@ export default function Skills() {
         <div className="skills-page__qualifications-buttons">
           <button
             type="button"
-            className="skills-page__qualifications-button"
+            className={`skills-page__qualifications-button ${
+              !isRotated ? "skills-page__qualifications-button--active" : ""
+            }`}
             onClick={() => {
               setIsRotated(false);
               rotateRef.current = false;
@@ -121,7 +123,9 @@ export default function Skills() {
           </button>
           <button
             type="button"
-            className="skills-page__qualifications-button"
+            className={`skills-page__qualifications-button ${
+              !!isRotated ? "skills-page__qualifications-button--active" : ""
+            }`}
             onClick={() => {
               setIsRotated(true);
               rotateRef.current = true;
