@@ -1,0 +1,74 @@
+@use "../utils/" as *;
+
+.timeline {
+    --separation: 165px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--separation);
+
+    &__dot {
+        position: relative;
+
+        aspect-ratio: 1/1;
+        height: 20px;
+
+        border-radius: 50%;
+
+        background-color: var(--color-primary);
+
+        &:not(:last-child) {
+            &::after {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: var(--separation);
+                background-color: var(--color-secondary);
+                left: 50%;
+                top: 100%;
+                translate: -50% 0;
+            }
+        }
+    }
+
+    &__dot:nth-child(even)>.timeline__card {
+        left: 50px;
+        text-align: left;
+    }
+
+    &__dot:nth-child(odd)>.timeline__card {
+        right: 50px;
+        text-align: right;
+    }
+
+    &__card {
+        position: absolute;
+        top: 50%;
+
+        width: max-content;
+
+        @include mobile-only {
+            width: min-content;
+        }
+
+        translate: 0% -50%;
+
+        &-title {}
+
+        &-establishment {
+            color: var(--color-secondary);
+
+            @include mobile-only {
+                font-size: 14px;
+            }
+        }
+
+        &-year-span {
+            color: var(--color-secondary);
+
+            @include mobile-only {
+                font-size: 14px;
+            }
+        }
+    }
+}

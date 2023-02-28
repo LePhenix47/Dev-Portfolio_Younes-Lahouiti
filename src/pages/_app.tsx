@@ -24,10 +24,6 @@ import { motion } from "framer-motion";
  * This file **must not** be nested inside a React Fragment
  */
 
-/*
-  
-*/
-
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
 

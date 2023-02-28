@@ -22,7 +22,7 @@ export default function About(): JSX.Element {
   /**
    * My actual age
    */
-  const myAge = Math.floor(
+  const myAgeInYears = Math.floor(
     (currentDate - dateOfBirth) / MILLISECONDS_IN_A_YEAR
   );
 
@@ -119,11 +119,11 @@ export default function About(): JSX.Element {
             </div>
             <div className="about-page__text">
               <p className="about-page__description">
-                I&apos;m a {myAge.toString()} years old Italian full-stack
-                developer with expertise in developing web applications,
-                including the integration of UI/UX interface. While my primary
-                focus is on developing the functionality of the applications, I
-                am also proficient in integrating Figma mockups.
+                I&apos;m a {myAgeInYears} years old Italian full-stack developer
+                with expertise in developing web applications, including the
+                integration of UI/UX interface. While my primary focus is on
+                developing the functionality of the applications, I am also
+                proficient in integrating Figma mockups.
               </p>
               <Link
                 href="/Younes-Lahouiti_Resume-CV.pdf"
