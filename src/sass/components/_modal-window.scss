@@ -1,0 +1,15 @@
+@use "../utils/" as *;
+
+.modal-window {
+    position: absolute;
+    inset: 50%;
+
+    translate: -50% 50%;
+
+    min-height: 250px;
+    min-width: 250px;
+
+    &__content-wrapper {}
+
+    &__close-button {}
+}

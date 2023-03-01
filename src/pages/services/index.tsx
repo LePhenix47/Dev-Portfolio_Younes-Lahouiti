@@ -1,8 +1,17 @@
 //Next
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+
+//Components
+import ModalWindow from "@/components/ModalWindow/ModalWindow";
 
 export default function Services(): JSX.Element {
+  /**
+   * State to tell the `<ModalWindow />` component whether it should open or not
+   */
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <>
       <Head>
@@ -35,6 +44,7 @@ export default function Services(): JSX.Element {
          */}
         <title>Services page</title>
       </Head>
+      <ModalWindow isOpen={isOpen} setIsOpen={setIsOpen} content={null} />
       <section className="services-page">
         <h1 className="services-page">Services</h1>
         <h2 className="services-page__subtitle">My expertise and offerings</h2>
