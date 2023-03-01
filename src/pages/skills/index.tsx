@@ -19,15 +19,12 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
-import { log } from "@/react-utils/functions/helper-functions";
 
-export default function Skills() {
+export default function Skills(): JSX.Element {
   const [isRotated, setIsRotated] = useState<boolean>(false);
 
   let rotateRef = useRef<boolean>(true);
   rotateRef.current = true;
-
-  log(!!rotateRef.current);
 
   return (
     <>
@@ -41,6 +38,7 @@ export default function Skills() {
           content="
           Take a closer look at my technical skills as a web developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life"
         />
+        {/* Open Graph tags */}
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Skills page" />
@@ -116,7 +114,6 @@ export default function Skills() {
             onClick={() => {
               setIsRotated(false);
               rotateRef.current = false;
-              log(rotateRef.current);
             }}
           >
             Experience
@@ -129,7 +126,6 @@ export default function Skills() {
             onClick={() => {
               setIsRotated(true);
               rotateRef.current = true;
-              log(rotateRef.current);
             }}
           >
             Education

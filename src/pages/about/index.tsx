@@ -38,6 +38,7 @@ export default function About(): JSX.Element {
           content="
           Get to know me better! I'm Younes LAHOUITI, a passionate web developer with 1 year of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences."
         />
+        {/* Open Graph tags */}
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About page" />

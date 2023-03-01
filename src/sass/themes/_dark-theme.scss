@@ -35,7 +35,7 @@
         --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
         --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
 
-        //
+        //For the images
         .home-page__social-image {
             &-github {
                 filter: invert(100%) hue-rotate(180deg);

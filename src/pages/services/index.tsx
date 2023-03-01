@@ -16,32 +16,10 @@ export default function Services(): JSX.Element {
    */
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  /**
+   * Content to show inside the `<ModalWindow />` component
+   */
   const [windowContent, setWindowContent] = useState<any>(null);
-
-  // let content = (
-  //   <section className="services-page__card-content">
-  //     <h2 className="services-page__card-title">Title</h2>
-  //     <p className="services-page__card-description">Description</p>
-  //     <ul className="services-page__card-qualities-list">
-  //       <li className="services-page__card-qualities-item">
-  //         <span className="services-page__card-qualities-item-icon">
-  //           <svg
-  //             xmlns="http://www.w3.org/2000/svg"
-  //             width="24"
-  //             height="24"
-  //             viewBox="0 0 24 24"
-  //             fill="var(--color-secondary)"
-  //           >
-  //             <path fill="none" d="M0 0h24v24H0V0z" />
-  //             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z" />
-  //           </svg>
-  //         </span>
-  //         Quality
-  //       </li>
-  //     </ul>
-  //   </section>
-  // );
-
   /**
    * Function that opens the
    */
@@ -51,13 +29,22 @@ export default function Services(): JSX.Element {
      */
     const dataType = event.target.dataset.type;
 
+    /**
+     * We get the details of the image clicked
+     */
     let dataObject: any = offeredServices.filter((serviceOffered) => {
       const { title } = serviceOffered;
       return dataType === title;
     });
 
+    /**
+     * We destructure the object stored inside the array returned by the `filter()` function
+     */
     const { title, description, qualities } = dataObject[0];
 
+    /**
+     * HTML content for the window modal
+     */
     let content = (
       <section className="services-page__card-content">
         <h2 className="services-page__card-title">{title}</h2>
@@ -93,7 +80,7 @@ export default function Services(): JSX.Element {
      * Set the content of the modal window
      */
     setWindowContent(content);
-    log(content);
+
     /**
      * Open the `<ModalWindow />` component
      */
@@ -112,7 +99,7 @@ export default function Services(): JSX.Element {
           content="
           Welcome to my services page. As a skilled web developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life"
         />
-
+        {/* Open Graph tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Services page" />
         <meta
@@ -142,9 +129,11 @@ export default function Services(): JSX.Element {
         <h1 className="services-page__title">Services</h1>
         <h2 className="services-page__subtitle">My expertise and offerings</h2>
         <div className="services-page__cards-container">
-          {/*      Beginning        */}
           {offeredServices.map((service) => {
-            const { icon, title, description, qualities } = service;
+            /**
+             * We get the icon, title and description
+             */
+            const { icon, title, description } = service;
             return (
               <div
                 className="services-page__card card"
@@ -176,26 +165,6 @@ export default function Services(): JSX.Element {
               </div>
             );
           })}
-          {/* <div className="services-page__card card">
-            <div className="services-page__card-icon">
-              <Image src="/x" alt={""} width={32} height={32} />
-            </div>
-            <div className="services-page__card-text">
-              <h2 className="services-page__card-title">Test 1234 test</h2>
-              <a
-                href="#"
-                className="services-page__card-link"
-                onClick={() => {
-                  setIsOpen(true);
-                }}
-              >
-                View more{" "}
-                <span className="services-page__card-link-arrow">→</span>
-              </a>
-            </div>
-          </div> */}
-
-          {/*      End      */}
         </div>
       </section>
     </>
