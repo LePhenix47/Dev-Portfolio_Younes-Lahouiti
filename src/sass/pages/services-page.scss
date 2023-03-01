@@ -1,3 +1,127 @@
 @use "../utils/" as *;
 
-.services-page {}
+.services-page {
+    @include center-flex-column(15px);
+
+    &__title {}
+
+    &__subtitle {}
+
+    &__cards-container {
+        margin-block: 50px;
+
+
+        @include center-flex(30px);
+
+        @include laptop-only {
+            @include center-flex-column(30px);
+            width: 100%;
+        }
+
+        @include tablet-only {
+            @include center-flex-column(30px);
+            width: 100%;
+        }
+
+        @include mobile-only {
+            @include center-flex-column(30px);
+            width: 100%;
+        }
+    }
+
+    &__card {
+        height: 350px;
+        width: 325px;
+
+        padding: 35px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        align-items: flex-start;
+
+        @include laptop-only {
+            @include center-flex-column(30px);
+            width: 80%;
+        }
+
+        @include tablet-only {
+            width: 85%;
+        }
+
+        @include mobile-only {
+            width: 90%;
+        }
+
+        &-icon {}
+
+        &-text {}
+
+        &-title {
+            font-size: 22px;
+            width: 75%;
+        }
+
+        &-link {
+            color: var(--color-secondary);
+            transition: color 150ms ease-in-out;
+
+            &:visited {
+                color: var(--color-secondary);
+            }
+
+            display: inline-block;
+            margin-top: 25px;
+
+            &:hover {
+                color: var(--color-primary);
+
+                &>.services-page__card-link-arrow {
+                    translate: 50% 0;
+                }
+            }
+
+            &-arrow {
+                transition: translate 150ms ease-in-out;
+                display: inline-block;
+            }
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            gap: 15px;
+
+            padding: 30px 45px;
+
+            text-align: center;
+        }
+
+        &-title {
+            width: 100%;
+        }
+
+
+        &-qualities-list {
+            text-align: left;
+        }
+
+        &-qualities-item {
+            position: relative;
+
+            margin-top: 25px;
+            margin-left: 25px;
+            color: var(--color-secondary);
+
+            &-icon {
+                position: absolute;
+                left: -35px;
+                top: 0px;
+            }
+        }
+
+    }
+}

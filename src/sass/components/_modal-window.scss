@@ -1,15 +1,79 @@
 @use "../utils/" as *;
 
 .modal-window {
-    position: absolute;
-    inset: 50%;
+    background-color: var(--bg-secondary);
+    border: 2px solid currentColor;
 
-    translate: -50% 50%;
+    border-radius: 25px;
 
     min-height: 250px;
     min-width: 250px;
 
-    &__content-wrapper {}
+    width: 600px;
+    height: 500px;
 
-    &__close-button {}
+    transition: filter 350ms ease-in-out;
+
+    &::backdrop {
+        background-color: var(--backdrop-bg-color);
+    }
+
+    & :is(div, section):not(.modal-window__content-wrapper) {
+        margin-top: 32px;
+    }
+
+    &__content-wrapper {
+        //Relative to the window itself
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    &__close-button {
+        border: 2px solid currentColor;
+        border-radius: 0 0 0 10px;
+
+        position: absolute;
+        right: 0;
+
+        aspect-ratio: 1/1;
+        height: 32px;
+
+        background-color: currentColor;
+
+        &:hover {
+            filter: contrast(75%);
+        }
+
+        &:active {
+            filter: contrast(50%);
+
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 14px;
+
+            height: 15px;
+            width: 2px;
+            background-color: var(--bg-primary);
+
+            rotate: 45deg;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 14px;
+
+            height: 15px;
+            width: 2px;
+            background-color: var(--bg-primary);
+
+            rotate: -45deg;
+        }
+    }
 }

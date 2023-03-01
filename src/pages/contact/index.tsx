@@ -36,7 +36,7 @@ export default function Contact(): JSX.Element {
         <title>Contact page</title>
       </Head>
       <section className="contact-page">
-        <h1 className="contact-page">Contact me</h1>
+        <h1 className="contact-page__title">Contact me</h1>
         <h2 className="contact-page__subtitle">Get in touch</h2>
       </section>
     </>

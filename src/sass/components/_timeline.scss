@@ -45,12 +45,12 @@
     //Adds the cards on the right then left alternatively
     &__dot--reverse:nth-child(even)>.timeline__card {
         right: 50px;
-        text-align: left;
+        text-align: right;
     }
 
     &__dot--reverse:nth-child(odd)>.timeline__card {
         left: 50px;
-        text-align: right;
+        text-align: left;
     }
 
     &__card {

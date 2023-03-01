@@ -3,6 +3,8 @@
     $bg-primary: #050505;
     $bg-secondary: black;
 
+    $backdrop-bg-color: rgba(0, 0, 0, 0.5);
+
     $color-primary: #cdcdcd;
     $color-primary--hover: darken($color-primary, 5%);
     $color-primary--active: darken($color-primary, 20%);
@@ -43,9 +45,15 @@
                 filter: invert(100%) hue-rotate(180deg);
             }
         }
+
+        .services-page__card-icon {
+            filter: invert(100%) hue-rotate(180deg);
+        }
     }
 
     ::backdrop {
+        --backdrop-bg-color: #{$backdrop-bg-color};
+
         --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
 
         --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};

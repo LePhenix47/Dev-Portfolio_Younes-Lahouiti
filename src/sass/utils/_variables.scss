@@ -2,6 +2,8 @@
 $bg-primary: #FAFAFA;
 $bg-secondary: white;
 
+$backdrop-bg-color: rgba(255, 255, 255, 0.5);
+
 $color-primary: #323232;
 $color-primary--hover: lighten($color-primary, 10%);
 $color-primary--active: lighten($color-primary, 20%);
@@ -37,6 +39,8 @@ $scrollbar-thumb-bg-color--active: #b0b0b0;
 }
 
 ::backdrop {
+    --backdrop-bg-color: #{$backdrop-bg-color};
+
     --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
 
     --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};

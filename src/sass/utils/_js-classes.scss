@@ -6,18 +6,36 @@
 .fade {
     &-in {
         animation-name: fade-in;
-        animation-duration: 350ms;
+        animation-duration: 250ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
         animation-direction: normal;
+
+        &::backdrop {
+            animation-name: fade-in;
+            animation-duration: 250ms;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+            animation-direction: normal;
+
+        }
     }
 
     &-out {
         animation-name: fade-in;
-        animation-duration: 350ms;
+        animation-duration: 250ms;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
         animation-direction: reverse; //We play it in reverse
+
+        &::backdrop {
+            animation-name: fade-in;
+            animation-duration: 250ms;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+            animation-direction: reverse; //We play it in reverse
+
+        }
     }
 }
 

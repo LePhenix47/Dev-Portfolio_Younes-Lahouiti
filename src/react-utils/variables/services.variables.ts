@@ -10,19 +10,38 @@ export const offeredServices: serviceType = [
   {
     icon: integrationIcon,
     title: "Integration",
-    description: "",
-    qualities: ["", ""],
+    description:
+      " Integrate various systems and technologies to work together seamlessly",
+    qualities: [
+      "Strong problem-solving skills",
+      "Knowledge of different programming languages",
+      "Attention to detail",
+      "Good communication skills",
+      "Ability to work in a team",
+    ],
   },
   {
     icon: debuggingIcon,
     title: "Debugging and dynamization",
-    description: "",
-    qualities: ["", ""],
+    description: " Identify and fix issues in code, and optimize performance",
+    qualities: [
+      "Strong analytical skills",
+      "Ability to work under pressure",
+      "Familiarity with debugging tools and techniques",
+      "Adaptability to changing requirements",
+    ],
   },
   {
     icon: apiIcon,
     title: "API creation",
-    description: "",
-    qualities: ["", ""],
+    description:
+      "Design, develop and maintain APIs for use in software applications",
+    qualities: [
+      "Strong coding skills",
+      "Knowledge of API design principles and best practices",
+      "Ability to write clear and concise documentation",
+      "Familiarity with REST APIs",
+      "Continuous learning and improvement mindset",
+    ],
   },
 ];
