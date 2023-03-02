@@ -1,5 +1,58 @@
+//Images
+//OC
+import P2_DW from "../../../public/png/";
+import P3_DW from "../../../public/png/";
+import P4_DW from "../../../public/png/";
+import P5_DW from "../../../public/png/";
+import P7_DW from "../../../public/png/";
+import P6_DW from "../../../public/png/";
+
+import P4_JSReact from "../../../public/png/";
+import P6_JSReact from "../../../public/png/";
+import P7_JSReact from "../../../public/png/";
+import P9_JSReact from "../../../public/png/";
+import P11_JSReact from "../../../public/png/";
+import P12_JSReact from "../../../public/png/";
+import P13_JSReact from "../../../public/png/";
+import P14_JSReact from "../../../public/png/";
+
+//Personal
+import CUSTOM_VIDEO from "../../../public/png/";
+import CUSTOM_GRADIENT from "../../../public/png/";
+import CUSTOM_AUDIO from "../../../public/png/";
+import WEATHER_APP from "../../../public/png/";
+import RANDOM_QUIZ from "../../../public/png/";
+import UNIT_CONVERTER from "../../../public/png/";
+import SLIDER_CAROUSEL from "../../../public/png/";
+import FILTERABLE_LIST from "../../../public/png/";
+import VALIDATION_FORM from "../../../public/png/";
+import MEMORY_CARD_GAME from "../../../public/png/";
+import COOKIE_CREATOR from "../../../public/png/";
+import POMODORO_APP from "../../../public/png/";
+import INFINITE_SCROLL from "../../../public/png/";
+import CALCULATOR_APP from "../../../public/png/";
+import ANIMATED_PAGE from "../../../public/png/";
+import TICTACTOE_GAME from "../../../public/png/";
+
+//Professional
+import CALIFORNIA_GYM from "../../../public/png/";
+
+//NPM
+import TIMEOUT_UTILITY from "../../../public/png/";
+import INTERVAL_UTILITY from "../../../public/png/";
+import WEBSTORAGE_UTILITY from "../../../public/png/";
+import COOKIES_UTILITY from "../../../public/png/";
+import REACT_DATA_TABLE from "../../../public/png/";
+
+//Browser extensions
+import NDL from "../../../public/png/";
+
+//Types
 import { projectsMadeType } from "../types/projects.types";
 
+/**
+ * Constant containing my traineeship at OpenClassrooms projects
+ */
 export const openClassroomsProjects: projectsMadeType = [
   {
     title: "[DW] P2: Reservia",
@@ -101,6 +154,9 @@ export const openClassroomsProjects: projectsMadeType = [
   },
 ];
 
+/**
+ * Constant containing my personal projects
+ */
 export const personalProjects: projectsMadeType = [
   {
     title: "Password generator",
@@ -166,6 +222,13 @@ export const personalProjects: projectsMadeType = [
     date: new Date("14/09/2022"),
   },
   {
+    title: "Validation form",
+    image: "",
+    link: "https://github.com/LePhenix47/Validation-form_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("10/09/2022"),
+  },
+  {
     title: "Memory card game",
     image: "",
     link: "https://github.com/LePhenix47/Memory-card-game_Younes-Lahouiti",
@@ -216,6 +279,9 @@ export const personalProjects: projectsMadeType = [
   },
 ];
 
+/**
+ * Constant containing my professional projects
+ */
 export const professionalProjects: projectsMadeType = [
   {
     title: "Californie Gym (coming soon)",
@@ -233,6 +299,9 @@ export const professionalProjects: projectsMadeType = [
   },
 ];
 
+/**
+ * Constant containing my npm libraries
+ */
 export const npmProjects: projectsMadeType = [
   {
     title: "Timeout utility",
@@ -268,5 +337,18 @@ export const npmProjects: projectsMadeType = [
     link: "https://www.npmjs.com/package/@lephenix47/react-datatable",
     type: "npm",
     date: new Date("02/06/2023"),
+  },
+];
+
+/**
+ * Constant containing my browser extensions
+ */
+export const browserExtensionProjects: projectsMadeType = [
+  {
+    title: "Nommage des livrables",
+    image: "",
+    link: "https://chrome.google.com/webstore/detail/nommages-des-livrables/keameojhjfplflkgoagidmoccfhbcbfb?hl=fr",
+    type: "extension",
+    date: new Date("09/12/2023"),
   },
 ];
