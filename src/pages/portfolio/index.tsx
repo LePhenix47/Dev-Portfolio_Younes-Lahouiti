@@ -1,8 +1,25 @@
+//React
+import { useState } from "react";
+
 //Next
 import Head from "next/head";
 import Image from "next/image";
 
+//Utils
+import {
+  openClassroomsProjects,
+  personalProjects,
+  professionalProjects,
+  npmProjects,
+  browserExtensionProjects,
+} from "@/react-utils/variables/projects.variables";
+
 export default function Portfolio(): JSX.Element {
+  /**
+   * State containing the data for the cards in the container
+   */
+  const [allCardInfos, setCardInfos] = useState<any[]>([]);
+
   return (
     <>
       <Head>

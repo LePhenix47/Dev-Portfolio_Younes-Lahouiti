@@ -1,51 +1,52 @@
 //Images
 //OC
-import P2_DW from "../../../public/png/";
-import P3_DW from "../../../public/png/";
-import P4_DW from "../../../public/png/";
-import P5_DW from "../../../public/png/";
-import P7_DW from "../../../public/png/";
-import P6_DW from "../../../public/png/";
+import P2_DW from "../../../public/png/P2-DW-image.png";
+import P3_DW from "../../../public/png/P3-DW-image.png";
+import P4_DW from "../../../public/png/P4-DW-image.png";
+import P5_DW from "../../../public/png/P5-DW-image.png";
+import P6_DW from "../../../public/png/P6-DW-image.png";
+import P7_DW from "../../../public/png/P7-DW-image.png";
 
-import P4_JSReact from "../../../public/png/";
-import P6_JSReact from "../../../public/png/";
-import P7_JSReact from "../../../public/png/";
-import P9_JSReact from "../../../public/png/";
-import P11_JSReact from "../../../public/png/";
-import P12_JSReact from "../../../public/png/";
-import P13_JSReact from "../../../public/png/";
-import P14_JSReact from "../../../public/png/";
+import P4_JSReact from "../../../public/png/P4-JS_React-image.png";
+import P6_JSReact from "../../../public/png/P6-DW-image.png";
+import P7_JSReact from "../../../public/png/P7-JS_React-image.png";
+import P9_JSReact from "../../../public/png/P9-JS_React-image.png";
+import P11_JSReact from "../../../public/png/P11-JS_React-image.png";
+import P12_JSReact from "../../../public/png/P12-JS_React-image.png";
+import P13_JSReact from "../../../public/png/P13-JS_React-image.png";
+import P14_JSReact from "../../../public/png/P14-JS_React-image.png";
 
 //Personal
-import CUSTOM_VIDEO from "../../../public/png/";
-import CUSTOM_GRADIENT from "../../../public/png/";
-import CUSTOM_AUDIO from "../../../public/png/";
-import WEATHER_APP from "../../../public/png/";
-import RANDOM_QUIZ from "../../../public/png/";
-import UNIT_CONVERTER from "../../../public/png/";
-import SLIDER_CAROUSEL from "../../../public/png/";
-import FILTERABLE_LIST from "../../../public/png/";
-import VALIDATION_FORM from "../../../public/png/";
-import MEMORY_CARD_GAME from "../../../public/png/";
-import COOKIE_CREATOR from "../../../public/png/";
-import POMODORO_APP from "../../../public/png/";
-import INFINITE_SCROLL from "../../../public/png/";
-import CALCULATOR_APP from "../../../public/png/";
-import ANIMATED_PAGE from "../../../public/png/";
-import TICTACTOE_GAME from "../../../public/png/";
+import PASSWORD_GENERATOR from "../../../public/png/Password generator.png";
+import CUSTOM_VIDEO from "../../../public/png/Custom video player.png";
+import CUSTOM_GRADIENT from "../../../public/png/Customizable background.png";
+import CUSTOM_AUDIO from "../../../public/png/Customized audio player.png";
+import WEATHER_APP from "../../../public/png/Weather app.png";
+import RANDOM_QUIZ from "../../../public/png/Random quiz.png";
+import UNIT_CONVERTER from "../../../public/png/Unit converter.png";
+import SLIDER_CAROUSEL from "../../../public/png/Slider-Carousel in JS.png";
+import FILTERABLE_LIST from "../../../public/png/Filterable list.png";
+import VALIDATION_FORM from "../../../public/png/Validation form.png";
+import MEMORY_CARD_GAME from "../../../public/png/Memory card game.png";
+import COOKIE_CREATOR from "../../../public/png/JS cookies.png";
+import POMODORO_APP from "../../../public/png/Pomodoro app.png";
+import INFINITE_SCROLL from "../../../public/png/Infinite scroll.png";
+import CALCULATOR_APP from "../../../public/png/Calculator.png";
+import ANIMATED_PAGE from "../../../public/png/Animated landing Page.png";
+import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
 
 //Professional
-import CALIFORNIA_GYM from "../../../public/png/";
+import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
 
 //NPM
-import TIMEOUT_UTILITY from "../../../public/png/";
-import INTERVAL_UTILITY from "../../../public/png/";
-import WEBSTORAGE_UTILITY from "../../../public/png/";
-import COOKIES_UTILITY from "../../../public/png/";
-import REACT_DATA_TABLE from "../../../public/png/";
+import TIMEOUT_UTILITY from "../../../public/png/hourglass-clepsydra-icon.png";
+import INTERVAL_UTILITY from "../../../public/png/interval-icon.png";
+import WEBSTORAGE_UTILITY from "../../../public/png/webstorage-icon.png";
+import COOKIES_UTILITY from "../../../public/png/cookie-utility-icon.png";
+import REACT_DATA_TABLE from "../../../public/png/Data Table.png";
 
 //Browser extensions
-import NDL from "../../../public/png/";
+import NDL from "../../../public/png/nommage des livrables.png";
 
 //Types
 import { projectsMadeType } from "../types/projects.types";
@@ -56,98 +57,98 @@ import { projectsMadeType } from "../types/projects.types";
 export const openClassroomsProjects: projectsMadeType = [
   {
     title: "[DW] P2: Reservia",
-    image: "",
+    image: P2_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_2_09012022",
     type: "oc",
     date: new Date("01/09/2022"),
   },
   {
     title: "[DW] P3: ohmyfood",
-    image: "",
+    image: P3_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_3_26012022-Fix",
     type: "oc",
     date: new Date("01/26/2022"),
   },
   {
     title: "[DW] P4: Agence la Panthère",
-    image: "",
+    image: P4_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_4_25022022--After",
     type: "oc",
     date: new Date("02/25/2022"),
   },
   {
     title: "[DW] P5: Kanap",
-    image: "",
+    image: P5_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_5_30032022",
     type: "oc",
     date: new Date("03/30/2022"),
   },
   {
-    title: "[DW] P6: Piiquante",
-    image: "",
+    title: "[DW] P6: HotTakes",
+    image: P6_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_6_28042022",
     type: "oc",
     date: new Date("04/28/2022"),
   },
   {
     title: "[DW] P7: Groupomania",
-    image: "",
+    image: P7_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_7_11052022",
     type: "oc",
     date: new Date("05/11/2022"),
   },
   {
     title: "[JS-React] P4: GameOn",
-    image: "",
+    image: P4_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_4_25092022",
     type: "oc",
     date: new Date("09/25/2022"),
   },
   {
     title: "[JS-React] P6: FishEye",
-    image: "",
+    image: P6_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_6_28092022",
     type: "oc",
     date: new Date("09/28/2022"),
   },
   {
     title: "[JS-React] P7: Les petits plats",
-    image: "",
+    image: P7_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_7_16102022",
     type: "oc",
     date: new Date("10/16/2022"),
   },
   {
     title: "[JS-React] P9: Bill",
-    image: "",
+    image: P9_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_9_06112022--Fix",
     type: "oc",
     date: new Date("11/06/2022"),
   },
   {
     title: "[JS-React] P11: Kasa",
-    image: "",
+    image: P11_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_11_20122022",
     type: "oc",
     date: new Date("12/20/2022"),
   },
   {
     title: "[JS-React] P12: SportSee",
-    image: "",
+    image: P12_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_12_01012023",
     type: "oc",
     date: new Date("01/01/2023"),
   },
   {
     title: "[JS-React] P13: ArgentBank",
-    image: "",
+    image: P13_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_13_26012023",
     type: "oc",
     date: new Date("01/26/2023"),
   },
   {
     title: "[JS-React] P14: HRnet",
-    image: "",
+    image: P14_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_14_06022023",
     type: "oc",
     date: new Date("02/06/2023"),
@@ -160,119 +161,119 @@ export const openClassroomsProjects: projectsMadeType = [
 export const personalProjects: projectsMadeType = [
   {
     title: "Password generator",
-    image: "",
+    image: PASSWORD_GENERATOR,
     link: "https://github.com/LePhenix47/Password-generator_Younes-Lahouiti",
     type: "personal",
     date: new Date("08/19/2022"),
   },
   {
     title: "Customizeable linear gradient",
-    image: "",
+    image: CUSTOM_GRADIENT,
     link: "https://github.com/LePhenix47/Customizable-linear-gradiant_Younes-Lahouiti",
     type: "personal",
     date: new Date("08/01/2022"),
   },
   {
     title: "Custom video player",
-    image: "",
+    image: CUSTOM_VIDEO,
     link: "https://github.com/LePhenix47/Custom-video-player_Younes-Lahouiti---Fix",
     type: "personal",
     date: new Date("29/06/2022"),
   },
   {
     title: "Custom audio player",
-    image: "",
+    image: CUSTOM_AUDIO,
     link: "https://github.com/LePhenix47/Custom-audio-player_Younes-Lahouiti",
     type: "personal",
     date: new Date("04/08/2022"),
   },
   {
     title: "Weather app",
-    image: "",
+    image: WEATHER_APP,
     link: "https://github.com/LePhenix47/Weather-app_Younes-Lahouiti",
     type: "personal",
     date: new Date("08/08/2022"),
   },
   {
     title: "Random quiz",
-    image: "",
+    image: RANDOM_QUIZ,
     link: "https://github.com/LePhenix47/Random-quiz_Younes-Lahouiti",
     type: "personal",
     date: new Date("17/09/2022"),
   },
   {
     title: "Unit converter",
-    image: "",
+    image: UNIT_CONVERTER,
     link: "https://github.com/LePhenix47/Unit-converter_Younes-Lahouiti",
     type: "personal",
     date: new Date("20/09/2022"),
   },
   {
     title: "Slider carousel",
-    image: "",
+    image: SLIDER_CAROUSEL,
     link: "https://github.com/LePhenix47/Slider-carousel_Younes-Lahouiti",
     type: "personal",
     date: new Date("16/09/2022"),
   },
   {
     title: "Filterable list",
-    image: "",
+    image: FILTERABLE_LIST,
     link: "https://github.com/LePhenix47/Filterable-list_Younes-Lahouiti",
     type: "personal",
     date: new Date("14/09/2022"),
   },
   {
     title: "Validation form",
-    image: "",
+    image: VALIDATION_FORM,
     link: "https://github.com/LePhenix47/Validation-form_Younes-Lahouiti",
     type: "personal",
     date: new Date("10/09/2022"),
   },
   {
     title: "Memory card game",
-    image: "",
+    image: MEMORY_CARD_GAME,
     link: "https://github.com/LePhenix47/Memory-card-game_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/09/2022"),
   },
   {
     title: "Cookie creator",
-    image: "",
+    image: COOKIE_CREATOR,
     link: "https://github.com/LePhenix47/Cookie-creator_Younes-Lahouiti",
     type: "personal",
     date: new Date("08/09/2022"),
   },
   {
     title: "Pomodoro app",
-    image: "",
+    image: POMODORO_APP,
     link: "https://github.com/LePhenix47/Pomodoro-app_Younes-Lahouiti",
     type: "personal",
     date: new Date("02/09/2022"),
   },
   {
     title: "Infinite scroll",
-    image: "",
+    image: INFINITE_SCROLL,
     link: "https://github.com/LePhenix47/Infinite-scroll__Younes-Lahouiti",
     type: "personal",
     date: new Date("24/08/2022"),
   },
   {
     title: "Calculator app",
-    image: "",
+    image: CALCULATOR_APP,
     link: "https://github.com/LePhenix47/Calculator-app_Younes-Lahouiti",
     type: "personal",
     date: new Date("15/08/2022"),
   },
   {
     title: "Animated page",
-    image: "",
+    image: ANIMATED_PAGE,
     link: "https://github.com/LePhenix47/Animated-page_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/08/2022"),
   },
   {
     title: "Tic-tac-toe game",
-    image: "",
+    image: TICTACTOE_GAME,
     link: "https://github.com/LePhenix47/Tic-tac-toe-game_Younes-Lahouiti",
     type: "personal",
     date: new Date("02/08/2022"),
@@ -285,7 +286,7 @@ export const personalProjects: projectsMadeType = [
 export const professionalProjects: projectsMadeType = [
   {
     title: "Californie Gym (coming soon)",
-    image: "",
+    image: CALIFORNIA_GYM,
     link: "",
     type: "professional",
     date: new Date("02/11/2022"),
@@ -305,35 +306,35 @@ export const professionalProjects: projectsMadeType = [
 export const npmProjects: projectsMadeType = [
   {
     title: "Timeout utility",
-    image: "",
+    image: TIMEOUT_UTILITY,
     link: "https://github.com/LePhenix47/Timout-utility_npm-package",
     type: "npm",
     date: new Date("02/09/2023"),
   },
   {
     title: "Interval utility",
-    image: "",
+    image: INTERVAL_UTILITY,
     link: "https://github.com/LePhenix47/Interval-utility_npm-package",
     type: "npm",
     date: new Date("02/09/2023"),
   },
   {
     title: "Cookies utility",
-    image: "",
+    image: COOKIES_UTILITY,
     link: "https://github.com/LePhenix47/Cookie-utility_npm-package",
     type: "npm",
     date: new Date("02/09/2023"),
   },
   {
     title: "WebStorage utility",
-    image: "",
+    image: WEBSTORAGE_UTILITY,
     link: "https://github.com/LePhenix47/WebStorage-utility_npm-package",
     type: "npm",
     date: new Date("02/09/2023"),
   },
   {
     title: "React Data table",
-    image: "",
+    image: REACT_DATA_TABLE,
     link: "https://www.npmjs.com/package/@lephenix47/react-datatable",
     type: "npm",
     date: new Date("02/06/2023"),
@@ -346,7 +347,7 @@ export const npmProjects: projectsMadeType = [
 export const browserExtensionProjects: projectsMadeType = [
   {
     title: "Nommage des livrables",
-    image: "",
+    image: NDL,
     link: "https://chrome.google.com/webstore/detail/nommages-des-livrables/keameojhjfplflkgoagidmoccfhbcbfb?hl=fr",
     type: "extension",
     date: new Date("09/12/2023"),
