@@ -334,11 +334,12 @@ export function sortArrayOfObjects(
       }
       case "object": {
         //We check if the object was created with the `Date` class
-        const isDate: boolean = propOfObj1 instanceof Date;
-        if (isDate) {
+        const isDateAsOjbect: boolean = propOfObj1 instanceof Date;
+
+        if (isDateAsOjbect) {
           return propOfObj1 - propOfObj2;
         } else {
-          throw "Object passed isn't a date, perhaps you entered an array?";
+          throw "Object passed isn't a date, perhaps it's not an instance of Date or you entered an array?";
         }
       }
 

@@ -1,5 +1,5 @@
 //React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //Next
 import Head from "next/head";
@@ -14,7 +14,12 @@ import {
   browserExtensionProjects,
   allProjects,
 } from "@/react-utils/variables/projects.variables";
-import { log } from "@/react-utils/functions/helper-functions";
+import {
+  log,
+  sortArrayOfObjects,
+  filterArrayByString,
+  table,
+} from "@/react-utils/functions/helper-functions";
 
 export default function Portfolio(): JSX.Element {
   /**
@@ -22,7 +27,10 @@ export default function Portfolio(): JSX.Element {
    */
   const [allCardInfos, setCardInfos] = useState<any[]>([]);
 
-  log(allProjects);
+  useEffect(() => {
+    let test = sortArrayOfObjects(allProjects, "date", false);
+    table(test);
+  }, []);
 
   return (
     <>
