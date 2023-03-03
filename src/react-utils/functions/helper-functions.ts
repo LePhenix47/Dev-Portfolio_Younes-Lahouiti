@@ -224,17 +224,130 @@ export function formatCurrencyValueNumber(
   return formatter.format(number);
 }
 
+/**
+ * Function that formats the date
+ *
+ * @param {Date} date
+ * @param {string | undefined} locale
+ * @param {*} options Object for the options for the: `dateStyle, dayPeriod, timeStyle, hourCycle, hour12, year, month`...
+ *
+ * @returns Formatted date
+ */
 export function formatDate(
-  date: Date,
+  unformattedDateObject: Date,
   locale: string | undefined,
-  dateStyle: "string"
+  options: any
 ) {
-  const dateIsNotADateObject: boolean = !(date instanceof Date);
+  const dateIsNotADateObject: boolean = !(
+    unformattedDateObject instanceof Date
+  );
   if (dateIsNotADateObject) {
-    throw `"${date}" is not a date object`;
+    throw `"${unformattedDateObject}" is not a date object`;
   }
 
-  let dateFormatter = new Intl.DateTimeFormat(locale, {});
+  /**
+   * We create the time formatter with the internalization web API
+   */
+  let dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(
+    locale,
+    options
+  );
+  return dateFormatter.format(unformattedDateObject);
+}
+
+/**
+ * Function that formats a date to fit the
+ *
+ * @param unformattedDate
+ */
+export function formatDateToShort(unformattedDateObject: Date) {
+  const dateFormatOptions: object = { dateStyle: "full", timeStyle: "short" };
+
+  /**
+   * Will return a stirng under this format:
+   *
+   * ```js
+   * "[Day], [Month] [number day of month], [Year] at [hours in AM/PM]"
+   * ```
+   *
+   */
+  let stringFormattedDate: string = formatDate(
+    unformattedDateObject,
+    "en-US",
+    dateFormatOptions
+  );
+
+  /**
+   * Removes the hours
+   * ```js
+   * [ "[Day], [Month] [number day of month], [Year]" ]
+   * ```
+   * */
+  let firstPartOfDate: string = splitString(stringFormattedDate, /at/)[0];
+
+  /**
+   * Gets the month, number day of the month and the year
+   * ```js
+   * [ "[Day]", " [Month] [number day of month]", " [Year]" ]
+   * ```   */
+  let monthDayYearArray: string[] = splitString(firstPartOfDate, ",");
+
+  //Gets the month
+  let unformattedMonth: string = monthDayYearArray[1].trim();
+  unformattedMonth = splitString(unformattedMonth, " ")[0];
+
+  //Gets the number day of the month inside the string
+  let unformattedNumericDay: number = Number(
+    splitString(unformattedMonth, " ")[1]
+  );
+
+  let formattedDay = addNumberOrdinalSuffix(unformattedNumericDay);
+  let formattedMonth = unformattedMonth.substring(0, 3);
+
+  //Gets the year
+  let formattedYear: number = Number(monthDayYearArray[2].trim());
+
+  return `${formattedMonth} ${formattedDay} ${formattedYear}`;
+}
+
+/**
+ *Formats a number with its ordinal suffix (e.g. "1st", "2nd", "3rd", "4th").
+
+ *@param {number} number The number to format.
+ *
+ *@returns {string} The formatted string.
+ */
+export function addNumberOrdinalSuffix(number: number): string {
+  const canNotAddSuffixToNumber: boolean =
+    number <= 0 || typeof number !== "number";
+
+  if (canNotAddSuffixToNumber) {
+    throw "Cannot add suffix to the number";
+  }
+
+  const isOverTen: boolean = number >= 10;
+
+  if (!isOverTen) {
+    switch (number) {
+      case 1: {
+        return `${number}st`;
+      }
+
+      case 2: {
+        return `${number}nd`;
+      }
+
+      case 3: {
+        return `${number}rd`;
+      }
+
+      default: {
+        return `${number}th`;
+      }
+    }
+  }
+
+  return `${number}th`;
 }
 
 /**
