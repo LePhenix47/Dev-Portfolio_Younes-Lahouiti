@@ -256,8 +256,10 @@ export function formatDate(
 }
 
 /**
- * Function that formats a date to fit the
- *
+ * Function that formats a date under this format:
+ * ```js
+ * "[Day], [Month] [number day of month], [Year]"
+ * ```
  * @param unformattedDate
  */
 export function formatDateToShort(unformattedDateObject: Date) {
@@ -283,7 +285,7 @@ export function formatDateToShort(unformattedDateObject: Date) {
    * [ "[Day], [Month] [number day of month], [Year]" ]
    * ```
    * */
-  let firstPartOfDate: string = splitString(stringFormattedDate, /at/)[0];
+  let firstPartOfDate: string = splitString(stringFormattedDate, / at /)[0];
 
   /**
    * Gets the month, number day of the month and the year
@@ -292,14 +294,15 @@ export function formatDateToShort(unformattedDateObject: Date) {
    * ```   */
   let monthDayYearArray: string[] = splitString(firstPartOfDate, ",");
 
-  //Gets the month
+  //Gets the month part
   let unformattedMonth: string = monthDayYearArray[1].trim();
-  unformattedMonth = splitString(unformattedMonth, " ")[0];
 
   //Gets the number day of the month inside the string
   let unformattedNumericDay: number = Number(
     splitString(unformattedMonth, " ")[1]
   );
+
+  unformattedMonth = splitString(unformattedMonth, " ")[0];
 
   let formattedDay = addNumberOrdinalSuffix(unformattedNumericDay);
   let formattedMonth = unformattedMonth.substring(0, 3);
@@ -325,29 +328,23 @@ export function addNumberOrdinalSuffix(number: number): string {
     throw "Cannot add suffix to the number";
   }
 
-  const isOverTen: boolean = number >= 10;
+  switch (number) {
+    case 1: {
+      return `${number}st`;
+    }
 
-  if (!isOverTen) {
-    switch (number) {
-      case 1: {
-        return `${number}st`;
-      }
+    case 2: {
+      return `${number}nd`;
+    }
 
-      case 2: {
-        return `${number}nd`;
-      }
+    case 3: {
+      return `${number}rd`;
+    }
 
-      case 3: {
-        return `${number}rd`;
-      }
-
-      default: {
-        return `${number}th`;
-      }
+    default: {
+      return `${number}th`;
     }
   }
-
-  return `${number}th`;
 }
 
 /**

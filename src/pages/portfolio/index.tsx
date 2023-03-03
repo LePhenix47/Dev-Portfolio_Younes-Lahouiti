@@ -21,6 +21,7 @@ import {
   filterArrayByString,
   table,
   formatText,
+  formatDateToShort,
 } from "@/react-utils/functions/helper-functions";
 import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
 
@@ -226,6 +227,8 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
           {cardInfosRef.current.map((project: any, index: number) => {
             const { title, image, link, type, date } = project;
 
+            let formattedDate = formatDateToShort(date);
+
             return (
               <div
                 className="portfolio-page__project-card card"
@@ -245,9 +248,11 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                     {title}
                   </h3>
                   <p className="portfolio-page__project-card-date">
-                    Made the: 25th Aug 2022
+                    Made the: {formattedDate}
                   </p>
-                  <Link href="/portfolio">Demo →</Link>
+                  <Link href={link} target="_blank">
+                    Demo →
+                  </Link>
                 </div>
               </div>
             );
