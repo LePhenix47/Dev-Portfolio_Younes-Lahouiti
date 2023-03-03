@@ -35,11 +35,12 @@ export default function Portfolio(): JSX.Element {
 
   const [cardInfosState, setCardInfos] = useState<any[]>([]);
 
+  changeCards();
   useEffect(() => {
-    log({ categoryState });
+    log({ categoryState, cardInfosRef });
   });
 
-  function changeCards(category: string) {
+  function changeCards() {
     switch (categoryState) {
       case "openclassrooms": {
         cardInfosRef.current = openClassroomsProjects;
@@ -213,7 +214,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 onClick={() => {
                   log({ lowerCaseCategory });
                   setCategory(lowerCaseCategory);
-                  changeCards(lowerCaseCategory);
+                  changeCards();
                 }}
                 // data-category={lowerCaseCategory}
                 type="button"
