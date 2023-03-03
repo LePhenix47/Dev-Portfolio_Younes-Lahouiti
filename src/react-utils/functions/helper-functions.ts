@@ -223,6 +223,20 @@ export function formatCurrencyValueNumber(
 
   return formatter.format(number);
 }
+
+export function formatDate(
+  date: Date,
+  locale: string | undefined,
+  dateStyle: "string"
+) {
+  const dateIsNotADateObject: boolean = !(date instanceof Date);
+  if (dateIsNotADateObject) {
+    throw `"${date}" is not a date object`;
+  }
+
+  let dateFormatter = new Intl.DateTimeFormat(locale, {});
+}
+
 /**
  * Copies an object or anrray without using their reference by using the `structuredClone` function
  *

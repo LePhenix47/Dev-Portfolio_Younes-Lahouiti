@@ -8,7 +8,7 @@ import P6_DW from "../../../public/png/P6-DW-image.png";
 import P7_DW from "../../../public/png/P7-DW-image.png";
 
 import P4_JSReact from "../../../public/png/P4-JS_React-image.png";
-import P6_JSReact from "../../../public/png/P6-DW-image.png";
+import P6_JSReact from "../../../public/png/P6-JS_React-image.png";
 import P7_JSReact from "../../../public/png/P7-JS_React-image.png";
 import P9_JSReact from "../../../public/png/P9-JS_React-image.png";
 import P11_JSReact from "../../../public/png/P11-JS_React-image.png";
@@ -37,6 +37,7 @@ import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
+import SFCC from "../../../public/png/sfcc-icon.png";
 
 //NPM
 import TIMEOUT_UTILITY from "../../../public/png/hourglass-clepsydra-icon.png";
@@ -293,7 +294,7 @@ export const professionalProjects: projectsMadeType = [
   },
   {
     title: "SFCC delivery library",
-    image: "",
+    image: SFCC,
     link: "",
     type: "professional",
     date: new Date("02/11/2023"),

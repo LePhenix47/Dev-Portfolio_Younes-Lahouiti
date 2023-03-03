@@ -108,3 +108,17 @@
     object-fit: cover;
     object-position: center;
 }
+
+//Mixin for the styling of an input
+@mixin inputs-styling {
+    background-color: transparent;
+
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+
+    &:focus {
+        border: 2px solid var(--scrollbar-thumb-bg-color);
+    }
+
+    padding: 10px 15px;
+}

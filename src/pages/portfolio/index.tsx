@@ -1,9 +1,10 @@
 //React
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //Next
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 //Utils
 import {
@@ -19,18 +20,51 @@ import {
   sortArrayOfObjects,
   filterArrayByString,
   table,
+  formatText,
 } from "@/react-utils/functions/helper-functions";
+import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
 
 export default function Portfolio(): JSX.Element {
   /**
    * State containing the data for the cards in the container
    */
-  const [allCardInfos, setCardInfos] = useState<any[]>([]);
+  const cardInfosRef = useRef<any>(allProjects);
+
+  const [categoryState, setCategory] = useState<string>("all");
 
   useEffect(() => {
-    let test = sortArrayOfObjects(allProjects, "date", false);
-    table(test);
-  }, []);
+    log({ categoryState });
+  });
+
+  function changeCards(category: string) {
+    switch (categoryState) {
+      case "openclassrooms": {
+        cardInfosRef.current = openClassroomsProjects;
+        break;
+      }
+      case "personal": {
+        cardInfosRef.current = personalProjects;
+        break;
+      }
+      case "professional": {
+        cardInfosRef.current = professionalProjects;
+        break;
+      }
+      case "npm": {
+        cardInfosRef.current = npmProjects;
+        break;
+      }
+      case "extensions": {
+        cardInfosRef.current = browserExtensionProjects;
+        break;
+      }
+      default: {
+        cardInfosRef.current = allProjects;
+        break;
+      }
+    }
+    setCategory(category);
+  }
 
   return (
     <>
@@ -71,13 +105,11 @@ export default function Portfolio(): JSX.Element {
         </h2>
 
         <div className="portfolio-page__inputs-container">
-          <div className="portfolio-pgae__label-input">
+          <div className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
                 viewBox="0 0 700 700"
               >
                 <g
@@ -134,26 +166,93 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 </g>
               </svg>
             </label>
-            <input type="text" name="search" id="search" />
+            <input
+              type="text"
+              name="search"
+              id="search"
+              className="portfolio-page__input"
+            />
+          </div>
+          <div className="portfolio-page__select-container">
+            <select name="sort" id="sort" className="portfolio-page__select">
+              <option className="portfolio-page__option" value="title">
+                Title
+              </option>
+              <option className="portfolio-page__option" value="date">
+                Date
+              </option>
+            </select>
+            <label
+              className="portfolio-page__select-label"
+              htmlFor="sort"
+            ></label>
           </div>
 
-          <select name="sort" id="sort" className="portfolio-page__select">
-            <option className="portfolio-page__option" value="title">
-              Title
-            </option>
-            <option className="portfolio-page__option" value="date">
-              Date
-            </option>
-          </select>
-
-          <button type="button" className="portfolio__sorting-order-button">
-            Descending
+          <button
+            type="button"
+            className="portfolio-page__sorting-order-button"
+          >
+            Descending ↓
           </button>
         </div>
 
-        <div className="portfolio-page__categories-container"></div>
+        <div className="portfolio-page__categories-container">
+          {projectCategories.map((category: string, index: number) => {
+            let lowerCaseCategory = formatText(category, "lowercase");
+            return (
+              <button
+                key={`${category}-${index}`}
+                onClick={() => {
+                  changeCards(lowerCaseCategory);
+                }}
+                // data-category={lowerCaseCategory}
+                type="button"
+                className={`portfolio-page__filter-button ${
+                  categoryState === lowerCaseCategory
+                    ? "portfolio-page__filter-button--active"
+                    : ""
+                }  portfolio-page__filter-button-all`}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
 
-        <div className="portfolio-page__project-cards-container"></div>
+        <div className="portfolio-page__project-cards-container">
+          {/*            */}
+
+          {/*            */}
+          {cardInfosRef.current.map((project: any, index: number) => {
+            const { title, image, link, type, date } = project;
+
+            return (
+              <div
+                className="portfolio-page__project-card card"
+                key={`${project}-${index}`}
+              >
+                <div className="portfolio-page__project-card-image-container">
+                  <Image
+                    src={image}
+                    alt={title}
+                    width={500}
+                    height={500}
+                    className="portfolio-page__project-card-image"
+                  />
+                </div>
+                <div className="portfolio-page__project-card-text">
+                  <h3 className="portfolio-page__project-card-title">
+                    {title}
+                  </h3>
+                  <p className="portfolio-page__project-card-date">
+                    Made the: 25th Aug 2022
+                  </p>
+                  <Link href="/portfolio">Demo →</Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </>
   );

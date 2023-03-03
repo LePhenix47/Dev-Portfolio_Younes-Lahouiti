@@ -1,16 +1,197 @@
 @use "../utils/" as *;
 
 .portfolio-page {
-    @include center-flex-column(25px);
+    @include center-flex-column(50px);
+
+    --padding-inside-card: 5%;
 
     &__title {}
 
     &__subtitle {}
 
-    &__inputs-container {}
+    &__inputs-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
 
-    &__categories-container {}
+        @include mobile-only {
+            @include center-flex-column(25px);
+        }
 
-    &__project-cards-container {}
+        width: 80%;
+        margin: auto;
+    }
+
+    &__label-input {
+        position: relative;
+        width: 50%;
+
+        @include mobile-only {
+            width: 100%;
+        }
+    }
+
+    &__label {
+        position: absolute;
+        right: 15px;
+        top: 25%;
+
+        height: 22px;
+        width: 22px;
+    }
+
+    &__input {
+        width: 100%;
+        @include inputs-styling;
+
+    }
+
+    &__select-container {
+        width: fit-content;
+
+        position: relative;
+
+        &>select:focus-within+label {
+            rotate: 180deg;
+        }
+
+        @include mobile-only {
+            width: 100%;
+        }
+    }
+
+    &__select-label {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+
+        //Makes the triangle
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 8px solid currentColor;
+
+        //Makes it rotate in the middle
+        transform-origin: 5px 3px;
+
+        translate: 0% -50%;
+
+        width: 10px;
+        height: 10px;
+
+        transition: rotate 350ms ease-in-out;
+    }
+
+    &__select {
+        width: inherit;
+
+
+        appearance: initial;
+
+        min-height: 40px;
+        @include inputs-styling;
+
+        padding-right: 35px;
+
+
+
+    }
+
+
+    &__option {
+        background-color: var(--bg-primary);
+    }
+
+    &__sorting-order-button {
+        padding: 10px 15px;
+
+        @include mobile-only {
+            width: 100%;
+        }
+    }
+
+    &__categories-container {
+        display: flex;
+        gap: 35px;
+
+        @include tablet-only {
+            @include grid(auto, 3, 15px);
+
+            width: 80%;
+            margin: auto;
+        }
+
+        @include mobile-only {
+            @include grid(auto, 2, 15px);
+
+            width: 80%;
+            margin: auto;
+        }
+    }
+
+    &__filter-button {
+        padding: 5px 10px;
+        border-radius: 5px;
+
+        &--active {
+            background-color: var(--color-primary);
+            color: var(--bg-primary);
+        }
+    }
+
+
+    &__project-cards-container {
+        @include grid(auto, 3, 15px);
+        grid-auto-rows: minmax(100px, 1fr);
+
+        @include laptop-only {
+            @include grid(auto, 2, 15px)
+        }
+
+        @include tablet-only {
+            @include grid(auto, 2, 15px)
+        }
+
+        @include mobile-only {
+            @include grid(auto, 1, 15px)
+        }
+
+        width: 85%;
+        margin: 50px auto;
+    }
+
+    &__project-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+
+        min-height: 435px;
+        min-width: 60%;
+
+        &-image-container {
+            width: 90%;
+            // margin: auto
+            padding-block: var(--padding-inside-card);
+        }
+
+        &-image {
+            @include fit-image;
+            width: 100%;
+            height: 205px;
+
+            border-radius: 10px;
+        }
+
+        &-text {
+            padding: 50px var(--padding-inside-card);
+            width: 100%;
+        }
+
+        &-title {}
+
+        &-date {}
+    }
 
 }

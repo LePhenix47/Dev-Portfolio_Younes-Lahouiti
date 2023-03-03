@@ -110,6 +110,10 @@ dialog {
 select {
     border: transparent;
     font-family: inherit;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 option {
