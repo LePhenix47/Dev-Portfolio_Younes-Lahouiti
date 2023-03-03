@@ -5,9 +5,13 @@
 
     --padding-inside-card: 5%;
 
-    &__title {}
+    &__title {
+        text-align: center;
+    }
 
-    &__subtitle {}
+    &__subtitle {
+        text-align: center;
+    }
 
     &__inputs-container {
         display: flex;
@@ -191,7 +195,36 @@
 
         &-title {}
 
-        &-date {}
+        &-date {
+            font-size: 14px;
+        }
+
+        &-link {
+            display: inline-block;
+            margin-top: 25px;
+
+
+            transition: color 350ms ease-in-out;
+            color: var(--color-secondary);
+
+            &:hover {
+                color: var(--color-secondary);
+
+
+                &>.portfolio-page__project-card-link-arrow {
+                    translate: 100% 0%;
+                }
+            }
+
+            &:visited {
+                color: var(--color-secondary);
+            }
+        }
+
+        &-link-arrow {
+            display: inline-block;
+            transition: translate 350ms ease-in-out;
+        }
     }
 
 }

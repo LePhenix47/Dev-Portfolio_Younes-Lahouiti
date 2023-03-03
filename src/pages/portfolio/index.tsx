@@ -33,6 +33,8 @@ export default function Portfolio(): JSX.Element {
 
   const [categoryState, setCategory] = useState<string>("all");
 
+  const [cardInfosState, setCardInfos] = useState<any[]>([]);
+
   useEffect(() => {
     log({ categoryState });
   });
@@ -41,30 +43,35 @@ export default function Portfolio(): JSX.Element {
     switch (categoryState) {
       case "openclassrooms": {
         cardInfosRef.current = openClassroomsProjects;
+        // setCardInfos(openClassroomsProjects)
         break;
       }
       case "personal": {
         cardInfosRef.current = personalProjects;
+        // setCardInfos(personalProjects)
         break;
       }
       case "professional": {
         cardInfosRef.current = professionalProjects;
+        // setCardInfos(professionalProjects)
         break;
       }
       case "npm": {
         cardInfosRef.current = npmProjects;
+        // setCardInfos(npmProjects)
         break;
       }
       case "extensions": {
         cardInfosRef.current = browserExtensionProjects;
+        // setCardInfos(browserExtensionProjects)
         break;
       }
       default: {
         cardInfosRef.current = allProjects;
+        // setCardInfos(allProjects)
         break;
       }
     }
-    setCategory(category);
   }
 
   return (
@@ -204,6 +211,8 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               <button
                 key={`${category}-${index}`}
                 onClick={() => {
+                  log({ lowerCaseCategory });
+                  setCategory(lowerCaseCategory);
                   changeCards(lowerCaseCategory);
                 }}
                 // data-category={lowerCaseCategory}
@@ -250,8 +259,15 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                   <p className="portfolio-page__project-card-date">
                     Made the: {formattedDate}
                   </p>
-                  <Link href={link} target="_blank">
-                    Demo →
+                  <Link
+                    href={link}
+                    target="_blank"
+                    className="portfolio-page__project-card-link"
+                  >
+                    Demo{" "}
+                    <span className="portfolio-page__project-card-link-arrow">
+                      →
+                    </span>
                   </Link>
                 </div>
               </div>
