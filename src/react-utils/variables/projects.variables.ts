@@ -353,3 +353,13 @@ export const browserExtensionProjects: projectsMadeType = [
     date: new Date("09/12/2023"),
   },
 ];
+
+/**
+ * Constant containing all the projects
+ */
+export const allProjects: projectsMadeType = openClassroomsProjects.concat(
+  personalProjects,
+  professionalProjects,
+  npmProjects,
+  browserExtensionProjects
+);

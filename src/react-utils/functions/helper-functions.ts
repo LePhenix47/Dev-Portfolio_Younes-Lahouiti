@@ -332,6 +332,16 @@ export function sortArrayOfObjects(
 
         return propOfObj2 - propOfObj1;
       }
+      case "object": {
+        //We check if the object was created with the `Date` class
+        const isDate: boolean = propOfObj1 instanceof Date;
+        if (isDate) {
+          return propOfObj1 - propOfObj2;
+        } else {
+          throw "Object passed isn't a date, perhaps you entered an array?";
+        }
+      }
+
       default: {
         throw console.error(
           "An error has occured, the property is undefined or null"
