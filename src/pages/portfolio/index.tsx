@@ -126,6 +126,9 @@ export default function Portfolio(): JSX.Element {
 
   useEffect(() => {
     resetDataToShow();
+
+    log({ dataToShow, copiedData });
+
     let filteredData: any[] = filterArrayByString(dataToShow, filterValue);
 
     if (needsFiltering) {
@@ -135,13 +138,7 @@ export default function Portfolio(): JSX.Element {
     }
   }, [needsFiltering, filterValue]);
 
-  function sortOrFilterCards() {
-    //We sort it
-  }
-
-  function filterCards() {}
-
-  function sortCards() {
+  useEffect(() => {
     let sortedData: any[] = sortArrayOfObjects(
       dataToShow,
       selectValue,
@@ -151,7 +148,7 @@ export default function Portfolio(): JSX.Element {
       log("Needs sorting");
       setDataToShow(sortedData);
     }
-  }
+  }, [needsSorting, selectValue, isInReverse]);
 
   function resetDataToShow() {
     setDataToShow(copiedData);
@@ -280,8 +277,6 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
 
                 setNeedsFiltering(true);
                 setFilterValue(valueOfInput);
-
-                filterCards();
               }}
             />
           </div>
@@ -298,7 +293,6 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 setSelectValue(valueOfSelect);
 
                 setNeedsSorting(true);
-                sortCards();
               }}
             >
               <option className="portfolio-page__option" value="title">
@@ -331,7 +325,6 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 let isChecked: boolean = e.currentTarget.checked;
 
                 setIsInReverse(isChecked);
-                sortCards();
               }}
             />
           </div>
