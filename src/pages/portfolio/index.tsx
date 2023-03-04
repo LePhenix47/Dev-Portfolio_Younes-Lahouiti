@@ -30,6 +30,11 @@ export default function Portfolio(): JSX.Element {
    * State that holds the data for the cards within the container
    */
   const [dataToShow, setDataToShow] = useState<any>(allProjects);
+
+  /**
+   * State that stores the copied data for the data to show to make the filtering work
+   */
+  const [copiedData, setCopiedData] = useState<any>(allProjects);
   /**
    * Refernce for the `<select>` element
    */
@@ -55,6 +60,11 @@ export default function Portfolio(): JSX.Element {
   const [needsSorting, setNeedsSorting] = useState<boolean>(false);
 
   /**
+   * State that stores the value of the `<select>`
+   */
+  const [selectValue, setSelectValue] = useState<string>("title");
+
+  /**
    * State that determines if the cards need to be filtered
    */
   const [needsFiltering, setNeedsFiltering] = useState<boolean>(false);
@@ -76,31 +86,38 @@ export default function Portfolio(): JSX.Element {
     switch (category) {
       case "openclassrooms": {
         setDataToShow(openClassroomsProjects);
+        setCopiedData(openClassroomsProjects);
+
         setCategory(category);
         break;
       }
       case "personal": {
         setDataToShow(personalProjects);
+        setCopiedData(personalProjects);
         setCategory(category);
         break;
       }
       case "professional": {
         setDataToShow(professionalProjects);
+        setCopiedData(professionalProjects);
         setCategory(category);
         break;
       }
       case "npm": {
         setDataToShow(npmProjects);
+        setCopiedData(npmProjects);
         setCategory(category);
         break;
       }
       case "extensions": {
         setDataToShow(browserExtensionProjects);
+        setCopiedData(browserExtensionProjects);
         setCategory(category);
         break;
       }
       default: {
         setDataToShow(allProjects);
+        setCopiedData(allProjects);
         setCategory(category);
         break;
       }
@@ -108,26 +125,36 @@ export default function Portfolio(): JSX.Element {
   }
 
   useEffect(() => {
-    log(checkboxValueRef.current.checked);
-  }, []);
-
-  function sortOrFilterCards() {
-    if (needsSorting) {
-      log("Needs sorting");
-      let sortedData = sortArrayOfObjects(
-        dataToShow,
-        selectValueRef.current,
-        isInReverse
-      );
-      setDataToShow(sortedData);
-    }
+    resetDataToShow();
+    let filteredData: any[] = filterArrayByString(dataToShow, filterValue);
 
     if (needsFiltering) {
-      log("Needs filtering");
-      let sortedData = filterArrayByString(dataToShow, filterValue);
-      setDataToShow(sortedData);
+      setDataToShow(filteredData);
+      log("After filter");
       table(dataToShow);
     }
+  }, [needsFiltering, filterValue]);
+
+  function sortOrFilterCards() {
+    //We sort it
+  }
+
+  function filterCards() {}
+
+  function sortCards() {
+    let sortedData: any[] = sortArrayOfObjects(
+      dataToShow,
+      selectValue,
+      isInReverse
+    );
+    if (needsSorting) {
+      log("Needs sorting");
+      setDataToShow(sortedData);
+    }
+  }
+
+  function resetDataToShow() {
+    setDataToShow(copiedData);
   }
 
   return (
@@ -237,14 +264,24 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               id="search"
               className="portfolio-page__input"
               onInput={(e) => {
-                let valueOfInput = e.currentTarget.value;
+                let valueOfInput: string = e.currentTarget.value.trim();
 
                 inputValueRef.current = valueOfInput;
+
+                let valueIsEmpty = !valueOfInput.length;
+
+                log({ valueOfInput, valueIsEmpty });
+
+                if (valueIsEmpty) {
+                  setFilterValue("");
+                  setNeedsFiltering(false);
+                  return;
+                }
 
                 setNeedsFiltering(true);
                 setFilterValue(valueOfInput);
 
-                sortOrFilterCards();
+                filterCards();
               }}
             />
           </div>
@@ -255,11 +292,13 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               ref={selectValueRef}
               className="portfolio-page__select"
               onChange={(e) => {
-                let valueOfSelect = e.target.value;
-                selectValueRef.current = valueOfSelect;
+                let valueOfSelect: string = e.target.value;
+                // selectValueRef.current = valueOfSelect;
+
+                setSelectValue(valueOfSelect);
 
                 setNeedsSorting(true);
-                sortOrFilterCards();
+                sortCards();
               }}
             >
               <option className="portfolio-page__option" value="title">
@@ -289,16 +328,17 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
               onClick={(e) => {
-                let isChecked = e.currentTarget.checked;
+                let isChecked: boolean = e.currentTarget.checked;
 
                 setIsInReverse(isChecked);
-                sortOrFilterCards();
+                sortCards();
               }}
             />
           </div>
         </div>
 
         <div className="portfolio-page__categories-container">
+          {/* Categories   */}
           {projectCategories.map((category: string, index: number) => {
             let lowerCaseCategory = formatText(category, "lowercase");
             return (
@@ -308,8 +348,10 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                   log({ lowerCaseCategory });
 
                   changeCards(lowerCaseCategory);
+
+                  setNeedsFiltering(false);
+                  setFilterValue("");
                 }}
-                // data-category={lowerCaseCategory}
                 type="button"
                 className={`portfolio-page__filter-button ${
                   categoryState === lowerCaseCategory
@@ -321,12 +363,11 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               </button>
             );
           })}
+          {/*            */}
         </div>
 
         <div className="portfolio-page__project-cards-container">
-          {/*            */}
-
-          {/*            */}
+          {/*     Project Cards       */}
           {dataToShow.map((project: any, index: number) => {
             const { title, image, link, type, date } = project;
 
@@ -358,7 +399,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                     target="_blank"
                     className="portfolio-page__project-card-link"
                   >
-                    Demo{" "}
+                    View source code{" "}
                     <span className="portfolio-page__project-card-link-arrow">
                       →
                     </span>
@@ -367,6 +408,13 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               </div>
             );
           })}
+
+          {!dataToShow.length && needsFiltering && (
+            <p>
+              Sorry, we find any results matching your search. (╯°□°）╯︵ ┻━┻
+            </p>
+          )}
+          {/*            */}
         </div>
       </section>
     </>

@@ -31,6 +31,14 @@
         position: relative;
         width: 65%;
 
+        @include desktop-only {
+            flex: 10;
+        }
+
+        @include desktop-small-only {
+            flex: 10;
+        }
+
         @include laptop-only {
             flex: 1;
         }
@@ -170,6 +178,8 @@
 
 
     &__project-cards-container {
+
+
         @include grid(auto, 3, 15px);
         grid-auto-rows: minmax(100px, 1fr);
 

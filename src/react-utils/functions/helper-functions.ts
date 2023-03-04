@@ -415,6 +415,7 @@ export function sortArrayOfObjects(
   prop: string,
   reverse: boolean = false
 ) {
+  log({ array, prop, reverse });
   //To make it easier on the developer we remove any whitespace
   prop = prop.trim();
 
@@ -496,9 +497,9 @@ export function sortArrayOfObjects(
  * @returns
  */
 export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
-  let typeofArray: typeofTypes = typeof arrayToFilter;
+  let typeofArrayOfFirstItem: typeofTypes = typeof arrayToFilter[0];
 
-  const isArrayOfObjects: boolean = typeofArray === "object";
+  const isArrayOfObjects: boolean = typeofArrayOfFirstItem === "object";
 
   //To make the filtering more efficient, we're going to use sets
   let filteredSet: Set<unknown> = new Set();
@@ -510,29 +511,29 @@ export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
       for (let property in object) {
         let valueOfObject: any = object[property].toString().toLowerCase();
 
-        const stringHasSpaces: boolean = string.trim().includes(" ");
+        let includesQuery = valueOfObject.includes(string.toLowerCase());
 
-        if (stringHasSpaces) {
-          const arrayOfStrings: string[] = splitString(string, " ");
-
-          //If the query contains multiple words, we iterate through each word
-          for (const word of arrayOfStrings) {
-            let includesQuery: boolean = valueOfObject.includes(
-              word.toLocaleLowerCase()
-            );
-
-            if (includesQuery) {
-              filteredSet.add(object);
-              continue;
-            }
-          }
-        } else {
-          let includesQuery = valueOfObject.includes(string.toLowerCase());
-
-          if (includesQuery) {
-            filteredSet.add(object);
-          }
+        if (includesQuery) {
+          filteredSet.add(object);
         }
+        // const stringHasSpaces: boolean = string.trim().includes(" ");
+
+        // if (stringHasSpaces) {
+        //   const arrayOfStrings: string[] = splitString(string, " ");
+
+        //   //If the query contains multiple words, we iterate through each word
+        //   for (const word of arrayOfStrings) {
+        //     let includesQuery: boolean = valueOfObject.includes(
+        //       word.toLocaleLowerCase()
+        //     );
+
+        //     if (includesQuery) {
+        //       filteredSet.add(object);
+        //       continue;
+        //     }
+        //   }
+        // } else {
+        // }
       }
     }
   } else {
