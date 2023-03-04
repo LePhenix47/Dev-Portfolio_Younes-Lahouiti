@@ -321,30 +321,35 @@ export function formatDateToShort(unformattedDateObject: Date) {
  *@returns {string} The formatted string.
  */
 export function addNumberOrdinalSuffix(number: number): string {
-  const canNotAddSuffixToNumber: boolean =
-    number <= 0 || typeof number !== "number";
+  const canNotAddSuffix: boolean = number < 0 || typeof number !== "number";
 
-  if (canNotAddSuffixToNumber) {
-    throw "Cannot add suffix to the number";
+  if (canNotAddSuffix) {
+    throw new Error("Cannot add suffix to the value passed in argument");
   }
 
-  switch (number) {
-    case 1: {
-      return `${number}st`;
-    }
-
-    case 2: {
-      return `${number}nd`;
-    }
-
-    case 3: {
-      return `${number}rd`;
-    }
-
-    default: {
-      return `${number}th`;
-    }
+  const numberIsOverTenButUnderFourteen: boolean = number > 10 && number < 14;
+  if (numberIsOverTenButUnderFourteen) {
+    return `${number}th`;
   }
+
+  const lastDigit: string = number.toString().slice(-1);
+  let suffix: string;
+
+  switch (lastDigit) {
+    case "1":
+      suffix = "st";
+      break;
+    case "2":
+      suffix = "nd";
+      break;
+    case "3":
+      suffix = "rd";
+      break;
+    default:
+      suffix = "th";
+  }
+
+  return `${number}${suffix}`;
 }
 
 /**
