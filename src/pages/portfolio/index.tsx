@@ -124,32 +124,48 @@ export default function Portfolio(): JSX.Element {
     }
   }
 
+  /**
+   * Will update the component whenever the user
+   * Inputs something in the field
+   *
+   */
   useEffect(() => {
-    resetDataToShow();
-
-    log({ dataToShow, copiedData });
-
-    let filteredData: any[] = filterArrayByString(dataToShow, filterValue);
+    /**
+     * We take the original unfiltered data and we then filter it
+     */
+    let filteredData: any[] = filterArrayByString(copiedData, filterValue);
 
     if (needsFiltering) {
+      log("BEFORE filter");
+      log({ dataToShow, copiedData });
+
+      //We set the state to be equal to the filtered data
       setDataToShow(filteredData);
-      log("After filter");
-      table(dataToShow);
+
+      log("AFTER filter");
+      log({ dataToShow, copiedData });
     }
   }, [needsFiltering, filterValue]);
 
+  /**
+   * Will update the component whenever the user
+   * changes the select value or the order of the sorting
+   */
   useEffect(() => {
     let sortedData: any[] = sortArrayOfObjects(
       dataToShow,
       selectValue,
       isInReverse
     );
+
     if (needsSorting) {
-      log("Needs sorting");
       setDataToShow(sortedData);
     }
   }, [needsSorting, selectValue, isInReverse]);
 
+  /**
+   * Function that resets the cards when the input is empty
+   */
   function resetDataToShow() {
     setDataToShow(copiedData);
   }
@@ -272,6 +288,8 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 if (valueIsEmpty) {
                   setFilterValue("");
                   setNeedsFiltering(false);
+
+                  resetDataToShow();
                   return;
                 }
 
