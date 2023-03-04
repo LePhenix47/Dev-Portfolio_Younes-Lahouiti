@@ -121,7 +121,7 @@ export const openClassroomsProjects: projectsMadeType = [
     date: new Date("10/16/2022"),
   },
   {
-    title: "[JS-React] P9: Bill",
+    title: "[JS-React] P9: Billed",
     image: P9_JSReact,
     link: "https://github.com/LePhenix47/Lahouiti_Younes_9_06112022--Fix",
     type: "oc",
@@ -294,7 +294,7 @@ export const professionalProjects: projectsMadeType = [
     date: new Date("11/02/2022"),
   },
   {
-    title: "SFCC delivery library",
+    title: "SFCC delivery library (coming soon)",
     image: SFCC,
     link: "",
     type: "professional",
@@ -311,28 +311,28 @@ export const npmProjects: projectsMadeType = [
     image: TIMEOUT_UTILITY,
     link: "https://github.com/LePhenix47/Timout-utility_npm-package",
     type: "npm",
-    date: new Date("02/09/2023"),
+    date: new Date("02/05/2023"),
   },
   {
     title: "Interval utility",
     image: INTERVAL_UTILITY,
     link: "https://github.com/LePhenix47/Interval-utility_npm-package",
     type: "npm",
-    date: new Date("02/09/2023"),
+    date: new Date("02/05/2023"),
   },
   {
     title: "Cookies utility",
     image: COOKIES_UTILITY,
     link: "https://github.com/LePhenix47/Cookie-utility_npm-package",
     type: "npm",
-    date: new Date("02/09/2023"),
+    date: new Date("02/05/2023"),
   },
   {
     title: "WebStorage utility",
     image: WEBSTORAGE_UTILITY,
     link: "https://github.com/LePhenix47/WebStorage-utility_npm-package",
     type: "npm",
-    date: new Date("02/09/2023"),
+    date: new Date("02/05/2023"),
   },
   {
     title: "React Data table",
@@ -352,7 +352,7 @@ export const browserExtensionProjects: projectsMadeType = [
     image: NDL,
     link: "https://chrome.google.com/webstore/detail/nommages-des-livrables/keameojhjfplflkgoagidmoccfhbcbfb?hl=fr",
     type: "extension",
-    date: new Date("09/12/2022"),
+    date: new Date("12/13/2022"),
   },
 ];
 

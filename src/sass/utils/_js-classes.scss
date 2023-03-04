@@ -4,11 +4,11 @@
 
 //Simple classes to show or hide elements
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .show {
-    display: initial;
+    display: initial !important;
 }
 
 //Animation classes

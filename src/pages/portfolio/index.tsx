@@ -80,43 +80,50 @@ export default function Portfolio(): JSX.Element {
   const [isInReverse, setIsInReverse] = useState<boolean>(false);
 
   /**
+   * Function that sorts randomly the cards
+   */
+  function randomSort() {
+    return Math.random() - 0.5;
+  }
+
+  /**
    * Function that changes the cards to shown to the container
    */
   function changeCards(category: string) {
     switch (category) {
       case "openclassrooms": {
-        setDataToShow(openClassroomsProjects);
+        setDataToShow(openClassroomsProjects.sort(randomSort));
         setCopiedData(openClassroomsProjects);
 
         setCategory(category);
         break;
       }
       case "personal": {
-        setDataToShow(personalProjects);
+        setDataToShow(personalProjects.sort(randomSort));
         setCopiedData(personalProjects);
         setCategory(category);
         break;
       }
       case "professional": {
-        setDataToShow(professionalProjects);
+        setDataToShow(professionalProjects.sort(randomSort));
         setCopiedData(professionalProjects);
         setCategory(category);
         break;
       }
       case "npm": {
-        setDataToShow(npmProjects);
+        setDataToShow(npmProjects.sort(randomSort));
         setCopiedData(npmProjects);
         setCategory(category);
         break;
       }
       case "extensions": {
-        setDataToShow(browserExtensionProjects);
+        setDataToShow(browserExtensionProjects.sort(randomSort));
         setCopiedData(browserExtensionProjects);
         setCategory(category);
         break;
       }
       default: {
-        setDataToShow(allProjects);
+        setDataToShow(allProjects.sort(randomSort));
         setCopiedData(allProjects);
         setCategory(category);
         break;
@@ -126,7 +133,7 @@ export default function Portfolio(): JSX.Element {
 
   /**
    * Will update the component whenever the user
-   * Inputs something in the field
+   * inputs something in the field
    *
    */
   useEffect(() => {
@@ -217,9 +224,7 @@ export default function Portfolio(): JSX.Element {
 
       So unfortunately I cannot add an anchor to the page
 */}
-      {/* <section className="portfolio-page__anchor-parent">
-        <Link href="#top" className="portfolio-page__anchor"></Link>
-      </section> */}
+      {/*  */}
 
       <section className="portfolio-page">
         <h1 className="portfolio-page__title" id="top">
@@ -296,6 +301,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               type="text"
               name="search"
               id="search"
+              placeholder="Search for a project"
               className="portfolio-page__input"
               onInput={(e) => {
                 let valueOfInput: string = e.currentTarget.value.trim();
@@ -327,13 +333,22 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               className="portfolio-page__select"
               onChange={(e) => {
                 let valueOfSelect: string = e.target.value;
-                // selectValueRef.current = valueOfSelect;
+
+                // We don't want to sort if they have the default value selected
+                let isPlaceholderValue = valueOfSelect.includes("---");
+
+                if (isPlaceholderValue) {
+                  return;
+                }
 
                 setSelectValue(valueOfSelect);
 
                 setNeedsSorting(true);
               }}
             >
+              <option className="portfolio-page__option" value="---">
+                ---
+              </option>
               <option className="portfolio-page__option" value="title">
                 Title
               </option>
@@ -352,7 +367,16 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               htmlFor="sort-order"
               className="portfolio-page__sorting-order-label"
             >
-              {isInReverse ? "Ascending ↑" : "Descending ↓"}
+              {!isInReverse ? "Ascending" : "Descending"}{" "}
+              <span
+                className={`portfolio-page__sorting-order-label-arrow ${
+                  !isInReverse
+                    ? ""
+                    : "portfolio-page__sorting-order-label-arrow--rotate"
+                }`}
+              >
+                ↑
+              </span>
             </label>
             <input
               type="checkbox"

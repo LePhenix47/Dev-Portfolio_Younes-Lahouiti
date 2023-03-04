@@ -8,14 +8,22 @@
     }
 
     &__anchor {
+        @include center-flex-column;
+
+        border-radius: 10px;
+        border: 2px solid currentColor;
+
         position: fixed;
         bottom: 10px;
         right: 25px;
 
         aspect-ratio: 1/1;
-        height: 30px;
+        height: 50px;
 
-        background-color: red;
+
+        z-index: 25;
+
+        background-color: var(--bg-secondary);
 
     }
 
@@ -160,6 +168,20 @@
 
         @include mobile-only {
             width: 100%;
+        }
+    }
+
+    &__sorting-order-label {
+
+        &-arrow {
+            display: inline-block;
+
+            transition: rotate 250ms ease-in-out;
+            rotate: 0deg;
+
+            &--rotate {
+                rotate: 180deg;
+            }
         }
     }
 
