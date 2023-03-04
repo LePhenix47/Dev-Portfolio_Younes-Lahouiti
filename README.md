@@ -1,38 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Table of Contents
 
-## Getting Started
+- [Table of Contents](#table-of-contents)
+  - [Pages](#pages)
+    - [Home](#home)
+    - [About](#about)
+    - [Skills](#skills)
+    - [Services](#services)
+    - [Portfolio](#portfolio)
+    - [Contact](#contact)
 
-First, run the development server:
+## Pages
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Home
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The home page features a section with a brief introduction and a call-to-action button.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### About
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The about page includes a brief biography, a list of skills, and a timeline of work experience.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Skills
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The skills page provides an overview of the skills I have developed throughout my career, including technical skills and soft skills.
 
-## Learn More
+### Services
 
-To learn more about Next.js, take a look at the following resources:
+The services page outlines the services I offer, including web design, web development, and consulting.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Portfolio
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The portfolio page showcases some of my recent projects, with links to view each project in more detail.
 
-## Deploy on Vercel
+### Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The contact page includes a form to get in touch with me, as well as links to my social media profiles.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---

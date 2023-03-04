@@ -210,8 +210,12 @@ export default function Portfolio(): JSX.Element {
          */}
         <title>Portfolio page</title>
       </Head>
+
       <section className="portfolio-page">
-        <h1 className="portfolio-page__title">Portfolio</h1>
+        <Link href="#top" className="portfolio-page__anchor"></Link>
+        <h1 className="portfolio-page__title" id="top">
+          Portfolio
+        </h1>
         <h2 className="portfolio-page__subtitle">
           A showcase of my personal and professional work
         </h2>
