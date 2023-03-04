@@ -2,7 +2,16 @@
 
 .active {}
 
+//Simple classes to show or hide elements
+.hide {
+    display: none;
+}
 
+.show {
+    display: initial;
+}
+
+//Animation classes
 .fade {
     &-in {
         animation-name: fade-in;
@@ -38,5 +47,3 @@
         }
     }
 }
-
-//Classes for testing

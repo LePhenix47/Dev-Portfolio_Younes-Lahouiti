@@ -62,6 +62,28 @@
     inset: 50%;
 }
 
+
+//Mixin to make the image fit
+@mixin fit-image {
+    object-fit: cover;
+    object-position: center;
+}
+
+//Mixin to get the text ellipsis effect on a single line
+@mixin single-ellipsis-effect {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//Mixin to get the text ellipsis effect after a few lines
+@mixin multiline-ellipsis-effect($columns: 1) {
+    display: -webkit-box;
+    -webkit-line-clamp: $columns;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 //Mixin for the styling of a button
 @mixin link-btn-styling {
     @include center-flex(15px);
@@ -101,12 +123,6 @@
 
         padding: 10px 15px;
     }
-}
-
-//Mixin to make the image fit
-@mixin fit-image {
-    object-fit: cover;
-    object-position: center;
 }
 
 //Mixin for the styling of an input

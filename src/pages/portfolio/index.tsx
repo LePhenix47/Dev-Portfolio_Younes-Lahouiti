@@ -27,51 +27,106 @@ import { projectCategories } from "@/react-utils/variables/projects-categories.v
 
 export default function Portfolio(): JSX.Element {
   /**
-   * State containing the data for the cards in the container
+   * State that holds the data for the cards within the container
    */
-  const cardInfosRef = useRef<any>(allProjects);
+  const [dataToShow, setDataToShow] = useState<any>(allProjects);
+  /**
+   * Refernce for the `<select>` element
+   */
+  const selectValueRef = useRef<any>(null);
 
+  /**
+   * Reference for the `<input type="text" /> element`
+   */
+  const inputValueRef = useRef<any>(null);
+
+  /**
+   * Refernce for the `<input type="checkbox" />` element
+   */
+  const checkboxValueRef = useRef<any>(null);
+  /**
+   * State that determines the category of the cards to be displayed
+   */
   const [categoryState, setCategory] = useState<string>("all");
 
-  const [cardInfosState, setCardInfos] = useState<any[]>([]);
+  /**
+   * State that determines if the cards need to be sorted
+   */
+  const [needsSorting, setNeedsSorting] = useState<boolean>(false);
 
-  changeCards();
-  useEffect(() => {
-    log({ categoryState, cardInfosRef });
-  });
+  /**
+   * State that determines if the cards need to be filtered
+   */
+  const [needsFiltering, setNeedsFiltering] = useState<boolean>(false);
 
-  function changeCards() {
-    switch (categoryState) {
+  /**
+   * State that sets the value to be filtered by
+   */
+  const [filterValue, setFilterValue] = useState<string>("");
+
+  /**
+   * State that determines if the cards needs to be sorted in reverse
+   */
+  const [isInReverse, setIsInReverse] = useState<boolean>(false);
+
+  /**
+   * Function that changes the cards to shown to the container
+   */
+  function changeCards(category: string) {
+    switch (category) {
       case "openclassrooms": {
-        cardInfosRef.current = openClassroomsProjects;
-        // setCardInfos(openClassroomsProjects)
+        setDataToShow(openClassroomsProjects);
+        setCategory(category);
         break;
       }
       case "personal": {
-        cardInfosRef.current = personalProjects;
-        // setCardInfos(personalProjects)
+        setDataToShow(personalProjects);
+        setCategory(category);
         break;
       }
       case "professional": {
-        cardInfosRef.current = professionalProjects;
-        // setCardInfos(professionalProjects)
+        setDataToShow(professionalProjects);
+        setCategory(category);
         break;
       }
       case "npm": {
-        cardInfosRef.current = npmProjects;
-        // setCardInfos(npmProjects)
+        setDataToShow(npmProjects);
+        setCategory(category);
         break;
       }
       case "extensions": {
-        cardInfosRef.current = browserExtensionProjects;
-        // setCardInfos(browserExtensionProjects)
+        setDataToShow(browserExtensionProjects);
+        setCategory(category);
         break;
       }
       default: {
-        cardInfosRef.current = allProjects;
-        // setCardInfos(allProjects)
+        setDataToShow(allProjects);
+        setCategory(category);
         break;
       }
+    }
+  }
+
+  useEffect(() => {
+    log(checkboxValueRef.current.checked);
+  }, []);
+
+  function sortOrFilterCards() {
+    if (needsSorting) {
+      log("Needs sorting");
+      let sortedData = sortArrayOfObjects(
+        dataToShow,
+        selectValueRef.current,
+        isInReverse
+      );
+      setDataToShow(sortedData);
+    }
+
+    if (needsFiltering) {
+      log("Needs filtering");
+      let sortedData = filterArrayByString(dataToShow, filterValue);
+      setDataToShow(sortedData);
+      table(dataToShow);
     }
   }
 
@@ -176,14 +231,37 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               </svg>
             </label>
             <input
+              ref={inputValueRef}
               type="text"
               name="search"
               id="search"
               className="portfolio-page__input"
+              onInput={(e) => {
+                let valueOfInput = e.currentTarget.value;
+
+                inputValueRef.current = valueOfInput;
+
+                setNeedsFiltering(true);
+                setFilterValue(valueOfInput);
+
+                sortOrFilterCards();
+              }}
             />
           </div>
           <div className="portfolio-page__select-container">
-            <select name="sort" id="sort" className="portfolio-page__select">
+            <select
+              name="sort"
+              id="sort"
+              ref={selectValueRef}
+              className="portfolio-page__select"
+              onChange={(e) => {
+                let valueOfSelect = e.target.value;
+                selectValueRef.current = valueOfSelect;
+
+                setNeedsSorting(true);
+                sortOrFilterCards();
+              }}
+            >
               <option className="portfolio-page__option" value="title">
                 Title
               </option>
@@ -197,12 +275,27 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
             ></label>
           </div>
 
-          <button
-            type="button"
-            className="portfolio-page__sorting-order-button"
-          >
-            Descending ↓
-          </button>
+          <div className="portfolio-page__sorting-order-label-input">
+            <label
+              htmlFor="sort-order"
+              className="portfolio-page__sorting-order-label"
+            >
+              {isInReverse ? "Ascending ↑" : "Descending ↓"}
+            </label>
+            <input
+              type="checkbox"
+              name="sort-order"
+              id="sort-order"
+              className="portfolio-page__sorting-order-button hide"
+              ref={checkboxValueRef}
+              onClick={(e) => {
+                let isChecked = e.currentTarget.checked;
+
+                setIsInReverse(isChecked);
+                sortOrFilterCards();
+              }}
+            />
+          </div>
         </div>
 
         <div className="portfolio-page__categories-container">
@@ -213,8 +306,8 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 key={`${category}-${index}`}
                 onClick={() => {
                   log({ lowerCaseCategory });
-                  setCategory(lowerCaseCategory);
-                  changeCards();
+
+                  changeCards(lowerCaseCategory);
                 }}
                 // data-category={lowerCaseCategory}
                 type="button"
@@ -234,7 +327,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
           {/*            */}
 
           {/*            */}
-          {cardInfosRef.current.map((project: any, index: number) => {
+          {dataToShow.map((project: any, index: number) => {
             const { title, image, link, type, date } = project;
 
             let formattedDate = formatDateToShort(date);

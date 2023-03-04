@@ -57,19 +57,20 @@ import { projectsMadeType } from "../types/projects.types";
  */
 export const openClassroomsProjects: projectsMadeType = [
   {
-    title: "[DW] P2: Reservia",
-    image: P2_DW,
-    link: "https://github.com/LePhenix47/LahouitiYounes_2_09012022",
-    type: "oc",
-    date: new Date("01/09/2022"),
-  },
-  {
     title: "[DW] P3: ohmyfood",
     image: P3_DW,
     link: "https://github.com/LePhenix47/LahouitiYounes_3_26012022-Fix",
     type: "oc",
     date: new Date("01/26/2022"),
   },
+  {
+    title: "[DW] P2: Reservia",
+    image: P2_DW,
+    link: "https://github.com/LePhenix47/LahouitiYounes_2_09012022",
+    type: "oc",
+    date: new Date("01/09/2022"),
+  },
+
   {
     title: "[DW] P4: Agence la Panthère",
     image: P4_DW,
@@ -290,7 +291,7 @@ export const professionalProjects: projectsMadeType = [
     image: CALIFORNIA_GYM,
     link: "",
     type: "professional",
-    date: new Date("11/02/2023"),
+    date: new Date("11/02/2022"),
   },
   {
     title: "SFCC delivery library",
@@ -351,7 +352,7 @@ export const browserExtensionProjects: projectsMadeType = [
     image: NDL,
     link: "https://chrome.google.com/webstore/detail/nommages-des-livrables/keameojhjfplflkgoagidmoccfhbcbfb?hl=fr",
     type: "extension",
-    date: new Date("09/12/2023"),
+    date: new Date("09/12/2022"),
   },
 ];
 

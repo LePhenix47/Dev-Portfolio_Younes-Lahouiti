@@ -31,6 +31,14 @@
         position: relative;
         width: 65%;
 
+        @include laptop-only {
+            flex: 1;
+        }
+
+        @include tablet-only {
+            flex: 1;
+        }
+
         @include mobile-only {
             width: 100%;
         }
@@ -49,6 +57,8 @@
         width: 100%;
         @include inputs-styling;
 
+        padding-right: 45px;
+
     }
 
     &__select-container {
@@ -58,6 +68,14 @@
 
         &>select:focus-within+label {
             rotate: 180deg;
+        }
+
+        @include laptop-only {
+            flex: 1;
+        }
+
+        @include tablet-only {
+            flex: 1;
         }
 
         @include mobile-only {
@@ -97,6 +115,13 @@
 
         padding-right: 35px;
 
+        @include laptop-only {
+            width: 100%;
+        }
+
+        @include tablet-only {
+            width: 100%;
+        }
 
 
     }
@@ -224,6 +249,57 @@
         &-link-arrow {
             display: inline-block;
             transition: translate 350ms ease-in-out;
+        }
+    }
+
+
+    &__sorting-order {
+
+        &-label-input {
+            display: flex;
+
+            @include laptop-only {
+                flex: 1;
+            }
+
+            @include tablet-only {
+                flex: 1;
+            }
+
+            @include mobile-only {
+                width: 100%;
+            }
+        }
+
+
+        &-label {
+            text-align: center;
+
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            padding: 9px 15px;
+
+            font-size: 13px;
+            @include single-ellipsis-effect;
+
+            @include laptop-only {
+                display: inline-block;
+                width: 100%;
+            }
+
+            @include tablet-only {
+                display: inline-block;
+                width: 100%;
+            }
+
+            @include mobile-only {
+                display: inline-block;
+                width: inherit;
+            }
+
+            &:active {
+                border: 2px solid currentColor;
+            }
         }
     }
 

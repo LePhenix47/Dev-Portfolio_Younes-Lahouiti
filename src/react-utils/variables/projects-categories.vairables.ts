@@ -6,5 +6,5 @@ export const projectCategories: projectCategoriesType = [
   "Personal",
   "Professional",
   "NPM",
-  "extensions",
+  "Extensions",
 ];
