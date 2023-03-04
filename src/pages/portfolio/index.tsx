@@ -163,6 +163,14 @@ export default function Portfolio(): JSX.Element {
     }
   }, [needsSorting, selectValue, isInReverse]);
 
+  useEffect(() => {}, [
+    needsFiltering,
+    filterValue,
+    needsSorting,
+    selectValue,
+    isInReverse,
+  ]);
+
   /**
    * Function that resets the cards when the input is empty
    */
