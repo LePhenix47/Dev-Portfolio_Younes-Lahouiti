@@ -3,6 +3,10 @@
 .portfolio-page {
     @include center-flex-column(50px);
 
+    &__anchor-parent {
+        position: fixed;
+    }
+
     &__anchor {
         position: fixed;
         bottom: 10px;

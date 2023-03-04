@@ -211,8 +211,17 @@ export default function Portfolio(): JSX.Element {
         <title>Portfolio page</title>
       </Head>
 
-      <section className="portfolio-page">
+      {/* 
+      Because the parent element sues the transform property, 
+      it creates a new stacking context for its child elements
+
+      So unfortunately I cannot add an anchor to the page
+*/}
+      {/* <section className="portfolio-page__anchor-parent">
         <Link href="#top" className="portfolio-page__anchor"></Link>
+      </section> */}
+
+      <section className="portfolio-page">
         <h1 className="portfolio-page__title" id="top">
           Portfolio
         </h1>
