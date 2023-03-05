@@ -14,52 +14,136 @@
 
         @include center-flex;
 
-        gap: 200px;
+        gap: 75px;
 
         margin-bottom: 50px;
     }
 
-    &__contact-cards {
+    &__contact-cards-container {
         @include center-flex-column(25px);
     }
 
-    & {}
+    &__contact-cards-container-title {
+        font-size: 20px;
+    }
 
-    & {}
+    &__contact-card {
+        padding: 15px;
+
+        width: 360px;
+        min-height: 175px;
+
+        &-icon-container {}
+
+        &-icon {}
+
+        &-text {
+            @include center-flex-column(10px);
+        }
+
+        &-user-name {
+            color: var(--color-secondary);
+        }
+
+        &-link {
+            color: var(--color-secondary);
+        }
+    }
 
     &__form {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+
+        gap: 20px;
+
+        max-width: 425px;
+        width: 425px;
     }
+
+    &__send-form-button {
+        width: inherit;
+    }
+
 
     &__fieldset {
-        height: inherit;
+        width: inherit;
+
+        @include center-flex-column(25px);
     }
 
-    &__legend {}
+    &__legend {
+        width: fit-content;
+        margin: auto;
+        padding-bottom: 15px;
+
+        font-size: 20px;
+    }
 
     &__input-label-container {
         position: relative;
+        width: inherit;
     }
 
     &__label {
         display: inline-block;
-        position: absolute;
 
         color: var(--color-secondary);
         background-color: var(--bg-primary);
+
+        position: absolute;
+        top: 34%;
+
+        &--text-area {
+            top: 31.5%;
+        }
+
+        left: 23px;
+
+        scale: 115%;
+
+        transition: top 250ms ease-in-out,
+        left 250ms ease-in-out,
+        translate 250ms ease-in-out,
+        scale 250ms ease-in-out;
+
+        &.active {
+
+            color: currentColor;
+
+            scale: 90%;
+            top: -10px;
+            left: 13px;
+        }
     }
 
     &__input {
         @include inputs-styling;
+
+        width: 100%;
+        height: 75px;
+        font-size: 18px;
+
+        border-radius: 20px;
     }
 
     &__text-area {
-        resize: vertical;
+        min-height: 75px;
+
+        resize: none;
+
+        &.active {
+            resize: vertical;
+        }
 
         @include inputs-styling;
+
+        width: 100%;
+        height: 75px;
+        font-size: 18px;
+
+        border-radius: 20px;
 
         font-size: 15px;
     }

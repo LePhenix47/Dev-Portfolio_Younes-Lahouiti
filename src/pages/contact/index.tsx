@@ -1,9 +1,19 @@
+//React
+import { useState } from "react";
+
 //Next
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+//
+
+/**
+ * Contact page: `/contact`
+ */
 export default function Contact(): JSX.Element {
+  const [isInputActive, setIsInputActive] = useState<boolean>(false);
+
   return (
     <>
       <Head>
@@ -40,10 +50,33 @@ export default function Contact(): JSX.Element {
         <h1 className="contact-page__title">Contact me</h1>
         <h2 className="contact-page__subtitle">Get in touch</h2>
         <section className="contact-page__main-container">
-          <div className="contact-page__contact-cards">
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
+          <div className="contact-page__contact-cards-container">
+            <h3 className="contact-page__contact-cards-container-title">
+              Let&apos;s chat!
+            </h3>
+
+            {/*     Beginning         */}
+            <div className="contact-page__contact-card card">
+              <div className="contact-page__contact-card-icon-container">
+                <Image
+                  src=""
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="contact-page__contact-card-icon"
+                />
+              </div>
+              <div className="contact-page__contact-card-text">
+                <h4 className="contact-page__contact-card-platform">Email</h4>
+                <p className="contact-page__contact-card-user-name">
+                  user@gmail.com
+                </p>
+                <a href="#" className="contact-page__contact-card-link">
+                  Link
+                </a>
+              </div>
+            </div>
+            {/*      End        */}
           </div>
           <form
             action="#"
@@ -91,7 +124,10 @@ export default function Contact(): JSX.Element {
               </section>
 
               <section className="contact-page__input-label-container">
-                <label htmlFor="project" className="contact-page__label">
+                <label
+                  htmlFor="project"
+                  className="contact-page__label contact-page__label--text-area"
+                >
                   Project
                 </label>
                 <textarea
@@ -102,7 +138,10 @@ export default function Contact(): JSX.Element {
                 ></textarea>
               </section>
             </fieldset>
-            <button type="submit" className="link-button">
+            <button
+              type="submit"
+              className="link-button contact-page__send-form-button"
+            >
               Hit me up!
               <svg
                 xmlns="http://www.w3.org/2000/svg"
