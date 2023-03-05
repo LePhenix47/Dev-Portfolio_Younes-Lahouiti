@@ -1,12 +1,12 @@
 //React
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 //Next
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
-import { formatText } from "@/react-utils/functions/helper-functions";
+import { formatText, log } from "@/react-utils/functions/helper-functions";
 
 //
 
@@ -14,7 +14,55 @@ import { formatText } from "@/react-utils/functions/helper-functions";
  * Contact page: `/contact`
  */
 export default function Contact(): JSX.Element {
-  const [isInputActive, setIsInputActive] = useState<boolean>(false);
+  // States to add the active class to their labels
+  /**
+   * States to know if the input is active to translate the label to the top
+   */
+  const [isFirstNameInputActive, setIsFirstNameInputActive] =
+    useState<boolean>(false);
+
+  const [isLastNameInputActive, setIsLastNameInputActive] =
+    useState<boolean>(false);
+
+  const [isEmailInputActive, setIsEmailInputActive] = useState<boolean>(false);
+
+  const [isProjectTextAreaActive, setIsProjectTextAreaActive] =
+    useState<boolean>(false);
+
+  // Refernces to get the value of their inputs
+  /**
+   * Refernce for the **first name**
+   */
+  const firstNameRef = useRef<any>(null);
+
+  /**
+   * Refernce for the **first name**
+   */
+  const lastNameRef = useRef<any>(null);
+
+  /**
+   * Refernce for the **first name**
+
+   */
+  const emailRef = useRef<any>(null);
+
+  /**
+   * Refernce for the **first name**
+
+   */
+  const textAreaRef = useRef<any>(null);
+
+  /**
+   * Function that sends the form with their field values
+   */
+  function submitForm() {
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const email = emailRef.current.value;
+    const projectIdea = textAreaRef.current.value;
+
+    log({ firstName, lastName, email, projectIdea });
+  }
 
   return (
     <>
@@ -100,6 +148,7 @@ export default function Contact(): JSX.Element {
             className="contact-page__form"
             onSubmit={(e) => {
               e.preventDefault();
+              submitForm();
             }}
           >
             <fieldset className="contact-page__fieldset">
@@ -108,49 +157,120 @@ export default function Contact(): JSX.Element {
               </legend>
 
               <section className="contact-page__input-label-container">
-                <label htmlFor="first-name" className="contact-page__label">
+                <label
+                  htmlFor="first-name"
+                  className={`contact-page__label ${
+                    isFirstNameInputActive ? "active" : ""
+                  }`}
+                >
                   First name
                 </label>
                 <input
                   type="text"
                   className="contact-page__input"
                   id="first-name"
+                  ref={firstNameRef}
+                  onFocus={(e) => {
+                    setIsFirstNameInputActive(true);
+                  }}
+                  onBlur={(e) => {
+                    let valueOfInput = e.target.value.trim();
+
+                    const inputIsEmpty = !valueOfInput;
+
+                    if (inputIsEmpty) {
+                      setIsFirstNameInputActive(false);
+                    }
+                  }}
                 />
               </section>
 
               <section className="contact-page__input-label-container">
-                <label htmlFor="last-name" className="contact-page__label">
+                <label
+                  htmlFor="last-name"
+                  className={`contact-page__label ${
+                    isLastNameInputActive ? "active" : ""
+                  }`}
+                >
                   Last name
                 </label>
                 <input
                   type="text"
                   className="contact-page__input"
                   id="last-name"
+                  ref={lastNameRef}
+                  onFocus={(e) => {
+                    setIsLastNameInputActive(true);
+                  }}
+                  onBlur={(e) => {
+                    let valueOfInput = e.target.value.trim();
+
+                    const inputIsEmpty = !valueOfInput;
+
+                    if (inputIsEmpty) {
+                      setIsLastNameInputActive(false);
+                    }
+                  }}
                 />
               </section>
 
               <section className="contact-page__input-label-container">
-                <label htmlFor="email" className="contact-page__label">
+                <label
+                  htmlFor="email"
+                  className={`contact-page__label ${
+                    isEmailInputActive ? "active" : ""
+                  }`}
+                >
                   Email
                 </label>
                 <input
                   type="email"
                   className="contact-page__input"
                   id="email"
+                  ref={emailRef}
+                  onFocus={(e) => {
+                    setIsEmailInputActive(true);
+                  }}
+                  onBlur={(e) => {
+                    let valueOfInput = e.target.value.trim();
+
+                    const inputIsEmpty = !valueOfInput;
+
+                    if (inputIsEmpty) {
+                      setIsEmailInputActive(false);
+                    }
+                  }}
                 />
               </section>
 
               <section className="contact-page__input-label-container">
                 <label
                   htmlFor="project"
-                  className="contact-page__label contact-page__label--text-area"
+                  className={`contact-page__label contact-page__label--text-area ${
+                    isProjectTextAreaActive ? "active" : ""
+                  }`}
                 >
                   Project
                 </label>
                 <textarea
                   name="project"
                   id="project"
-                  className="contact-page__text-area"
+                  ref={textAreaRef}
+                  onFocus={(e) => {
+                    setIsProjectTextAreaActive(true);
+                  }}
+                  onBlur={(e) => {
+                    let valueOfInput = e.target.value.trim();
+
+                    const inputIsEmpty = !valueOfInput;
+
+                    if (inputIsEmpty) {
+                      setIsProjectTextAreaActive(false);
+                    }
+                  }}
+                  className={`contact-page__text-area ${
+                    isProjectTextAreaActive ? "active" : ""
+                  }`}
                   spellCheck={true}
                 ></textarea>
               </section>
