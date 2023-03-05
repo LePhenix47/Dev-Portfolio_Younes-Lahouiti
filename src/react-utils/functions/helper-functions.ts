@@ -415,7 +415,6 @@ export function sortArrayOfObjects(
   prop: string,
   reverse: boolean = false
 ) {
-  log({ array, prop, reverse });
   //To make it easier on the developer we remove any whitespace
   prop = prop.trim();
 
@@ -511,29 +510,29 @@ export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
       for (let property in object) {
         let valueOfObject: any = object[property].toString().toLowerCase();
 
-        let includesQuery = valueOfObject.includes(string.toLowerCase());
+        const stringHasSpaces: boolean = string.trim().includes(" ");
 
-        if (includesQuery) {
-          filteredSet.add(object);
+        if (stringHasSpaces) {
+          const arrayOfStrings: string[] = splitString(string, " ");
+
+          //If the query contains multiple words, we iterate through each word
+          for (const word of arrayOfStrings) {
+            let includesQuery: boolean = valueOfObject.includes(
+              word.toLocaleLowerCase()
+            );
+
+            if (includesQuery) {
+              filteredSet.add(object);
+              continue;
+            }
+          }
+        } else {
+          let includesQuery = valueOfObject.includes(string.toLowerCase());
+
+          if (includesQuery) {
+            filteredSet.add(object);
+          }
         }
-        // const stringHasSpaces: boolean = string.trim().includes(" ");
-
-        // if (stringHasSpaces) {
-        //   const arrayOfStrings: string[] = splitString(string, " ");
-
-        //   //If the query contains multiple words, we iterate through each word
-        //   for (const word of arrayOfStrings) {
-        //     let includesQuery: boolean = valueOfObject.includes(
-        //       word.toLocaleLowerCase()
-        //     );
-
-        //     if (includesQuery) {
-        //       filteredSet.add(object);
-        //       continue;
-        //     }
-        //   }
-        // } else {
-        // }
       }
     }
   } else {

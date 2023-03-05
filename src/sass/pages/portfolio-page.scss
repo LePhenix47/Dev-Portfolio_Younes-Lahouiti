@@ -25,6 +25,17 @@
 
         background-color: var(--bg-secondary);
 
+        transition: filter 350ms ease-in-out;
+
+        &:hover {
+            filter: drop-shadow(10px) invert(25%);
+        }
+
+        &:visited {
+            background-color: var(--bg-secondary);
+
+        }
+
     }
 
     --padding-inside-card: 5%;
@@ -217,6 +228,10 @@
 
     &__project-cards-container {
 
+        &:has(>:not(div)) {
+            @include grid(1, 1, 25px)
+        }
+
 
         @include grid(auto, 3, 15px);
         grid-auto-rows: minmax(100px, 1fr);
@@ -235,6 +250,10 @@
 
         width: 85%;
         margin: 50px auto;
+    }
+
+    &__project-cards-container {
+        text-align: center;
     }
 
     &__project-card {
@@ -262,6 +281,8 @@
         }
 
         &-text {
+            text-align: left;
+
             padding: 50px var(--padding-inside-card);
             width: 100%;
         }

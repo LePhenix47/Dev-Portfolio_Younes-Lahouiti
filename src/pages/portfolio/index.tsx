@@ -143,14 +143,8 @@ export default function Portfolio(): JSX.Element {
     let filteredData: any[] = filterArrayByString(copiedData, filterValue);
 
     if (needsFiltering) {
-      log("BEFORE filter");
-      log({ dataToShow, copiedData });
-
       //We set the state to be equal to the filtered data
       setDataToShow(filteredData);
-
-      log("AFTER filter");
-      log({ dataToShow, copiedData });
     }
   }, [needsFiltering, filterValue]);
 
@@ -301,16 +295,14 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               type="text"
               name="search"
               id="search"
-              placeholder="Search for a project"
+              placeholder="Search for a project by their title or date"
               className="portfolio-page__input"
               onInput={(e) => {
                 let valueOfInput: string = e.currentTarget.value.trim();
 
                 inputValueRef.current = valueOfInput;
 
-                let valueIsEmpty = !valueOfInput.length;
-
-                log({ valueOfInput, valueIsEmpty });
+                let valueIsEmpty: boolean = !valueOfInput.length;
 
                 if (valueIsEmpty) {
                   setFilterValue("");
@@ -335,7 +327,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 let valueOfSelect: string = e.target.value;
 
                 // We don't want to sort if they have the default value selected
-                let isPlaceholderValue = valueOfSelect.includes("---");
+                let isPlaceholderValue: boolean = valueOfSelect.includes("---");
 
                 if (isPlaceholderValue) {
                   return;
@@ -401,8 +393,6 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               <button
                 key={`${category}-${index}`}
                 onClick={() => {
-                  log({ lowerCaseCategory });
-
                   changeCards(lowerCaseCategory);
 
                   setNeedsFiltering(false);
@@ -466,7 +456,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
           })}
 
           {!dataToShow.length && needsFiltering && (
-            <p>
+            <p className="portfolio-page__project-cards-container-not-found">
               Sorry, we find any results matching your search. (╯°□°）╯︵ ┻━┻
             </p>
           )}
