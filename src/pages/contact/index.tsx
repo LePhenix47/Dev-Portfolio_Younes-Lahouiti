@@ -170,6 +170,7 @@ export default function Contact(): JSX.Element {
                   className="contact-page__input"
                   id="first-name"
                   ref={firstNameRef}
+                  placeholder="ex: John"
                   onFocus={(e) => {
                     setIsFirstNameInputActive(true);
                   }}
@@ -199,6 +200,7 @@ export default function Contact(): JSX.Element {
                   className="contact-page__input"
                   id="last-name"
                   ref={lastNameRef}
+                  placeholder="ex: Cena"
                   onFocus={(e) => {
                     setIsLastNameInputActive(true);
                   }}
@@ -228,6 +230,7 @@ export default function Contact(): JSX.Element {
                   className="contact-page__input"
                   id="email"
                   ref={emailRef}
+                  placeholder="ex: nickname@domain.extension"
                   onFocus={(e) => {
                     setIsEmailInputActive(true);
                   }}
@@ -256,6 +259,7 @@ export default function Contact(): JSX.Element {
                   name="project"
                   id="project"
                   ref={textAreaRef}
+                  placeholder="ex: Wanna create a Bing Chilling project? So here's my idea..."
                   onFocus={(e) => {
                     setIsProjectTextAreaActive(true);
                   }}

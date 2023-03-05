@@ -122,6 +122,10 @@
 
         &-subtitle {
             text-align: center;
+
+            @include mobile-only {
+                margin: 0 5px;
+            }
         }
 
         &-buttons {

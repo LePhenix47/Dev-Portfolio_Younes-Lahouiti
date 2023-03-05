@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
   return (
     <header className="header">
       <div className="header__dev">
-        <p className="header__dev-name">Younes Lahouiti</p>
+        <p className="header__dev-name">Younes.dev</p>
       </div>
       <nav className="header__nav">
         <ul className="header__list">

@@ -62,13 +62,21 @@
 
         width: max-content;
 
+        @include tablet-only {
+            width: min-content;
+        }
+
         @include mobile-only {
             width: min-content;
         }
 
+        max-width: 400px;
+
         translate: 0% -50%;
 
-        &-title {}
+        &-title {
+            @include multiline-ellipsis-effect(2);
+        }
 
         &-establishment {
             color: var(--color-secondary);

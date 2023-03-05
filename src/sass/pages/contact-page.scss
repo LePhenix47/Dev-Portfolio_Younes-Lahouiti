@@ -17,6 +17,10 @@
         gap: 75px;
 
         margin-bottom: 50px;
+
+        @include mobile-only {
+            @include center-flex-column(50px);
+        }
     }
 
     &__contact-cards-container {
@@ -95,8 +99,15 @@
         }
 
 
+        /**
+        If the container has inputs or textareas that aren't focused, remove the placeholder for that input
+        */
         &:has(:is(input, textarea):not(:focus))>input::placeholder {
-            display: none;
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>textarea::placeholder {
+            color: transparent;
         }
     }
 
@@ -143,7 +154,7 @@
     }
 
     &__text-area {
-        min-height: 75px;
+        min-height: 80px;
 
         resize: none;
 
@@ -155,7 +166,6 @@
 
         width: 100%;
 
-        height: 75px;
         font-size: 18px;
 
         border-radius: 20px;

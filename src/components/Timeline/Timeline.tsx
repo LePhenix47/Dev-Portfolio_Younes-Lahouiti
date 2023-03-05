@@ -17,13 +17,6 @@ export default function Timeline({
 
           let title = !!education ? education : experience;
 
-          let TITLE_EXCEEDS_FIVE_WORDS = title.split(" ").length > 5;
-
-          let slicedTitle = "";
-          if (TITLE_EXCEEDS_FIVE_WORDS) {
-            slicedTitle = title.slice(0, 50) + "...";
-          }
-
           return (
             <div
               className={`timeline__dot ${
@@ -33,7 +26,7 @@ export default function Timeline({
             >
               <div className="timeline__card">
                 <h4 className="timeline__card-title" title={title}>
-                  {TITLE_EXCEEDS_FIVE_WORDS ? slicedTitle : title}
+                  {title}
                 </h4>
                 <p className="timeline__card-establishment">{establishment}</p>
                 <p className="timeline__card-year-span">
