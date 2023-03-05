@@ -1,3 +1,68 @@
 @use "../utils/" as *;
 
-.contact-page {}
+.contact-page {
+    @include center-flex-column(25px);
+
+    &__title {}
+
+    &__subtitle {}
+
+    &__main-container {
+        width: 90%;
+        margin: auto;
+
+
+        @include center-flex;
+
+        gap: 200px;
+
+        margin-bottom: 50px;
+    }
+
+    &__contact-cards {
+        @include center-flex-column(25px);
+    }
+
+    & {}
+
+    & {}
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__fieldset {
+        height: inherit;
+    }
+
+    &__legend {}
+
+    &__input-label-container {
+        position: relative;
+    }
+
+    &__label {
+        display: inline-block;
+        position: absolute;
+
+        color: var(--color-secondary);
+        background-color: var(--bg-primary);
+    }
+
+    &__input {
+        @include inputs-styling;
+    }
+
+    &__text-area {
+        resize: vertical;
+
+        @include inputs-styling;
+
+        font-size: 15px;
+    }
+
+
+}

@@ -1,6 +1,36 @@
 @use "../utils/" as *;
 
 .header {
+
+    --list-item-pad: 30px;
+
+    @include desktop-only {
+        backdrop-filter: blur(10px);
+        top: 0;
+        position: sticky;
+
+    }
+
+    @include desktop-small-only {
+        backdrop-filter: blur(10px);
+        top: 0;
+        position: sticky;
+
+    }
+
+    @include laptop-only {
+        backdrop-filter: blur(10px);
+        top: 0;
+        position: sticky;
+
+    }
+
+    @include tablet-only {
+        backdrop-filter: blur(10px);
+        top: 0;
+        position: sticky;
+    }
+
     z-index: 69;
 
     display: flex;
@@ -8,11 +38,13 @@
     align-items: center;
 
     @include tablet-only {
+        justify-content: center;
         flex-direction: column;
         gap: 15px;
     }
 
     @include mobile-only {
+        justify-content: center;
         flex-direction: column;
         gap: 15px;
     }
@@ -22,7 +54,6 @@
     border-bottom: 2px solid var(--border-color);
 
     &__nav {
-        width: 50%;
 
         @include mobile-only {
             width: auto;
@@ -48,38 +79,47 @@
         font-size: 18px;
 
         & .header__item-home.active~.header__item-follow {
-            left: 0px;
-            width: 54px;
+            left: 14px;
+            width: calc(54px);
         }
 
         & .header__item-about.active~.header__item-follow {
-            left: 74px;
+            left: 115px;
             width: 55px;
         }
 
         & .header__item-skills.active~.header__item-follow {
-            left: 149px;
+            left: 219px;
             width: 45px;
         }
 
         & .header__item-services.active~.header__item-follow {
-            left: 213px;
+            left: 311px;
             width: 76px;
         }
 
         & .header__item-portfolio.active~.header__item-follow {
-            left: 309px;
+            left: 435px;
             width: 74px;
         }
 
         & .header__item-contact.active~.header__item-follow {
-            left: 403px;
+            left: 557px;
             width: 74px;
         }
     }
 
 
     &__item {
+
+        &:not(.header__item-follow) {
+            border-radius: 100vmax;
+            background: var(--bg-primary);
+            box-shadow: 0px 0px 20px 10px var(--bg-primary);
+            padding: 0 14px;
+        }
+
+
         &.active {
             @include mobile-only {
                 text-decoration: underline;
