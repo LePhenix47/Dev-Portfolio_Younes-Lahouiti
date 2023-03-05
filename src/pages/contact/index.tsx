@@ -5,6 +5,8 @@ import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
+import { formatText } from "@/react-utils/functions/helper-functions";
 
 //
 
@@ -56,26 +58,41 @@ export default function Contact(): JSX.Element {
             </h3>
 
             {/*     Beginning         */}
-            <div className="contact-page__contact-card card">
-              <div className="contact-page__contact-card-icon-container">
-                <Image
-                  src=""
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="contact-page__contact-card-icon"
-                />
-              </div>
-              <div className="contact-page__contact-card-text">
-                <h4 className="contact-page__contact-card-platform">Email</h4>
-                <p className="contact-page__contact-card-user-name">
-                  user@gmail.com
-                </p>
-                <a href="#" className="contact-page__contact-card-link">
-                  Link
-                </a>
-              </div>
-            </div>
+            {contactMethods.map((method) => {
+              const { icon, platform, link, user } = method;
+              return (
+                <div
+                  className="contact-page__contact-card card"
+                  key={`${user}-${platform}`}
+                >
+                  <div className="contact-page__contact-card-icon-container">
+                    <Image
+                      src={icon}
+                      alt={platform}
+                      width={32}
+                      height={32}
+                      className="contact-page__contact-card-icon"
+                    />
+                  </div>
+                  <div className="contact-page__contact-card-text">
+                    <h4 className="contact-page__contact-card-platform">
+                      {platform}
+                    </h4>
+                    <p className="contact-page__contact-card-user-name">
+                      {user}
+                    </p>
+                    <a
+                      href={link}
+                      target="_blank"
+                      className="contact-page__contact-card-link"
+                    >
+                      Drop me a line in my {formatText(platform, "lowercase")}
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+
             {/*      End        */}
           </div>
           <form

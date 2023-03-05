@@ -28,7 +28,7 @@
     }
 
     &__contact-card {
-        padding: 15px;
+        padding: 20px 15px;
 
         width: 360px;
         min-height: 175px;
@@ -47,6 +47,8 @@
 
         &-link {
             color: var(--color-secondary);
+
+            text-decoration: underline;
         }
     }
 
