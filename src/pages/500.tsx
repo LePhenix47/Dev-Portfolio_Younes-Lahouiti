@@ -38,18 +38,23 @@ export default function Error500(): JSX.Element {
         />
       </Head>
       <section className="error-500">
-        <h1 className="error-500__title">Oops…</h1>
-        <h2 className="error-500__subtitle">
+        <h1 className="error-500__main-title">500</h1>
+        <h2 className="error-500__title">Oops!</h2>
+        <h3 className="error-500__subtitle">
           It looks like our servers are experiencing some technical difficulties
-          right now.
-        </h2>
+          right now. (╯°□°）╯︵ ┻━┻
+        </h3>
         <p className="error-500__paragraph">
           Sorry, it looks like our servers are currently taking a coffee break
-          and enjoying some downtime. They&apos;re probably chatting away about
-          the latest tech gossip and not too concerned about getting back to
-          work anytime soon. In the meantime, feel free to grab a cup of coffee
-          yourself and come back later when the servers have finished their
-          break.
+          and enjoying some downtime.
+          <br />
+          <br />
+          They&apos;re probably chatting away about the latest tech gossip and
+          not too concerned about getting back to work anytime soon.
+          <br />
+          <br />
+          In the meantime, feel free to grab a cup of coffee yourself and come
+          back later when the servers have finished their break.
         </p>
       </section>
     </>

@@ -37,15 +37,18 @@ export default function Error404(): JSX.Element {
         />
       </Head>
       <section className="error-404">
-        <h1 className="error-404__title">Oops!</h1>
-        <h2 className="error-404__subtitle">
-          It looks like you&apos;ve stumbled upon a missing page.
-        </h2>
+        <h1 className="error-404__main-title">404</h1>
+        <h2 className="error-404__title">Oops!</h2>
+        <h3 className="error-404__subtitle">
+          It looks like you&apos;ve stumbled upon a missing page. ¯\_(ツ)_/¯
+        </h3>
         <p className="error-404__paragraph">
           The page you were searching for went out for a coffee break and forgot
-          to come back. Don&apos;t worry though, you can head back to the
-          homepage or drop me a line and I&apos;ll see what I can do to reunite
-          you with your page.
+          to come back.
+          <br />
+          <br />
+          Don&apos;t worry though, you can head back to the homepage or drop me
+          a line and I&apos;ll see what I can do to reunite you with your page.
         </p>
       </section>
     </>

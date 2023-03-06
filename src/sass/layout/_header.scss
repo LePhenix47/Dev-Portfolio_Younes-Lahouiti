@@ -254,11 +254,12 @@
         bottom: 0;
         left: 0;
 
+        width: 0px;
+
         transition: left 300ms cubic-bezier(0.42, 0, 0.58, 1),
         width 250ms cubic-bezier(0.42, 0, 0.58, 1);
 
         background-color: var(--color-primary);
-        width: 25px;
         height: 2px;
     }
 }
