@@ -15,6 +15,19 @@ export default function Header(): JSX.Element {
 
   return (
     <header className="header">
+      <section className="header__open-menu-mobile">
+        <input
+          type="checkbox"
+          name="open-menu-button"
+          id="open-menu-button"
+          className="header__open-menu-mobile-checkbox"
+        />
+        <label
+          htmlFor="open-menu-button"
+          className="header__open-menu-mobile-label"
+        ></label>
+      </section>
+
       <div className="header__dev">
         <p className="header__dev-name">Younes.dev</p>
       </div>
