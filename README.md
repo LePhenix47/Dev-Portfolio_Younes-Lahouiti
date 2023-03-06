@@ -121,12 +121,12 @@ src/
  const MAX_32_BIT_UNSIGNED_INTEGER = 2_147_483_647;
  ```
 
-
 ### 3.3 Trivial information
+
 This project:
- 
- - Has a responsive design
- - Has a dark/light theme
- - Has a Swagger API documentation is available in this address: http://localhost:3001/api-docs/#/
- - Uses SSR (Server-side rendering)
- - Uses the 7-1 pattern for SASS
+
+- Has a responsive design
+- Has a dark/light theme
+- Has a Swagger API documentation is available in this address: <http://localhost:3001/api-docs/#/>
+- Uses SSR (Server-side rendering)
+- Uses the 7-1 pattern for SASS
