@@ -55,7 +55,7 @@
         display: none;
 
         width: 100%;
-        min-height: 50px;
+        min-height: 1px;
 
         @include mobile-only {
             display: block;
@@ -64,6 +64,7 @@
         &-label {
             display: inline-block;
 
+            z-index: 69;
 
             position: absolute;
             top: -100px;
@@ -74,7 +75,7 @@
             aspect-ratio: 1/1;
             height: 50px;
 
-            border-radius: 50%;
+            border-radius: 10px;
 
             &::before {
                 transition: rotate 800ms ease-in-out;
