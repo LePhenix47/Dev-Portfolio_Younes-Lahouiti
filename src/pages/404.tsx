@@ -13,7 +13,6 @@ export default function Error404(): JSX.Element {
           name="description"
           content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
         />
-
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Page not found" />
         <meta
@@ -21,19 +20,17 @@ export default function Error404(): JSX.Element {
           content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
         />
         <meta property="og:image" content="/profile-pic.jpg" />
-
+        <meta property="og:image:width" content="130" />
+        <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
           content="www.younes-lahouiti-portfolio.com/404"
         />
-
         {/*
          <!--Title--> 
          */}
         <title>Page not found - Your Name</title>
-
         {/*     Canonical link     */}
-
         <link
           rel="canonical"
           href="https://www.younes-lahouiti-portfolio.com/"

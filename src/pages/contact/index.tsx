@@ -79,7 +79,6 @@ export default function Contact(): JSX.Element {
           content="
           Let's get in touch! I'm always eager to connect with new people and discuss exciting projects. On this page, you'll find different ways to reach out to me, from email to social media. Don't hesitate to drop me a message and let's create something amazing together!"
         />
-
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Contact page" />
         <meta
@@ -88,12 +87,12 @@ export default function Contact(): JSX.Element {
           Let's get in touch! I'm always eager to connect with new people and discuss exciting projects. On this page, you'll find different ways to reach out to me, from email to social media. Don't hesitate to drop me a message and let's create something amazing together!"
         />
         <meta property="og:image" content="/profile-pic.jpg" />
-
+        <meta property="og:image:width" content="130" />
+        <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
           content="www.younes-lahouiti-portfolio.com/contact"
         />
-
         {/*
          <!--Title--> 
          */}

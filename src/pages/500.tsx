@@ -10,12 +10,10 @@ export default function Error500(): JSX.Element {
          <!-- Meta tags-->
          */}
         <meta name="robots" content="noindex, follow" />
-
         <meta
           name="description"
           content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
         />
-
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Error 500 - Portfolio" />
         <meta
@@ -23,19 +21,17 @@ export default function Error500(): JSX.Element {
           content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
         />
         <meta property="og:image" content="/profile-pic.jpg" />
-
+        <meta property="og:image:width" content="130" />
+        <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
           content="www.younes-lahouiti-portfolio.com/500"
         />
-
         {/*
          <!--Title--> 
          */}
         <title>Error 500 - Portfolio</title>
-
         {/*     Canonical link     */}
-
         <link
           rel="canonical"
           href="https://www.younes-lahouiti-portfolio.com/"
