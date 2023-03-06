@@ -14,29 +14,37 @@
     --list-item-pad: 30px;
 
     @include desktop-only {
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         top: 0;
+        position: -webkit-sticky;
         position: sticky;
 
     }
 
     @include desktop-small-only {
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         top: 0;
+        position: -webkit-sticky;
         position: sticky;
 
     }
 
     @include laptop-only {
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         top: 0;
+        position: -webkit-sticky;
         position: sticky;
 
     }
 
     @include tablet-only {
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         top: 0;
+        position: -webkit-sticky;
         position: sticky;
     }
 

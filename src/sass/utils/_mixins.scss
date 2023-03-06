@@ -65,7 +65,9 @@
 
 //Mixin to make the image fit
 @mixin fit-image {
+    -o-object-fit: cover;
     object-fit: cover;
+    -o-object-position: center;
     object-position: center;
 }
 

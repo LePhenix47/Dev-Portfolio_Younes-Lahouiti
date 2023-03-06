@@ -112,6 +112,8 @@
     }
 
     &__legend {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
         width: fit-content;
         margin: auto;
         padding-bottom: 15px;
@@ -134,7 +136,39 @@
         /**
         If the container has inputs or textareas that aren't focused, remove the placeholder for that input
         */
+        &:has(:is(input, textarea):not(:focus))>input::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>input::-moz-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>input:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>input::-ms-input-placeholder {
+            color: transparent;
+        }
+
         &:has(:is(input, textarea):not(:focus))>input::placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>textarea::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>textarea::-moz-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>textarea:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        &:has(:is(input, textarea):not(:focus))>textarea::-ms-input-placeholder {
             color: transparent;
         }
 
@@ -145,6 +179,10 @@
 
     &__label {
         display: inline-block;
+
+        padding: 0 5px;
+        border-radius: 100vmax;
+
 
         color: var(--color-secondary);
         background-color: var(--bg-primary);
@@ -170,7 +208,7 @@
             color: currentColor;
 
             scale: 90%;
-            top: -10px;
+            top: -12px;
             left: 13px;
         }
     }
@@ -187,6 +225,7 @@
 
     &__text-area {
         min-height: 80px;
+
 
         resize: none;
 

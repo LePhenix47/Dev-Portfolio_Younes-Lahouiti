@@ -21,6 +21,8 @@
     padding: 0;
 }
 
+*::-moz-selection {}
+
 *::selection {}
 
 html {
@@ -36,8 +38,17 @@ body {
     color: var(--color-primary);
     transition:
         background-color 350ms ease-in-out,
+        color 350ms ease-in-out,
+        -webkit-filter 350ms ease-in-out;
+    transition:
+        background-color 350ms ease-in-out,
         filter 350ms ease-in-out,
         color 350ms ease-in-out;
+    transition:
+        background-color 350ms ease-in-out,
+        filter 350ms ease-in-out,
+        color 350ms ease-in-out,
+        -webkit-filter 350ms ease-in-out;
 }
 
 :is(ul, ol) {
@@ -53,6 +64,8 @@ button {
     background-color: transparent;
 
     font-family: inherit;
+
+    color: var(--color-primary);
 
     &:hover {
         cursor: pointer;

@@ -9,7 +9,7 @@ import apiIcon from "../../../public/svg/code.svg";
 export const offeredServices: serviceType = [
   {
     icon: integrationIcon,
-    title: "Integration",
+    title: "Integration and dynamization",
     description:
       " Integrate various systems and technologies to work together seamlessly",
     qualities: [
@@ -22,13 +22,14 @@ export const offeredServices: serviceType = [
   },
   {
     icon: debuggingIcon,
-    title: "Debugging and dynamization",
+    title: "Debugging and testing",
     description: " Identify and fix issues in code, and optimize performance",
     qualities: [
       "Strong analytical skills",
       "Ability to work under pressure",
       "Familiarity with debugging tools and techniques",
       "Adaptability to changing requirements",
+      "Ability to make unit and integration tests",
     ],
   },
   {

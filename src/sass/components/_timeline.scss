@@ -60,13 +60,21 @@
         position: absolute;
         top: 50%;
 
+        width: -webkit-max-content;
+
+        width: -moz-max-content;
+
         width: max-content;
 
         @include tablet-only {
+            width: -webkit-min-content;
+            width: -moz-min-content;
             width: min-content;
         }
 
         @include mobile-only {
+            width: -webkit-min-content;
+            width: -moz-min-content;
             width: min-content;
         }
 

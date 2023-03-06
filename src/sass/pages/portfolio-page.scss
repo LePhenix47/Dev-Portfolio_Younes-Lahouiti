@@ -25,9 +25,14 @@
 
         background-color: var(--bg-secondary);
 
+        transition: -webkit-filter 350ms ease-in-out;
+
         transition: filter 350ms ease-in-out;
 
+        transition: filter 350ms ease-in-out, -webkit-filter 350ms ease-in-out;
+
         &:hover {
+            -webkit-filter: drop-shadow(10px) invert(25%);
             filter: drop-shadow(10px) invert(25%);
         }
 
@@ -107,6 +112,8 @@
     }
 
     &__select-container {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
         width: fit-content;
 
         position: relative;
@@ -152,8 +159,11 @@
     &__select {
         width: inherit;
 
+        -webkit-appearance: none;
 
-        appearance: initial;
+        -moz-appearance: none;
+
+        appearance: none;
 
         min-height: 40px;
         @include inputs-styling;

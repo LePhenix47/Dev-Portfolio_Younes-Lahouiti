@@ -128,7 +128,7 @@ export default function Services(): JSX.Element {
       <section className="services-page">
         <h1 className="services-page__title">Services</h1>
         <h2 className="services-page__subtitle">My expertise and offerings</h2>
-        <div className="services-page__cards-container">
+        <section className="services-page__cards-container">
           {offeredServices.map((service) => {
             /**
              * We get the icon, title and description
@@ -165,7 +165,9 @@ export default function Services(): JSX.Element {
               </div>
             );
           })}
-        </div>
+        </section>
+
+        <section className="services-page__testimonials"></section>
       </section>
     </>
   );
