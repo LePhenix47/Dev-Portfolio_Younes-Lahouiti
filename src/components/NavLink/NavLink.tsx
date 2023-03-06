@@ -9,9 +9,11 @@ import { useRouter } from "next/router";
 export default function NavLink({
   children,
   href,
+  id,
 }: {
   children: any;
   href: string;
+  id?: string;
 }): JSX.Element {
   const router = useRouter();
 
@@ -34,11 +36,7 @@ export default function NavLink({
   }
 
   return (
-    <a
-      href={href}
-      onClick={pushToHref}
-      // className={linkIsActive ? "active" : "inactive"}
-    >
+    <a href={href} onClick={pushToHref} id={id}>
       {children}
     </a>
   );

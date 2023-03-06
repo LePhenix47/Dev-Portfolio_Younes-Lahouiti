@@ -78,7 +78,9 @@
             border-radius: 10px;
 
             &::before {
-                transition: rotate 800ms ease-in-out;
+                transition: rotate 800ms ease-in-out,
+                    bottom 800ms ease-out,
+                    left 800ms ease-out;
 
                 content: "";
 
@@ -95,7 +97,9 @@
             }
 
             &::after {
-                transition: rotate 800ms ease-in-out;
+                transition: rotate 800ms ease-in-out,
+                    bottom 800ms ease-out,
+                    left 800ms ease-out;
 
                 content: "";
 
@@ -141,7 +145,8 @@
     &__nav {
 
         @include mobile-only {
-            width: auto;
+            width: 100%;
+
         }
 
         display: flex;
@@ -150,14 +155,16 @@
     &__list {
         position: relative;
 
-        width: 100%;
+        width: inherit;
 
         display: inherit;
         align-items: center;
         gap: 20px;
 
         @include mobile-only {
-            @include grid(2, 3, 50px)
+            margin-left: 50px;
+            @include grid(2, 3, 50px);
+            grid-template-columns: repeat(auto-fill, minmax(0, calc((100% - 100px) / 2)));
         }
 
         font-weight: 500;
@@ -169,13 +176,13 @@
         }
 
         & .header__item-about.active~.header__item-follow {
-            left: 115px;
+            left: 116px;
             width: 55px;
         }
 
         & .header__item-skills.active~.header__item-follow {
             left: 219px;
-            width: 45px;
+            width: 44px;
         }
 
         & .header__item-services.active~.header__item-follow {
@@ -197,22 +204,44 @@
 
     &__item {
 
+
+        & svg {
+            display: none;
+        }
+
+        @include mobile-only {
+            & svg {
+                display: initial;
+            }
+        }
+
+        &-contact svg {
+            rotate: 45deg;
+        }
+
         &:not(.header__item-follow) {
-            border-radius: 100vmax;
             background: var(--bg-primary);
+
             box-shadow: 0px 0px 20px 10px var(--bg-primary);
+
             padding: 0 14px;
+
+            border-radius: 100vmax;
+
+            @include mobile-only {
+                border-radius: 10px;
+            }
         }
 
 
         &.active {
             @include mobile-only {
-                text-decoration: underline;
+                outline: 2px solid currentColor;
             }
         }
 
         @include mobile-only {
-            @include center-flex;
+            @include center-flex-column(10px);
         }
     }
 
