@@ -127,6 +127,5 @@ This project:
 
 - Has a responsive design
 - Has a dark/light theme
-- Has a Swagger API documentation is available in this address: <http://localhost:3001/api-docs/#/>
 - Uses SSR (Server-side rendering)
 - Uses the 7-1 pattern for SASS
