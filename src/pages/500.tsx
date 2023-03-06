@@ -22,7 +22,7 @@ export default function Error500(): JSX.Element {
           property="og:description"
           content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
         />
-        <meta property="og:image" content="/favicon.ico" />
+        <meta property="og:image" content="/profile-pic.jpg" />
 
         <meta
           property="og:url"

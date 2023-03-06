@@ -47,7 +47,7 @@ export default function About(): JSX.Element {
           content="
           Get to know me better! I'm Younes LAHOUITI, a passionate web developer with 1 year of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences."
         />
-        <meta property="og:image" content="/favicon.ico" />
+        <meta property="og:image" content="/profile-pic.jpg" />
 
         <meta
           property="og:url"

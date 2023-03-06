@@ -20,7 +20,7 @@ export default function Error404(): JSX.Element {
           property="og:description"
           content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
         />
-        <meta property="og:image" content="/favicon.ico" />
+        <meta property="og:image" content="/profile-pic.jpg" />
 
         <meta
           property="og:url"
