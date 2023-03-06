@@ -3,6 +3,10 @@
 .skills-page {
     @include center-flex-column(25px);
 
+    &__title {
+        margin-top: 50px;
+    }
+
     &__card {
         width: 415px;
         min-height: 415px;

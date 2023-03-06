@@ -3,7 +3,9 @@
 .contact-page {
     @include center-flex-column(25px);
 
-    &__title {}
+    &__title {
+        margin-top: 50px;
+    }
 
     &__subtitle {
         margin: 0 5px;

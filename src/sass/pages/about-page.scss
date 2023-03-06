@@ -3,7 +3,9 @@
 .about-page {
     @include center-flex-column(50px);
 
-    &__title {}
+    &__title {
+        margin-top: 50px;
+    }
 
     &__subtitle {}
 

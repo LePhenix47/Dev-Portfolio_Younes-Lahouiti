@@ -3,7 +3,9 @@
 .services-page {
     @include center-flex-column(15px);
 
-    &__title {}
+    &__title {
+        margin-top: 50px;
+    }
 
     &__subtitle {}
 
