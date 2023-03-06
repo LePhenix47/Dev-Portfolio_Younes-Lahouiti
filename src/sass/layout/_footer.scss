@@ -1,9 +1,29 @@
 @use "../utils/" as *;
 
 .footer {
-    @include center-flex;
+    @include center-flex-column(7px);
 
     border-top: 2px solid var(--border-color);
 
     padding: 25px;
+
+    &__copyright {
+        text-align: center;
+    }
+
+    &__link {
+        text-align: center;
+        font-size: 12px;
+
+        border: 2px solid var(--border-color);
+        border-radius: 100vmax;
+
+        padding: 5px 10px;
+
+        @include mobile-only {
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+    }
 }
