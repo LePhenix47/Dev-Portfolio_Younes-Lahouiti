@@ -9,7 +9,7 @@ export default function AboutCard({
   svgIcon: any;
   title: string;
   description: string;
-}) {
+}): JSX.Element {
   return (
     <div className="card">
       <h3 className="card__title">

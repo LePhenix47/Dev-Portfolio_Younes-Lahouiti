@@ -12,7 +12,7 @@ export default function ServicesModalContent({
   title: string;
   description: string;
   qualities: serviceType;
-}) {
+}): JSX.Element {
   return (
     <section className="services-page__card-content">
       <h2 className="services-page__card-title">{title}</h2>

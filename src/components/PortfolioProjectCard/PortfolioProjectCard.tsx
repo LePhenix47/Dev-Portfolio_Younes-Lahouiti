@@ -17,17 +17,22 @@ export default function PortfolioProjectCard({
   link: string;
   formattedDate: string;
   type: string;
-}) {
+}): JSX.Element {
   let sentenceToViewProjectCode: string = "View source code";
 
   switch (type) {
     case "npm": {
-      sentenceToViewProjectCode = "View library";
+      sentenceToViewProjectCode = "View the library";
       break;
     }
 
     case "extension": {
       sentenceToViewProjectCode = "See the browser extension";
+      break;
+    }
+
+    case "professional": {
+      sentenceToViewProjectCode = "View the website";
       break;
     }
 

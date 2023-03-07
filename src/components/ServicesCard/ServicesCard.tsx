@@ -18,7 +18,7 @@ export default function ServicesCard({
   title: string;
   description: string;
   callback: voidCallback;
-}) {
+}): JSX.Element {
   return (
     <div className="services-page__card card" key={`${title}-${description}`}>
       <div className="services-page__card-icon">

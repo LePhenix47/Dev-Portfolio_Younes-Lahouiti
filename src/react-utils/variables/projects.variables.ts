@@ -304,7 +304,7 @@ export const professionalProjects: projectsMadeType = [
   {
     title: "Developer portfolio",
     image: PORTFOLIO,
-    link: "",
+    link: "https://younes-portfolio-dev.vercel.app/",
     type: "professional",
     date: new Date("02/25/2023"),
   },

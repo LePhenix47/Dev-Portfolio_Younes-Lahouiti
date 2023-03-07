@@ -14,7 +14,7 @@ export default function SkillsCard({
   listClass: "skills-page__skills-front-end" | "skills-page__skills-back-end";
   title: string;
   skillsArray: skill;
-}) {
+}): JSX.Element {
   return (
     <div className="skills-page__card card">
       <h3 className="skills-page__card-title card__title">{title}</h3>

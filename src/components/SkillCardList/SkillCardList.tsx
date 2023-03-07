@@ -6,7 +6,7 @@ export default function SkillCardList({
 }: {
   skill: string;
   level: string;
-}) {
+}): JSX.Element {
   return (
     <div className="skills-page__card-item">
       <svg

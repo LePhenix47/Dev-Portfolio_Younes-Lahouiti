@@ -78,9 +78,9 @@
             border-radius: 10px;
 
             &::before {
-                transition: rotate 800ms ease-in-out,
-                    bottom 800ms ease-out,
-                    left 800ms ease-out;
+                transition: rotate 700ms ease-in-out,
+                    bottom 700ms ease-out,
+                    left 700ms ease-out;
 
                 content: "";
 
@@ -97,9 +97,9 @@
             }
 
             &::after {
-                transition: rotate 800ms ease-in-out,
-                    bottom 800ms ease-out,
-                    left 800ms ease-out;
+                transition: rotate 700ms ease-in-out,
+                    bottom 700ms ease-out,
+                    left 700ms ease-out;
 
                 content: "";
 

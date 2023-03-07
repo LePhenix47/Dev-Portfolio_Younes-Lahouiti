@@ -11,7 +11,7 @@ export default function HomeSocialCardItem({
   srcIcon: string;
   title: string;
   link: string;
-}) {
+}): JSX.Element {
   return (
     <li className="home-page__social-item">
       <Link

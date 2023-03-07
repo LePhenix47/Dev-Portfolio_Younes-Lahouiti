@@ -17,7 +17,7 @@ export default function ContactMethodCard({
   platform: string;
   user: string;
   link: string;
-}) {
+}): JSX.Element {
   return (
     <div className="contact-page__contact-card card">
       <div className="contact-page__contact-card-icon-container">

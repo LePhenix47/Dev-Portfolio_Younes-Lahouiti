@@ -8,7 +8,7 @@ export default function Timeline({
 }: {
   arrayOfTimeLines: any[];
   reverse: boolean | undefined;
-}) {
+}): JSX.Element {
   return (
     <div className="timeline__container">
       <section className="timeline">
