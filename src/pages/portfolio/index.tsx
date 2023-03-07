@@ -26,6 +26,12 @@ import {
 } from "@/react-utils/functions/helper-functions";
 import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
 
+//Componnets
+import PortfolioProjectCard from "@/components/PortfolioProjectCard/PortfolioProjectCard";
+
+/**
+ * Portfolio page: `/portfolio`
+ */
 export default function Portfolio(): JSX.Element {
   /**
    * State that holds the data for the cards within the container
@@ -204,7 +210,7 @@ export default function Portfolio(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/portfolio"
+          content="https://younes-portfolio-dev.vercel.app/portfolio"
         />
         {/*
          <!--Title--> 
@@ -415,49 +421,24 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
         <div className="portfolio-page__project-cards-container">
           {/*     Project Cards       */}
           {dataToShow.map((project: any, index: number) => {
-            const { title, image, link, type, date } = project;
+            const { title, image, link, date } = project;
 
             let formattedDate = formatDateToShort(date);
 
             return (
-              <div
-                className="portfolio-page__project-card card"
-                key={`${project}-${index}`}
-              >
-                <div className="portfolio-page__project-card-image-container">
-                  <Image
-                    src={image}
-                    alt={title}
-                    width={500}
-                    height={500}
-                    className="portfolio-page__project-card-image"
-                  />
-                </div>
-                <div className="portfolio-page__project-card-text">
-                  <h3 className="portfolio-page__project-card-title">
-                    {title}
-                  </h3>
-                  <p className="portfolio-page__project-card-date">
-                    Made the: {formattedDate}
-                  </p>
-                  <Link
-                    href={link}
-                    target="_blank"
-                    className="portfolio-page__project-card-link"
-                  >
-                    View source code{" "}
-                    <span className="portfolio-page__project-card-link-arrow">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
+              <PortfolioProjectCard
+                title={title}
+                image={image}
+                formattedDate={formattedDate}
+                link={link}
+                key={`${index}-${title}-${link}`}
+              />
             );
           })}
 
           {!dataToShow.length && needsFiltering && (
             <p className="portfolio-page__project-cards-container-not-found">
-              Sorry, we find any results matching your search. (╯°□°）╯︵ ┻━┻
+              Sorry, we find any results matching your search. ಠ_ಠ
             </p>
           )}
           {/*            */}

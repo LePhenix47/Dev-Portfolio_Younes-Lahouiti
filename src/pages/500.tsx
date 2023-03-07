@@ -25,7 +25,7 @@ export default function Error500(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/500"
+          content="https://younes-portfolio-dev.vercel.app/500"
         />
         {/*
          <!--Title--> 
@@ -34,7 +34,7 @@ export default function Error500(): JSX.Element {
         {/*     Canonical link     */}
         <link
           rel="canonical"
-          href="https://www.younes-lahouiti-portfolio.com/"
+          href="https://https://younes-portfolio-dev.vercel.app/"
         />
       </Head>
       <section className="error-500">

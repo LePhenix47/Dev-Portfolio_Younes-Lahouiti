@@ -5,10 +5,12 @@ import { useRef, useState } from "react";
 
 //Components
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
+import ServicesModalContent from "@/components/ServicesModalContent/ServicesModalContent";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
 import { formatText, log } from "@/react-utils/functions/helper-functions";
+import ServicesCard from "@/components/ServicesCard/ServicesCard";
 
 export default function Services(): JSX.Element {
   /**
@@ -20,8 +22,9 @@ export default function Services(): JSX.Element {
    * Content to show inside the `<ModalWindow />` component
    */
   const [windowContent, setWindowContent] = useState<any>(null);
+
   /**
-   * Function that opens the
+   * Function that opens the window modal
    */
   function openWindow(event: any) {
     /**
@@ -43,37 +46,14 @@ export default function Services(): JSX.Element {
     const { title, description, qualities } = dataObject[0];
 
     /**
-     * HTML content for the window modal
+     * Set the JSX content for the window modal
      */
     let content = (
-      <section className="services-page__card-content">
-        <h2 className="services-page__card-title">{title}</h2>
-        <p className="services-page__card-description">{description}</p>
-        <ul className="services-page__card-qualities-list">
-          {qualities.map((quality: any, index: number) => {
-            return (
-              <li
-                className="services-page__card-qualities-item"
-                key={`${quality}-${index}`}
-              >
-                <span className="services-page__card-qualities-item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="var(--color-secondary)"
-                  >
-                    <path fill="none" d="M0 0h24v24H0V0z" />
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z" />
-                  </svg>
-                </span>
-                {quality}
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <ServicesModalContent
+        title={title}
+        description={description}
+        qualities={qualities}
+      />
     );
 
     /**
@@ -112,7 +92,7 @@ export default function Services(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/services"
+          content="https://younes-portfolio-dev.vercel.app/services"
         />
         {/*
          <!--Title--> 
@@ -129,40 +109,20 @@ export default function Services(): JSX.Element {
         <h1 className="services-page__title">Services</h1>
         <h2 className="services-page__subtitle">My expertise and offerings</h2>
         <section className="services-page__cards-container">
-          {offeredServices.map((service) => {
+          {offeredServices.map((service, index: number) => {
             /**
              * We get the icon, title and description
              */
             const { icon, title, description } = service;
+
             return (
-              <div
-                className="services-page__card card"
-                key={`${title}-${description}`}
-              >
-                <div className="services-page__card-icon">
-                  <Image
-                    src={icon}
-                    alt={`${title}, ${description}`}
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <div className="services-page__card-text">
-                  <h2 className="services-page__card-title">{title}</h2>
-                  <a
-                    href="#"
-                    className="services-page__card-link"
-                    onClick={(e) => {
-                      openWindow(e);
-                    }}
-                    title={`View moer about ${formatText(title, "lowercase")}?`}
-                    data-type={title}
-                  >
-                    View more{" "}
-                    <span className="services-page__card-link-arrow">→</span>
-                  </a>
-                </div>
-              </div>
+              <ServicesCard
+                callback={openWindow}
+                icon={icon}
+                title={title}
+                description={description}
+                key={`${index}-${title}-${description}`}
+              />
             );
           })}
         </section>

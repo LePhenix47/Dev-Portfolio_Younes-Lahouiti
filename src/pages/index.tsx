@@ -25,7 +25,10 @@ export default function Home(): JSX.Element {
         <meta property="og:image" content="/profile-pic.jpg" />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
-        <meta property="og:url" content="www.younes-lahouiti-portfolio.com" />
+        <meta
+          property="og:url"
+          content="https://younes-portfolio-dev.vercel.app/"
+        />
         {/*
          <!--Title--> 
          */}

@@ -5,10 +5,14 @@ import { useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+
+//Utils
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
 import { formatText, log } from "@/react-utils/functions/helper-functions";
-import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel";
 
+//Components
+import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel";
+import ContactMethodCard from "@/components/ContactMethodCard/ContactMethodCard";
 //
 
 /**
@@ -16,19 +20,6 @@ import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel"
  */
 export default function Contact(): JSX.Element {
   // States to add the active class to their labels
-  /**
-   * States to know if the input is active to translate the label to the top
-   */
-  const [isFirstNameInputActive, setIsFirstNameInputActive] =
-    useState<boolean>(false);
-
-  const [isLastNameInputActive, setIsLastNameInputActive] =
-    useState<boolean>(false);
-
-  const [isEmailInputActive, setIsEmailInputActive] = useState<boolean>(false);
-
-  const [isProjectTextAreaActive, setIsProjectTextAreaActive] =
-    useState<boolean>(false);
 
   // Refernces to get the value of their inputs
   /**
@@ -52,8 +43,6 @@ export default function Contact(): JSX.Element {
 
    */
   const textAreaRef = useRef<any>(null);
-
-  const testRef = useRef<any>(null);
 
   /**
    * Function that sends the form with their field values
@@ -91,7 +80,7 @@ export default function Contact(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/contact"
+          content="https://younes-portfolio-dev.vercel.app/contact"
         />
         {/*
          <!--Title--> 
@@ -110,36 +99,15 @@ export default function Contact(): JSX.Element {
             {/*     Beginning         */}
             {contactMethods.map((method) => {
               const { icon, platform, link, user } = method;
+
               return (
-                <div
-                  className="contact-page__contact-card card"
+                <ContactMethodCard
                   key={`${user}-${platform}`}
-                >
-                  <div className="contact-page__contact-card-icon-container">
-                    <Image
-                      src={icon}
-                      alt={platform}
-                      width={32}
-                      height={32}
-                      className="contact-page__contact-card-icon"
-                    />
-                  </div>
-                  <div className="contact-page__contact-card-text">
-                    <h4 className="contact-page__contact-card-platform">
-                      {platform}
-                    </h4>
-                    <p className="contact-page__contact-card-user-name">
-                      {user}
-                    </p>
-                    <a
-                      href={link}
-                      target="_blank"
-                      className="contact-page__contact-card-link"
-                    >
-                      Drop me a line in my {formatText(platform, "lowercase")}
-                    </a>
-                  </div>
-                </div>
+                  icon={icon}
+                  link={link}
+                  platform={platform}
+                  user={user}
+                />
               );
             })}
 

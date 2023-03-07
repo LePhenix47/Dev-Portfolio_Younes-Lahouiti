@@ -38,6 +38,7 @@ import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
 import SFCC from "../../../public/png/sfcc-icon.png";
+import PORTFOLIO from "../../../public/png/portfolio-screenshot.png";
 
 //NPM
 import TIMEOUT_UTILITY from "../../../public/png/hourglass-clepsydra-icon.png";
@@ -299,6 +300,13 @@ export const professionalProjects: projectsMadeType = [
     link: "",
     type: "professional",
     date: new Date("02/11/2023"),
+  },
+  {
+    title: "Developer portfolio",
+    image: PORTFOLIO,
+    link: "",
+    type: "professional",
+    date: new Date("02/25/2023"),
   },
 ];
 

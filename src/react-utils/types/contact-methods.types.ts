@@ -1,5 +1,7 @@
+import { nextJSImageType } from "./next-js-image.type";
+
 export type contactMethodType = {
-  icon: any;
+  icon: nextJSImageType;
   platform: string;
   user: string;
   link: string;

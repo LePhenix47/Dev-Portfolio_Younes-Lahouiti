@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 //Components
+import SkillsCard from "@/components/SkillsCard/SkillsCard";
 import SkillCardList from "@/components/SkillCardList/SkillCardList";
 import Timeline from "@/components/Timeline/Timeline";
 
@@ -51,7 +52,7 @@ export default function Skills(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/skills"
+          content="https://younes-portfolio-dev.vercel.app/skills"
         />
         {/*
          <!--Title--> 
@@ -62,43 +63,21 @@ export default function Skills(): JSX.Element {
         <h1 className="skills-page__title">Skills</h1>
         <h2 className="skills-page__subtitle">My technical level</h2>
         <div className="skills-page__skills-container">
-          <div className="skills-page__card card">
-            <h3 className="skills-page__card-title card__title">
-              Front-end skills
-            </h3>
-            <ul className="skills-page__skills-front-end">
-              {frontEndSkills.map((frontEndSkill, index) => {
-                const { skill, level } = frontEndSkill;
-                return (
-                  <li
-                    className="skills-page__skill-front-end"
-                    key={`${index}-${skill}`}
-                  >
-                    <SkillCardList skill={skill} level={level} />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {/* BEGIN           */}
 
-          <div className="skills-page__card card">
-            <h3 className="skills-page__card-title card__title">
-              Back-end skills
-            </h3>
-            <ul className="skills-page__skills-back-end">
-              {backEndSkills.map((backEndSkill, index) => {
-                const { skill, level } = backEndSkill;
-                return (
-                  <li
-                    className="skills-page__skill-back-end"
-                    key={`${index}-${skill}`}
-                  >
-                    <SkillCardList skill={skill} level={level} />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <SkillsCard
+            listClass="skills-page__skills-front-end"
+            skillsArray={frontEndSkills}
+            title="Front-end skills"
+          />
+
+          <SkillsCard
+            listClass="skills-page__skills-back-end"
+            skillsArray={backEndSkills}
+            title="Back-end skills"
+          />
+
+          {/* END           */}
         </div>
         <h2 className="skills-page__qualifications-title">Qualifications</h2>
         <h3 className="skills-page__qualifications-subtitle">

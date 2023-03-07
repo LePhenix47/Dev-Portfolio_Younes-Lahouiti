@@ -24,7 +24,7 @@ export default function Error404(): JSX.Element {
         <meta property="og:image:height" content="170" />
         <meta
           property="og:url"
-          content="www.younes-lahouiti-portfolio.com/404"
+          content="https://younes-portfolio-dev.vercel.app/404"
         />
         {/*
          <!--Title--> 
@@ -33,7 +33,7 @@ export default function Error404(): JSX.Element {
         {/*     Canonical link     */}
         <link
           rel="canonical"
-          href="https://www.younes-lahouiti-portfolio.com/"
+          href="https://https://younes-portfolio-dev.vercel.app/"
         />
       </Head>
       <section className="error-404">
