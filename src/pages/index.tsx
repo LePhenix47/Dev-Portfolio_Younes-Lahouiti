@@ -3,6 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+//Utils
+import { socialAccountVariables } from "@/react-utils/variables/social-accounts.variables";
+
+//Components
+import HomeSocialCardItem from "@/components/HomeSocialCards/HomeSocialCards";
+
 export default function Home(): JSX.Element {
   return (
     <>
@@ -37,134 +43,18 @@ export default function Home(): JSX.Element {
       <section className="home-page">
         <aside className="home-page__socials">
           <ul className="home-page__social-list">
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.linkedin.com/in/younes-💻-lahouiti-939a1a224/"
-                target="_blank"
-                title="LinkedIn"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/linkedin.svg"
-                  alt="LinkedIn icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-linkedin"
+            {socialAccountVariables.map((account, index: number) => {
+              const { srcIcon, title, link } = account;
+
+              return (
+                <HomeSocialCardItem
+                  key={`${index}-${title}-${link}`}
+                  title={title}
+                  srcIcon={srcIcon}
+                  link={link}
                 />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.twitter.com/Younes_Lahouiti"
-                target="_blank"
-                title="Twitter"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/twitter.svg"
-                  alt="Twitter icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-twitter"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.youtube.com/channel/UCYG0ASezh6qSolJpl_I3O8w"
-                target="_blank"
-                title="YouTube"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/youtube.svg"
-                  alt="Youtube icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-youtube"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.github.com/LePhenix47"
-                target="_blank"
-                title="GitHub"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/github.svg"
-                  alt="GitHub icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-github"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.stackoverflow.com/users/16984856/le-phenix-47"
-                target="_blank"
-                title="StackOverflow"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/stackoverflow.svg"
-                  alt="StackOverflow icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-stackoverflow"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://www.npmjs.com/~lephenix47"
-                target="_blank"
-                title="Native Package Manager"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/npm/npm-original-wordmark.svg"
-                  alt="npm icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-npm"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://discord.com/users/474540707156066304"
-                target="_blank"
-                title="Discord"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/discord.svg"
-                  alt="Discord icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-discord"
-                />
-              </Link>
-            </li>
-            <li className="home-page__social-item">
-              <Link
-                className="home-page__social-link"
-                href="https://codepen.io/phenix47"
-                target="_blank"
-                title="CodePen"
-              >
-                <Image
-                  src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/codepen.svg"
-                  alt="CodePen icon"
-                  height={30}
-                  width={30}
-                  className="home-page__social-image home-page__social-image-codepen"
-                />
-              </Link>
-            </li>
+              );
+            })}
           </ul>
         </aside>
         <div className="home-page__presentation">
