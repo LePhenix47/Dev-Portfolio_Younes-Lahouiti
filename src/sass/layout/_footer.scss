@@ -1,17 +1,40 @@
 @use "../utils/" as *;
 
 .footer {
-    @include center-flex-column(7px);
+    @include center-flex-column(12px);
 
     border-top: 2px solid var(--border-color);
 
     padding: 25px;
 
-    &__copyright {
-        text-align: center;
+    &__github-links {
+        margin-top: -5px;
+
+        @include center-flex(10px);
+
+        @include tablet-only {
+            @include center-flex-column(10px)
+        }
+
+        @include mobile-only {
+            display: none;
+        }
+
+        &--mobile {
+            display: none;
+
+            @include mobile-only {
+                @include center-flex(10px);
+            }
+        }
     }
 
     &__link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
         text-align: center;
         font-size: 12px;
 
@@ -20,10 +43,10 @@
 
         padding: 5px 10px;
 
-        @include mobile-only {
-            margin-top: 15px;
+    }
 
-            font-size: 14px;
-        }
+
+    &__copyright {
+        text-align: center;
     }
 }

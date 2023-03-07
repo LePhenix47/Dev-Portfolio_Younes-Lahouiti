@@ -25,6 +25,7 @@ import {
   formatDateToShort,
 } from "@/react-utils/functions/helper-functions";
 import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
+import { projectsMadeType } from "@/react-utils/types/projects.types";
 
 //Componnets
 import PortfolioProjectCard from "@/components/PortfolioProjectCard/PortfolioProjectCard";
@@ -36,7 +37,7 @@ export default function Portfolio(): JSX.Element {
   /**
    * State that holds the data for the cards within the container
    */
-  const [dataToShow, setDataToShow] = useState<any>(allProjects);
+  const [dataToShow, setDataToShow] = useState<projectsMadeType>(allProjects);
 
   /**
    * State that stores the copied data for the data to show to make the filtering work
@@ -420,8 +421,8 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
 
         <div className="portfolio-page__project-cards-container">
           {/*     Project Cards       */}
-          {dataToShow.map((project: any, index: number) => {
-            const { title, image, link, date } = project;
+          {dataToShow.map((project, index: number) => {
+            const { title, image, link, date, type } = project;
 
             let formattedDate = formatDateToShort(date);
 
@@ -431,6 +432,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
                 image={image}
                 formattedDate={formattedDate}
                 link={link}
+                type={type}
                 key={`${index}-${title}-${link}`}
               />
             );

@@ -307,7 +307,9 @@
         }
 
         &-link {
-            display: inline-block;
+            display: inline-flex;
+            gap: 7px;
+
             margin-top: 25px;
 
 
@@ -319,7 +321,7 @@
 
 
                 &>.portfolio-page__project-card-link-arrow {
-                    translate: 100% 0%;
+                    rotate: 360deg;
                 }
             }
 
@@ -329,8 +331,11 @@
         }
 
         &-link-arrow {
-            display: inline-block;
-            transition: translate 350ms ease-in-out;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: rotate 700ms ease-in-out;
         }
     }
 

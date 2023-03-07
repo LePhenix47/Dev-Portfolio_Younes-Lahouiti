@@ -10,12 +10,32 @@ export default function PortfolioProjectCard({
   image,
   link,
   formattedDate,
+  type,
 }: {
   title: string;
   image: any;
   link: string;
   formattedDate: string;
+  type: string;
 }) {
+  let sentenceToViewProjectCode: string = "View source code";
+
+  switch (type) {
+    case "npm": {
+      sentenceToViewProjectCode = "View library";
+      break;
+    }
+
+    case "extension": {
+      sentenceToViewProjectCode = "See the browser extension";
+      break;
+    }
+
+    default: {
+      break;
+    }
+  }
+
   return (
     <div className="portfolio-page__project-card card">
       <div className="portfolio-page__project-card-image-container">
@@ -37,8 +57,20 @@ export default function PortfolioProjectCard({
           target="_blank"
           className="portfolio-page__project-card-link"
         >
-          View source code{" "}
-          <span className="portfolio-page__project-card-link-arrow">→</span>
+          {sentenceToViewProjectCode + " "}
+          <span className="portfolio-page__project-card-link-arrow">
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="currentColor"
+            >
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+            </svg>
+          </span>
         </Link>
       </div>
     </div>
