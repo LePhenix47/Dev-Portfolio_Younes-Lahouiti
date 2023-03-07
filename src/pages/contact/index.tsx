@@ -44,6 +44,28 @@ export default function Contact(): JSX.Element {
    */
   const textAreaRef = useRef<any>(null);
 
+  /*
+
+  # To validate the form
+
+  The first name & last name inputs:
+  - Must be strings not containing numbers, RegExp: /^[^0-9]*$/
+  - Must be between 2 and 50 characters long: char.length >= 2 && char.length <= 50 
+  - Can include dashes and apostrophes (like Da'Shawn or Marie-Antoinette), RegExp: /^[a-zA-Z'-]+(?:\s?[a-zA-Z'-]+)*$/
+
+  The email input:
+  - Must be an email under this format: nickname@domain.TLD(.subdomain), RegExp:  /^([a-z A-Z 0-9\.-]+)@([a-z A-Z 0-9]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+
+
+  The project text-area:
+  - Must be between 50 and 2 000 chars long: char.length >= 50 && char.length <= 2_000 
+
+
+  # To send the form as an email
+
+  We can use the EmailJS API: https://www.emailjs.com/ to send the email
+  */
+
   /**
    * Function that sends the form with their field values
    */
@@ -55,6 +77,8 @@ export default function Contact(): JSX.Element {
 
     log({ firstName, lastName, email, projectIdea });
   }
+
+  async function sendEmail(params: any) {}
 
   return (
     <>

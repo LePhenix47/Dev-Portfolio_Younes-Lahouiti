@@ -30,6 +30,8 @@
     @include mobile-only {
         translate: 0% 100%;
 
+        padding: 5px 30px 10px 30px;
+
         height: auto;
         width: 100%;
 
@@ -78,9 +80,9 @@
             border-radius: 10px;
 
             &::before {
-                transition: rotate 700ms ease-in-out,
-                    bottom 700ms ease-out,
-                    left 700ms ease-out;
+                transition: rotate 400ms ease-in-out,
+                    bottom 400ms ease-out,
+                    left 400ms ease-out;
 
                 content: "";
 
@@ -97,9 +99,9 @@
             }
 
             &::after {
-                transition: rotate 700ms ease-in-out,
-                    bottom 700ms ease-out,
-                    left 700ms ease-out;
+                transition: rotate 400ms ease-in-out,
+                    bottom 400ms ease-out,
+                    left 400ms ease-out;
 
                 content: "";
 
@@ -139,6 +141,10 @@
             background: var(--bg-primary);
             box-shadow: 0px 0px 20px 10px var(--bg-primary);
             padding: 0 14px;
+
+            @include mobile-only {
+                font-size: 14px;
+            }
         }
     }
 
@@ -162,7 +168,7 @@
         gap: 20px;
 
         @include mobile-only {
-            @include grid(3, 2, 50px);
+            @include grid(2, 3, 2px);
         }
 
         font-weight: 500;
@@ -202,7 +208,6 @@
 
     &__item {
 
-
         & svg {
             display: none;
         }
@@ -228,8 +233,12 @@
             border-radius: 100vmax;
 
             @include mobile-only {
-                padding: 14px;
+                padding: 10px;
                 border-radius: 10px;
+                box-shadow: none;
+
+                font-size: 12px;
+                gap: 0px;
             }
         }
 
