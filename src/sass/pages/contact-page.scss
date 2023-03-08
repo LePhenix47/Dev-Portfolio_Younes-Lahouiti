@@ -134,7 +134,21 @@
             color: var(--color-secondary);
         }
 
+        &--empty-input>input {
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+        }
+
+        &--empty-input>textarea {
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+        }
+
     }
+
+    --input-message-color: white;
+    --input-message-bg-success: darkgreen;
+    --input-message-bg-error: red;
 
     &__input-label-message {
 
@@ -148,10 +162,18 @@
         padding: 0 20px;
 
         background-color: var(--color-primary);
-        color: var(--bg-primary);
+        color: var(--input-message-color);
 
 
         border-radius: 0 0 15px 15px;
+
+        &--sucess {
+            background-color: var(--input-message-bg-success);
+        }
+
+        &--error {
+            background-color: var(--input-message-bg-error);
+        }
     }
 
     &__label {

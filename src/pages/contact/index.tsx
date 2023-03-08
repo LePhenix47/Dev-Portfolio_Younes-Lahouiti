@@ -1,5 +1,5 @@
 //React
-import { useRef, useState } from "react";
+import { MutableRefObject, useRef, useState } from "react";
 
 //Next
 import Head from "next/head";
@@ -18,33 +18,36 @@ import {
 //Components
 import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel";
 import ContactMethodCard from "@/components/ContactMethodCard/ContactMethodCard";
-//
+
+//Libraries
+import { EmailJSResponseStatus, sendForm } from "@emailjs/browser";
 
 /**
  * Contact page: `/contact`
  */
 export default function Contact(): JSX.Element {
   // States to add the active class to their labels
+  const [formIsValid, setFormIsValid] = useState<boolean>(false);
 
-  // Refernces to get the value of their inputs
+  // References to get the value of their inputs
   /**
-   * Refernce for the **first name**
+   * Reference for the **first name**
    */
   const firstNameRef = useRef<any>(null);
 
   /**
-   * Refernce for the **first name**
+   * Reference for the **first name**
    */
   const lastNameRef = useRef<any>(null);
 
   /**
-   * Refernce for the **first name**
+   * Reference for the **first name**
 
    */
   const emailRef = useRef<any>(null);
 
   /**
-   * Refernce for the **first name**
+   * Reference for the **first name**
 
    */
   const textAreaRef = useRef<any>(null);
@@ -75,18 +78,40 @@ export default function Contact(): JSX.Element {
    * Function that sends the form with their field values
    */
   function submitForm() {
-    const firstName = firstNameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const email = emailRef.current.value;
-    const projectIdea = textAreaRef.current.value;
+    const firstName: string = firstNameRef.current.value;
+    const lastName: string = lastNameRef.current.value;
+    const email: string = emailRef.current.value;
+    const projectIdea: string = textAreaRef.current.value;
 
     log({ firstName, lastName, email, projectIdea });
+
+    let namesInputsAreValid: boolean =
+      verifyNames(undefined, firstNameRef) &&
+      verifyNames(undefined, lastNameRef);
+
+    let emailInputIsValid: boolean = verifyEmail(undefined, emailRef);
+
+    let projectTextAreaIsValid: boolean = verifyMessage(undefined, textAreaRef);
+
+    let formInputsAreValid: boolean =
+      namesInputsAreValid && emailInputIsValid && projectTextAreaIsValid;
+
+    log({ formInputsAreValid });
+
+    if (formInputsAreValid) {
+      setFormIsValid(true);
+      sendEmail({ firstName, lastName, email, projectIdea });
+    } else {
+      setFormIsValid(false);
+    }
   }
 
   /**
    * Function that send the email to `EmailJS`
    */
-  async function sendEmail(params: any) {
+  async function sendEmail(formValue: any) {
+    const { firstName, lastName, email, projectIdea } = formValue;
+
     try {
     } catch (apiError) {
       error(apiError);
@@ -102,9 +127,13 @@ export default function Contact(): JSX.Element {
    * @param event - The event object from the input element that triggered the function.
    * @returns - A boolean value indicating whether the given string is a valid name.
    */
-  function verifyNames(event: React.ChangeEvent<HTMLInputElement>) {
+  function verifyNames(
+    event?: React.ChangeEvent<HTMLInputElement>,
+    inputValueRef?: MutableRefObject<any>
+  ) {
     //We get the vaue of the input
-    let valueOfInput = event.target.value;
+    let valueOfInput: string =
+      event?.target?.value ?? inputValueRef?.current.value;
     valueOfInput = valueOfInput.trim();
 
     //String must not include numbers
@@ -124,7 +153,7 @@ export default function Contact(): JSX.Element {
     );
 
     //We verify that the length of the name is between 2 and 50
-    const nameIsAtRightLnegth =
+    const nameIsAtRightLnegth: boolean =
       valueOfInput.length >= 2 && valueOfInput.length <= 50;
 
     return (
@@ -141,15 +170,19 @@ export default function Contact(): JSX.Element {
    * @param event - The event object from the input element that triggered the function.
    * @returns  - A boolean value indicating whether the given string is a valid email.
    */
-  function verifyEmail(event: React.ChangeEvent<HTMLInputElement>) {
+  function verifyEmail(
+    event?: React.ChangeEvent<HTMLInputElement>,
+    inputValueRef?: MutableRefObject<any>
+  ) {
     //We get the vaue of the input
-    let valueOfInput = event.target.value;
+    let valueOfInput: string =
+      event?.target?.value ?? inputValueRef?.current?.value;
     valueOfInput = valueOfInput.trim();
 
     //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
     const emailREGEX: RegExp =
       /^([a-z A-Z 0-9\.-]+)@([a-z A-Z 0-9]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-    const respectsEmailFormat = testRegExp(valueOfInput, emailREGEX);
+    const respectsEmailFormat: boolean = testRegExp(valueOfInput, emailREGEX);
 
     return respectsEmailFormat;
   }
@@ -160,12 +193,16 @@ export default function Contact(): JSX.Element {
    * @param event - The event that triggered the function
    * @returns - Returns true if the message has a proper length, otherwise false
    */
-  function verifyMessage(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  function verifyMessage(
+    event?: React.ChangeEvent<HTMLTextAreaElement>,
+    inputValueRef?: MutableRefObject<any>
+  ) {
     //We get the vaue of the input
-    let valueOfInput = event.target.value;
+    let valueOfInput: string =
+      event?.target?.value ?? inputValueRef?.current?.value;
     valueOfInput = valueOfInput.trim();
 
-    const messageIsAtRightLength =
+    const messageIsAtRightLength: boolean =
       valueOfInput.length >= 50 && valueOfInput.length <= 2_000;
 
     log({ messageIsAtRightLength });

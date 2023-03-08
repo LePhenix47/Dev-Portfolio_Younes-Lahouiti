@@ -48,7 +48,11 @@ export default function ContactInputLabel({
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
   return (
-    <section className={`contact-page__input-label-container`}>
+    <section
+      className={`contact-page__input-label-container ${
+        !isEmpty ? "contact-page__input-label-container--empty-input" : ""
+      }`}
+    >
       <label
         htmlFor={id}
         className={`contact-page__label ${isInputActive ? "active" : ""}`}
@@ -61,6 +65,7 @@ export default function ContactInputLabel({
       */}
       {isTextArea ? (
         <textarea
+          required
           className={`contact-page__text-area ${isInputActive ? "active" : ""}`}
           id={id}
           name={id}
@@ -105,6 +110,7 @@ export default function ContactInputLabel({
         ></textarea>
       ) : (
         <input
+          required
           type={inputType}
           className="contact-page__input"
           id={id}
@@ -173,7 +179,7 @@ export default function ContactInputLabel({
         </svg>
       </p>
       <p
-        className={`contact-page__input-label-message contact-page__input-label-message--success ${
+        className={`contact-page__input-label-message contact-page__input-label-message--sucess ${
           !isEmpty && isValid ? "" : "hide"
         }`}
       >

@@ -98,12 +98,11 @@ export function testRegExp(string: string, RegularExpression: RegExp): boolean {
 
 /**
  * Copies the given text to the clipboard.
- *
- *@param {string} text - The text to be copied to the clipboard.
- *@returns {Promise<void>} - A Promise that resolves when the text has been successfully copied to the clipboard.
+ * @param {string} textToCopy - The text to be copied to the clipboard.
+ * @returns {Promise<void>} - A Promise that resolves when the text has been successfully copied to the clipboard.
  */
-export function copyTextToClipBoard(text: string): Promise<void> {
-  return navigator.clipboard.writeText(text);
+export function copyTextToClipBoard(textToCopy: string): Promise<void> {
+  return navigator.clipboard.writeText(textToCopy);
 }
 /**
  *Splits a string on a character, word or regular expression
