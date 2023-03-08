@@ -1,0 +1,13 @@
+@use "../utils/" as *;
+
+.buffer-loader {
+    aspect-ratio: 1/1;
+
+    &__circle {
+        fill: none;
+        stroke: var(--color-primary);
+        stroke-width: 4px;
+        animation: buffer-animation 1050ms ease-in-out infinite normal forwards;
+        transform-origin: center;
+    }
+}

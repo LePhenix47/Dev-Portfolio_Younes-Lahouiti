@@ -13,6 +13,8 @@ import {
   log,
   error,
   testRegExp,
+  waitPromiseSuccess,
+  waitPromiseError,
 } from "@/react-utils/functions/helper-functions";
 
 //Components
@@ -24,6 +26,7 @@ import ContactMethodCard from "@/components/ContactMethodCard/ContactMethodCard"
 import { EmailJSResponseStatus, send, sendForm } from "@emailjs/browser";
 //TanStack Query
 import { useMutation } from "@tanstack/react-query";
+import BufferLoader from "@/components/BufferLoader/BufferLoader";
 
 /**
  * Contact page: `/contact`
@@ -108,7 +111,7 @@ export default function Contact(): JSX.Element {
 
     //If they are we send the form, otherwise we do nothing
     if (formInputsAreValid) {
-      sendEmail({ firstName, lastName, email, projectIdea });
+      emailMutation.mutate({ firstName, lastName, email, projectIdea });
     }
   }
 
@@ -124,7 +127,14 @@ export default function Contact(): JSX.Element {
     const { firstName, lastName, email, projectIdea } = formValue;
 
     /**
-     * Parameters for the template on EmailJS
+     * Template paramters under this form:
+     *
+     *  New message sent through the portfolio form by {{name}} at {{email}}:
+     *
+     * {{message}}
+     *
+     * Best wishes,
+     * EmailJS team
      */
     const templateParams = {
       name: `${firstName} ${lastName}`,
@@ -153,6 +163,24 @@ export default function Contact(): JSX.Element {
       error(apiError);
     }
   }
+
+  /**
+   * Mutator that makes the POST API call to rsend the form and send an email
+   */
+  const emailMutation = useMutation({
+    mutationFn: (formValues: object) => {
+      return sendEmail(formValues);
+    },
+    onMutate: () => {
+      log("Attempting to send email");
+    },
+    onSuccess: (data: any, variables: any) => {
+      log("Attempt SUCCEDED!", data, variables);
+    },
+    onError: (error: any, variables: any) => {
+      log("Attempt FAILED", error, variables);
+    },
+  });
 
   /**
    * Verifies if a given string is a valid name, based on the following criteria:
@@ -390,6 +418,14 @@ export default function Contact(): JSX.Element {
                 ></path>
               </svg>
             </button>
+
+            {emailMutation.isIdle && null}
+
+            {emailMutation.isLoading && <BufferLoader width={75} />}
+
+            {emailMutation.isSuccess && <p>Email sent successfully!</p>}
+
+            {emailMutation.isError && <p>{emailMutation.error}</p>}
           </form>
         </section>
       </section>

@@ -34,7 +34,9 @@
 
 ### 1.2 Libraries used
 
+- Framer motion
 - TanStack Query
+- EmailJS
 
 <a  href="https://tanstack.com/"  target="_blank"  rel="noreferrer" title="TanStackQuery a.k.a React Query v4">
 <img src="https://raw.githubusercontent.com/TanStack/query/main/media/logo-light.png" width="180" height="36" alt="TanStack Query(React Query)"/>
