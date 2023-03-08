@@ -1,7 +1,18 @@
+//React
 import Head from "next/head";
 import React from "react";
 
+//Next
+import { NextRouter, useRouter } from "next/router";
+import { log } from "@/react-utils/functions/helper-functions";
+
 export default function Error404(): JSX.Element {
+  const router: NextRouter = useRouter();
+
+  const { route, pathname, query, asPath } = router;
+
+  log(router);
+
   return (
     <>
       <Head>
@@ -29,7 +40,7 @@ export default function Error404(): JSX.Element {
         {/*
          <!--Title--> 
          */}
-        <title>Page not found - Your Name</title>
+        <title>Error 404 - Page not found</title>
         {/*     Canonical link     */}
         <link
           rel="canonical"
@@ -40,11 +51,11 @@ export default function Error404(): JSX.Element {
         <h1 className="error-404__main-title">404</h1>
         <h2 className="error-404__title">Oops!</h2>
         <h3 className="error-404__subtitle">
-          It looks like you&apos;ve stumbled upon a missing page. ¯\_(ツ)_/¯
+          It looks like you&apos;ve stumbled upon a missing page ¯\_(ツ)_/¯
         </h3>
         <p className="error-404__paragraph">
-          The page you were searching for went out for a coffee break and forgot
-          to come back.
+          The <code>{asPath}</code> page you were searching for went out for a
+          coffee break and forgot to come back.
           <br />
           <br />
           Don&apos;t worry though, you can head back to the homepage or drop me

@@ -204,8 +204,11 @@ export function toPercent(number: number): string {
  * @param number 
  * @returns 
  */
-export function formatSignificantDigitsNumber(number: number): string {
-  const formatter: Intl.NumberFormat = new Intl.NumberFormat(undefined, {
+export function formatSignificantDigitsNumber(
+  number: number,
+  locale?: string | undefined
+): string {
+  const formatter: Intl.NumberFormat = new Intl.NumberFormat(locale, {
     maximumSignificantDigits: 3,
   });
 
@@ -248,7 +251,7 @@ export function formatCurrencyValueNumber(
 /**
  * Function that formats the date
  *
- * @param {Date} date
+ * @param {Date} unformattedDateObject
  * @param {string | undefined} locale
  * @param {*} options Object for the options for the: `dateStyle, dayPeriod, timeStyle, hourCycle, hour12, year, month`...
  *

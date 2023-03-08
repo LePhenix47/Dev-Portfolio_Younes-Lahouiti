@@ -20,16 +20,17 @@ import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel"
 import ContactMethodCard from "@/components/ContactMethodCard/ContactMethodCard";
 
 //Libraries
-import { EmailJSResponseStatus, sendForm } from "@emailjs/browser";
+//EmailJS
+import { EmailJSResponseStatus, send, sendForm } from "@emailjs/browser";
+//TanStack Query
+import { useMutation } from "@tanstack/react-query";
 
 /**
  * Contact page: `/contact`
  */
 export default function Contact(): JSX.Element {
-  // States to add the active class to their labels
-  const [formIsValid, setFormIsValid] = useState<boolean>(false);
-
   // References to get the value of their inputs
+
   /**
    * Reference for the **first name**
    */
@@ -78,13 +79,18 @@ export default function Contact(): JSX.Element {
    * Function that sends the form with their field values
    */
   function submitForm() {
-    const firstName: string = firstNameRef.current.value;
-    const lastName: string = lastNameRef.current.value;
+    //We get their values
+    const firstName: string = formatText(
+      firstNameRef.current.value,
+      "titlecase"
+    );
+    const lastName: string = formatText(lastNameRef.current.value, "titlecase");
     const email: string = emailRef.current.value;
     const projectIdea: string = textAreaRef.current.value;
 
     log({ firstName, lastName, email, projectIdea });
 
+    //We verify that each one of them is correct
     let namesInputsAreValid: boolean =
       verifyNames(undefined, firstNameRef) &&
       verifyNames(undefined, lastNameRef);
@@ -98,11 +104,11 @@ export default function Contact(): JSX.Element {
 
     log({ formInputsAreValid });
 
+    log({ firstName, lastName, email, projectIdea });
+
+    //If they are we send the form, otherwise we do nothing
     if (formInputsAreValid) {
-      setFormIsValid(true);
       sendEmail({ firstName, lastName, email, projectIdea });
-    } else {
-      setFormIsValid(false);
     }
   }
 
@@ -110,9 +116,39 @@ export default function Contact(): JSX.Element {
    * Function that send the email to `EmailJS`
    */
   async function sendEmail(formValue: any) {
+    //Variables to make the call to the API
+    const SERVICE_ID = "service_fqz2fbf";
+    const TEMPLATE_ID = "template_bxtugu9";
+    const PUBLIC_KEY = "tv3PAMq9iM2pMiB62";
+
     const { firstName, lastName, email, projectIdea } = formValue;
 
+    /**
+     * Parameters for the template on EmailJS
+     */
+    const templateParams = {
+      name: `${firstName} ${lastName}`,
+      email,
+      message: projectIdea,
+    };
+
     try {
+      let sendEmail: EmailJSResponseStatus = await send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+
+      const badQuery: boolean = sendEmail.status > 299;
+      if (badQuery) {
+        throw `The email was not sent, status: ${sendEmail.status}`;
+      }
+
+      log(
+        "%cSUCCESSFULLY sent the email!",
+        "background: green; color: white; padding: 5px"
+      );
     } catch (apiError) {
       error(apiError);
     }
@@ -288,7 +324,9 @@ export default function Contact(): JSX.Element {
                 //@ts-ignore
                 onChangeCallback={verifyNames}
                 validInputMessage={"Valid"}
-                errorInputMessage={"First name is incorrect"}
+                errorInputMessage={
+                  "First name is incorrect, must be a string between 2 and 50 chars long"
+                }
               />
 
               <ContactInputLabel
@@ -299,7 +337,9 @@ export default function Contact(): JSX.Element {
                 //@ts-ignore
                 onChangeCallback={verifyNames}
                 validInputMessage={"Valid"}
-                errorInputMessage={"Last name is incorrect"}
+                errorInputMessage={
+                  "Last name is incorrect, must be a string between 2 and 50 chars long"
+                }
               />
 
               <ContactInputLabel
@@ -309,6 +349,10 @@ export default function Contact(): JSX.Element {
                 inputType="email"
                 //@ts-ignore
                 onChangeCallback={verifyEmail}
+                validInputMessage={"Valid"}
+                errorInputMessage={
+                  "Email does not respect this format: nickname@extension.domain"
+                }
               />
 
               <ContactInputLabel
@@ -318,6 +362,10 @@ export default function Contact(): JSX.Element {
                 isTextArea
                 //@ts-ignore
                 onChangeCallback={verifyMessage}
+                validInputMessage={"Valid"}
+                errorInputMessage={
+                  "The message must be between 50 and 2,000 characters long"
+                }
               />
             </fieldset>
             <button
