@@ -1,7 +1,7 @@
 @use "../utils/" as *;
 
 //Removes ANY animation if the user has the reduced motion option enabled in their device
-@media (prefers-reduced-motion) {
+@media (prefers-reduced-motion: reduce) {
 
     *,
     :before,

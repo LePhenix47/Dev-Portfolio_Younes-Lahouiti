@@ -110,7 +110,7 @@
     &__fieldset {
         width: inherit;
 
-        @include center-flex-column(25px);
+        @include center-flex-column(45px);
     }
 
     &__legend {
@@ -134,6 +134,17 @@
             color: var(--color-secondary);
         }
 
+    }
+
+    &__input-label-message {
+
+        padding: 0 20px;
+
+        background-color: var(--color-primary);
+        color: var(--bg-primary);
+
+
+        border-radius: 0 0 15px 15px;
     }
 
     &__label {
@@ -191,7 +202,7 @@
 
         &.active {
             resize: vertical;
-            max-height: none;
+            max-height: 1605px;
         }
 
         @include inputs-styling;

@@ -125,7 +125,7 @@ export default function Contact(): JSX.Element {
 
     //We verify that the length of the name is between 2 and 50
     const nameIsAtRightLnegth =
-      valueOfInput.length > 2 && valueOfInput.length < 50;
+      valueOfInput.length >= 2 && valueOfInput.length <= 50;
 
     return (
       valueDoesNotContainNumbers &&
@@ -166,7 +166,7 @@ export default function Contact(): JSX.Element {
     valueOfInput = valueOfInput.trim();
 
     const messageIsAtRightLnegth =
-      valueOfInput.length > 50 && valueOfInput.length < 2_000;
+      valueOfInput.length >= 50 && valueOfInput.length <= 2_000;
 
     return messageIsAtRightLnegth;
   }
@@ -246,6 +246,8 @@ export default function Contact(): JSX.Element {
                 labelText="First name"
                 reference={firstNameRef}
                 inputType="text"
+                //@ts-ignore
+                onChangeCallback={verifyNames}
               />
 
               <ContactInputLabel
@@ -253,6 +255,8 @@ export default function Contact(): JSX.Element {
                 labelText="Last name"
                 reference={lastNameRef}
                 inputType="text"
+                //@ts-ignore
+                onChangeCallback={verifyNames}
               />
 
               <ContactInputLabel
@@ -260,6 +264,8 @@ export default function Contact(): JSX.Element {
                 labelText="Email"
                 reference={emailRef}
                 inputType="email"
+                //@ts-ignore
+                onChangeCallback={verifyEmail}
               />
 
               <ContactInputLabel
@@ -267,6 +273,8 @@ export default function Contact(): JSX.Element {
                 labelText="Project"
                 reference={textAreaRef}
                 isTextArea
+                //@ts-ignore
+                onChangeCallback={verifyMessage}
               />
             </fieldset>
             <button

@@ -6,12 +6,23 @@ import { NextRouter, useRouter } from "next/router";
 import Link from "next/link";
 
 //Components
-import { log } from "@/react-utils/functions/helper-functions";
+import {
+  copyTextToClipBoard,
+  log,
+} from "@/react-utils/functions/helper-functions";
 
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();
 
   const { route, pathname, query, asPath } = router;
+
+  function showCopiedToolTip(
+    event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
+  ) {
+    //We copy the URL of the portfolio so that the visitor can share it
+    copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
+    log("Copied to clipboard!");
+  }
 
   return (
     <header className="header">
@@ -29,7 +40,14 @@ export default function Header(): JSX.Element {
       </section>
 
       <div className="header__dev">
-        <p className="header__dev-name">Younes-Portfolio-Dev</p>
+        <p
+          className="header__dev-name"
+          onClick={(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+            showCopiedToolTip(e);
+          }}
+        >
+          Younes-Portfolio-Dev
+        </p>
       </div>
       <nav className="header__nav">
         <ul className="header__list">
