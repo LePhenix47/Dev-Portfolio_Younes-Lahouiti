@@ -7,5 +7,8 @@ import React from "react";
  * The argument is optional
  */
 export type voidCallback = (
-  event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  event?:
+    | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    | React.ChangeEvent<HTMLInputElement>
+    | React.ChangeEvent<HTMLTextAreaElement>
 ) => void;

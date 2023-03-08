@@ -160,7 +160,8 @@
         transition: top 250ms ease-in-out,
         left 250ms ease-in-out,
         translate 250ms ease-in-out,
-        scale 250ms ease-in-out;
+        scale 250ms ease-in-out,
+        color 250ms ease-in-out;
 
         &.active {
 
@@ -184,12 +185,13 @@
 
     &__text-area {
         min-height: 80px;
-
+        max-height: 80px;
 
         resize: none;
 
         &.active {
             resize: vertical;
+            max-height: none;
         }
 
         @include inputs-styling;

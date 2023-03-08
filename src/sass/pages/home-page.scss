@@ -21,9 +21,7 @@
 
         display: flex;
 
-        @include tablet-only {
-            justify-content: center;
-        }
+        justify-content: center;
 
         @include mobile-only {
             flex-direction: column;

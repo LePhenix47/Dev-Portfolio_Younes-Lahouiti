@@ -8,7 +8,12 @@ import Link from "next/link";
 
 //Utils
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
-import { formatText, log } from "@/react-utils/functions/helper-functions";
+import {
+  formatText,
+  log,
+  error,
+  testRegExp,
+} from "@/react-utils/functions/helper-functions";
 
 //Components
 import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel";
@@ -78,7 +83,93 @@ export default function Contact(): JSX.Element {
     log({ firstName, lastName, email, projectIdea });
   }
 
-  async function sendEmail(params: any) {}
+  /**
+   * Function that send the email to `EmailJS`
+   */
+  async function sendEmail(params: any) {
+    try {
+    } catch (apiError) {
+      error(apiError);
+    }
+  }
+
+  /**
+   * Verifies if a given string is a valid name, based on the following criteria:
+   * 1. Must not include numbers
+   * 2. Can include characters with accents, dashes and apostrophes (for instance: Da'Shawn, François or Marie-Antoinette)
+   * 3. The length of the name is between 2 and 50
+   *
+   * @param event - The event object from the input element that triggered the function.
+   * @returns - A boolean value indicating whether the given string is a valid name.
+   */
+  function verifyNames(event: React.ChangeEvent<HTMLInputElement>) {
+    //We get the vaue of the input
+    let valueOfInput = event.target.value;
+    valueOfInput = valueOfInput.trim();
+
+    //String must not include numbers
+    const stringWithNoNumbersREGEX: RegExp = /^[^0-9]*$/;
+
+    const valueDoesNotContainNumbers: boolean = testRegExp(
+      valueOfInput,
+      stringWithNoNumbersREGEX
+    );
+
+    // Can include characters with accents, dashes and apostrophes (for instance: Da'Shawn, François or Marie-Antoinette)
+    const validNameCharsREGEX: RegExp = /^[a-zA-ZÀ-ÿ]+(?:['-][a-zA-ZÀ-ÿ]+)*$/;
+
+    const valueContainsValidCharacters: boolean = testRegExp(
+      valueOfInput,
+      validNameCharsREGEX
+    );
+
+    //We verify that the length of the name is between 2 and 50
+    const nameIsAtRightLnegth =
+      valueOfInput.length > 2 && valueOfInput.length < 50;
+
+    return (
+      valueDoesNotContainNumbers &&
+      valueContainsValidCharacters &&
+      nameIsAtRightLnegth
+    );
+  }
+
+  /**
+   * Verifies if a given string is a valid email, based on the following criteria:
+   * 1. The email should respect the format of nickname@domain.domain (can also contain a subdomain)
+   *
+   * @param event - The event object from the input element that triggered the function.
+   * @returns  - A boolean value indicating whether the given string is a valid email.
+   */
+  function verifyEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    //We get the vaue of the input
+    let valueOfInput = event.target.value;
+    valueOfInput = valueOfInput.trim();
+
+    //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
+    const emailREGEX: RegExp =
+      /^([a-z A-Z 0-9\.-]+)@([a-z A-Z 0-9]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    const respectsEmailFormat = testRegExp(valueOfInput, emailREGEX);
+
+    return respectsEmailFormat;
+  }
+
+  /**
+   * Verify if the message has a proper length
+   *
+   * @param event - The event that triggered the function
+   * @returns - Returns true if the message has a proper length, otherwise false
+   */
+  function verifyMessage(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    //We get the vaue of the input
+    let valueOfInput = event.target.value;
+    valueOfInput = valueOfInput.trim();
+
+    const messageIsAtRightLnegth =
+      valueOfInput.length > 50 && valueOfInput.length < 2_000;
+
+    return messageIsAtRightLnegth;
+  }
 
   return (
     <>
@@ -155,7 +246,6 @@ export default function Contact(): JSX.Element {
                 labelText="First name"
                 reference={firstNameRef}
                 inputType="text"
-                inputDefaultValue=""
               />
 
               <ContactInputLabel
@@ -163,7 +253,6 @@ export default function Contact(): JSX.Element {
                 labelText="Last name"
                 reference={lastNameRef}
                 inputType="text"
-                inputDefaultValue=""
               />
 
               <ContactInputLabel
@@ -171,16 +260,13 @@ export default function Contact(): JSX.Element {
                 labelText="Email"
                 reference={emailRef}
                 inputType="email"
-                inputDefaultValue=""
               />
 
               <ContactInputLabel
                 id="project"
                 labelText="Project"
                 reference={textAreaRef}
-                inputType=""
-                isTextArea //Could've just used a boolean prop
-                inputDefaultValue=""
+                isTextArea
               />
             </fieldset>
             <button

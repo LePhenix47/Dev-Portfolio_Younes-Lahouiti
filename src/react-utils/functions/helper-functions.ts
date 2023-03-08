@@ -83,6 +83,19 @@ export function normalizeString(string: string): string | undefined {
     .normalize("NFD") //returns the unicode NORMALIZATION FORM of the string using a canonical DECOMPOSITION (NFD).
     .replace(/[\u0300-\u036f]/g, "");
 }
+
+/**
+ * Tests a regular expression against a string and
+ * returns a boolean value indicating whether the regular expression matches the string.
+ *
+ * @param {string} string - The string to test against the regular expression.
+ * @param {RegExp} RegularExpression - The regular expression to test against the string.
+ * @returns {boolean} - A boolean value indicating whether the regular expression matches the string.
+ */
+export function testRegExp(string: string, RegularExpression: RegExp): boolean {
+  return RegularExpression.test(string);
+}
+
 /**
  *Splits a string on a character, word or regular expression
  *ex: Split on every space → "hello world" → ["hello", "world"]
