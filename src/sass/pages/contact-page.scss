@@ -138,6 +138,13 @@
 
     &__input-label-message {
 
+        width: 100%;
+
+        display: inline-flex;
+
+        justify-content: space-between;
+        align-items: center;
+
         padding: 0 20px;
 
         background-color: var(--color-primary);

@@ -67,12 +67,6 @@ export default function ContactInputLabel({
           ref={reference}
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
-          onChange={(e) => {
-            let inputIsValid: boolean = onChangeCallback?.(e) || false;
-
-            log({ inputIsValid });
-            setIsInputValid(inputIsValid);
-          }}
           onInput={(e) => {
             let inputValueIsEmpty: boolean = !e.currentTarget.value.length;
 
@@ -80,6 +74,20 @@ export default function ContactInputLabel({
               setIsEmpty(false);
             } else {
               setIsEmpty(true);
+            }
+          }}
+          onChange={(e) => {
+            let inputIsValid: boolean = onChangeCallback?.(e) || false;
+
+            log({ inputIsValid });
+            setIsInputValid(inputIsValid);
+
+            let inputValueIsEmpty = !reference.current?.value.length;
+
+            if (inputValueIsEmpty) {
+              setIsEmpty(true);
+            } else {
+              setIsEmpty(false);
             }
           }}
           onFocus={() => {

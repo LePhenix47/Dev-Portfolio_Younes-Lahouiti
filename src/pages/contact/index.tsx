@@ -165,10 +165,12 @@ export default function Contact(): JSX.Element {
     let valueOfInput = event.target.value;
     valueOfInput = valueOfInput.trim();
 
-    const messageIsAtRightLnegth =
+    const messageIsAtRightLength =
       valueOfInput.length >= 50 && valueOfInput.length <= 2_000;
 
-    return messageIsAtRightLnegth;
+    log({ messageIsAtRightLength });
+
+    return messageIsAtRightLength;
   }
 
   return (
@@ -248,6 +250,8 @@ export default function Contact(): JSX.Element {
                 inputType="text"
                 //@ts-ignore
                 onChangeCallback={verifyNames}
+                validInputMessage={"Valid"}
+                errorInputMessage={"First name is incorrect"}
               />
 
               <ContactInputLabel
@@ -257,6 +261,8 @@ export default function Contact(): JSX.Element {
                 inputType="text"
                 //@ts-ignore
                 onChangeCallback={verifyNames}
+                validInputMessage={"Valid"}
+                errorInputMessage={"Last name is incorrect"}
               />
 
               <ContactInputLabel
