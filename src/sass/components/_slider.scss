@@ -76,6 +76,8 @@
 
         border-radius: 50%;
 
+        transition: background-color 250ms ease-in-out;
+
         &--active {
 
             background-color: currentColor;
@@ -107,8 +109,12 @@
 
         &-text {}
 
-        &-title {}
+        &-title {
+            color: var(--color-primary);
+        }
 
-        &-description {}
+        &-description {
+            color: var(--color-secondary);
+        }
     }
 }

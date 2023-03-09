@@ -136,6 +136,12 @@
 
 
     &__dev {
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
+
         &-name {
             border-radius: 100vmax;
             background: var(--bg-primary);
@@ -145,6 +151,54 @@
             @include mobile-only {
                 font-size: 14px;
             }
+        }
+
+        &-pop-up {}
+
+        &-pop-up-paragraph {
+            position: absolute;
+            top: 34px;
+            left: 25%;
+
+            @include mobile-only {
+                padding: 5px;
+                font-size: 14px;
+
+                top: auto;
+                bottom: 34px;
+                left: 30%;
+            }
+
+            padding: 10px;
+            border-radius: 10px;
+
+            background-color: var(--bg-primary);
+            border: 2px solid currentColor;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -20px;
+                left: 45%;
+
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 8px solid currentColor;
+
+                @include mobile-only {
+                    border-bottom: none;
+                    border-top: 8px solid currentColor;
+
+                    top: 32px;
+
+                }
+
+                aspect-ratio: 1/2;
+
+                height: 20px;
+
+            }
+
         }
     }
 

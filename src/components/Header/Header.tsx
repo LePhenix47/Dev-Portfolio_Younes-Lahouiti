@@ -1,5 +1,5 @@
 //React
-import React from "react";
+import React, { useState } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
@@ -16,11 +16,19 @@ export default function Header(): JSX.Element {
 
   const { route, pathname, query, asPath } = router;
 
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
+
   async function showCopiedToolTip(
     event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
   ) {
     //We copy the URL of the portfolio so that the visitor can share it
     copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
+
+    setPopUpOpen(true);
+
+    setTimeout(() => {
+      setPopUpOpen(false);
+    }, 500);
     log("Copied to clipboard!");
   }
 
@@ -39,15 +47,21 @@ export default function Header(): JSX.Element {
         ></label>
       </section>
 
-      <div className="header__dev">
-        <p
-          className="header__dev-name"
-          onClick={(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
-            showCopiedToolTip(e);
-          }}
+      <div
+        className="header__dev"
+        title="Share the portfolio link?"
+        onClick={(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+          showCopiedToolTip(e);
+        }}
+      >
+        <p className="header__dev-name">Younes-Portfolio-Dev</p>
+        <div
+          className={`header__dev-pop-up ${
+            popUpOpen ? "header__dev-pop-up--active" : "fade-out"
+          }`}
         >
-          Younes-Portfolio-Dev
-        </p>
+          <p className="header__dev-pop-up-paragraph">Copied!</p>
+        </div>
       </div>
       <nav className="header__nav">
         <ul className="header__list">
