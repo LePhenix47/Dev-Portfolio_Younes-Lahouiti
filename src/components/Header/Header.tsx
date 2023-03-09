@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
   async function showCopiedToolTip(
     event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
   ) {
-    //We copy the URL of the portfolio so that the visitor can share it
+    //We copy the URL of the portfolio so that the visitor can share it.
     copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
 
     setPopUpOpen(true);

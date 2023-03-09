@@ -47,6 +47,7 @@ export default function Slider({
   const [axisXMovement, setAxisXMovement] = useState({});
 
   /**
+   *
    * Refernce for the card width and gaps between them
    *
    * Does not change it's memory adress with the useRef hook
