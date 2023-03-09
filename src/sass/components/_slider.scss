@@ -1,0 +1,27 @@
+@use "../utils/" as *;
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+
+    overflow-x: hidden;
+
+    width: 95dvw;
+    margin: auto;
+
+    transition: translate 350ms ease-in-out;
+
+    &__button {
+        &--left {}
+
+
+        &--right {}
+    }
+
+    &__indexation {}
+
+
+    &__card {}
+}

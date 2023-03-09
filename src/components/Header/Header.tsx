@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
 
   const { route, pathname, query, asPath } = router;
 
-  function showCopiedToolTip(
+  async function showCopiedToolTip(
     event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
   ) {
     //We copy the URL of the portfolio so that the visitor can share it

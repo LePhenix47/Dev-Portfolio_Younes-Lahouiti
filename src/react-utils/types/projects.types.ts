@@ -1,6 +1,9 @@
+//Next
+import { StaticImageData } from "next/image";
+
 export type projectsMadeType = {
   title: string;
-  image: any;
+  image: StaticImageData;
   link: string;
   type: string;
   date: Date;

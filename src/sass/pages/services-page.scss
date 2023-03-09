@@ -127,4 +127,15 @@
         }
 
     }
+
+
+    &__testimonials {
+
+        margin-top: 60px;
+
+        @include center-flex-column(25px);
+
+        padding-bottom: 30px;
+
+    }
 }

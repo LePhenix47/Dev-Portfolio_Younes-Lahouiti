@@ -18,10 +18,7 @@ import { log } from "@/react-utils/functions/helper-functions";
 
 //TanStack Query
 /**
- * We need to use the Hydrate component to enable pre-fetching on the `getServerSideProps` method when using SSR
- *
- * To view a more detailed reason as to why we need these,
- * check out the doc about how to use TanStack Query in a Next.js app using SSR (Server-side rendering):
+ * Doc for TanStack Query:
  *
  * https://tanstack.com/query/latest/docs/react/guides/ssr
  */
@@ -46,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   /**
    * This `queryClient` constant ensures that data is not shared between different users and requests, while still only creating the QueryClient once per component lifecycle.
    */
-  const queryClient = new QueryClient();
+  const queryClient: QueryClient = new QueryClient();
 
   const router: NextRouter = useRouter();
 

@@ -584,17 +584,38 @@ export function waitPromiseSuccess(milliseconds: number): Promise<unknown> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-// export function waitPromiseError
 /**
  * Waits for a specified number of seconds and then returns a rejected promise with a specified error message.
  * @param {number} seconds - The number of seconds to wait before rejecting the promise.
  * @param {string} errorMessage - The error message to include in the rejection reason.
  * @returns {Promise<unknown>} A promise that rejects after the specified number of seconds have passed.
  */
-export function waitPromiseError(milliseconds: number, errorMessage: string) {
+export function waitPromiseError(
+  milliseconds: number,
+  errorMessage: string
+): Promise<unknown> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(errorMessage);
     }, milliseconds);
   });
+}
+
+/**
+ * Selects a set amount of random elements from an array
+ * @param {array} array - The array to select random elements from
+ * @param {number} count - The number of random elements to select
+ * @returns An array containing the selected random elements
+ */
+function selectRandomElementsInArray(array: any[], count: number) {
+  let result: any[] = [];
+
+  for (let i = 0; i < count; i++) {
+    let randomIndex: number = Math.floor(Math.random() * array.length);
+
+    result.push(array[randomIndex]);
+
+    array.splice(randomIndex, 1);
+  }
+  return result;
 }

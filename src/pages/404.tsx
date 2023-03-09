@@ -1,17 +1,25 @@
 //React
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
 import { log } from "@/react-utils/functions/helper-functions";
 
-export default function Error404(): JSX.Element {
+export default function Error404(): JSX.Element | null {
   const router: NextRouter = useRouter();
 
   const { route, pathname, query, asPath } = router;
 
-  log(router);
+  const [initialRender, setInitialRender] = useState<boolean>(false);
+
+  useEffect(() => {
+    setInitialRender(true);
+  }, []);
+
+  if (!initialRender) {
+    return null;
+  }
 
   return (
     <>

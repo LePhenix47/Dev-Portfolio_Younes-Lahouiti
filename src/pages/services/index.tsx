@@ -6,11 +6,13 @@ import { useRef, useState } from "react";
 //Components
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
 import ServicesModalContent from "@/components/ServicesModalContent/ServicesModalContent";
+import ServicesCard from "@/components/ServicesCard/ServicesCard";
+import Slider from "@/components/Slider/Slider";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
 import { formatText, log } from "@/react-utils/functions/helper-functions";
-import ServicesCard from "@/components/ServicesCard/ServicesCard";
+import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
 
 export default function Services(): JSX.Element {
   /**
@@ -127,7 +129,16 @@ export default function Services(): JSX.Element {
           })}
         </section>
 
-        <section className="services-page__testimonials"></section>
+        <section className="services-page__testimonials hide">
+          <h2 className="services-page__testimonials-title">
+            Customer Feedback
+          </h2>
+          <h3 className="services-page__testimonials-subtitle">
+            Insights from our clients
+          </h3>
+
+          <Slider sliderCards={sliderCardsVariables} />
+        </section>
       </section>
     </>
   );
