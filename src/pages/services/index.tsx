@@ -137,7 +137,7 @@ export default function Services(): JSX.Element {
             Insights from our clients
           </h3>
 
-          <Slider sliderCards={sliderCardsVariables} />
+          <Slider sliderCards={sliderCardsVariables} cardToBeShown={5} />
         </section>
       </section>
     </>

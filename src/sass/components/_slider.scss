@@ -1,27 +1,114 @@
 @use "../utils/" as *;
 
 .slider {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 25px;
+    @include center-flex-column(25px);
 
     overflow-x: hidden;
 
-    width: 95dvw;
-    margin: auto;
-
     transition: translate 350ms ease-in-out;
 
-    &__button {
-        &--left {}
+    position: relative;
 
 
-        &--right {}
+    &__container {
+        position: relative;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+
+        margin-left: 65%;
+        width: 100vw;
+
+
+        transition: translate 350ms ease-in-out;
     }
 
-    &__indexation {}
+
+    &__button {
+        position: absolute;
+        z-index: 69;
+
+        @include center-flex-column;
+
+        background-color: var(--bg-secondary);
+
+        border: 2px solid currentColor;
+        border-radius: 15px;
+
+        padding: 10px;
+
+        &--left {
+            left: 10px;
+
+            @include mobile-only {
+                left: 36px;
+            }
+
+            rotate: -90deg;
+        }
 
 
-    &__card {}
+        &--right {
+            right: 10px;
+
+            @include mobile-only {
+                right: 36px;
+            }
+
+            rotate: 90deg;
+        }
+    }
+
+    &__indexation-container {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    &__index {
+        aspect-ratio: 1/1;
+
+        height: 10px;
+
+        background-color: var(--color-secondary);
+
+        border-radius: 50%;
+
+        &--active {
+
+            background-color: currentColor;
+
+            filter: invert(100%) hue-rotate(180deg);
+        }
+    }
+
+
+    &__card {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 5px;
+
+
+        padding: 20px;
+
+        min-width: 400px;
+        width: 400px;
+
+        min-height: 250px;
+
+        &-image {
+            @include fit-image;
+
+            border-radius: 50%;
+        }
+
+        &-text {}
+
+        &-title {}
+
+        &-description {}
+    }
 }

@@ -602,20 +602,22 @@ export function waitPromiseError(
 }
 
 /**
- * Selects a set amount of random elements from an array
+ * Selects a set amount of random elements from an array without modifying the original array
  * @param {array} array - The array to select random elements from
  * @param {number} count - The number of random elements to select
  * @returns An array containing the selected random elements
  */
-function selectRandomElementsInArray(array: any[], count: number) {
-  let result: any[] = [];
+
+export function selectRandomElementsInArray<T>(array: T[], count: number): T[] {
+  const result: T[] = [];
+  const copiedOldArray: T[] = [...array];
 
   for (let i = 0; i < count; i++) {
-    let randomIndex: number = Math.floor(Math.random() * array.length);
-
-    result.push(array[randomIndex]);
-
-    array.splice(randomIndex, 1);
+    const randomIndex: number = Math.floor(
+      Math.random() * copiedOldArray.length
+    );
+    result.push(copiedOldArray[randomIndex]);
+    copiedOldArray.splice(randomIndex, 1);
   }
   return result;
 }
