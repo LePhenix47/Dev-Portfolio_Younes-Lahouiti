@@ -67,7 +67,7 @@ export default function About(): JSX.Element {
       <section className="about-page">
         <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>
-        <section className="about-page__content">
+        <section className="about-page__introduction-content">
           <section className="about-page__image-container">
             <Image
               src="/profile-pic.jpg"
