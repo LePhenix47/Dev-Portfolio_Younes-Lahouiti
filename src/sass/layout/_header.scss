@@ -285,9 +285,11 @@
 
             width: 100%;
 
-            padding: 10px;
 
-            font-size: 12px;
+            @include mobile-only {
+                padding: 10px;
+                font-size: 12px;
+            }
         }
 
         &:not(.header__item-follow) {

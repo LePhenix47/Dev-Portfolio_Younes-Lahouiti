@@ -59,15 +59,22 @@ export default function Slider({
    */
   cardInfosRef.current = { cardWidth: 400, cardGaps: 25 };
 
-  const totalCardWidth: number =
-    cardInfosRef.current.cardWidth + cardInfosRef.current.cardGaps;
-
   useEffect(() => {
+    const isOnMobile: boolean = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isOnMobile) {
+      cardInfosRef.current = { cardWidth: 200, cardGaps: 25 };
+    }
+
+    const totalCardWidth: number =
+      cardInfosRef.current.cardWidth + cardInfosRef.current.cardGaps;
+
+    log({ totalCardWidth });
     //We translate the container to the left → (need to add a negative value)
     setAxisXMovement({
       translate: `${-1 * totalCardWidth * currentIndex}px 0%`,
     });
-  }, [currentIndex, totalCardWidth]);
+  }, [currentIndex]);
 
   /**
    * Decrements the current index by 1 and sets it as the new current index.

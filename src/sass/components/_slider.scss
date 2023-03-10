@@ -30,7 +30,7 @@
         margin-left: 65%;
 
         @include mobile-only {
-            margin-left: 10%;
+            margin-left: 38%;
         }
 
 
@@ -57,7 +57,7 @@
         padding: 10px;
 
         @include mobile-only {
-            top: 245px;
+            top: 92%;
         }
 
 
@@ -123,8 +123,10 @@
         min-width: 400px;
 
         @include mobile-only {
-            // min-width: 20%;
             min-height: 200px;
+            max-height: 300px;
+
+            min-width: 200px;
         }
 
         width: 400px;
@@ -132,6 +134,9 @@
         min-height: 250px;
 
         &-image {
+            aspect-ratio: 1/1;
+            width: 50px;
+
             @include fit-image;
 
             border-radius: 50%;
