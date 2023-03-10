@@ -6,7 +6,7 @@ import { StaticImageData } from "next/image";
  */
 export type sliderCardTypes = {
   image: StaticImageData;
-  title: string;
+  name: string;
   description: string;
   link?: string;
 }[];

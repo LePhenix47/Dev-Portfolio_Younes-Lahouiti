@@ -54,6 +54,9 @@ export default function Slider({
    */
   const cardInfosRef: React.MutableRefObject<any> = useRef<any>({});
 
+  /**
+   * ⚠ If this value must ever be changed here, it must also be changed in the SASS code
+   */
   cardInfosRef.current = { cardWidth: 400, cardGaps: 25 };
 
   const totalCardWidth: number =
@@ -104,9 +107,7 @@ export default function Slider({
       <button
         type="button"
         className="slider__button slider__button--left"
-        onClick={() => {
-          goToPreviousIndex();
-        }}
+        onClick={goToPreviousIndex}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -122,9 +123,7 @@ export default function Slider({
       <button
         type="button"
         className="slider__button slider__button--right"
-        onClick={() => {
-          goToNextIndex();
-        }}
+        onClick={goToNextIndex}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -139,13 +138,18 @@ export default function Slider({
       </button>
       <section className="slider__container" style={axisXMovement}>
         {sliderCards.map((card, index: number) => {
-          const { image, title, description } = card;
+          let cardShouldBeShown: boolean = index + 1 <= cardToBeShown;
+
+          if (!cardShouldBeShown) {
+            return null;
+          }
+          const { image, name, description } = card;
 
           return (
             <SliderCard
-              key={`${index}-${title}-${description}`}
+              key={`${index}-${name}-${description}`}
               image={image}
-              title={title}
+              name={name}
               description={description}
             />
           );
@@ -153,6 +157,11 @@ export default function Slider({
       </section>
       <section className="slider__indexation-container">
         {sliderCards.map((card, index: number) => {
+          let buttonShouldBeShown: boolean = index + 1 <= cardToBeShown;
+
+          if (!buttonShouldBeShown) {
+            return null;
+          }
           return (
             <button
               type="button"

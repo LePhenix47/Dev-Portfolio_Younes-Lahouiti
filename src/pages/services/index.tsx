@@ -30,15 +30,7 @@ export default function Services(): JSX.Element | null {
    */
   const [windowContent, setWindowContent] = useState<any>(null);
 
-  let randomCardsToShow: sliderCardTypes = selectRandomElementsInArray(
-    sliderCardsVariables,
-    3
-  );
-
-  /**
-   * State to fix UI hydration problems
-   */
-  const [initialRender, setInitialRender] = useState<boolean>(false);
+  let numberOfShownCards = 7;
 
   /**
    * Function that opens the window modal
@@ -82,14 +74,6 @@ export default function Services(): JSX.Element | null {
      * Open the `<ModalWindow />` component
      */
     setIsOpen(true);
-  }
-
-  useEffect(() => {
-    setInitialRender(true);
-  }, []);
-
-  if (!initialRender) {
-    return null;
   }
 
   return (
@@ -160,7 +144,10 @@ export default function Services(): JSX.Element | null {
             Insights from our clients
           </h3>
 
-          <Slider sliderCards={randomCardsToShow} cardToBeShown={3} />
+          <Slider
+            sliderCards={sliderCardsVariables}
+            cardToBeShown={numberOfShownCards}
+          />
         </section>
       </section>
     </>

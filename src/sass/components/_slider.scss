@@ -9,6 +9,9 @@
         overflow-x: visible;
 
         margin-bottom: 40px;
+
+        gap: 50px;
+
     }
 
     transition: translate 350ms ease-in-out;
@@ -40,6 +43,8 @@
 
     &__button {
         position: absolute;
+        top: 40%;
+
         z-index: 69;
 
         @include center-flex-column;
@@ -52,11 +57,13 @@
         padding: 10px;
 
         @include mobile-only {
-            bottom: -20px;
+            top: 245px;
         }
 
+
+
         &--left {
-            left: 10px;
+            left: 30px;
 
             @include mobile-only {
                 left: 36px;
@@ -67,7 +74,7 @@
 
 
         &--right {
-            right: 10px;
+            right: 30px;
 
             @include mobile-only {
                 right: 36px;
@@ -139,6 +146,8 @@
         }
 
         &-description {
+            font-size: 14px;
+
             color: var(--color-secondary);
             font-style: italic;
         }

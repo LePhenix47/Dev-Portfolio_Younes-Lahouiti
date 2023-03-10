@@ -157,7 +157,7 @@
             border-top-right-radius: 25vmax;
             border-bottom-right-radius: 25vmax;
 
-            background-image: linear-gradient(90deg, var(--bg-secondary), transparent);
+            background-image: linear-gradient(90deg, var(--bg-primary) 40%, transparent);
 
         }
 
@@ -175,7 +175,7 @@
             border-top-left-radius: 25vmax;
             border-bottom-left-radius: 25vmax;
 
-            background-image: linear-gradient(-90deg, var(--bg-secondary), transparent);
+            background-image: linear-gradient(-90deg, var(--bg-primary) 40%, transparent);
 
         }
 
