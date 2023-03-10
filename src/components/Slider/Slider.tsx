@@ -69,7 +69,6 @@ export default function Slider({
     const totalCardWidth: number =
       cardInfosRef.current.cardWidth + cardInfosRef.current.cardGaps;
 
-    log({ totalCardWidth });
     //We translate the container to the left → (need to add a negative value)
     setAxisXMovement({
       translate: `${-1 * totalCardWidth * currentIndex}px 0%`,

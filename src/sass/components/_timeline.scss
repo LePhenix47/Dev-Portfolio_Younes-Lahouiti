@@ -83,7 +83,7 @@
         translate: 0% -50%;
 
         &-title {
-            @include multiline-ellipsis-effect(2);
+            @include multiline-ellipsis-effect(6);
         }
 
         &-establishment {
