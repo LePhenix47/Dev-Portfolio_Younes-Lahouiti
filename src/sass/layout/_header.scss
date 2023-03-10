@@ -277,6 +277,19 @@
             rotate: 45deg;
         }
 
+        &-link {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+
+            padding: 10px;
+
+            font-size: 12px;
+        }
+
         &:not(.header__item-follow) {
             background: var(--bg-primary);
 
@@ -287,7 +300,9 @@
             border-radius: 100vmax;
 
             @include mobile-only {
-                padding: 10px;
+                font-size: 14px;
+
+                padding: 0px;
                 border-radius: 10px;
                 box-shadow: none;
 

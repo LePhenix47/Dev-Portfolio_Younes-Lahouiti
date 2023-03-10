@@ -130,8 +130,9 @@
 
 
     &__testimonials {
+        overflow-x: hidden;
 
-        margin-top: 60px;
+        margin-top: 20px;
 
         @include center-flex-column(25px);
 
