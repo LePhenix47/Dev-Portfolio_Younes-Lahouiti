@@ -17,17 +17,17 @@ export default function Slider({
   sliderCards: sliderCardTypes;
   cardToBeShown: number;
 }): JSX.Element {
-  let randomCardsToShow: sliderCardTypes = selectRandomElementsInArray(
-    sliderCards,
-    cardToBeShown
-  );
-
-  let cardsToBeShownOverflow = cardToBeShown > sliderCards.length;
+  //Boolean values to buffer the component
+  let cardsToBeShownOverflow: boolean = cardToBeShown > sliderCards.length;
+  let cardsToBeShownUnderflow: boolean = cardToBeShown < 0;
 
   if (cardsToBeShownOverflow) {
     cardToBeShown = sliderCards.length;
   }
 
+  if (cardsToBeShownUnderflow) {
+    cardToBeShown = 1;
+  }
   /**
    * Translation formula for the cards:
    *
@@ -48,18 +48,19 @@ export default function Slider({
 
   /**
    *
-   * Refernce for the card width and gaps between them
+   * Reference for the card width and gaps between them
    *
    * Does not change it's memory adress with the useRef hook
    */
-  const cardInfosRef = useRef<any>({});
+  const cardInfosRef: React.MutableRefObject<any> = useRef<any>({});
 
   cardInfosRef.current = { cardWidth: 400, cardGaps: 25 };
 
-  const totalCardWidth =
+  const totalCardWidth: number =
     cardInfosRef.current.cardWidth + cardInfosRef.current.cardGaps;
 
   useEffect(() => {
+    //We translate the container to the left → (need to add a negative value)
     setAxisXMovement({
       translate: `${-1 * totalCardWidth * currentIndex}px 0%`,
     });
@@ -137,7 +138,7 @@ export default function Slider({
         </svg>
       </button>
       <section className="slider__container" style={axisXMovement}>
-        {randomCardsToShow.map((card, index: number) => {
+        {sliderCards.map((card, index: number) => {
           const { image, title, description } = card;
 
           return (
@@ -151,7 +152,7 @@ export default function Slider({
         })}
       </section>
       <section className="slider__indexation-container">
-        {randomCardsToShow.map((card, index: number) => {
+        {sliderCards.map((card, index: number) => {
           return (
             <button
               type="button"

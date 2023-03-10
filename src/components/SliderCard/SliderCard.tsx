@@ -14,7 +14,7 @@ export default function SliderCard({
   description: string;
 }) {
   return (
-    <div className="slider__card card">
+    <figure className="slider__card card">
       <Image
         src={image}
         alt={`Customer: ${title}`}
@@ -23,10 +23,10 @@ export default function SliderCard({
         className="slider__card-image"
       />
 
-      <div className="slider__card-text">
-        <h4 className="slider__card-title">{title}</h4>
-        <p className="slider__card-description">{description}</p>
-      </div>
-    </div>
+      <figcaption className="slider__card-title">{title}</figcaption>
+      <blockquote className="slider__card-text" cite="">
+        <p className="slider__card-description">{`"${description}"`}</p>
+      </blockquote>
+    </figure>
   );
 }

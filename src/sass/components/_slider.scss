@@ -5,6 +5,12 @@
 
     overflow-x: hidden;
 
+    @include mobile-only {
+        overflow-x: visible;
+
+        margin-bottom: 40px;
+    }
+
     transition: translate 350ms ease-in-out;
 
     position: relative;
@@ -19,6 +25,12 @@
         gap: 25px;
 
         margin-left: 65%;
+
+        @include mobile-only {
+            margin-left: 10%;
+        }
+
+
         width: 100vw;
 
 
@@ -38,6 +50,10 @@
         border-radius: 15px;
 
         padding: 10px;
+
+        @include mobile-only {
+            bottom: -20px;
+        }
 
         &--left {
             left: 10px;
@@ -73,16 +89,17 @@
         height: 10px;
 
         background-color: var(--color-secondary);
+        filter: invert(100%) hue-rotate(180deg);
 
         border-radius: 50%;
 
-        transition: background-color 250ms ease-in-out;
+        transition: opacity 350ms ease-in-out;
+
+        opacity: 35%;
 
         &--active {
 
-            background-color: currentColor;
-
-            filter: invert(100%) hue-rotate(180deg);
+            opacity: 100%;
         }
     }
 
@@ -97,6 +114,12 @@
         padding: 20px;
 
         min-width: 400px;
+
+        @include mobile-only {
+            // min-width: 20%;
+            min-height: 200px;
+        }
+
         width: 400px;
 
         min-height: 250px;
@@ -110,11 +133,14 @@
         &-text {}
 
         &-title {
+            font-weight: 600;
+
             color: var(--color-primary);
         }
 
         &-description {
             color: var(--color-secondary);
+            font-style: italic;
         }
     }
 }

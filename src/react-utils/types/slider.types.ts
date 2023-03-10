@@ -8,4 +8,5 @@ export type sliderCardTypes = {
   image: StaticImageData;
   title: string;
   description: string;
+  link?: string;
 }[];

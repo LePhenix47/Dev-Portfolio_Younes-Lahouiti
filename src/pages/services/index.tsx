@@ -1,7 +1,7 @@
 //Next
 import Head from "next/head";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //Components
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
@@ -11,10 +11,15 @@ import Slider from "@/components/Slider/Slider";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
-import { formatText, log } from "@/react-utils/functions/helper-functions";
+import {
+  formatText,
+  log,
+  selectRandomElementsInArray,
+} from "@/react-utils/functions/helper-functions";
 import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
+import { sliderCardTypes } from "@/react-utils/types/slider.types";
 
-export default function Services(): JSX.Element {
+export default function Services(): JSX.Element | null {
   /**
    * State to tell the `<ModalWindow />` component whether it should open or not
    */
@@ -24,6 +29,16 @@ export default function Services(): JSX.Element {
    * Content to show inside the `<ModalWindow />` component
    */
   const [windowContent, setWindowContent] = useState<any>(null);
+
+  let randomCardsToShow: sliderCardTypes = selectRandomElementsInArray(
+    sliderCardsVariables,
+    3
+  );
+
+  /**
+   * State to fix UI hydration problems
+   */
+  const [initialRender, setInitialRender] = useState<boolean>(false);
 
   /**
    * Function that opens the window modal
@@ -67,6 +82,14 @@ export default function Services(): JSX.Element {
      * Open the `<ModalWindow />` component
      */
     setIsOpen(true);
+  }
+
+  useEffect(() => {
+    setInitialRender(true);
+  }, []);
+
+  if (!initialRender) {
+    return null;
   }
 
   return (
@@ -129,7 +152,7 @@ export default function Services(): JSX.Element {
           })}
         </section>
 
-        <section className="services-page__testimonials hide">
+        <section className="services-page__testimonials ">
           <h2 className="services-page__testimonials-title">
             Customer Feedback
           </h2>
@@ -137,7 +160,7 @@ export default function Services(): JSX.Element {
             Insights from our clients
           </h3>
 
-          <Slider sliderCards={sliderCardsVariables} cardToBeShown={5} />
+          <Slider sliderCards={randomCardsToShow} cardToBeShown={3} />
         </section>
       </section>
     </>
