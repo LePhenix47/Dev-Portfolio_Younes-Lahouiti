@@ -34,6 +34,7 @@ import INFINITE_SCROLL from "../../../public/png/Infinite scroll.png";
 import CALCULATOR_APP from "../../../public/png/Calculator.png";
 import ANIMATED_PAGE from "../../../public/png/Animated landing Page.png";
 import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
+import TIMER_CHRONO from "../../../public/png/Timer chronometer.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -280,6 +281,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Tic-tac-toe-game_Younes-Lahouiti",
     type: "personal",
     date: new Date("08/02/2022"),
+  },
+  {
+    title: "Timer and Chronometer",
+    image: TIMER_CHRONO,
+    link: "https://lephenix47.github.io/Chronometer-Timer-Alarm__Younes-Lahouiti/index.html",
+    type: "personal",
+    date: new Date("03/11/2023"),
   },
 ];
 
