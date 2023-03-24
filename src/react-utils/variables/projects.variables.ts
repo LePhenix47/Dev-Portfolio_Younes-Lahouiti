@@ -285,7 +285,7 @@ export const personalProjects: projectsMadeType = [
   {
     title: "Timer and Chronometer",
     image: TIMER_CHRONO,
-    link: "https://lephenix47.github.io/Chronometer-Timer-Alarm__Younes-Lahouiti/index.html",
+    link: "https://github.com/LePhenix47/Chronometer-Timer-Alarm__Younes-Lahouiti",
     type: "personal",
     date: new Date("03/11/2023"),
   },
