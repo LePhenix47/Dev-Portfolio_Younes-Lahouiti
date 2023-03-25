@@ -28,6 +28,9 @@
 
 
 //Added this support for the scrollbar since the webkit pseudo::element doesn't work on Mozilla Firefox
+// The @supports rule in CSS is used to detect if a particular CSS property or value is supported by the browser
+//If it isn't supported, then it uses the fallback proprties added inside
+
 @supports (scrollbar-color: black white) {
     :root {
         scrollbar-width: thin;
