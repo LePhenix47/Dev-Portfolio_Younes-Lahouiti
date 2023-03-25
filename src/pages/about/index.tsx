@@ -72,8 +72,8 @@ export default function About(): JSX.Element {
             <Image
               src="/profile-pic-2.jpg"
               alt="Profile picture"
-              height={4032}
-              width={3024}
+              height={1920}
+              width={1080}
               className="about-page__image"
             />
           </section>

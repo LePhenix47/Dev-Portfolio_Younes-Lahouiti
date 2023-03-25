@@ -1,7 +1,20 @@
 //Types
 import { aboutCardsTypes } from "../types/about-cards.types";
 
-//SVGs
+/**
+ * The current year as a number.
+ */
+const currentDate: number = new Date().getFullYear();
+
+/**
+ * The year when the career started as a number.
+ */
+const careerDateStart: number = new Date("06/28/2022").getFullYear();
+
+/**
+ * The amount of experience in years, calculated by subtracting the `careerDateStart` from the `currentDate`.
+ */
+const amountOfExperience: number = currentDate - careerDateStart;
 
 /**
  * Variables for the about cards
@@ -17,7 +30,7 @@ export const aboutCardsValues: aboutCardsTypes = [
       </svg>
     ),
     title: "Experience",
-    description: "+1 year",
+    description: `+${amountOfExperience} year`,
   },
   {
     svgIcon: (
