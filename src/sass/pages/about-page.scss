@@ -34,13 +34,19 @@
     }
 
     &__image {
-        @include fit-image;
-        height: 425px;
-        width: 80%;
+        object-position: center;
+        object-fit: contain;
+        height: auto;
+        width: 50%;
 
-        @include tablet-only {}
+        @include tablet-only {
+            object-fit: cover;
+            height: 55%;
+            width: 55%;
+        }
 
         @include mobile-only {
+            object-fit: cover;
             height: 75%;
             width: 75%;
         }
@@ -49,7 +55,7 @@
     }
 
     &__text-cards-container {
-        flex: 1;
+        flex: 2;
         padding: 0 50px;
 
         @include tablet-only {

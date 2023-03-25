@@ -70,10 +70,10 @@ export default function About(): JSX.Element {
         <section className="about-page__introduction-content">
           <section className="about-page__image-container">
             <Image
-              src="/profile-pic.jpg"
+              src="/profile-pic-2.jpg"
               alt="Profile picture"
-              height={170}
-              width={130}
+              height={4032}
+              width={3024}
               className="about-page__image"
             />
           </section>
