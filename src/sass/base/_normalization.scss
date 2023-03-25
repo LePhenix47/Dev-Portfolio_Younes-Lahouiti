@@ -21,9 +21,15 @@
     padding: 0;
 }
 
-*::-moz-selection {}
+*::-moz-selection {
+    background-color: var(--bg-primary);
+    color: var(--color-primary);
+}
 
-*::selection {}
+*::selection {
+    background-color: var(--color-primary);
+    color: var(--bg-primary);
+}
 
 html {
     scroll-behavior: smooth;
