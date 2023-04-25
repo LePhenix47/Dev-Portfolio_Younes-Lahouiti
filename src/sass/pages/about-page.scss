@@ -38,6 +38,7 @@
         object-fit: contain;
         height: auto;
         width: 65%;
+        filter: url(#pixel-noise);
 
         @include tablet-only {
             object-fit: cover;

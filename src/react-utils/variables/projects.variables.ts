@@ -35,6 +35,7 @@ import CALCULATOR_APP from "../../../public/png/Calculator.png";
 import ANIMATED_PAGE from "../../../public/png/Animated landing Page.png";
 import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
 import TIMER_CHRONO from "../../../public/png/Timer chronometer.png";
+import AUDIO_VISUALIZER from "../../../public/png/Audio-visualizer-image.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -288,6 +289,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Chronometer-Timer-Alarm__Younes-Lahouiti",
     type: "personal",
     date: new Date("03/11/2023"),
+  },
+  {
+    title: "Audio Visualizer",
+    image: AUDIO_VISUALIZER,
+    link: "https://github.com/LePhenix47/Audio-Visualizer_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("04/21/2023"),
   },
 ];
 

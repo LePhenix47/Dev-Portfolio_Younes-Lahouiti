@@ -67,6 +67,50 @@ export default function About(): JSX.Element {
       <section className="about-page">
         <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>
+        {/* Filter SVG to make the noise effect on my profile picture         */}
+        <svg className="svg-filter hide">
+          <defs>
+            <filter id="pixel-noise">
+              {/* 
+              Doc explaining how the turbulence filter SVG work:
+              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence
+              */}
+              <feTurbulence
+                baseFrequency="0.5,0.5"
+                numOctaves={1}
+                seed={0}
+                type="fractalNoise"
+                result="static-effect"
+              >
+                <animate
+                  attributeName="seed"
+                  values="0;100"
+                  dur="800ms"
+                  repeatCount="1"
+                  begin="image.mouseenter"
+                />
+              </feTurbulence>
+              {/*
+              Doc explaining how displacement maps work:
+              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap               */}
+              <feDisplacementMap
+                //Image we want to apply the effect to
+                in="SourceGraphic"
+                //Name of the result effect itself
+                in2="static-effect"
+                scale={1}
+              >
+                <animate
+                  attributeName="scale"
+                  values="0;40;0"
+                  dur="800ms"
+                  repeatCount="1"
+                  begin="image.mouseenter"
+                />
+              </feDisplacementMap>
+            </filter>
+          </defs>
+        </svg>
         <section className="about-page__introduction-content">
           <section className="about-page__image-container">
             <Image
@@ -75,6 +119,7 @@ export default function About(): JSX.Element {
               height={1920}
               width={1080}
               className="about-page__image"
+              id="image"
             />
           </section>
           <section className="about-page__text-cards-container">
@@ -139,6 +184,9 @@ export default function About(): JSX.Element {
               </Link>
             </div>
           </section>
+        </section>
+        <section className="about-page__diplomas hide">
+          <h2 className="about-page__diplomas-title">My diplomas earned</h2>
         </section>
       </section>
     </>
