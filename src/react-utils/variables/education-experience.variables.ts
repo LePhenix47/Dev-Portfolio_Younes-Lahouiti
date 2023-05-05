@@ -15,7 +15,7 @@ export const educationTimeline: educationType = [
     yearSpan: "2020-2021",
   },
   {
-    education: "Web and applications developer",
+    education: "Web and Front-End developer",
     establishment: "OpenClassrooms",
     yearSpan: "2021-2023",
   },
@@ -23,7 +23,7 @@ export const educationTimeline: educationType = [
 
 export const experienceTimeline: experienceType = [
   {
-    experience: "Python, Scratch",
+    experience: "Python",
     establishment: "Lalande",
     yearSpan: "2017-2020",
   },
@@ -33,7 +33,7 @@ export const experienceTimeline: experienceType = [
     yearSpan: "2020-2021",
   },
   {
-    experience: "Accessibility, design patterns, debugging, React + frameworks",
+    experience: "HTML, SASS, TS...",
     establishment: "OpenClassrooms",
     yearSpan: "2021-2023",
   },

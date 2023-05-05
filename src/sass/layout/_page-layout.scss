@@ -1,5 +1,7 @@
 @use "../utils/" as *;
 
 .page-layout {
-    min-height: 75vh;
+    @include mobile-only {
+        min-height: 75vh;
+    }
 }

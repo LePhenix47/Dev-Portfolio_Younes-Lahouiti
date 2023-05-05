@@ -95,6 +95,10 @@
         flex: 10;
         display: flex;
 
+        @include laptop-only {
+            margin-bottom: 25px;
+        }
+
 
         @include tablet-only {
             width: 80%;
@@ -102,7 +106,10 @@
         }
 
         @include mobile-only {
+            display: flex;
             flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
 
             width: 85%;
 
@@ -176,7 +183,11 @@
 
     &__paragraph {
         color: var(--color-secondary);
-        ;
+
+        @include tablet-only {
+            width: 200%;
+        }
+
         margin: 50px 0;
     }
 
@@ -203,12 +214,16 @@
 
             height: 200px;
 
+            width: min-content;
+
             margin-block: 0.5%;
 
             @include center-flex;
 
             overflow: hidden;
             border-radius: 25px;
+
+
         }
 
         &>svg {

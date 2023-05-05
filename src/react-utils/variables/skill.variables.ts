@@ -12,19 +12,19 @@ export const frontEndSkills: skill = [
     level: "Advanced",
   },
   {
-    skill: "JS in ES + TS",
+    skill: "JS + TS",
     level: "Advanced",
   },
   {
     skill: "React",
-    level: "Intermediate",
+    level: "Advanced",
   },
   {
     skill: "Vite.js + Next.js",
-    level: "Intermediate",
+    level: "Advanced",
   },
   {
-    skill: "Git",
+    skill: "Git + GitHub",
     level: "Advanced",
   },
 ];
@@ -37,8 +37,8 @@ export const backEndSkills: skill = [
     level: "Advanced",
   },
   {
-    skill: "JS in CommonJS",
-    level: "Intermediate",
+    skill: "CommonJS",
+    level: "Advanced",
   },
   {
     skill: "SQL",
