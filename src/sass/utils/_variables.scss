@@ -1,57 +1,32 @@
-//SASS
-$bg-primary: #FAFAFA;
-$bg-secondary: white;
-
-$backdrop-bg-color: rgba(255, 255, 255, 0.5);
-
-$color-primary: #323232;
-$color-primary--hover: lighten($color-primary, 10%);
-$color-primary--active: lighten($color-primary, 20%);
-$color-secondary: #757575;
-
-$semi-transparent-bg: rgba(255, 255, 255, 70%);
-
-$border-color: #DBDBDB;
-
-$selection-bg: #c6c6c6;
-$selection-color: black;
-
-$scrollbar-track-bg-color: white;
-$scrollbar-thumb-bg-color: #545454;
-$scrollbar-thumb-bg-color--hover: #757575;
-$scrollbar-thumb-bg-color--active: #b0b0b0;
-
-//CSS
 :root {
-    --bg-primary: #{$bg-primary};
-    --bg-secondary: #{$bg-secondary};
+    --bg-primary: #FAFAFA;
+    --bg-secondary: white;
 
-    --color-primary: #{$color-primary};
-    --color-primary--hover: #{$color-primary--hover};
-    --color-primary--active: #{$color-primary--active};
-    --color-secondary: #{$color-secondary};
+    --color-primary: #323232;
+    --color-primary--hover: #3c3c3c;
+    --color-primary--active: #474747;
+    --color-secondary: #757575;
 
-    --semi-transparent-bg:#{$semi-transparent-bg};
+    --semi-transparent-bg: rgba(255, 255, 255, 70%);
 
-    --border-color: #{$border-color};
+    --border-color: #DBDBDB;
 
+    --scrollbar-track-bg-color: white;
 
-    --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
+    --scrollbar-thumb-bg-color: #545454;
+    --scrollbar-thumb-bg-color--hover: #757575;
+    --scrollbar-thumb-bg-color--active: #b0b0b0;
 
-    --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};
-    --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
-    --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
-
-    //Pixel variables
+    /* Pixel variables */
     --timeline-space: 100px;
 }
 
 ::backdrop {
-    --backdrop-bg-color: #{$backdrop-bg-color};
+    --backdrop-bg-color: rgba(255, 255, 255, 0.5);
 
-    --scrollbar-track-bg-color:#{$scrollbar-track-bg-color};
+    --scrollbar-track-bg-color: white;
 
-    --scrollbar-thumb-bg-color:#{$scrollbar-thumb-bg-color};
-    --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
-    --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
+    --scrollbar-thumb-bg-color: #545454;
+    --scrollbar-thumb-bg-color--hover: #757575;
+    --scrollbar-thumb-bg-color--active: #b0b0b0;
 }
