@@ -133,6 +133,9 @@
 
     &__description {
         flex: 2;
+        background-color: var(--semi-transparent-bg);
+        padding: 5px 20px;
+        border-radius: 15px;
 
         @include mobile-only {
             @include center-flex-column(20px);
@@ -142,6 +145,7 @@
 
     &__title {
         margin-top: 50px;
+
 
         @include mobile-only {
             text-align: center;

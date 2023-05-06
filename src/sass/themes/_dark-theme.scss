@@ -10,6 +10,8 @@
     $color-primary--active: darken($color-primary, 20%);
     $color-secondary: #848484;
 
+    $semi-transparent-bg: rgba(0, 0, 0, 70%);
+
     $border-color: #242424;
 
     $selection-bg: #838383;
@@ -29,6 +31,9 @@
         --color-primary--hover: #{$color-primary--hover};
         --color-primary--active: #{$color-primary--active};
         --color-secondary: #{$color-secondary};
+
+        --semi-transparent-bg:#{$semi-transparent-bg};
+
         --border-color: #{$border-color};
 
 
