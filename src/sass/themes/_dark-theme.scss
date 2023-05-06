@@ -38,6 +38,10 @@
         --scrollbar-thumb-bg-color--hover:#{$scrollbar-thumb-bg-color--hover};
         --scrollbar-thumb-bg-color--active:#{$scrollbar-thumb-bg-color--active};
 
+        .home-page__canvas {
+            filter: blur(5px) invert(0%);
+        }
+
         //For the images
         .home-page__social-image {
             &-github {
