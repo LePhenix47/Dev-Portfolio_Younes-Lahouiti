@@ -4,25 +4,43 @@ import { Particle } from "./particle.class";
  * Represents a line effect created by particles.
  */
 export class LineEffect {
+  /**
+   * The canvas element on which the effect is drawn.
+   *   @type {HTMLCanvasElement}
+   */
   canvas: HTMLCanvasElement;
+
+  /**
+   * The canvas 2D context used to draw the effect.
+   *  @type {CanvasRenderingContext2D}
+   */
   canvasContext: CanvasRenderingContext2D;
+
+  /**
+   * The array of particles in the effect.
+   *  @type {Particle[]}
+   */
   private particlesArray: Particle[];
+
+  /**
+   * The number of particles in the effect.
+   *  @type {number}
+   */
   particlesAmount: number;
+
   /**
    * Constructs a new LineEffect object.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which to draw the effect.
    * @param {number} particlesAmount - The number of particles in the effect.
+   *
+   * @constructor
    */
   constructor(canvas: HTMLCanvasElement, particlesAmount: number) {
     this.canvas = canvas;
     //@ts-ignore
     this.canvasContext = this.canvas.getContext("2d");
 
-    /**
-     * The array of particles in the effect.
-     * @type {Particle[]}
-     */
     this.particlesArray = [];
-
     this.particlesAmount = particlesAmount;
 
     this.initialize();

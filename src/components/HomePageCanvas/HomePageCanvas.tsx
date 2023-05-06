@@ -2,28 +2,51 @@ import { LineEffect } from "@/react-utils/classes/line-effect.class";
 import { error, log } from "@/react-utils/functions/helper-functions";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
+/**
+ * A component that renders a canvas element with a LineEffect effect.
+ * @param {Object} props - The component props.
+ * @param {RefObject<HTMLElement>} props.parentElement - The parent element of the canvas element.
+ *
+ * @returns {JSX.Element} - The rendered canvas element.
+ *
+ * @component
+ */
 export default function CanvasComponent({
   parentElement,
 }: {
   parentElement: RefObject<HTMLElement>;
-}) {
+}): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [effectHandler, setEffectHandler] = useState<LineEffect>();
 
-  const AMOUNT_OF_PARTICLES: number = 100;
+  const AMOUNT_OF_PARTICLES = 100;
 
-  function animateParticles() {
+  /**
+   * Animates the particles in the LineEffect effect.
+   *
+   * @returns {void}
+   */
+  function setParticlesEffect(): void {
     effectHandler?.animateParticles();
   }
 
+  /**
+   * Sets the size of the canvas element.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element to resize.
+   * @param {number} width - The new width of the canvas element.
+   * @param {number} height - The new height of the canvas element.
+   *
+   * @returns {void}
+   */
   function setCanvasSize(
     canvas: HTMLCanvasElement,
     width: number,
     height: number
-  ) {
-    const argumentPassedAreIncorrect = !width || !height;
-    if (argumentPassedAreIncorrect) {
+  ): void {
+    const dimensionsPassedAreInvalid: boolean = isNaN(width) || isNaN(height);
+    if (dimensionsPassedAreInvalid) {
       error(
         "Argument passed are not correct! Please enter numerical values only"
       );
@@ -34,41 +57,45 @@ export default function CanvasComponent({
   }
 
   /**
-   * Clears the canvas by removing all content.
+   * Clears the content of the canvas element.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element to clear.
+   *
    * @returns {void}
    */
-  function clearOldCanvas(canvas: HTMLCanvasElement): void {
-    const canvasDoesNotExist = !canvas;
-    if (canvasDoesNotExist) {
-      return;
-    }
+  function clearCanvas(canvas: HTMLCanvasElement): void {
+    const canvasContext: CanvasRenderingContext2D | null =
+      canvas.getContext("2d");
 
-    const canvasContext = canvas.getContext("2d");
-    //@ts-ignore
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    if (canvasContext) {
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    }
   }
 
   /**
-   * Animates the canvas by clearing it and applying effects.
+   * Animates the canvas element by clearing it and applying the LineEffect effect.
    * @returns {void}
    */
-  function animate(): void {
-    //@ts-ignore
-    clearOldCanvas(canvasRef.current);
-    animateParticles();
-    requestAnimationFrame(animate);
+  function animateCanvas(): void {
+    if (!canvasRef.current) {
+      return;
+    }
+
+    //We claer the canvas from old paint
+    clearCanvas(canvasRef.current);
+
+    //We animate the particles
+    setParticlesEffect();
+
+    //We loop the animation
+    requestAnimationFrame(animateCanvas);
   }
 
   useEffect(() => {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
-    //@ts-ignore
-    const { clientWidth, clientHeight } = parentElement.current;
-    log({ clientWidth, clientHeight });
-
     const handleWindowResize = () => {
       if (canvas) {
-        //If the canvas exists
         setCanvasSize(
           canvas,
           //@ts-ignore
@@ -76,12 +103,10 @@ export default function CanvasComponent({
           //@ts-ignore
           parentElement.current.clientHeight
         );
-
         setEffectHandler(() => {
           return new LineEffect(canvas, AMOUNT_OF_PARTICLES);
         });
       }
-
       // Perform any additional drawing or logic based on the resized dimensions
     };
 
@@ -95,8 +120,7 @@ export default function CanvasComponent({
   }, []);
 
   useEffect(() => {
-    animate();
-
+    animateCanvas();
     log("changed width");
   }, [canvasRef.current?.clientHeight, canvasRef.current?.clientWidth]);
 
