@@ -18,8 +18,10 @@ import {
 } from "@/react-utils/functions/helper-functions";
 import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
 import { sliderCardTypes } from "@/react-utils/types/slider.types";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 export default function Services(): JSX.Element | null {
+  const servicesPageSectionRef = useRef<HTMLElement>(null);
   /**
    * State to tell the `<ModalWindow />` component whether it should open or not
    */
@@ -114,7 +116,9 @@ export default function Services(): JSX.Element | null {
         content={windowContent}
       />
 
-      <section className="services-page">
+      <section className="services-page" ref={servicesPageSectionRef}>
+        <CanvasComponent parentElement={servicesPageSectionRef} />
+
         <h1 className="services-page__title">Services</h1>
         <h2 className="services-page__subtitle">My expertise and offerings</h2>
         <section className="services-page__cards-container">

@@ -29,11 +29,13 @@ import { projectsMadeType } from "@/react-utils/types/projects.types";
 
 //Componnets
 import PortfolioProjectCard from "@/components/PortfolioProjectCard/PortfolioProjectCard";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 /**
  * Portfolio page: `/portfolio`
  */
 export default function Portfolio(): JSX.Element {
+  const portfolioPageSectionRef = useRef<HTMLElement>(null);
   /**
    * State that holds the data for the cards within the container
    */
@@ -227,7 +229,9 @@ export default function Portfolio(): JSX.Element {
 */}
       {/*  */}
 
-      <section className="portfolio-page">
+      <section className="portfolio-page" ref={portfolioPageSectionRef}>
+        <CanvasComponent parentElement={portfolioPageSectionRef} />
+
         <h1 className="portfolio-page__title" id="top">
           Portfolio
         </h1>

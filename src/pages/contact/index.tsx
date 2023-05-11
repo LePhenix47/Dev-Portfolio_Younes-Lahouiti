@@ -27,11 +27,13 @@ import { EmailJSResponseStatus, send, sendForm } from "@emailjs/browser";
 //TanStack Query
 import { useMutation } from "@tanstack/react-query";
 import BufferLoader from "@/components/BufferLoader/BufferLoader";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 /**
  * Contact page: `/contact`
  */
 export default function Contact(): JSX.Element {
+  const contactPageSectionRef = useRef<HTMLElement>(null);
   // References to get the value of their inputs
 
   /**
@@ -305,7 +307,9 @@ export default function Contact(): JSX.Element {
          */}
         <title>Contact page</title>
       </Head>
-      <section className="contact-page">
+      <section className="contact-page" ref={contactPageSectionRef}>
+        <CanvasComponent parentElement={contactPageSectionRef} />
+
         <h1 className="contact-page__title">Contact me</h1>
         <h2 className="contact-page__subtitle">Get in touch</h2>
         <section className="contact-page__main-container">

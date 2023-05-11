@@ -91,6 +91,23 @@
         max-width: 425px;
         width: 425px;
 
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+
+            width: 105%;
+            height: 105%;
+            border-radius: 25px;
+            z-index: -1;
+
+            padding: 15px;
+
+            background-color: var(--semi-transparent-bg);
+            // background-color: rgba(255, 255, 255, 25%);
+        }
+
         @include tablet-only {
             width: 100%;
             max-width: none;
@@ -109,6 +126,9 @@
 
     &__fieldset {
         width: inherit;
+
+
+
 
         @include center-flex-column(45px);
     }

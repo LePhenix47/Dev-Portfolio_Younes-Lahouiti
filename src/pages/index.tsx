@@ -8,11 +8,11 @@ import { socialAccountVariables } from "@/react-utils/variables/social-accounts.
 
 //Components
 import HomeSocialCardItem from "@/components/HomeSocialCards/HomeSocialCards";
-import CanvasComponent from "@/components/HomePageCanvas/HomePageCanvas";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 import { useRef } from "react";
 
 export default function Home(): JSX.Element {
-  const aboutPageSectionRef = useRef<HTMLElement>(null);
+  const homePageSectionRef = useRef<HTMLElement>(null);
   return (
     <>
       <Head>
@@ -43,9 +43,9 @@ export default function Home(): JSX.Element {
          */}
         <title>Home page</title>
       </Head>
-      <section className="home-page" ref={aboutPageSectionRef}>
+      <section className="home-page" ref={homePageSectionRef}>
         {/* @ts-ignore */}
-        <CanvasComponent parentElement={aboutPageSectionRef} />
+        <CanvasComponent parentElement={homePageSectionRef} />
         <aside className="home-page__socials">
           <ul className="home-page__social-list">
             {socialAccountVariables.map((account, index: number) => {

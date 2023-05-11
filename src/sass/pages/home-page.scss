@@ -210,6 +210,25 @@
     &__paragraph {
         color: var(--color-secondary);
 
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+
+            inset: 50%;
+            translate: -50% -50%;
+
+            width: 105%;
+            height: 110%;
+            border-radius: 25px;
+
+            padding: 15px;
+            z-index: -1;
+
+            background-color: var(--semi-transparent-bg);
+        }
+
         @include tablet-only {
             width: 200%;
         }

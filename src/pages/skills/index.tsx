@@ -20,8 +20,11 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 export default function Skills(): JSX.Element {
+  const skillsPageSectionRef = useRef<HTMLElement>(null);
+
   const [isRotated, setIsRotated] = useState<boolean>(false);
 
   let rotateRef = useRef<boolean>(true);
@@ -59,7 +62,8 @@ export default function Skills(): JSX.Element {
          */}
         <title>Skills page</title>
       </Head>
-      <section className="skills-page">
+      <section className="skills-page" ref={skillsPageSectionRef}>
+        <CanvasComponent parentElement={skillsPageSectionRef} />
         <h1 className="skills-page__title">Skills</h1>
         <h2 className="skills-page__subtitle">My technical level</h2>
         <div className="skills-page__skills-container">

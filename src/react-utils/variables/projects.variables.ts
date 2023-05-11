@@ -37,6 +37,7 @@ import TICTACTOE_GAME from "../../../public/png/Tic tac toe.png";
 import TIMER_CHRONO from "../../../public/png/Timer chronometer.png";
 import AUDIO_VISUALIZER from "../../../public/png/Audio-visualizer-image.png";
 import ASCII_ART from "../../../public/png/ASCII-image.png";
+import BACKGROUND_EFFECTS from "../../../public/png/Background effects.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -304,6 +305,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Image-ASCII-art_Younes-Lahouiti/",
     type: "personal",
     date: new Date("04/29/2023"),
+  },
+  {
+    title: "Background effects",
+    image: BACKGROUND_EFFECTS,
+    link: "https://github.com/LePhenix47/Background-effects_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("05/06/2023"),
   },
 ];
 

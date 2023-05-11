@@ -18,9 +18,11 @@ export default function CanvasComponent({
 }): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const animationIdRef = useRef<number>(0);
+
   const [effectHandler, setEffectHandler] = useState<LineEffect>();
 
-  const AMOUNT_OF_PARTICLES = 100;
+  const AMOUNT_OF_PARTICLES: number = 100;
 
   /**
    * Animates the particles in the LineEffect effect.
@@ -31,6 +33,10 @@ export default function CanvasComponent({
     effectHandler?.animateParticles();
   }
 
+  function cancelAnimation() {
+    const id: number = animationIdRef.current;
+    cancelAnimationFrame(id);
+  }
   /**
    * Sets the size of the canvas element.
    *
@@ -88,7 +94,7 @@ export default function CanvasComponent({
     setParticlesEffect();
 
     //We loop the animation
-    requestAnimationFrame(animateCanvas);
+    animationIdRef.current = requestAnimationFrame(animateCanvas);
   }
 
   useEffect(() => {
@@ -104,7 +110,12 @@ export default function CanvasComponent({
           parentElement.current.clientHeight
         );
         setEffectHandler(() => {
-          return new LineEffect(canvas, AMOUNT_OF_PARTICLES);
+          return new LineEffect(
+            canvas,
+            AMOUNT_OF_PARTICLES +
+              //@ts-ignore
+              parentElement.current.clientHeight / AMOUNT_OF_PARTICLES
+          );
         });
       }
       // Perform any additional drawing or logic based on the resized dimensions
@@ -115,11 +126,13 @@ export default function CanvasComponent({
 
     // Clean up the event listener on component unmount
     return () => {
+      cancelAnimation();
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
 
   useEffect(() => {
+    cancelAnimation();
     animateCanvas();
     log("changed width");
   }, [canvasRef.current?.clientHeight, canvasRef.current?.clientWidth]);

@@ -113,6 +113,7 @@
         }
 
         &-description {
+
             color: var(--color-secondary);
             font-size: 14px;
         }
@@ -129,6 +130,7 @@
     }
 
     &__description {
+        background-color: var(--semi-transparent-bg);
         color: var(--color-secondary);
 
         padding: 20px 0;

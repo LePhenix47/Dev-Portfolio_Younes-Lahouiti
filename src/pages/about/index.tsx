@@ -6,10 +6,13 @@ import Link from "next/link";
 //Utils
 import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables";
 import AboutCard from "@/components/AboutCard/AboutCard";
+import { useRef } from "react";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 /**
  * About me page: `/about`
  */
 export default function About(): JSX.Element {
+  const aboutPageSectionRef = useRef<HTMLElement>(null);
   /**
    * Year of my birth
    */
@@ -64,7 +67,8 @@ export default function About(): JSX.Element {
          */}
         <title>About page</title>
       </Head>
-      <section className="about-page">
+      <section className="about-page" ref={aboutPageSectionRef}>
+        <CanvasComponent parentElement={aboutPageSectionRef} />
         <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>
         {/* Filter SVG to make the noise effect on my profile picture         */}
