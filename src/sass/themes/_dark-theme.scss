@@ -22,10 +22,6 @@
         --selection-bg: #838383;
         --selection-color: white;
 
-        .home-page__canvas {
-            filter: blur(5px) invert(0%);
-        }
-
         //For the images
         .home-page__social-image-github,
         .home-page__social-image-codepen {
@@ -38,6 +34,10 @@
 
         .contact-page__contact-card-icon {
             filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .canvas {
+            filter: blur(5px) invert(0%);
         }
     }
 

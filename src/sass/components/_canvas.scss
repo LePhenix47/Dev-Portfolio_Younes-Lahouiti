@@ -1,0 +1,16 @@
+@use "../utils/" as *;
+
+.canvas {
+    filter: blur(5px) invert(100%);
+    z-index: -1;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 50%;
+
+    @include mobile-only {
+        display: none;
+    }
+}

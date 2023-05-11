@@ -137,5 +137,5 @@ export default function CanvasComponent({
     log("changed width");
   }, [canvasRef.current?.clientHeight, canvasRef.current?.clientWidth]);
 
-  return <canvas className="home-page__canvas" ref={canvasRef}></canvas>;
+  return <canvas className="canvas" ref={canvasRef}></canvas>;
 }
