@@ -1,0 +1,67 @@
+@use "../utils/" as *;
+
+.diploma-card {
+    @include center-flex;
+    width: 100%;
+
+    padding: 10px;
+
+    @include mobile-only {
+        padding: 20px;
+    }
+
+    aspect-ratio: 2/1;
+
+    &__text {
+        text-align: center;
+
+        @include center-flex-column(25px);
+    }
+
+    &__heading {
+        font-size: 24px;
+
+        @include mobile-only {
+            font-size: 18px;
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        justify-content: space-around;
+        align-items: center;
+
+        gap: 15px;
+
+        @include mobile-only {
+            flex-direction: column;
+        }
+
+        &>svg {
+            transition: rotate 550ms ease-in-out;
+        }
+
+        &:hover {
+            &>svg {
+                rotate: 360deg;
+
+            }
+        }
+    }
+
+    &__paragraph {
+        color: var(--color-secondary);
+
+        font-size: 18px;
+
+        @include mobile-only {
+            font-size: 16px;
+        }
+
+
+        &>span {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+    }
+}

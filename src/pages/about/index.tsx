@@ -8,6 +8,8 @@ import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables"
 import AboutCard from "@/components/AboutCard/AboutCard";
 import { useRef } from "react";
 import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
+import DiplomaCard from "@/components/DiplomaCard/DiplomaCard";
+import { diplomas } from "@/react-utils/variables/diplomas.variables";
 /**
  * About me page: `/about`
  */
@@ -155,7 +157,7 @@ export default function About(): JSX.Element {
                 proficient in integrating Figma mockups.
               </p>
               <Link
-                href="/Younes-Lahouiti_Resume-CV.pdf"
+                href="/pdf/Younes-Lahouiti_Resume-CV.pdf"
                 className="link-button about-page__resume-button"
                 target="_blank"
                 download
@@ -189,8 +191,23 @@ export default function About(): JSX.Element {
             </div>
           </section>
         </section>
-        <section className="about-page__diplomas hide">
+        <section className="about-page__diplomas">
           <h2 className="about-page__diplomas-title">My diplomas earned</h2>
+
+          <div className="about-page__diplomas-container">
+            {diplomas.map((diploma, index) => {
+              const { name, year, pdf } = diploma;
+
+              return (
+                <DiplomaCard
+                  diplomaTitle={name}
+                  obtentionYearRangeDate={year}
+                  pdfLink={pdf}
+                  key={`${name}-${year}-${index}`}
+                />
+              );
+            })}
+          </div>
         </section>
       </section>
     </>

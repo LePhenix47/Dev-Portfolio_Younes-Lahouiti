@@ -8,17 +8,17 @@ export const diplomas: {
 }[] = [
   {
     name: "Baccalureate",
-    year: "2020",
-    pdf: "../../../public/pdf/BACCALAUREAT GENERAL.pdf",
+    year: "2019-2020",
+    pdf: "/pdf/BACCALAUREAT GENERAL.pdf",
   },
   {
-    name: "Level 5 RNCP Title",
-    year: "2022",
-    pdf: "",
+    name: "Web development RNCP title",
+    year: "2021-2022",
+    pdf: "/pdf/diplome OC RNCP level 5.pdf",
   },
   {
-    name: "Level 6 RNCP Title",
-    year: "2023",
-    pdf: "../../../public/pdf/diplome OC RNCP niveau 6.pdf",
+    name: "Front-End development RNCP title",
+    year: "2022-2023",
+    pdf: "/pdf/diplome OC RNCP level 6.pdf",
   },
 ];

@@ -159,8 +159,34 @@
     }
 
     &__diplomas {
-        &-title {}
+        width: 75%;
+        margin-top: -50px;
+
+        &-title {
+            padding: 20px 0;
+
+            text-align: center;
+        }
 
         margin-bottom: 25px;
+    }
+
+    &__diplomas-container {
+
+        width: 100%;
+
+        @include grid(2, 2, 25px);
+
+        @include tablet-only {
+            @include grid(2, 2, 25px)
+        }
+
+        @include mobile-only {
+            @include center-flex-column(25px);
+        }
+    }
+
+    &__diploma-card {
+        @include card-styling;
     }
 }
