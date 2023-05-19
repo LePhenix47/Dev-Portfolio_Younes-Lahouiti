@@ -115,6 +115,8 @@
         @include tablet-only {
             width: 80%;
             margin: 25px auto;
+
+            flex-direction: column;
         }
 
         @include mobile-only {
@@ -143,9 +145,16 @@
 
         @include card-styling;
 
-        padding: 5px 20px;
+        padding: 20px;
 
         border-radius: 15px;
+
+        & a {
+            @include tablet-only {
+                margin: auto;
+            }
+        }
+
 
         @include mobile-only {
             @include center-flex-column(20px);
@@ -236,7 +245,7 @@
         }
 
         @include tablet-only {
-            width: 200%;
+            width: 100%;
         }
 
         margin: 50px 0;
@@ -258,6 +267,15 @@
         aspect-ratio: 1/1;
         height: 400px;
 
+        @include tablet-only {
+            order: -1;
+            aspect-ratio: 2/1;
+
+            margin: 25px 0;
+
+            @include center-flex-column;
+        }
+
 
         @include mobile-only {
             margin-right: 0;
@@ -273,13 +291,15 @@
 
             overflow: hidden;
             border-radius: 25px;
-
-
         }
 
         &>svg {
             transition: scale 250ms ease-out;
             stroke-linecap: round;
+
+            @include tablet-only {
+                display: none;
+            }
 
             @include mobile-only {
                 display: none;
@@ -299,6 +319,7 @@
             &>svg {
                 scale: 150%;
 
+
                 @include mobile-only {
                     scale: 105%
                 }
@@ -312,6 +333,14 @@
             &>.home-page__profile-picture {
                 scale: 150%;
                 translate: -30% -25%;
+
+                @include tablet-only {
+                    filter: drop-shadow(0px 0px 30px var(--color-primary));
+
+                    translate: 0 0;
+
+                    scale: 100%;
+                }
 
                 @include mobile-only {
                     filter: drop-shadow(0px 0px 30px var(--color-primary));
@@ -340,13 +369,24 @@
 
         border-radius: 25px;
 
+        @include tablet-only {
+            position: static;
+
+            translate: 0 0;
+
+            width: 300px;
+            height: 350px;
+
+            transform-origin: left;
+
+            @include fit-image;
+        }
+
         @include mobile-only {
             position: static;
 
             translate: 0 0;
 
-
-            aspect-ratio: 1/1;
             width: 300px;
             height: 350px;
 
