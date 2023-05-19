@@ -1,8 +1,11 @@
 //React
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 import Head from "next/head";
-import React from "react";
+import React, { useRef } from "react";
 
 export default function Error500(): JSX.Element {
+  const section500Ref = useRef<HTMLElement>(null);
+
   return (
     <>
       <Head>
@@ -37,7 +40,8 @@ export default function Error500(): JSX.Element {
           href="https://https://younes-portfolio-dev.vercel.app/"
         />
       </Head>
-      <section className="error-500">
+      <section className="error-500" ref={section500Ref}>
+        <CanvasComponent parentElement={section500Ref} />
         <h1 className="error-500__main-title">500</h1>
         <h2 className="error-500__title">Oops!</h2>
         <h3 className="error-500__subtitle">

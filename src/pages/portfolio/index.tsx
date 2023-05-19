@@ -102,43 +102,46 @@ export default function Portfolio(): JSX.Element {
   function changeCards(category: string) {
     switch (category) {
       case "openclassrooms": {
-        setDataToShow(openClassroomsProjects.sort(randomSort));
-        setCopiedData(openClassroomsProjects);
-
-        setCategory(category);
+        //openclassroomsProjects
+        setCardsToShow(openClassroomsProjects, category);
         break;
       }
       case "personal": {
-        setDataToShow(personalProjects.sort(randomSort));
-        setCopiedData(personalProjects);
-        setCategory(category);
+        //personalProjects
+        setCardsToShow(personalProjects, category);
         break;
       }
       case "professional": {
-        setDataToShow(professionalProjects.sort(randomSort));
-        setCopiedData(professionalProjects);
-        setCategory(category);
+        //professionalProjects
+        setCardsToShow(professionalProjects, category);
         break;
       }
       case "npm": {
-        setDataToShow(npmProjects.sort(randomSort));
-        setCopiedData(npmProjects);
-        setCategory(category);
+        //npmProjects
+        setCardsToShow(npmProjects, category);
         break;
       }
       case "extensions": {
-        setDataToShow(browserExtensionProjects.sort(randomSort));
-        setCopiedData(browserExtensionProjects);
-        setCategory(category);
+        //browserExtensionProjects
+        setCardsToShow(browserExtensionProjects, category);
         break;
       }
       default: {
-        setDataToShow(allProjects.sort(randomSort));
-        setCopiedData(allProjects);
-        setCategory(category);
+        setCardsToShow(allProjects, category);
         break;
       }
     }
+  }
+
+  /**
+   * Function that sets the cards to show
+   *
+   * @returns {void}
+   */
+  function setCardsToShow(cards: projectsMadeType, category: string): void {
+    setDataToShow(cards.sort(randomSort));
+    setCopiedData(cards);
+    setCategory(category);
   }
 
   /**
@@ -173,14 +176,6 @@ export default function Portfolio(): JSX.Element {
       setDataToShow(sortedData);
     }
   }, [needsSorting, selectValue, isInReverse]);
-
-  useEffect(() => {}, [
-    needsFiltering,
-    filterValue,
-    needsSorting,
-    selectValue,
-    isInReverse,
-  ]);
 
   /**
    * Function that resets the cards when the input is empty
@@ -303,7 +298,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
             </label>
             <input
               ref={inputValueRef}
-              type="text"
+              type="search"
               name="search"
               id="search"
               placeholder="Search for a project by their title or date"

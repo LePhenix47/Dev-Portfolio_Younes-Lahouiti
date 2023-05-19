@@ -38,6 +38,8 @@ import TIMER_CHRONO from "../../../public/png/Timer chronometer.png";
 import AUDIO_VISUALIZER from "../../../public/png/Audio-visualizer-image.png";
 import ASCII_ART from "../../../public/png/ASCII-image.png";
 import BACKGROUND_EFFECTS from "../../../public/png/Background effects.png";
+import PIXEL_MANIP_1 from "../../../public/png/Image Pixel manipulation.png";
+import PIXEL_MANIP_2 from "../../../public/png/Text Pixel manipulation.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -312,6 +314,20 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Background-effects_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/06/2023"),
+  },
+  {
+    title: "Pixel manipulation n°1",
+    image: PIXEL_MANIP_1,
+    link: "https://lephenix47.github.io/Pixel-manipulation-test_Younes-Lahouiti/",
+    type: "personal",
+    date: new Date("05/13/2023"),
+  },
+  {
+    title: "Pixel manipulation n°2",
+    image: PIXEL_MANIP_2,
+    link: "https://lephenix47.github.io/Pixel-manipulation-test-2_Younes-Lahouiti/",
+    type: "personal",
+    date: new Date("05/16/2023"),
   },
 ];
 

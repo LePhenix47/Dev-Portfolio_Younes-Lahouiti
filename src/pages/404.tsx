@@ -1,12 +1,15 @@
 //React
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
 import { log } from "@/react-utils/functions/helper-functions";
+import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 export default function Error404(): JSX.Element | null {
+  const section404Ref = useRef<HTMLElement>(null);
+
   const router: NextRouter = useRouter();
 
   const { route, pathname, query, asPath } = router;
@@ -55,7 +58,8 @@ export default function Error404(): JSX.Element | null {
           href="https://https://younes-portfolio-dev.vercel.app/"
         />
       </Head>
-      <section className="error-404">
+      <section className="error-404" ref={section404Ref}>
+        <CanvasComponent parentElement={section404Ref} />
         <h1 className="error-404__main-title">404</h1>
         <h2 className="error-404__title">Oops!</h2>
         <h3 className="error-404__subtitle">
