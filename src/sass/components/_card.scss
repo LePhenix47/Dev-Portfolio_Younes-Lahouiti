@@ -6,11 +6,10 @@
     min-width: 160px;
     min-height: 130px;
 
-    background-color: var(--bg-secondary);
+    @include card-styling;
 
-    border: 2px solid var(--border-color);
 
-    border-radius: 10px;
+    @include mobile-only {}
 
     &__title {
         display: inline-flex;

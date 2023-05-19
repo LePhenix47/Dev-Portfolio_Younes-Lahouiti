@@ -12,5 +12,7 @@
 
     @include mobile-only {
         display: none;
+
+        pointer-events: none;
     }
 }
