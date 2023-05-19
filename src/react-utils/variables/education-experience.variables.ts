@@ -24,7 +24,7 @@ export const educationTimeline: educationType = [
 export const experienceTimeline: experienceType = [
   {
     experience: "Python",
-    establishment: "Lalande",
+    establishment: "Lycée Lalande",
     yearSpan: "2017-2020",
   },
   {
