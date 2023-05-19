@@ -130,12 +130,21 @@
     }
 
     &__description {
-        background-color: var(--semi-transparent-bg);
+        @include card-styling;
         color: var(--color-secondary);
 
-        padding: 20px 0;
+        padding: 20px 20px;
 
         margin-block: 20px;
+
+        @include mobile-only {
+            background-color: transparent;
+            border: none;
+
+            padding: 0;
+
+            margin-block: 30px;
+        }
 
     }
 

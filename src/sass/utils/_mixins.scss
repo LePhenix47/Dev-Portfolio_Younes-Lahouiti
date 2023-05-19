@@ -143,3 +143,10 @@
 
     transition: border 250ms ease-in-out;
 }
+
+@mixin card-styling {
+    background-color: var(--bg-secondary);
+
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+}

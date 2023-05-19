@@ -105,7 +105,7 @@
     &__presentation {
         flex: 10;
         display: flex;
-
+        margin-block: 50px;
 
         @include laptop-only {
             margin-bottom: 25px;
@@ -133,13 +133,15 @@
         }
 
 
-        margin-top: 50px;
+
     }
 
     &__description {
         flex: 2;
 
         background-color: var(--semi-transparent-bg);
+
+        @include card-styling;
 
         padding: 5px 20px;
 
@@ -151,6 +153,9 @@
             padding: 20px;
 
             margin-bottom: 60px;
+
+            background-color: transparent;
+            border: none;
         }
     }
 
@@ -211,6 +216,7 @@
         color: var(--color-secondary);
 
         position: relative;
+
 
         &::before {
             content: "";

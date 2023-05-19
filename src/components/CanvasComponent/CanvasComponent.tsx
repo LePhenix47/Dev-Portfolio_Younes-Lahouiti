@@ -22,7 +22,7 @@ export default function CanvasComponent({
 
   const [effectHandler, setEffectHandler] = useState<LineEffect>();
 
-  const AMOUNT_OF_PARTICLES: number = 100;
+  const AMOUNT_OF_PARTICLES: number = 50;
 
   /**
    * Animates the particles in the LineEffect effect.
@@ -100,7 +100,7 @@ export default function CanvasComponent({
   useEffect(() => {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
-    const handleWindowResize = () => {
+    const handleWindowResize: () => void = () => {
       if (canvas) {
         setCanvasSize(
           canvas,
@@ -134,7 +134,6 @@ export default function CanvasComponent({
   useEffect(() => {
     cancelAnimation();
     animateCanvas();
-    log("changed width");
   }, [canvasRef.current?.clientHeight, canvasRef.current?.clientWidth]);
 
   return <canvas className="canvas" ref={canvasRef}></canvas>;

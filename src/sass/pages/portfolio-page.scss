@@ -107,6 +107,7 @@
     &__input {
         width: 100%;
         @include inputs-styling;
+        background-color: var(--semi-transparent-bg);
 
         padding-right: 45px;
 
@@ -158,6 +159,7 @@
     }
 
     &__select {
+
         width: inherit;
 
         -webkit-appearance: none;
@@ -168,6 +170,7 @@
 
         min-height: 40px;
         @include inputs-styling;
+        background-color: var(--semi-transparent-bg);
 
         padding-right: 35px;
 
@@ -188,6 +191,7 @@
     }
 
     &__sorting-order-button {
+        background-color: var(--semi-transparent-bg);
         padding: 10px 15px;
 
         @include mobile-only {
@@ -196,6 +200,7 @@
     }
 
     &__sorting-order-label {
+        background-color: var(--semi-transparent-bg);
 
         &-arrow {
             display: inline-block;
@@ -278,6 +283,12 @@
 
         min-height: 435px;
         min-width: 60%;
+
+        background-color: var(--semi-transparent-bg);
+
+        @include mobile-only {
+            @include card-styling;
+        }
 
         &-image-container {
             width: 90%;

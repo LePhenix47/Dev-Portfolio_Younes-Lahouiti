@@ -14,9 +14,6 @@ export default function Document(): JSX.Element {
   return (
     <Html lang="en">
       <Head>
-        {/* Color scheme meta tag */}
-        <meta name="color-scheme" content="dark light" />
-
         {/* Page logo */}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
 

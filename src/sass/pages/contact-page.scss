@@ -86,6 +86,8 @@
         justify-content: space-between;
         align-items: center;
 
+        padding: 25px;
+
         gap: 20px;
 
         max-width: 425px;
@@ -93,20 +95,8 @@
 
         position: relative;
 
-        &::before {
-            content: "";
-            position: absolute;
+        @include card-styling;
 
-            width: 105%;
-            height: 105%;
-            border-radius: 25px;
-            z-index: -1;
-
-            padding: 15px;
-
-            background-color: var(--semi-transparent-bg);
-            // background-color: rgba(255, 255, 255, 25%);
-        }
 
         @include tablet-only {
             width: 100%;
@@ -116,16 +106,23 @@
         @include mobile-only {
             width: 100%;
             max-width: none;
+
+            background-color: transparent;
+            border: none;
+
+            padding: 0px;
+            margin-top: 25px;
         }
     }
 
     &__send-form-button {
-        width: inherit;
+        width: 100%;
     }
 
 
     &__fieldset {
-        width: inherit;
+        margin: auto;
+        width: 100%;
 
 
 
