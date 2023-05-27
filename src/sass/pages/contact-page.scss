@@ -95,7 +95,7 @@
 
         position: relative;
 
-        @include card-styling;
+
 
 
         @include tablet-only {
@@ -240,6 +240,8 @@
         font-size: 18px;
 
         border-radius: 20px;
+
+        background-color: var(--semi-transparent-bg);
     }
 
     &__text-area {

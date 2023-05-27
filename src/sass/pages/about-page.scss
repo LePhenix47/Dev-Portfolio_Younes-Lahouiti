@@ -151,10 +151,15 @@
     &__resume-button {
         margin-top: 20px;
 
-        width: 400px;
+
+        width: auto;
+
+        @include tablet-only {
+            width: 100%;
+        }
 
         @include mobile-only {
-            width: auto;
+            width: 100%;
         }
     }
 

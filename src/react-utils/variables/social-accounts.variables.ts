@@ -1,51 +1,52 @@
 import { socialAccountType } from "../types/social-accounts.types";
 
+import LINKEDIN from "../../../public/svg/linkedin-icon.svg";
+import TWITTER from "../../../public/svg/twitter-icon.svg";
+import YOUTUBE from "../../../public/svg/youtube-icon.svg";
+import GITHUB from "../../../public/svg/github-icon.svg";
+import STACKOVERFLOW from "../../../public/svg/stackoverflow-icon.svg";
+import NPM from "../../../public/svg/npm-icon.svg";
+import DISCORD from "../../../public/svg/discord-icon.svg";
+import CODEPEN from "../../../public/svg/codepen-icon.svg";
+
 export const socialAccountVariables: socialAccountType = [
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/linkedin.svg",
+    srcIcon: LINKEDIN,
     title: "LinkedIn",
     link: "https://www.linkedin.com/in/younes-💻-lahouiti-939a1a224/",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/twitter.svg",
+    srcIcon: TWITTER,
     title: "Twitter",
     link: "https://www.twitter.com/Younes_Lahouiti",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/youtube.svg",
+    srcIcon: YOUTUBE,
     title: "YouTube",
     link: "https://www.youtube.com/@LePhenixGD",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/profileme-dev/4442a351ea1871ad8ba08a4ec82cb8eae9d73b8b/public/icons/socials/github.svg",
+    srcIcon: GITHUB,
     title: "GitHub",
     link: "https://www.github.com/LePhenix47",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/stackoverflow.svg",
+    srcIcon: STACKOVERFLOW,
     title: "StackOverflow",
     link: "https://www.stackoverflow.com/users/16984856/le-phenix-47",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/npm/npm-original-wordmark.svg",
+    srcIcon: NPM,
     title: "NPM",
     link: "https://www.npmjs.com/~lephenix47",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/discord.svg",
+    srcIcon: DISCORD,
     title: "Discord",
     link: "https://discord.com/users/474540707156066304",
   },
   {
-    srcIcon:
-      "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/codepen.svg",
+    srcIcon: CODEPEN,
     title: "CodePen",
     link: "https://codepen.io/phenix47",
   },

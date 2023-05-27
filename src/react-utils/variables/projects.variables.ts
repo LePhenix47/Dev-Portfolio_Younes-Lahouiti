@@ -40,6 +40,7 @@ import ASCII_ART from "../../../public/png/ASCII-image.png";
 import BACKGROUND_EFFECTS from "../../../public/png/Background effects.png";
 import PIXEL_MANIP_1 from "../../../public/png/Image Pixel manipulation.png";
 import PIXEL_MANIP_2 from "../../../public/png/Text Pixel manipulation.png";
+import PAINTBRUSH from "../../../public/png/Paintbrush.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -328,6 +329,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Pixel-manipulation-test-2_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/16/2023"),
+  },
+  {
+    title: "Paintbrush",
+    image: PAINTBRUSH,
+    link: "https://github.com/LePhenix47/Paintbrush_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("05/20/2023"),
   },
 ];
 
