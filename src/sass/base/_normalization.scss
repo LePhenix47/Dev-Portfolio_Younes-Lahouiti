@@ -155,3 +155,270 @@ option {
     h5, h6, span) {
     display: none;
 }
+
+img,
+picture,
+svg {
+    display: block;
+
+    max-width: 100%;
+}
+
+//Advanced input reset
+input {
+
+    &[type="text"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="button"] {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &[type="date"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="datetime"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="datetime-local"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="email"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="month"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="week"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="password"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="tel"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="time"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="url"] {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &[type="submit"] {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &[type="reset"] {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &[type="image"] {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &[type="hidden"] {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &[type="file"] {
+        --file-selector-display: initial;
+
+        --file-selector-width: 80px;
+        --file-selector-height: 21px;
+
+        &::file-selector-button {
+            display: var(--file-selector-display);
+
+            height: var(--file-selector-height);
+            width: var(--file-selector-width);
+        }
+    }
+
+    &[type="color"] {
+        background-color: transparent;
+        --color-swatch-display: inline-block;
+
+        --color-swatch-height: 100%;
+
+        --color-swatch-border-width: 1px;
+        --color-swatch-border-color: currentColor;
+
+
+        &::-moz-color-swatch {
+            display: var(--color-swatch-display);
+
+            height: var(--color-swatch-height);
+
+            border: var(--color-swatch-border-width) solid var(--color-swatch-border-color);
+        }
+
+        &::-webkit-color-swatch {
+            display: var(--color-swatch-display);
+
+            height: var(--color-swatch-height);
+
+            border: var(--color-swatch-border-width) solid var(--color-swatch-border-color);
+        }
+    }
+
+    &[type="search"] {
+        --cancel-button-display: initial;
+        --results-button-display: initial;
+
+        &::-webkit-search-cancel-button {
+            display: var(--cancel-button-display);
+        }
+
+        &::-webkit-search-results-button {
+            display: var(--results-button-display);
+        }
+    }
+
+
+    &[type="number"] {
+        --inner-spin-appearance: auto;
+        --outer-spin-appearance: auto;
+
+
+        --moz-appearance: initial;
+
+        /*
+        Ignore the warning, this is to reset the input on Firefox
+        */
+        -moz-appearance: var(--moz-appearance);
+
+        &::-webkit-inner-spin-button {
+            appearance: var(--inner-spin-appearance);
+        }
+
+        &::-webkit-outer-spin-button {
+            appearance: var(--outer-spin-appearance);
+        }
+    }
+
+    &[type="range"] {
+        &:hover {
+            cursor: grab;
+        }
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        border-radius: var(--thumb-border-radius);
+        //Track
+        --track-width: 160px;
+        --track-height: 20px;
+
+        --track-bg: #e9e9ed;
+
+        --track-appearance: none;
+
+        background-color: var(--track-bg);
+        appearance: var(--track-appearance);
+        overflow: hidden;
+
+        &::-webkit-slider-runnable-track {
+            background-color: var(--track-bg);
+
+            width: var(--track-width);
+            height: var(--track-bg);
+        }
+
+        &::-moz-range-track {
+            background-color: var(--track-bg);
+
+            width: var(--track-width);
+            height: var(--track-bg);
+        }
+
+        //Thumb
+        --thumb-appearance: none;
+
+        --thumb-bg: #484851;
+
+        --thumb-border-color: white;
+        --thumb-border-width: 0px;
+        --thumb-border-radius: 100vmax;
+
+        --thumb-width: 15px;
+        --thumb-height: 15px;
+
+        --inner-track-size: calc(var(--track-width));
+        --inner-track-offset: calc(-1 * var(--track-width) - var(--thumb-width) / 2); //We add a box shadow to the left
+        --inner-track-bg: #2374ff;
+
+        &::-webkit-slider-thumb {
+            appearance: var(--thumb-appearance);
+            -webkit-appearance: var(--thumb-appearance);
+
+            background-color: var(--thumb-bg);
+            color: var(--thumb-bg);
+
+            border: var(--thumb-border-width) solid var(--thumb-border-color);
+            border-radius: var(--thumb-border-radius);
+
+            width: var(--thumb-width);
+            height: var(--thumb-height);
+
+            box-shadow: var(--inner-track-offset) 0 0 var(--inner-track-size) var(--inner-track-bg);
+        }
+
+        &::-moz-range-thumb {
+            appearance: var(--thumb-appearance) !important;
+
+            background-color: var(--thumb-bg);
+
+            border: var(--thumb-border-width) solid var(--thumb-border-color);
+            border-radius: var(--thumb-border-radius);
+
+            width: var(--thumb-width);
+            height: var(--thumb-height);
+
+            box-shadow: var(--inner-track-offset) 0 0 var(--inner-track-size) var(--inner-track-bg);
+        }
+    }
+}
