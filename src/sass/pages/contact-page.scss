@@ -257,6 +257,8 @@
 
         @include inputs-styling;
 
+        background-color: var(--semi-transparent-bg);
+
         width: 100%;
 
         font-size: 18px;

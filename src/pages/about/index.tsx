@@ -192,7 +192,7 @@ export default function About(): JSX.Element {
           </section>
         </section>
         <section className="about-page__diplomas">
-          <h2 className="about-page__diplomas-title">My diplomas earned</h2>
+          <h2 className="about-page__diplomas-title">My earned diplomas</h2>
 
           <div className="about-page__diplomas-container">
             {diplomas.map((diploma, index) => {

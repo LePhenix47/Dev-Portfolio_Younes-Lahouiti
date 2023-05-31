@@ -25,6 +25,7 @@ export default function HomeSocialCardItem({
           alt="LinkedIn icon"
           height={30}
           width={30}
+          priority
           className={`home-page__social-image home-page__social-image-${formatText(
             title,
             "lowercase"

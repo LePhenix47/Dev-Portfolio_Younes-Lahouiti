@@ -41,6 +41,7 @@ import BACKGROUND_EFFECTS from "../../../public/png/Background effects.png";
 import PIXEL_MANIP_1 from "../../../public/png/Image Pixel manipulation.png";
 import PIXEL_MANIP_2 from "../../../public/png/Text Pixel manipulation.png";
 import PAINTBRUSH from "../../../public/png/Paintbrush.png";
+import DRAGANDDROP from "../../../public/png/Drag'n'drop.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -336,6 +337,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Paintbrush_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/20/2023"),
+  },
+  {
+    title: "Drag and drop",
+    image: DRAGANDDROP,
+    link: "https://github.com/LePhenix47/Drag-n-drop_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("05/28/2023"),
   },
 ];
 

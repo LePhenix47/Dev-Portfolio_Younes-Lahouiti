@@ -113,6 +113,7 @@ export default function Home(): JSX.Element {
               alt="Profile picture"
               height={170}
               width={130}
+              priority
               className="home-page__profile-picture"
             />
           </div>

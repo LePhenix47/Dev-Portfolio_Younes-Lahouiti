@@ -1,7 +1,12 @@
 @use "../utils/" as *;
 
 .home-page {
-    display: flex;
+    @include center-flex;
+    min-height: 74vh;
+
+    @include desktop-small-only {
+        margin-block: 30px;
+    }
 
 
     @include tablet-only {
@@ -10,6 +15,7 @@
     }
 
     @include mobile-only {
+        gap: 25px;
         flex-direction: column;
     }
 
@@ -34,11 +40,17 @@
 
         justify-content: center;
 
+        @include tablet-only {
+            margin-top: 75px;
+        }
+
         @include mobile-only {
+            margin-block: 25px;
+
             flex-direction: column;
         }
 
-        margin: 35px 20px;
+        // margin: 35px 20px;
     }
 
     &__social-list {
@@ -50,6 +62,7 @@
 
         @include mobile-only {
             @include grid(1, 2, 25px);
+            column-gap: 35px;
         }
     }
 
@@ -105,10 +118,10 @@
     &__presentation {
         flex: 10;
         display: flex;
-        margin-block: 50px;
+        // margin-block: 50px;
 
         @include laptop-only {
-            margin-bottom: 25px;
+            margin-block: 25px;
         }
 
 
@@ -125,7 +138,7 @@
             justify-content: center;
             align-items: center;
 
-            gap: 30px;
+            gap: 0px;
 
             padding-top: 30px;
 
@@ -225,7 +238,7 @@
         color: var(--color-secondary);
 
         position: relative;
-
+        margin: 50px 0;
 
         &::before {
             content: "";
@@ -238,17 +251,24 @@
             height: 110%;
             border-radius: 25px;
 
+
             padding: 15px;
             z-index: -1;
 
             background-color: var(--semi-transparent-bg);
+
+            @include mobile-only {
+                display: none;
+            }
         }
 
         @include tablet-only {
             width: 100%;
         }
 
-        margin: 50px 0;
+        @include mobile-only {
+            text-align: justify
+        }
     }
 
     &__contact-button {
@@ -289,7 +309,6 @@
 
             @include center-flex;
 
-            overflow: hidden;
             border-radius: 25px;
         }
 
@@ -368,6 +387,29 @@
         ;
 
         border-radius: 25px;
+
+        @include mobile-only {
+            &:hover {
+                scale: 150%;
+                translate: -30% -25%;
+
+                @include tablet-only {
+                    filter: drop-shadow(0px 0px 30px var(--color-primary));
+
+                    translate: 0 0;
+
+                    scale: 100%;
+                }
+
+                @include mobile-only {
+                    filter: drop-shadow(0px 0px 30px var(--color-primary));
+
+                    translate: 0 0;
+
+                    scale: 100%;
+                }
+            }
+        }
 
         @include tablet-only {
             position: static;
