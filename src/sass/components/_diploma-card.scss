@@ -6,11 +6,14 @@
 
     padding: 10px;
 
+    @include desktop-only {
+        aspect-ratio: 2/1;
+    }
+
     @include mobile-only {
         padding: 20px;
     }
 
-    aspect-ratio: 2/1;
 
     &__text {
         text-align: center;
