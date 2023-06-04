@@ -300,12 +300,10 @@
         @include mobile-only {
             margin-right: 0;
 
-
+            width: 85%;
             height: 200px;
 
-            width: min-content;
-
-            margin-block: 0.5%;
+            margin-block: 30px;
 
             @include center-flex;
 

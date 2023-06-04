@@ -201,9 +201,9 @@
         padding: 0 5px;
         border-radius: 100vmax;
 
-
+        background-color: none;
         color: var(--color-secondary);
-        background-color: var(--bg-primary);
+
 
         position: absolute;
         top: 34%;
@@ -220,10 +220,11 @@
         left 250ms ease-in-out,
         translate 250ms ease-in-out,
         scale 250ms ease-in-out,
+        background-color 250ms ease-in-out,
         color 250ms ease-in-out;
 
         &.active {
-
+            background-color: var(--bg-primary);
             color: currentColor;
 
             scale: 90%;

@@ -56,6 +56,16 @@
     gap: $gap;
 }
 
+//Grid mixins
+@mixin grid-auto($rows: auto-fill, $columns: auto-fill, $gap: 0px) {
+    display: grid;
+    grid-template-rows: repeat($rows, 1fr);
+    grid-template-columns: repeat($columns, 1fr);
+    grid-auto-rows: repeat($rows, 1fr);
+    grid-auto-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
 //Mixin to center in the middle
 @mixin absolute-center {
     translate: -50% -50%;

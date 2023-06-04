@@ -42,6 +42,7 @@ import PIXEL_MANIP_1 from "../../../public/png/Image Pixel manipulation.png";
 import PIXEL_MANIP_2 from "../../../public/png/Text Pixel manipulation.png";
 import PAINTBRUSH from "../../../public/png/Paintbrush.png";
 import DRAGANDDROP from "../../../public/png/Drag'n'drop.png";
+import VIDEO_COLOR_TEST_1 from "../../../public/png/Video color replacer test.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -344,6 +345,13 @@ export const personalProjects: projectsMadeType = [
     link: "https://github.com/LePhenix47/Drag-n-drop_Younes-Lahouiti",
     type: "personal",
     date: new Date("05/28/2023"),
+  },
+  {
+    title: "Video color replacer test",
+    image: VIDEO_COLOR_TEST_1,
+    link: "https://github.com/LePhenix47/Video-canvas-test_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("06/01/2023"),
   },
 ];
 
