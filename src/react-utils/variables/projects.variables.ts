@@ -55,6 +55,7 @@ import INTERVAL_UTILITY from "../../../public/png/interval-icon.png";
 import WEBSTORAGE_UTILITY from "../../../public/png/webstorage-icon.png";
 import COOKIES_UTILITY from "../../../public/png/cookie-utility-icon.png";
 import REACT_DATA_TABLE from "../../../public/png/Data Table.png";
+import COLOR_CONVERSION_PACKAGE from "../../../public/png/colorconversion- npm-icon.png";
 
 //Browser extensions
 import NDL from "../../../public/png/nommage des livrables.png";
@@ -420,6 +421,13 @@ export const npmProjects: projectsMadeType = [
     link: "https://www.npmjs.com/package/@lephenix47/react-datatable",
     type: "npm",
     date: new Date("02/06/2023"),
+  },
+  {
+    title: "Color converter",
+    image: COLOR_CONVERSION_PACKAGE,
+    link: "https://www.npmjs.com/package/@lephenix47/color-converter",
+    type: "npm",
+    date: new Date("06/07/2023"),
   },
 ];
 
