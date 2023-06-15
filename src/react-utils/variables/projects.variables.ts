@@ -43,6 +43,7 @@ import PIXEL_MANIP_2 from "../../../public/png/Text Pixel manipulation.png";
 import PAINTBRUSH from "../../../public/png/Paintbrush.png";
 import DRAGANDDROP from "../../../public/png/Drag'n'drop.png";
 import VIDEO_COLOR_TEST_1 from "../../../public/png/Video color replacer test.png";
+import COLOR_MODEL_CONVERSION from "../../../public/png/Color model conversion.png";
 
 //Professional
 import CALIFORNIA_GYM from "../../../public/png/californie gym.png";
@@ -354,6 +355,13 @@ export const personalProjects: projectsMadeType = [
     type: "personal",
     date: new Date("06/01/2023"),
   },
+  {
+    title: "Color model conversion",
+    image: COLOR_MODEL_CONVERSION,
+    link: "https://github.com/LePhenix47/Color-model-conversion_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("06/10/2023"),
+  },
 ];
 
 /**
@@ -390,28 +398,28 @@ export const npmProjects: projectsMadeType = [
   {
     title: "Timeout utility",
     image: TIMEOUT_UTILITY,
-    link: "https://github.com/LePhenix47/Timout-utility_npm-package",
+    link: "www.npmjs.com/package/@lephenix47/timers-utility",
     type: "npm",
     date: new Date("02/05/2023"),
   },
   {
     title: "Interval utility",
     image: INTERVAL_UTILITY,
-    link: "https://github.com/LePhenix47/Interval-utility_npm-package",
+    link: "www.npmjs.com/package/@lephenix47/interval-utility",
     type: "npm",
     date: new Date("02/05/2023"),
   },
   {
     title: "Cookies utility",
     image: COOKIES_UTILITY,
-    link: "https://github.com/LePhenix47/Cookie-utility_npm-package",
+    link: "www.npmjs.com/package/@lephenix47/cookies-utility",
     type: "npm",
     date: new Date("02/05/2023"),
   },
   {
     title: "WebStorage utility",
     image: WEBSTORAGE_UTILITY,
-    link: "https://github.com/LePhenix47/WebStorage-utility_npm-package",
+    link: "www.npmjs.com/package/@lephenix47/webstorage-utility",
     type: "npm",
     date: new Date("02/05/2023"),
   },
