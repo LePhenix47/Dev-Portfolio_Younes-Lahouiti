@@ -6,9 +6,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 //Components
-import SkillsCard from "@/components/SkillsCard/SkillsCard";
-import SkillCardList from "@/components/SkillCardList/SkillCardList";
-import Timeline from "@/components/Timeline/Timeline";
+import SkillsCard from "@/components/skills/SkillsCard/SkillsCard";
+import SkillCardList from "@/components/skills/SkillCardList/SkillCardList";
+import Timeline from "@/components/common/Timeline/Timeline";
 
 //Utils
 import {

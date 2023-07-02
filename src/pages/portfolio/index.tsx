@@ -28,7 +28,7 @@ import { projectCategories } from "@/react-utils/variables/projects-categories.v
 import { projectsMadeType } from "@/react-utils/types/projects.types";
 
 //Componnets
-import PortfolioProjectCard from "@/components/PortfolioProjectCard/PortfolioProjectCard";
+import PortfolioProjectCard from "@/components/portfolio/PortfolioProjectCard/PortfolioProjectCard";
 import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 /**

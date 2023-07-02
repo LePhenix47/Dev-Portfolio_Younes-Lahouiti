@@ -18,15 +18,15 @@ import {
 } from "@/react-utils/functions/helper-functions";
 
 //Components
-import ContactInputLabel from "@/components/ContactInputLabel/ContactInputLabel";
-import ContactMethodCard from "@/components/ContactMethodCard/ContactMethodCard";
+import ContactInputLabel from "@/components/contact/ContactInputLabel/ContactInputLabel";
+import ContactMethodCard from "@/components/contact/ContactMethodCard/ContactMethodCard";
 
 //Libraries
 //EmailJS
 import { EmailJSResponseStatus, send, sendForm } from "@emailjs/browser";
 //TanStack Query
 import { useMutation } from "@tanstack/react-query";
-import BufferLoader from "@/components/BufferLoader/BufferLoader";
+import BufferLoader from "@/components/common/BufferLoader/BufferLoader";
 import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 /**

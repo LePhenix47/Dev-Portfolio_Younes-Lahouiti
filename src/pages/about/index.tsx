@@ -8,7 +8,7 @@ import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables"
 import AboutCard from "@/components/AboutCard/AboutCard";
 import { useRef } from "react";
 import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
-import DiplomaCard from "@/components/DiplomaCard/DiplomaCard";
+import DiplomaCard from "@/components/about/DiplomaCard/DiplomaCard";
 import { diplomas } from "@/react-utils/variables/diplomas.variables";
 /**
  * About me page: `/about`
@@ -213,13 +213,3 @@ export default function About(): JSX.Element {
     </>
   );
 }
-
-/*
-
- I started programming with Scratch at 13 and later explored Python in high school for math problems.
- Although I struggled with C++, C, Java, and PHP in college and eventually dropped out, I didn't give up.
-
- Instead, I took a self-taught path to become a web developer.
- Through two internships at OpenClassrooms, I earned diplomas in Fullstack and Front-End web development.
-
- */

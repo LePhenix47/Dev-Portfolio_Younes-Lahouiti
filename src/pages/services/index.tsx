@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 //Components
-import ModalWindow from "@/components/ModalWindow/ModalWindow";
-import ServicesModalContent from "@/components/ServicesModalContent/ServicesModalContent";
-import ServicesCard from "@/components/ServicesCard/ServicesCard";
-import Slider from "@/components/Slider/Slider";
+import ModalWindow from "@/components/common/ModalWindow/ModalWindow";
+import ServicesModalContent from "@/components/services/ServicesModalContent/ServicesModalContent";
+import ServicesCard from "@/components/services/ServicesCard/ServicesCard";
+import Slider from "@/components/common/Slider/Slider";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
