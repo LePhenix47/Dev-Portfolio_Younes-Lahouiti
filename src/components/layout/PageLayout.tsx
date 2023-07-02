@@ -1,7 +1,6 @@
 import { useRef } from "react";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import CanvasComponent from "../CanvasComponent/CanvasComponent";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
 
 export default function PageLayout(props: any): JSX.Element {
   const mainElementRef = useRef<HTMLElement>(null);

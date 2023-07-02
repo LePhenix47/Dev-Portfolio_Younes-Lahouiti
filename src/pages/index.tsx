@@ -7,7 +7,7 @@ import Link from "next/link";
 import { socialAccountVariables } from "@/react-utils/variables/social-accounts.variables";
 
 //Components
-import HomeSocialCardItem from "@/components/home/HomeSocialCards/HomeSocialCards";
+import HomeSocialCardItem from "@/components/home/HomeSocialCardItem/HomeSocialCardItem";
 import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 import { useRef } from "react";
 

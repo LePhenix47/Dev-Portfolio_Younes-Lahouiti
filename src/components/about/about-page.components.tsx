@@ -1,3 +1,5 @@
 import AboutCard from "./AboutCard/AboutCard";
 
-export { AboutCard };
+import DiplomaCard from "./DiplomaCard/DiplomaCard";
+
+export { AboutCard, DiplomaCard };

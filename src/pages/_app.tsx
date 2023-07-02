@@ -8,7 +8,7 @@ import Link from "next/link";
 import "../sass/main.scss";
 
 //Components
-import PageLayout from "../components/layout/PageLayout/PageLayout";
+import PageLayout from "../components/layout/PageLayout";
 
 //Framer motion library
 import { motion } from "framer-motion";
