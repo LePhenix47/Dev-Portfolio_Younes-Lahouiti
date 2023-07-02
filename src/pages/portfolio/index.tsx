@@ -4,10 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 //Next
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 
-//Utils
+//Variables
 import {
   openClassroomsProjects,
   personalProjects,
@@ -16,20 +14,20 @@ import {
   browserExtensionProjects,
   allProjects,
 } from "@/react-utils/variables/projects.variables";
+
 import {
-  log,
   sortArrayOfObjects,
   filterArrayByString,
-  table,
   formatText,
   formatDateToShort,
 } from "@/react-utils/functions/helper-functions";
+
 import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
 import { projectsMadeType } from "@/react-utils/types/projects.types";
+import { CanvasComponent } from "@/components/common/common.components";
+import { PortfolioProjectCard } from "@/components/portfolio/portfolio-page.components";
 
-//Componnets
-import PortfolioProjectCard from "@/components/portfolio/PortfolioProjectCard/PortfolioProjectCard";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
+//Components
 
 /**
  * Portfolio page: `/portfolio`
@@ -46,7 +44,7 @@ export default function Portfolio(): JSX.Element {
    */
   const [copiedData, setCopiedData] = useState<any>(allProjects);
   /**
-   * Refernce for the `<select>` element
+   * Reference for the `<select>` element
    */
   const selectValueRef = useRef<any>(null);
 
@@ -56,7 +54,7 @@ export default function Portfolio(): JSX.Element {
   const inputValueRef = useRef<any>(null);
 
   /**
-   * Refernce for the `<input type="checkbox" />` element
+   * Reference for the `<input type="checkbox" />` element
    */
   const checkboxValueRef = useRef<any>(null);
   /**

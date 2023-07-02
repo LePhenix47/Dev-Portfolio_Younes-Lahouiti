@@ -1,24 +1,23 @@
 //Next
 import Head from "next/head";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 //Components
-import ModalWindow from "@/components/common/ModalWindow/ModalWindow";
-import ServicesModalContent from "@/components/services/ServicesModalContent/ServicesModalContent";
-import ServicesCard from "@/components/services/ServicesCard/ServicesCard";
-import Slider from "@/components/common/Slider/Slider";
+import {
+  ServicesCard,
+  ServicesModalContent,
+} from "@/components/services/services-page.components";
+
+import {
+  CanvasComponent,
+  ModalWindow,
+  Slider,
+} from "@/components/common/common.components";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
-import {
-  formatText,
-  log,
-  selectRandomElementsInArray,
-} from "@/react-utils/functions/helper-functions";
+
 import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
-import { sliderCardTypes } from "@/react-utils/types/slider.types";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 export default function Services(): JSX.Element | null {
   const servicesPageSectionRef = useRef<HTMLElement>(null);

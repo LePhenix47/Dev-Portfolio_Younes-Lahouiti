@@ -1,3 +1,6 @@
+//React
+import { useRef } from "react";
+
 //Next
 import Head from "next/head";
 import Image from "next/image";
@@ -7,9 +10,8 @@ import Link from "next/link";
 import { socialAccountVariables } from "@/react-utils/variables/social-accounts.variables";
 
 //Components
-import HomeSocialCardItem from "@/components/home/HomeSocialCardItem/HomeSocialCardItem";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
-import { useRef } from "react";
+import { CanvasComponent } from "@/components/common/common.components";
+import { HomeSocialCardItem } from "@/components/home/home-page.components";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);

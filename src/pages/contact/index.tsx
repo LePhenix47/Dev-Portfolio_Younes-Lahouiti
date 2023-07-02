@@ -1,33 +1,33 @@
 //React
-import { MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useRef } from "react";
 
 //Next
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 
-//Utils
+//Variables
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
 import {
   formatText,
   log,
   error,
   testRegExp,
-  waitPromiseSuccess,
-  waitPromiseError,
 } from "@/react-utils/functions/helper-functions";
 
 //Components
-import ContactInputLabel from "@/components/contact/ContactInputLabel/ContactInputLabel";
-import ContactMethodCard from "@/components/contact/ContactMethodCard/ContactMethodCard";
 
 //Libraries
 //EmailJS
-import { EmailJSResponseStatus, send, sendForm } from "@emailjs/browser";
+import { EmailJSResponseStatus, send } from "@emailjs/browser";
 //TanStack Query
 import { useMutation } from "@tanstack/react-query";
-import BufferLoader from "@/components/common/BufferLoader/BufferLoader";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
+import {
+  BufferLoader,
+  CanvasComponent,
+} from "@/components/common/common.components";
+import {
+  ContactInputLabel,
+  ContactMethodCard,
+} from "@/components/contact/contact-page.components";
 
 /**
  * Contact page: `/contact`
@@ -129,7 +129,7 @@ export default function Contact(): JSX.Element {
     const { firstName, lastName, email, projectIdea } = formValue;
 
     /**
-     * Template paramters under this form:
+     * Template parameters under this form:
      *
      *  New message sent through the portfolio form by {{name}} at {{email}}:
      *

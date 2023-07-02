@@ -5,10 +5,18 @@ import Link from "next/link";
 
 //Utils
 import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables";
-import AboutCard from "@/components/AboutCard/AboutCard";
+
+//React
 import { useRef } from "react";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
-import DiplomaCard from "@/components/about/DiplomaCard/DiplomaCard";
+
+//Components
+import { CanvasComponent } from "@/components/common/common.components";
+import {
+  AboutCard,
+  DiplomaCard,
+} from "@/components/about/about-page.components";
+
+//Variables
 import { diplomas } from "@/react-utils/variables/diplomas.variables";
 /**
  * About me page: `/about`

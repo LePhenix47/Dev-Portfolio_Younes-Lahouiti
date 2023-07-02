@@ -3,14 +3,15 @@ import { useRef, useState } from "react";
 
 //Next
 import Head from "next/head";
-import Image from "next/image";
 
 //Components
-import SkillsCard from "@/components/skills/SkillsCard/SkillsCard";
-import SkillCardList from "@/components/skills/SkillCardList/SkillCardList";
-import Timeline from "@/components/common/Timeline/Timeline";
+import {
+  CanvasComponent,
+  Timeline,
+} from "@/components/common/common.components";
+import { SkillsCard } from "@/components/skills/skills-page.components";
 
-//Utils
+//Variables
 import {
   frontEndSkills,
   backEndSkills,
@@ -20,7 +21,6 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
 
 export default function Skills(): JSX.Element {
   const skillsPageSectionRef = useRef<HTMLElement>(null);
