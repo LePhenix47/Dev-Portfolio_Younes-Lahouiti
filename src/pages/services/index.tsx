@@ -31,7 +31,7 @@ export default function Services(): JSX.Element | null {
    */
   const [windowContent, setWindowContent] = useState<any>(null);
 
-  let numberOfShownCards = 7;
+  const numberOfShownCards: number = 7;
 
   /**
    * Function that opens the window modal

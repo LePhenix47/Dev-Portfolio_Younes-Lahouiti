@@ -26,22 +26,22 @@ export default function About(): JSX.Element {
   /**
    * Year of my birth
    */
-  let dateOfBirth = new Date("06/13/2002").getTime();
+  const dateOfBirth: number = new Date("06/13/2002").getTime();
 
   /**
    * Current year
    */
-  let currentDate = new Date().getTime();
+  const currentDate: number = new Date().getTime();
 
   /**
    * Milliseconds per year : 1 second * 1 min * 1 hour * 1 day * 1 year (including leap years)
    */
-  const MILLISECONDS_IN_A_YEAR = 1000 * 60 * 60 * 24 * 365.25;
+  const MILLISECONDS_IN_A_YEAR: number = 1000 * 60 * 60 * 24 * 365.25;
 
   /**
    * My actual age
    */
-  const myAgeInYears = Math.floor(
+  const myAgeInYears: number = Math.floor(
     (currentDate - dateOfBirth) / MILLISECONDS_IN_A_YEAR
   );
 
@@ -209,7 +209,7 @@ export default function About(): JSX.Element {
               return (
                 <DiplomaCard
                   diplomaTitle={name}
-                  obtentionYearRangeDate={year}
+                  obtainedYearRangeDate={year}
                   pdfLink={pdf}
                   key={`${name}-${year}-${index}`}
                 />

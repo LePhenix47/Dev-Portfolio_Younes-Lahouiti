@@ -5,11 +5,11 @@ import React from "react";
  */
 export default function DiplomaCard({
   diplomaTitle,
-  obtentionYearRangeDate,
+  obtainedYearRangeDate,
   pdfLink,
 }: {
   diplomaTitle: string;
-  obtentionYearRangeDate: string;
+  obtainedYearRangeDate: string;
   pdfLink: string;
 }): JSX.Element {
   return (
@@ -31,7 +31,7 @@ export default function DiplomaCard({
           </a>
         </h3>
         <p className="diploma-card__paragraph">
-          <span>Year:</span> {obtentionYearRangeDate}
+          <span>Year:</span> {obtainedYearRangeDate}
         </p>
       </div>
     </div>

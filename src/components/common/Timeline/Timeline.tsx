@@ -7,7 +7,7 @@ export default function Timeline({
   reverse = false,
 }: {
   arrayOfTimeLines: any[];
-  reverse: boolean | undefined;
+  reverse?: boolean | undefined;
 }): JSX.Element {
   return (
     <div className="timeline__container">

@@ -96,15 +96,14 @@ export default function Contact(): JSX.Element {
     log({ firstName, lastName, email, projectIdea });
 
     //We verify that each one of them is correct
-    let namesInputsAreValid: boolean =
-      verifyNames(undefined, firstNameRef) &&
-      verifyNames(undefined, lastNameRef);
+    const namesInputsAreValid: boolean =
+      verifyNames(firstNameRef) && verifyNames(lastNameRef);
 
-    let emailInputIsValid: boolean = verifyEmail(undefined, emailRef);
+    const emailInputIsValid: boolean = verifyEmail(emailRef);
 
-    let projectTextAreaIsValid: boolean = verifyMessage(undefined, textAreaRef);
+    const projectTextAreaIsValid: boolean = verifyMessage(textAreaRef);
 
-    let formInputsAreValid: boolean =
+    const formInputsAreValid: boolean =
       namesInputsAreValid && emailInputIsValid && projectTextAreaIsValid;
 
     log({ formInputsAreValid });
@@ -167,7 +166,7 @@ export default function Contact(): JSX.Element {
   }
 
   /**
-   * Mutator that makes the POST API call to rsend the form and send an email
+   * Mutator that makes the POST API call to resend the form and send an email
    */
   const emailMutation = useMutation({
     mutationFn: (formValues: object) => {
@@ -177,7 +176,7 @@ export default function Contact(): JSX.Element {
       log("Attempting to send email");
     },
     onSuccess: (data: any, variables: any) => {
-      log("Attempt SUCCEDED!", data, variables);
+      log("Attempt SUCCEEDED!", data, variables);
     },
     onError: (error: any, variables: any) => {
       log("Attempt FAILED", error, variables);
@@ -194,12 +193,12 @@ export default function Contact(): JSX.Element {
    * @returns - A boolean value indicating whether the given string is a valid name.
    */
   function verifyNames(
-    event?: React.ChangeEvent<HTMLInputElement>,
-    inputValueRef?: MutableRefObject<any>
+    reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
   ) {
-    //We get the vaue of the input
+    //We get the value of the input
     let valueOfInput: string =
-      event?.target?.value ?? inputValueRef?.current.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
+      (reference as MutableRefObject<any>).current.value;
     valueOfInput = valueOfInput.trim();
 
     //String must not include numbers
@@ -219,13 +218,13 @@ export default function Contact(): JSX.Element {
     );
 
     //We verify that the length of the name is between 2 and 50
-    const nameIsAtRightLnegth: boolean =
+    const nameIsAtRightLength: boolean =
       valueOfInput.length >= 2 && valueOfInput.length <= 50;
 
     return (
       valueDoesNotContainNumbers &&
       valueContainsValidCharacters &&
-      nameIsAtRightLnegth
+      nameIsAtRightLength
     );
   }
 
@@ -237,12 +236,12 @@ export default function Contact(): JSX.Element {
    * @returns  - A boolean value indicating whether the given string is a valid email.
    */
   function verifyEmail(
-    event?: React.ChangeEvent<HTMLInputElement>,
-    inputValueRef?: MutableRefObject<any>
+    reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
   ) {
-    //We get the vaue of the input
+    //We get the value of the input
     let valueOfInput: string =
-      event?.target?.value ?? inputValueRef?.current?.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
+      (reference as MutableRefObject<any>).current.value;
     valueOfInput = valueOfInput.trim();
 
     //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
@@ -260,12 +259,12 @@ export default function Contact(): JSX.Element {
    * @returns - Returns true if the message has a proper length, otherwise false
    */
   function verifyMessage(
-    event?: React.ChangeEvent<HTMLTextAreaElement>,
-    inputValueRef?: MutableRefObject<any>
+    reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
   ) {
-    //We get the vaue of the input
+    //We get the value of the input
     let valueOfInput: string =
-      event?.target?.value ?? inputValueRef?.current?.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
+      (reference as MutableRefObject<any>).current.value;
     valueOfInput = valueOfInput.trim();
 
     const messageIsAtRightLength: boolean =
@@ -353,7 +352,6 @@ export default function Contact(): JSX.Element {
                 labelText="First name"
                 reference={firstNameRef}
                 inputType="text"
-                //@ts-ignore
                 onChangeCallback={verifyNames}
                 validInputMessage={"Valid"}
                 errorInputMessage={
@@ -366,7 +364,6 @@ export default function Contact(): JSX.Element {
                 labelText="Last name"
                 reference={lastNameRef}
                 inputType="text"
-                //@ts-ignore
                 onChangeCallback={verifyNames}
                 validInputMessage={"Valid"}
                 errorInputMessage={
@@ -379,7 +376,6 @@ export default function Contact(): JSX.Element {
                 labelText="Email"
                 reference={emailRef}
                 inputType="email"
-                //@ts-ignore
                 onChangeCallback={verifyEmail}
                 validInputMessage={"Valid"}
                 errorInputMessage={
@@ -392,7 +388,6 @@ export default function Contact(): JSX.Element {
                 labelText="Project"
                 reference={textAreaRef}
                 isTextArea
-                //@ts-ignore
                 onChangeCallback={verifyMessage}
                 validInputMessage={"Valid"}
                 errorInputMessage={

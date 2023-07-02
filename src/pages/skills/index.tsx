@@ -27,7 +27,7 @@ export default function Skills(): JSX.Element {
 
   const [isRotated, setIsRotated] = useState<boolean>(false);
 
-  let rotateRef = useRef<boolean>(true);
+  const rotateRef = useRef<boolean>(true);
   rotateRef.current = true;
 
   return (
@@ -122,7 +122,6 @@ export default function Skills(): JSX.Element {
                   : ""
               }`}
             >
-              {/* @ts-ignore               */}
               <Timeline arrayOfTimeLines={educationTimeline} />
             </div>
             <div
@@ -132,7 +131,6 @@ export default function Skills(): JSX.Element {
                   : ""
               }`}
             >
-              {/* @ts-ignore               */}
               <Timeline arrayOfTimeLines={experienceTimeline} reverse />
             </div>
           </div>

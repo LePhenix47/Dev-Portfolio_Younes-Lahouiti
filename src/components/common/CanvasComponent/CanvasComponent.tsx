@@ -1,5 +1,5 @@
 import { LineEffect } from "@/react-utils/classes/line-effect.class";
-import { error, log } from "@/react-utils/functions/helper-functions";
+import { error } from "@/react-utils/functions/helper-functions";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
@@ -87,7 +87,7 @@ export default function CanvasComponent({
       return;
     }
 
-    //We claer the canvas from old paint
+    //We clear the canvas from old paint
     clearCanvas(canvasRef.current);
 
     //We animate the particles
@@ -104,17 +104,15 @@ export default function CanvasComponent({
       if (canvas) {
         setCanvasSize(
           canvas,
-          //@ts-ignore
-          parentElement.current.clientWidth,
-          //@ts-ignore
-          parentElement.current.clientHeight
+          (parentElement.current as HTMLDialogElement).clientWidth,
+          (parentElement.current as HTMLDialogElement).clientHeight
         );
         setEffectHandler(() => {
           return new LineEffect(
             canvas,
             AMOUNT_OF_PARTICLES +
-              //@ts-ignore
-              parentElement.current.clientHeight / AMOUNT_OF_PARTICLES
+              (parentElement.current as HTMLDialogElement).clientHeight /
+                AMOUNT_OF_PARTICLES
           );
         });
       }

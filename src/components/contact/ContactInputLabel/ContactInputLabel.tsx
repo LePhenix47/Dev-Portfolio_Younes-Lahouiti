@@ -24,7 +24,7 @@ export default function ContactInputLabel({
   labelText: string;
   id: string;
   reference: MutableRefObject<any>;
-  onChangeCallback?: voidCallback;
+  onChangeCallback?: any;
   errorInputMessage?: string;
   validInputMessage?: string;
   inputType?: inputType | "";

@@ -46,7 +46,6 @@ export default function Home(): JSX.Element {
         <title>Home page</title>
       </Head>
       <section className="home-page" ref={homePageSectionRef}>
-        {/* @ts-ignore */}
         <CanvasComponent parentElement={homePageSectionRef} />
         <aside className="home-page__socials">
           <ul className="home-page__social-list">

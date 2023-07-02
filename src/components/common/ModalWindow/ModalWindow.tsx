@@ -1,8 +1,7 @@
 //React
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 
 //Utils
-import { log } from "@/react-utils/functions/helper-functions";
 
 /**
  * Pop-up window
@@ -26,45 +25,38 @@ export default function ModalWindow({
   /**
    * Modal window as a reference to access its DOM methods
    */
-  const dialogRef: React.MutableRefObject<null> = useRef(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   /**
    * Boolean to check if the window opened only once
    */
-  //@ts-ignore
-  const openedOnlyOnce: boolean = !dialogRef?.current?.attributes.open;
+  const openedOnlyOnce: boolean = !dialogRef.current?.hasAttribute("open");
 
   /**
    * Function that closes the modal with a fading animation
    */
   function closeModal() {
-    //@ts-ignore
-    dialogRef?.current?.classList.add("fade-out");
+    (dialogRef.current as HTMLDialogElement).classList.add("fade-out");
 
     setTimeout(() => {
-      //@ts-ignore
-      dialogRef?.current?.close();
+      (dialogRef.current as HTMLDialogElement).close();
 
       setIsOpen(false);
 
-      //@ts-ignore
-      dialogRef?.current?.classList.remove("fade-out");
+      (dialogRef.current as HTMLDialogElement).classList.remove("fade-out");
     }, 500);
   }
 
   /**
-   * Structural condifiton to open the window
+   * Structural condition to open the window
    */
   if (isOpen && openedOnlyOnce) {
-    //@ts-ignore
-    dialogRef?.current?.showModal();
+    (dialogRef.current as HTMLDialogElement).showModal();
 
-    //@ts-ignore
-    dialogRef?.current?.classList.add("fade-in");
+    (dialogRef.current as HTMLDialogElement).classList.add("fade-in");
 
     setTimeout(() => {
-      //@ts-ignore
-      dialogRef?.current?.classList.remove("fade-in");
+      (dialogRef.current as HTMLDialogElement).classList.remove("fade-in");
     }, 500);
   }
   return (

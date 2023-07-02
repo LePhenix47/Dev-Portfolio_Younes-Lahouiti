@@ -151,7 +151,7 @@ export default function Portfolio(): JSX.Element {
     /**
      * We take the original unfiltered data and we then filter it
      */
-    let filteredData: any[] = filterArrayByString(copiedData, filterValue);
+    const filteredData: any[] = filterArrayByString(copiedData, filterValue);
 
     if (needsFiltering) {
       //We set the state to be equal to the filtered data
@@ -215,12 +215,9 @@ export default function Portfolio(): JSX.Element {
       </Head>
 
       {/* 
-      Because the parent element sues the transform property, 
-      it creates a new stacking context for its child elements
-
-      So unfortunately I cannot add an anchor to the page
-*/}
-      {/*  */}
+      Because the parent element uses the `transform` property for the pages transitions, 
+      child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
+     */}
 
       <section className="portfolio-page" ref={portfolioPageSectionRef}>
         <CanvasComponent parentElement={portfolioPageSectionRef} />
@@ -328,10 +325,11 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               ref={selectValueRef}
               className="portfolio-page__select"
               onChange={(e) => {
-                let valueOfSelect: string = e.target.value;
+                const valueOfSelect: string = e.target.value;
 
                 // We don't want to sort if they have the default value selected
-                let isPlaceholderValue: boolean = valueOfSelect.includes("---");
+                const isPlaceholderValue: boolean =
+                  valueOfSelect.includes("---");
 
                 if (isPlaceholderValue) {
                   return;
@@ -395,7 +393,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
             let lowerCaseCategory = formatText(category, "lowercase");
             return (
               <button
-                key={`${category}-${index}`}
+                key={`${category}`}
                 onClick={() => {
                   changeCards(lowerCaseCategory);
 
