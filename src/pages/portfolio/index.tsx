@@ -22,7 +22,7 @@ import {
   formatDateToShort,
 } from "@/react-utils/functions/helper-functions";
 
-import { projectCategories } from "@/react-utils/variables/projects-categories.vairables";
+import { projectCategories } from "@/react-utils/variables/projects-categories.variables";
 import { projectsMadeType } from "@/react-utils/types/projects.types";
 import { CanvasComponent } from "@/components/common/common.components";
 import { PortfolioProjectCard } from "@/components/portfolio/portfolio-page.components";
