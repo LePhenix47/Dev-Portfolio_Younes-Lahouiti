@@ -1,3 +1,5 @@
+import { PDF_URLS } from "../constants/index.constants";
+
 /**
  * Diplomas I earned
  */
@@ -9,16 +11,16 @@ export const diplomas: {
   {
     name: "Baccalureate",
     year: "2019-2020",
-    pdf: "/pdf/BACCALAUREAT GENERAL.pdf",
+    pdf: PDF_URLS.baccalaureate,
   },
   {
     name: "Web development RNCP title",
     year: "2021-2022",
-    pdf: "/pdf/diplome OC RNCP level 5.pdf",
+    pdf: PDF_URLS.webDevDiploma,
   },
   {
     name: "Front-End development RNCP title",
     year: "2022-2023",
-    pdf: "/pdf/diplome OC RNCP level 6.pdf",
+    pdf: PDF_URLS.frontEndDevDiploma,
   },
 ];
