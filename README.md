@@ -11,7 +11,7 @@
     - [2.4 Services](#24-services)
     - [2.5 Portfolio](#25-portfolio)
     - [2.6 Contact](#26-contact)
-  - [Trivial informations](#trivial-informations)
+  - [Trivial information](#trivial-information)
     - [3.1 Folder structure](#31-folder-structure)
     - [3.2 Naming conventions](#32-naming-conventions)
     - [3.3 Trivial information](#33-trivial-information)
@@ -79,7 +79,7 @@ The contact page includes a form to get in touch with me, as well as links to my
 
 ---
 
-## Trivial informations
+## Trivial information
 
 ### 3.1 Folder structure
 
