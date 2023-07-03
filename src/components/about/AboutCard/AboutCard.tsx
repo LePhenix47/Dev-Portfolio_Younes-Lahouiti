@@ -1,6 +1,8 @@
 //React
 import React from "react";
 
+import Image from "next/image";
+
 export default function AboutCard({
   svgIcon,
   title,
@@ -13,7 +15,7 @@ export default function AboutCard({
   return (
     <div className="card">
       <h3 className="card__title">
-        {svgIcon}
+        <Image src={svgIcon} alt={title} className="svg-icon" />
         {title}
       </h3>
       <p className="card__description">{description}</p>
