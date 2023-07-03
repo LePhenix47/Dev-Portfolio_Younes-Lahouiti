@@ -12,6 +12,7 @@ import { socialAccountVariables } from "@/react-utils/variables/social-accounts.
 //Components
 import { CanvasComponent } from "@/components/common/common.components";
 import { HomeSocialCardItem } from "@/components/home/home-page.components";
+import { JPG_IMAGES } from "@/react-utils/constants/index.constants";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
@@ -110,7 +111,7 @@ export default function Home(): JSX.Element {
               </g>
             </svg>
             <Image
-              src="/profile-pic.jpg"
+              src={JPG_IMAGES.PROFILE_PIC_1}
               alt="Profile picture"
               height={170}
               width={130}

@@ -61,7 +61,7 @@ import COLOR_CONVERSION_PACKAGE from "../../../public/png/colorconversion- npm-i
 //Browser extensions
 import NDL from "../../../public/png/nommage des livrables.png";
 
-export {
+const PNG_IMAGES = {
   P2_DW,
   P3_DW,
   P4_DW,
@@ -114,3 +114,5 @@ export {
   COLOR_CONVERSION_PACKAGE,
   NDL,
 };
+
+export default PNG_IMAGES;

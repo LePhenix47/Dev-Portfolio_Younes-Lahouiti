@@ -107,7 +107,7 @@ const mobileHeaderIcons = {
   contactHeader,
 };
 
-export {
+const SVG = {
   commonIcons,
   homeIcons,
   aboutIcons,
@@ -118,3 +118,5 @@ export {
   socialIcons,
   mobileHeaderIcons,
 };
+
+export default SVG;

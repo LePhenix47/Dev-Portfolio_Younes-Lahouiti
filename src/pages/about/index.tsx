@@ -18,6 +18,7 @@ import {
 
 //Variables
 import { diplomas } from "@/react-utils/variables/diplomas.variables";
+import { JPG_IMAGES, PDF_URLS } from "@/react-utils/constants/index.constants";
 /**
  * About me page: `/about`
  */
@@ -128,7 +129,7 @@ export default function About(): JSX.Element {
               </defs>
             </svg>
             <Image
-              src="/profile-pic-2.jpg"
+              src={JPG_IMAGES.PROFILE_PIC_2}
               alt="Profile picture"
               height={1920}
               width={1080}
@@ -165,7 +166,7 @@ export default function About(): JSX.Element {
                 proficient in integrating Figma mockups.
               </p>
               <Link
-                href="/pdf/Younes-Lahouiti_Resume-CV.pdf"
+                href={PDF_URLS.resume}
                 className="link-button about-page__resume-button"
                 target="_blank"
                 download
