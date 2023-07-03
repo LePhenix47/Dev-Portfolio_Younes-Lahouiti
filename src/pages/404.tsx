@@ -4,8 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
-import { log } from "@/react-utils/functions/helper-functions";
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
+import { CanvasComponent } from "@/components/common/common.components";
 
 export default function Error404(): JSX.Element | null {
   const section404Ref = useRef<HTMLElement>(null);

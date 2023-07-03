@@ -1,5 +1,5 @@
 //React
-import CanvasComponent from "@/components/CanvasComponent/CanvasComponent";
+import { CanvasComponent } from "@/components/common/common.components";
 import Head from "next/head";
 import React, { useRef } from "react";
 
