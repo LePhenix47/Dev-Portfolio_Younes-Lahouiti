@@ -46,7 +46,7 @@ import whatsApp from "../../../public/svg/whatsapp-logo.svg";
 //Mobile
 import homeHeader from "../../../public/svg/home-header.svg";
 
-import aboutHeader from "../../../public/svg/about-header.svg";
+import aboutHeader from "../../../public/svg/person-header.svg";
 
 import skillsHeader from "../../../public/svg/skills-header.svg";
 
@@ -73,46 +73,21 @@ import discord from "../../../public/svg/discord-icon.svg";
 
 import codePen from "../../../public/svg/codepen-icon.svg";
 
-const commonIcons = {};
+const commonIcons = { openNewTab, bug, upArrow };
 
-const homeIcons = {};
+const homeIcons = { sendMail, blob };
 
-const aboutIcons = {};
+const aboutIcons = { resume, medal, briefcase, headset };
 
-const skillsIcons = {};
+const skillsIcons = { badgeCheck, calendar };
 
-const servicesIcons = {};
+const servicesIcons = { integration, settings, code, check };
 
-const portfolioIcons = {};
+const portfolioIcons = { search };
 
-const contactIcons = {};
+const contactIcons = { email, slack, whatsApp };
 
-const SVG_ICONS = {
-  openNewTab,
-  bug,
-  upArrow,
-  blob,
-  resume,
-  medal,
-  briefcase,
-  headset,
-  sendMail,
-  badgeCheck,
-  calendar,
-  integration,
-  settings,
-  code,
-  check,
-  search,
-  email,
-  slack,
-  whatsApp,
-  homeHeader,
-  aboutHeader,
-  skillsHeader,
-  servicesHeader,
-  portfolioHeader,
-  contactHeader,
+const socialIcons = {
   youtube,
   twitter,
   linkedIn,
@@ -123,4 +98,23 @@ const SVG_ICONS = {
   codePen,
 };
 
-export default SVG_ICONS;
+const mobileHeaderIcons = {
+  homeHeader,
+  aboutHeader,
+  skillsHeader,
+  servicesHeader,
+  portfolioHeader,
+  contactHeader,
+};
+
+export {
+  commonIcons,
+  homeIcons,
+  aboutIcons,
+  skillsIcons,
+  servicesIcons,
+  portfolioIcons,
+  contactIcons,
+  socialIcons,
+  mobileHeaderIcons,
+};
