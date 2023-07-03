@@ -18,7 +18,7 @@ import {
 
 //Variables
 import { diplomas } from "@/react-utils/variables/diplomas.variables";
-import { JPG_IMAGES, PDF_URLS } from "@/react-utils/constants/index.constants";
+import { JPG_URLS, PDF_URLS } from "@/react-utils/constants/index.constants";
 /**
  * About me page: `/about`
  */
@@ -129,7 +129,7 @@ export default function About(): JSX.Element {
               </defs>
             </svg>
             <Image
-              src={JPG_IMAGES.PROFILE_PIC_2}
+              src={JPG_URLS.PROFILE_PIC_2}
               alt="Profile picture"
               height={1920}
               width={1080}
