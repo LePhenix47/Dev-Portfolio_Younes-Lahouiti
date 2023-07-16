@@ -8,7 +8,6 @@ import Link from "next/link";
 import "../sass/main.scss";
 
 //Components
-import PageLayout from "../components/layout/PageLayout";
 
 //Framer motion library
 import { motion } from "framer-motion";
@@ -30,6 +29,7 @@ import {
   QueryClientProvider as TanStackProvider,
   Hydrate,
 } from "@tanstack/react-query";
+import PageLayout from "@/components/common/layout/PageLayout";
 
 /**
  * Root component where all the pages will pass through

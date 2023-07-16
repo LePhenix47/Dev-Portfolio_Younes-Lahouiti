@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 
 //Utils
-import { formatText } from "@/react-utils/functions/helper-functions";
+import { formatStringCase } from "@/react-utils/functions/helper-functions";
 
 export default function ContactMethodCard({
   icon,
@@ -37,7 +37,7 @@ export default function ContactMethodCard({
           target="_blank"
           className="contact-page__contact-card-link"
         >
-          Drop me a line in my {formatText(platform, "lowercase")}
+          Drop me a line in my {formatStringCase(platform, "lowercase")}
         </a>
       </div>
     </div>

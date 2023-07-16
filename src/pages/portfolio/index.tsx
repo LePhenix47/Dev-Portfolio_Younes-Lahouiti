@@ -18,14 +18,14 @@ import {
 import {
   sortArrayOfObjects,
   filterArrayByString,
-  formatText,
+  formatStringCase,
   formatDateToShort,
 } from "@/react-utils/functions/helper-functions";
 
 import { projectCategories } from "@/react-utils/variables/projects-categories.variables";
 import { projectsMadeType } from "@/react-utils/types/projects.types";
-import { CanvasComponent } from "@/components/common/common.components";
-import { PortfolioProjectCard } from "@/components/portfolio/portfolio-page.components";
+import { CanvasComponent } from "@/components/shared/shared.components";
+import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
 
 //Components
 
@@ -390,7 +390,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
         <div className="portfolio-page__categories-container">
           {/* Categories   */}
           {projectCategories.map((category: string, index: number) => {
-            let lowerCaseCategory = formatText(category, "lowercase");
+            let lowerCaseCategory = formatStringCase(category, "lowercase");
             return (
               <button
                 key={`${category}`}

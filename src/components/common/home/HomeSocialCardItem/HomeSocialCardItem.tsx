@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { formatText } from "@/react-utils/functions/helper-functions";
+import { formatStringCase } from "@/react-utils/functions/helper-functions";
 
 export default function HomeSocialCardItem({
   srcIcon,
@@ -26,7 +26,7 @@ export default function HomeSocialCardItem({
           height={30}
           width={30}
           priority
-          className={`home-page__social-image home-page__social-image-${formatText(
+          className={`home-page__social-image home-page__social-image-${formatStringCase(
             title,
             "lowercase"
           )}`}

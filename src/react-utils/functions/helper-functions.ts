@@ -28,16 +28,29 @@ export const {
   dir,
   dirxml,
 } = console;
-
 /**
- *Function that formats text in 3 cases: lowercase, uppercase and titlecase
+ * **Formats a given string into different cases:**
  *
- * @param string
- * @param option
- * @returns
+ * `lowercase, UPPERCASE, Title Case and Sentence case`
+ *
+ * @param {string} string - The string to format
+ * @param {string} option - The option to use for formatting. Valid options are `"lowercase"`, `"uppercase"`, `"titlecase"`, or `"sentencecase"`
+ *
+ * @returns {string} The formatted string
+ *
+ * @throws {Error} If an invalid option is provided
+ * @throws {TypeError} If either the string or the option parameter is not a string
  */
-export function formatText(string: string, option: string): string | never {
-  let formattedOption: string = option.toLowerCase().trim();
+export function formatStringCase(string: string, option: string): string {
+  const hasInvalidArguments =
+    typeof string !== "string" || typeof option !== "string";
+  if (hasInvalidArguments) {
+    throw new TypeError(
+      `Invalid arguments, expected string and option to be strings, instead got respective types: ${typeof string} and ${typeof option}`
+    );
+  }
+
+  const formattedOption = option.toLowerCase().trim();
 
   switch (formattedOption) {
     case "lowercase": {
@@ -49,19 +62,48 @@ export function formatText(string: string, option: string): string | never {
     }
 
     case "titlecase": {
-      let stringArray = string.split(" ");
-      for (let i = 0; i < stringArray.length; i++) {
-        stringArray[i] =
-          stringArray[i].substring(0, 1).toUpperCase() +
-          stringArray[i].slice(1).toLowerCase();
+      const words = string.split(" ");
+
+      for (let i = 0; i < words.length; i++) {
+        const firstLetter = words[i].charAt(0).toUpperCase();
+
+        const remainingLetters = words[i].slice(1).toLowerCase();
+
+        words[i] = firstLetter + remainingLetters;
       }
-      stringArray = stringArray.concat();
-      return stringArray.toString();
+
+      return words.join(" ");
+    }
+
+    case "sentencecase": {
+      const sentences = string.split(/(?<=[.?!])/);
+
+      for (let i = 0; i < sentences.length; i++) {
+        const sentence = sentences[i];
+
+        const trimmedSentence = sentence.trim();
+
+        const sentenceHasNoWords = trimmedSentence.length === 0;
+        if (sentenceHasNoWords) {
+          sentences[i] = "";
+          continue;
+        }
+
+        // We only make the first letter of the sentence uppercased
+        const firstChar = trimmedSentence.charAt(0).toUpperCase();
+
+        // We only make the rest of the sentence lowercased
+        const restOfSentence = trimmedSentence.slice(1).toLowerCase();
+
+        sentences[i] = firstChar + restOfSentence;
+      }
+
+      return sentences.join(" ");
     }
 
     default: {
       throw new Error(
-        "Formatting text error: unknown option passed in argument"
+        `Formatting text error: Option not available for: ${option}`
       );
     }
   }
@@ -133,7 +175,7 @@ export function splitOnUpperCase(string: string): string {
   let newString: string[] = splitString(string, uppercaseLettersREGEX);
 
   for (let i = 0; i < newString.length; i++) {
-    newString[i] = formatText(newString[i], "lowercase");
+    newString[i] = formatStringCase(newString[i], "lowercase");
   }
 
   let formattedString: string = newString.reduce(

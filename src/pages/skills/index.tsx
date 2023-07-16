@@ -8,8 +8,7 @@ import Head from "next/head";
 import {
   CanvasComponent,
   Timeline,
-} from "@/components/common/common.components";
-import { SkillsCard } from "@/components/skills/skills-page.components";
+} from "@/components/shared/shared.components";
 
 //Variables
 import {
@@ -21,6 +20,7 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
+import { SkillsCard } from "@/components/common/skills/skills-page.components";
 
 export default function Skills(): JSX.Element {
   const skillsPageSectionRef = useRef<HTMLElement>(null);

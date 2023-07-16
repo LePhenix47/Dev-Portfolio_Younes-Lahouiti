@@ -3,21 +3,21 @@ import Head from "next/head";
 import { useRef, useState } from "react";
 
 //Components
-import {
-  ServicesCard,
-  ServicesModalContent,
-} from "@/components/services/services-page.components";
 
 import {
   CanvasComponent,
   ModalWindow,
   Slider,
-} from "@/components/common/common.components";
+} from "@/components/shared/shared.components";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
 
 import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
+import {
+  ServicesCard,
+  ServicesModalContent,
+} from "@/components/common/services/services-page.components";
 
 export default function Services(): JSX.Element | null {
   const servicesPageSectionRef = useRef<HTMLElement>(null);

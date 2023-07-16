@@ -1,110 +1,110 @@
-//Common icons
-import bug from "../../../public/svg/bug.svg";
+// Common icons
+import BUG from "@public/svg/bug.svg";
 
-import openNewTab from "../../../public/svg/open-in-new-tab-icon.svg";
+import OPEN_NEW_TAB from "@public/svg/open-in-new-tab-icon.svg";
 
-import upArrow from "../../../public/svg/arrow.svg";
+import UP_ARROW from "@public/svg/arrow.svg";
 
-//Home
-import sendMail from "../../../public/svg/send.svg";
+// Home
+import SEND_MAIL from "@public/svg/send.svg";
 
-import blob from "../../../public/svg/blob.svg";
+import BLOB from "@public/svg/blob.svg";
 
-//About
-import medal from "../../../public/svg/medal.svg";
+// About
+import MEDAL from "@public/svg/medal.svg";
 
-import briefcase from "../../../public/svg/briefcase.svg";
+import BRIEFCASE from "@public/svg/briefcase.svg";
 
-import headset from "../../../public/svg/headset.svg";
+import HEADSET from "@public/svg/headset.svg";
 
-import resume from "../../../public/svg/files.svg";
+import RESUME from "@public/svg/files.svg";
 
-//Skills
-import badgeCheck from "../../../public/svg/badge-check.svg";
+// Skills
+import BADGE_CHECK from "@public/svg/badge-check.svg";
 
-import calendar from "../../../public/svg/calendar.svg";
+import CALENDAR from "@public/svg/calendar.svg";
 
-//Services
-import integration from "../../../public/svg/integration.svg";
+// Services
+import INTEGRATION from "@public/svg/integration.svg";
 
-import settings from "../../../public/svg/settings.svg";
+import SETTINGS from "@public/svg/settings.svg";
 
-import code from "../../../public/svg/code.svg";
+import CODE from "@public/svg/code.svg";
 
-import check from "../../../public/svg/check.svg";
+import CHECK from "@public/svg/check.svg";
 
-//Portfolio
-import search from "../../../public/svg/magnifying-glass.svg";
+// Portfolio
+import SEARCH from "@public/svg/magnifying-glass.svg";
 
-//Contact
-import email from "../../../public/svg/email.svg";
+// Contact
+import EMAIL from "@public/svg/email.svg";
 
-import slack from "../../../public/svg/slack-logo.svg";
+import SLACK from "@public/svg/slack-logo.svg";
 
-import whatsApp from "../../../public/svg/whatsapp-logo.svg";
+import WHATSAPP from "@public/svg/whatsapp-logo.svg";
 
-//Mobile
-import homeHeader from "../../../public/svg/home-header.svg";
+// Mobile
+import HOME_HEADER from "@public/svg/home-header.svg";
 
-import aboutHeader from "../../../public/svg/person-header.svg";
+import ABOUT_HEADER from "@public/svg/person-header.svg";
 
-import skillsHeader from "../../../public/svg/skills-header.svg";
+import SKILLS_HEADER from "@public/svg/skills-header.svg";
 
-import servicesHeader from "../../../public/svg/briefcase-header.svg";
+import SERVICES_HEADER from "@public/svg/briefcase-header.svg";
 
-import portfolioHeader from "../../../public/svg/image-header.svg";
+import PORTFOLIO_HEADER from "@public/svg/image-header.svg";
 
-import contactHeader from "../../../public/svg/contact-header.svg";
+import CONTACT_HEADER from "@public/svg/contact-header.svg";
 
-//Socials icons
-import youtube from "../../../public/svg/youtube-icon.svg";
+// Social icons
+import YOUTUBE from "@public/svg/youtube-icon.svg";
 
-import twitter from "../../../public/svg/twitter-icon.svg";
+import TWITTER from "@public/svg/twitter-icon.svg";
 
-import linkedIn from "../../../public/svg/linkedin-icon.svg";
+import LINKEDIN from "@public/svg/linkedin-icon.svg";
 
-import gitHub from "../../../public/svg/github-icon.svg";
+import GITHUB from "@public/svg/github-icon.svg";
 
-import stackOverflow from "../../../public/svg/stackoverflow-icon.svg";
+import STACK_OVERFLOW from "@public/svg/stackoverflow-icon.svg";
 
-import npm from "../../../public/svg/npm-icon.svg";
+import NPM from "@public/svg/npm-icon.svg";
 
-import discord from "../../../public/svg/discord-icon.svg";
+import DISCORD from "@public/svg/discord-icon.svg";
 
-import codePen from "../../../public/svg/codepen-icon.svg";
+import CODE_PEN from "@public/svg/codepen-icon.svg";
 
-const commonIcons = { openNewTab, bug, upArrow };
+const commonIcons = { OPEN_NEW_TAB, BUG, UP_ARROW };
 
-const homeIcons = { sendMail, blob };
+const homeIcons = { SEND_MAIL, BLOB };
 
-const aboutIcons = { resume, medal, briefcase, headset };
+const aboutIcons = { RESUME, MEDAL, BRIEFCASE, HEADSET };
 
-const skillsIcons = { badgeCheck, calendar };
+const skillsIcons = { BADGE_CHECK, CALENDAR };
 
-const servicesIcons = { integration, settings, code, check };
+const servicesIcons = { INTEGRATION, SETTINGS, CODE, CHECK };
 
-const portfolioIcons = { search };
+const portfolioIcons = { SEARCH };
 
-const contactIcons = { email, slack, whatsApp };
+const contactIcons = { EMAIL, SLACK, WHATSAPP };
 
 const socialIcons = {
-  youtube,
-  twitter,
-  linkedIn,
-  gitHub,
-  stackOverflow,
-  npm,
-  discord,
-  codePen,
+  YOUTUBE,
+  TWITTER,
+  LINKEDIN,
+  GITHUB,
+  STACK_OVERFLOW,
+  NPM,
+  DISCORD,
+  CODE_PEN,
 };
 
 const mobileHeaderIcons = {
-  homeHeader,
-  aboutHeader,
-  skillsHeader,
-  servicesHeader,
-  portfolioHeader,
-  contactHeader,
+  HOME_HEADER,
+  ABOUT_HEADER,
+  SKILLS_HEADER,
+  SERVICES_HEADER,
+  PORTFOLIO_HEADER,
+  CONTACT_HEADER,
 };
 
 const SVG = {

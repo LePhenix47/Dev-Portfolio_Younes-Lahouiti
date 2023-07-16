@@ -10,15 +10,15 @@ import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables"
 import { useRef } from "react";
 
 //Components
-import { CanvasComponent } from "@/components/common/common.components";
-import {
-  AboutCard,
-  DiplomaCard,
-} from "@/components/about/about-page.components";
+import { CanvasComponent } from "@/components/shared/shared.components";
 
 //Variables
 import { diplomas } from "@/react-utils/variables/diplomas.variables";
 import { JPG_URLS, PDF_URLS } from "@/react-utils/constants/index.constants";
+import {
+  AboutCard,
+  DiplomaCard,
+} from "@/components/common/about/about-page.components";
 /**
  * About me page: `/about`
  */

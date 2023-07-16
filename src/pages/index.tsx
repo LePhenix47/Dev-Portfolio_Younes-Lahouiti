@@ -10,8 +10,8 @@ import Link from "next/link";
 import { socialAccountVariables } from "@/react-utils/variables/social-accounts.variables";
 
 //Components
-import { CanvasComponent } from "@/components/common/common.components";
-import { HomeSocialCardItem } from "@/components/home/home-page.components";
+import { CanvasComponent } from "@/components/shared/shared.components";
+import { HomeSocialCardItem } from "@/components/common/home/home-page.components";
 import { JPG_URLS } from "@/react-utils/constants/index.constants";
 
 export default function Home(): JSX.Element {

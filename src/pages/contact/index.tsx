@@ -7,7 +7,7 @@ import Head from "next/head";
 //Variables
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
 import {
-  formatText,
+  formatStringCase,
   log,
   error,
   testRegExp,
@@ -23,11 +23,11 @@ import { useMutation } from "@tanstack/react-query";
 import {
   BufferLoader,
   CanvasComponent,
-} from "@/components/common/common.components";
+} from "@/components/shared/shared.components";
 import {
   ContactInputLabel,
   ContactMethodCard,
-} from "@/components/contact/contact-page.components";
+} from "@/components/common/contact/contact-page.components";
 
 /**
  * Contact page: `/contact`
@@ -85,11 +85,14 @@ export default function Contact(): JSX.Element {
    */
   function submitForm() {
     //We get their values
-    const firstName: string = formatText(
+    const firstName: string = formatStringCase(
       firstNameRef.current.value,
       "titlecase"
     );
-    const lastName: string = formatText(lastNameRef.current.value, "titlecase");
+    const lastName: string = formatStringCase(
+      lastNameRef.current.value,
+      "titlecase"
+    );
     const email: string = emailRef.current.value;
     const projectIdea: string = textAreaRef.current.value;
 

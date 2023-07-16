@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 
 //Utils
-import { formatText } from "@/react-utils/functions/helper-functions";
+import { formatStringCase } from "@/react-utils/functions/helper-functions";
 import { voidCallback } from "@/react-utils/types/void-callback.type";
 
 export default function ServicesCard({
@@ -37,7 +37,7 @@ export default function ServicesCard({
             callback(e);
             e.preventDefault();
           }}
-          title={`View more about ${formatText(title, "lowercase")}?`}
+          title={`View more about ${formatStringCase(title, "lowercase")}?`}
           data-type={title}
         >
           View more <span className="services-page__card-link-arrow">→</span>
