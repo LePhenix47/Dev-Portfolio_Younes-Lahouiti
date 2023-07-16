@@ -164,7 +164,7 @@ export default function Portfolio(): JSX.Element {
    * changes the select value or the order of the sorting
    */
   useEffect(() => {
-    let sortedData: any[] = sortArrayOfObjects(
+    const sortedData: any[] = sortArrayOfObjects(
       dataToShow,
       selectValue,
       isInReverse
@@ -299,11 +299,11 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               placeholder="Search for a project by their title or date"
               className="portfolio-page__input"
               onInput={(e) => {
-                let valueOfInput: string = e.currentTarget.value.trim();
+                const valueOfInput: string = e.currentTarget.value.trim();
 
                 inputValueRef.current = valueOfInput;
 
-                let valueIsEmpty: boolean = !valueOfInput.length;
+                const valueIsEmpty: boolean = !valueOfInput.length;
 
                 if (valueIsEmpty) {
                   setFilterValue("");
@@ -379,7 +379,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
               onClick={(e) => {
-                let isChecked: boolean = e.currentTarget.checked;
+                const isChecked: boolean = e.currentTarget.checked;
 
                 setIsInReverse(isChecked);
               }}
@@ -390,7 +390,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
         <div className="portfolio-page__categories-container">
           {/* Categories   */}
           {projectCategories.map((category: string, index: number) => {
-            let lowerCaseCategory = formatStringCase(category, "lowercase");
+            const lowerCaseCategory = formatStringCase(category, "lowercase");
             return (
               <button
                 key={`${category}`}
@@ -419,7 +419,7 @@ l73 46 290 -280 c318 -308 622 -606 1109 -1086 177 -174 379 -372 451 -441 71
           {dataToShow.map((project, index: number) => {
             const { title, image, link, date, type } = project;
 
-            let formattedDate = formatDateToShort(date);
+            const formattedDate = formatDateToShort(date);
 
             return (
               <PortfolioProjectCard

@@ -10,13 +10,13 @@ export function isValueArray(value: any): boolean {
 }
 
 /**
- * Creates a new array by copying the contents of the provided array
+ * Creates a new deep copied array of the provided array
  *
  * @param {any} arrayToCopy - The array or list to copy
  *
  * @returns {any[]} - The new array containing the copied elements
  */
-export function getArrayFrom(arrayToCopy: any): any[] {
+export function copyArray(arrayToCopy: any): any[] {
   return Array.from(arrayToCopy);
 }
 
@@ -30,7 +30,7 @@ export function getArrayFrom(arrayToCopy: any): any[] {
  *
  * @returns {any[]} - The updated array after the modifications.
  */
-export function toSplice(
+export function toSpliced(
   originalArray: any[],
   startIndex: number,
   deleteCount: number,

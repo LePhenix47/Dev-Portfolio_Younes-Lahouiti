@@ -19,6 +19,8 @@ import {
   AboutCard,
   DiplomaCard,
 } from "@/components/common/about/about-page.components";
+
+import SVG from "@/react-utils/constants/svg-icons.constants";
 /**
  * About me page: `/about`
  */
@@ -85,6 +87,14 @@ export default function About(): JSX.Element {
         <h2 className="about-page__subtitle">My introduction</h2>
         <section className="about-page__introduction-content">
           <section className="about-page__image-container">
+            <Image
+              src={JPG_URLS.PROFILE_PIC_2}
+              alt="Profile picture"
+              height={1920}
+              width={1080}
+              className="about-page__image"
+              id="image"
+            />
             {/* Filter SVG to make the noise effect on my profile picture         */}
             <svg className="svg-filter hide">
               <defs>
@@ -129,14 +139,6 @@ export default function About(): JSX.Element {
                 </filter>
               </defs>
             </svg>
-            <Image
-              src={JPG_URLS.PROFILE_PIC_2}
-              alt="Profile picture"
-              height={1920}
-              width={1080}
-              className="about-page__image"
-              id="image"
-            />
           </section>
           <section className="about-page__text-cards-container">
             <div className="about-page__cards">
@@ -165,7 +167,7 @@ export default function About(): JSX.Element {
                   <span itemProp="age">{myAgeInYears}</span> years old Italian
                   full-stack developer
                 </strong>{" "}
-                with expertise in developing web applications,{" "}
+                with expertise in <strong>developing web applications</strong>,{" "}
                 <em>including the integration of UI/UX interfaces</em>. While my
                 primary focus is on{" "}
                 <em>developing the functionality of the applications</em>, I am

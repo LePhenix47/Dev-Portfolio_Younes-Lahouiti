@@ -246,7 +246,7 @@ export function toPercent(number: number): string {
  * @param number 
  * @returns 
  */
-export function formatSignificantDigitsNumber(
+export function formatPrecisionNumber(
   number: number,
   locale?: string | undefined
 ): string {

@@ -14,7 +14,7 @@
  * @param {number} number
  * @returns
  */
-export function formatSignificantDigitsNumber(
+export function formatPrecisionNumber(
   number: number,
   locale?: string | undefined
 ): string {
@@ -71,13 +71,13 @@ export function formatDate(
     unformattedDateObject instanceof Date
   );
   if (dateIsNotADateObject) {
-    throw `"${unformattedDateObject}" is not a date object`;
+    throw TypeError(`"${unformattedDateObject}" is not a date object`);
   }
 
   /**
    * We create the time formatter with the internalization web API
    */
-  let dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(
+  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(
     locale,
     options
   );
@@ -129,7 +129,7 @@ export function formatRelativeTime(
    */
   const relativeDirection: number = diffInSeconds >= 0 ? 1 : -1;
 
-  let { unit, value } = getRelativeTimePeriod(diffInSeconds);
+  const { unit, value } = getRelativeTimePeriod(diffInSeconds);
 
   return formatter.format(relativeDirection * value, unit);
 }
@@ -192,7 +192,7 @@ export function getRelativeTimePeriod(dateInSeconds: number): {
   const isUnderAWeek: boolean =
     !isUnderADay && dateInSeconds < ONE_WEEK_IN_SECONDS;
 
-  // Check if the input date is under a month
+  // Check if the input date is under a months
   const isUnderAMonth: boolean =
     !isUnderAWeek && dateInSeconds < ONE_MONTH_IN_SECONDS;
 
@@ -204,27 +204,27 @@ export function getRelativeTimePeriod(dateInSeconds: number): {
     return { value: dateInSeconds, unit: "seconds" };
   } else if (isUnderAnHour) {
     //We get the amount of minutes
-    let minutes = Math.floor(dateInSeconds / ONE_MINUTE_IN_SECONDS);
+    const minutes = Math.floor(dateInSeconds / ONE_MINUTE_IN_SECONDS);
     return { value: minutes, unit: "minutes" };
   } else if (isUnderADay) {
     //We get the amount of hours
-    let hours = Math.floor(dateInSeconds / ONE_HOUR_IN_SECONDS);
+    const hours = Math.floor(dateInSeconds / ONE_HOUR_IN_SECONDS);
     return { value: hours, unit: "hours" };
   } else if (isUnderAWeek) {
     //We get the amount of days
-    let days = Math.floor(dateInSeconds / ONE_DAY_IN_SECONDS);
+    const days = Math.floor(dateInSeconds / ONE_DAY_IN_SECONDS);
     return { value: days, unit: "days" };
   } else if (isUnderAMonth) {
     //We get the amount of weeks
-    let weeks = Math.floor(dateInSeconds / ONE_WEEK_IN_SECONDS);
+    const weeks = Math.floor(dateInSeconds / ONE_WEEK_IN_SECONDS);
     return { value: weeks, unit: "weeks" };
   } else if (isUnderAYear) {
     //We get the amount of months
-    let months = Math.floor(dateInSeconds / ONE_MONTH_IN_SECONDS);
+    const months = Math.floor(dateInSeconds / ONE_MONTH_IN_SECONDS);
     return { value: months, unit: "months" };
   } else {
     //We get the amount of years
-    let years = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
+    const years = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
     return { value: years, unit: "years" };
   }
 }

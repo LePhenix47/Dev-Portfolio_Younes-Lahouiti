@@ -70,7 +70,9 @@ export default function Home(): JSX.Element {
               Hi, I&apos;m Younes Lahouiti{" "}
               <span className="home-page__title-hand">🖐</span>
             </h1>
-            <h2 className="home-page__subtitle">Fullstack developer</h2>
+            <h2 className="home-page__subtitle">
+              <em>Fullstack developer</em>
+            </h2>
             <p
               className="home-page__paragraph"
               itemScope

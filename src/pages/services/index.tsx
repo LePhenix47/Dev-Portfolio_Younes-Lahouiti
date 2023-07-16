@@ -45,7 +45,7 @@ export default function Services(): JSX.Element | null {
     /**
      * We get the details of the image clicked
      */
-    let dataObject: any = offeredServices.filter((serviceOffered) => {
+    const dataObject: any = offeredServices.find((serviceOffered) => {
       const { title } = serviceOffered;
       return dataType === title;
     });
@@ -53,12 +53,12 @@ export default function Services(): JSX.Element | null {
     /**
      * We destructure the object stored inside the array returned by the `filter()` function
      */
-    const { title, description, qualities } = dataObject[0];
+    const { title, description, qualities } = dataObject;
 
     /**
      * Set the JSX content for the window modal
      */
-    let content = (
+    const content = (
       <ServicesModalContent
         title={title}
         description={description}

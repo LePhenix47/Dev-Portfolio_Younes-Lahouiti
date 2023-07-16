@@ -109,10 +109,6 @@ export default function Contact(): JSX.Element {
     const formInputsAreValid: boolean =
       namesInputsAreValid && emailInputIsValid && projectTextAreaIsValid;
 
-    log({ formInputsAreValid });
-
-    log({ firstName, lastName, email, projectIdea });
-
     //If they are we send the form, otherwise we do nothing
     if (formInputsAreValid) {
       emailMutation.mutate({ firstName, lastName, email, projectIdea });
@@ -147,7 +143,7 @@ export default function Contact(): JSX.Element {
     };
 
     try {
-      let sendEmail: EmailJSResponseStatus = await send(
+      const sendEmail: EmailJSResponseStatus = await send(
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams,
