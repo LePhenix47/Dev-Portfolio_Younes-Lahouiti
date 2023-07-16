@@ -35,7 +35,8 @@ export default function About(): JSX.Element {
   const currentDate: number = new Date().getTime();
 
   /**
-   * Milliseconds per year : 1 second * 1 min * 1 hour * 1 day * 1 year (including leap years)
+   * Milliseconds per year : `1s in ms` × `1min in s` × `1hr in mins` × `1 day in hrs` × `1 year in days`
+  (including leap years)
    */
   const MILLISECONDS_IN_A_YEAR: number = 1000 * 60 * 60 * 24 * 365.25;
 
@@ -159,12 +160,18 @@ export default function About(): JSX.Element {
             </div>
             <div className="about-page__text">
               <p className="about-page__description">
-                I&apos;m a {myAgeInYears} years old Italian full-stack developer
-                with expertise in developing web applications, including the
-                integration of UI/UX interface. While my primary focus is on
-                developing the functionality of the applications, I am also
-                proficient in integrating Figma mockups.
+                I&apos;m a{" "}
+                <strong>
+                  <span itemProp="age">{myAgeInYears}</span> years old Italian
+                  full-stack developer
+                </strong>{" "}
+                with expertise in developing web applications,{" "}
+                <em>including the integration of UI/UX interfaces</em>. While my
+                primary focus is on{" "}
+                <em>developing the functionality of the applications</em>, I am
+                also <em>proficient in integrating Figma mockups</em>.
               </p>
+
               <Link
                 href={PDF_URLS.resume}
                 className="link-button about-page__resume-button"

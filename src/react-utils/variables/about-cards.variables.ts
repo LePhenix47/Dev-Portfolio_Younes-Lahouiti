@@ -30,17 +30,17 @@ const amountOfExperience: number = getAmountOfExperience();
  */
 export const aboutCardsValues: aboutCardsTypes = [
   {
-    svgIcon: SVG.aboutIcons.medal,
+    svgIcon: SVG.aboutIcons.MEDAL,
     title: "Experience",
     description: `+${amountOfExperience} year`,
   },
   {
-    svgIcon: SVG.aboutIcons.briefcase,
+    svgIcon: SVG.aboutIcons.BRIEFCASE,
     title: "Completed",
     description: "20+ Projects",
   },
   {
-    svgIcon: SVG.aboutIcons.headset,
+    svgIcon: SVG.aboutIcons.HEADSET,
     title: "Support",
     description: "7/7 Days",
   },

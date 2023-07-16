@@ -71,12 +71,21 @@ export default function Home(): JSX.Element {
               <span className="home-page__title-hand">🖐</span>
             </h1>
             <h2 className="home-page__subtitle">Fullstack developer</h2>
-            <p className="home-page__paragraph">
-              I&apos;m Younes Lahouiti, a web developer with a passion for
-              creating beautiful and functional websites. I have strong
-              problem-solving skills and a keen eye for detail, allowing me to
-              create websites that look great and perform well. Let&apos;s bring
-              your vision to life together!
+            <p
+              className="home-page__paragraph"
+              itemScope
+              itemType="http://schema.org/Person"
+            >
+              I&apos;m{" "}
+              <strong>
+                <span itemProp="name">Younes Lahouiti</span>
+              </strong>
+              , a <strong>web developer</strong> with a passion for creating
+              <em>beautiful and functional websites</em>. With strong
+              problem-solving skills and a keen eye for detail, I can create
+              websites that not only <em>look great</em>, but also{" "}
+              <em>perform well</em>. Let&apos;s bring your vision to life
+              together!
             </p>
 
             <Link href="/contact" className="link-button">
