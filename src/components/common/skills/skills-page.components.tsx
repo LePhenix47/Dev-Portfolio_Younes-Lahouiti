@@ -2,4 +2,6 @@ import SkillCardList from "./SkillCardList/SkillCardList";
 
 import SkillsCard from "./SkillsCard/SkillsCard";
 
-export { SkillCardList, SkillsCard };
+import Timeline from "./Timeline/Timeline";
+
+export { SkillCardList, SkillsCard, Timeline };

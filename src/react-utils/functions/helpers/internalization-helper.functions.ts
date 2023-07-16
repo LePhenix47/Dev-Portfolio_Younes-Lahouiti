@@ -1,14 +1,16 @@
 /**
  * Formats a number by separating every thousand with a format from the user's locale.
- * If no locale is specified, it uses the default locale of the user's browser.
+ *
+ * *If no locale is specified, it uses the **default locale of the user's browser**.*
  *
  *  *example*:
- * - The user lives in Italy and we have:
- * `const number = 1_930 → returns "1.930"`
+ * `const number = formatPrecisionNumber(1_930)`
  *
- * - If they lived in the US and we have:
+ * - If the user lived in Italy:
+ *  `→ returns "1.930"`
  *
- *`const number = 1_930 → returns "1,930"`
+ * - If the user lived in the US:
+ *  `→ returns "1,930"`
  *
  *
  * @param {number} number
@@ -16,8 +18,8 @@
  */
 export function formatPrecisionNumber(
   number: number,
-  locale?: string | undefined
-): string {
+  locale: string | undefined = undefined
+) {
   const formatter: Intl.NumberFormat = new Intl.NumberFormat(locale, {
     maximumSignificantDigits: 3,
   });
@@ -120,7 +122,7 @@ export function formatRelativeTime(
   const now: Date = new Date();
 
   const diffInSeconds: number = Math.round(
-    (relativeDateInput.getTime() - now.getTime()) / 1000
+    (relativeDateInput.getTime() - now.getTime()) / 1_000
   );
 
   /**

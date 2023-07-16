@@ -5,10 +5,7 @@ import { useRef, useState } from "react";
 import Head from "next/head";
 
 //Components
-import {
-  CanvasComponent,
-  Timeline,
-} from "@/components/shared/shared.components";
+import { CanvasComponent } from "@/components/shared/shared.components";
 
 //Variables
 import {
@@ -20,7 +17,10 @@ import {
   educationTimeline,
   experienceTimeline,
 } from "@/react-utils/variables/education-experience.variables";
-import { SkillsCard } from "@/components/common/skills/skills-page.components";
+import {
+  SkillsCard,
+  Timeline,
+} from "@/components/common/skills/skills-page.components";
 
 export default function Skills(): JSX.Element {
   const skillsPageSectionRef = useRef<HTMLElement>(null);

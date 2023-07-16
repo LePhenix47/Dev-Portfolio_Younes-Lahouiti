@@ -1,33 +1,4 @@
 /**
- * Formats a number by separating every thousand with a format from the user's locale.
- *
- * *If no locale is specified, it uses the **default locale of the user's browser**.*
- *
- *  *example*:
- * `const number = formatPrecisionNumber(1_930)`
- *
- * - If the user lived in Italy:
- *  `→ returns "1.930"`
- *
- * - If the user lived in the US:
- *  `→ returns "1,930"`
- *
- *
- * @param {number} number
- * @returns
- */
-export function formatPrecisionNumber(
-  number: number,
-  locale: string | undefined = undefined
-) {
-  const formatter: Intl.NumberFormat = new Intl.NumberFormat(locale, {
-    maximumSignificantDigits: 3,
-  });
-
-  return formatter.format(number);
-}
-
-/**
  * Generates a random number within a specified range.
  * @param {number} min - The minimum value of the range.
  * @param {number} max - The maximum value of the range.

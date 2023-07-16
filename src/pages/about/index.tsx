@@ -20,14 +20,13 @@ import {
   DiplomaCard,
 } from "@/components/common/about/about-page.components";
 
-import SVG from "@/react-utils/constants/svg-icons.constants";
 /**
  * About me page: `/about`
  */
 export default function About(): JSX.Element {
   const aboutPageSectionRef = useRef<HTMLElement>(null);
   /**
-   * Year of my birth
+   * My date of birth: June 13th 2002
    */
   const dateOfBirth: number = new Date("06/13/2002").getTime();
 

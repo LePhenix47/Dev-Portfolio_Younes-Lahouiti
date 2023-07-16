@@ -324,7 +324,7 @@ export function formatDate(
 /**
  * Function that formats a date under this format:
  * ```js
- * "[Day], [Month] [number day of month], [Year]"
+ * "Jan 26th 2022"
  * ```
  * @param unformattedDate
  */
@@ -332,7 +332,7 @@ export function formatDateToShort(unformattedDateObject: Date) {
   const dateFormatOptions: object = { dateStyle: "full", timeStyle: "short" };
 
   /**
-   * Will return a stirng under this format:
+   * Will return a string under this format:
    *
    * ```js
    * "[Day], [Month] [number day of month], [Year] at [hours in AM/PM]"
@@ -370,7 +370,7 @@ export function formatDateToShort(unformattedDateObject: Date) {
 
   unformattedMonth = splitString(unformattedMonth, " ")[0];
 
-  let formattedDay = addNumberOrdinalSuffix(unformattedNumericDay);
+  let formattedDay = getOrdinalSuffix(unformattedNumericDay);
   let formattedMonth = unformattedMonth.substring(0, 3);
 
   //Gets the year
@@ -386,11 +386,11 @@ export function formatDateToShort(unformattedDateObject: Date) {
  *
  *@returns {string} The formatted string.
  */
-export function addNumberOrdinalSuffix(number: number): string {
+export function getOrdinalSuffix(number: number): string {
   const canNotAddSuffix: boolean = number < 0 || typeof number !== "number";
 
   if (canNotAddSuffix) {
-    throw new Error("Cannot add suffix to the value passed in argument");
+    throw new TypeError("Cannot add suffix to the value passed in argument");
   }
 
   const numberIsOverTenButUnderFourteen: boolean = number > 10 && number < 14;
@@ -402,17 +402,22 @@ export function addNumberOrdinalSuffix(number: number): string {
   let suffix: string;
 
   switch (lastDigit) {
-    case "1":
+    case "1": {
       suffix = "st";
       break;
-    case "2":
+    }
+    case "2": {
       suffix = "nd";
       break;
-    case "3":
+    }
+    case "3": {
       suffix = "rd";
       break;
-    default:
+    }
+    default: {
       suffix = "th";
+      break;
+    }
   }
 
   return `${number}${suffix}`;

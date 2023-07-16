@@ -71,7 +71,7 @@ export function getObjectEntries(object: object): any[] {
  *
  * @returns {Array<object>|null} A new array of objects with the updated object or null if the object was not found.
  */
-export function updateArrayOfObjectByProp(
+export function updatePropertyOfObjectArray(
   arrayOfObjects: Array<object>,
   property: string,
   newObject: object

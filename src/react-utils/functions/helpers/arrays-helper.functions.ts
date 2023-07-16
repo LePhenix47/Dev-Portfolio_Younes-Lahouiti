@@ -1,11 +1,11 @@
 /**
- * Checks if the provided value is an array.
+ * Checks if the provided argument value is an array.
  *
  * @param {any} value - The value to check.
  *
  * @returns {boolean} - True if the value is an array, false otherwise.
  */
-export function isValueArray(value: any): boolean {
+export function checkIfArray(value: any): boolean {
   return Array.isArray(value);
 }
 

@@ -7,17 +7,18 @@ import { useRef, useState } from "react";
 import {
   CanvasComponent,
   ModalWindow,
-  Slider,
 } from "@/components/shared/shared.components";
+
+import {
+  ServicesCard,
+  ServicesModalContent,
+  Slider,
+} from "@/components/common/services/services-page.components";
 
 //Utils
 import { offeredServices } from "@/react-utils/variables/services.variables";
 
 import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
-import {
-  ServicesCard,
-  ServicesModalContent,
-} from "@/components/common/services/services-page.components";
 
 export default function Services(): JSX.Element | null {
   const servicesPageSectionRef = useRef<HTMLElement>(null);
