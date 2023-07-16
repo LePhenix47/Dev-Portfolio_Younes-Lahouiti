@@ -1,6 +1,17 @@
 import { getRandomNumber } from "./numbers-helper.functions";
 
 /**
+ * Copies an object (or array though using the `copyArray` function is better)
+ * without using their reference by using the `structuredClone` function
+ *
+ * @param {object | array} objectOrArray Object or array to copy
+ * @returns {object | array} A deep copied object
+ */
+export function copyObject(objectOrArray: any[]): any[] {
+  return structuredClone(objectOrArray);
+}
+
+/**
  * Retrieves the values of an object inside an array.
  *
  * @param {object} object The object to retrieve values from.
@@ -120,7 +131,9 @@ export function getRandomPropertyFromObject(object: object): string {
   const isNotAnObject: boolean =
     typeof object !== "object" || Array.isArray(object);
   if (isNotAnObject) {
-    throw new Error("Unexpected argument value passed, value is not an object");
+    throw new TypeError(
+      "Unexpected argument value passed, value is not an object"
+    );
   }
 
   const properties: string[] = getObjectProperties(object);

@@ -193,3 +193,24 @@ export function getOrdinalSuffix(number: number): string {
     }
   }
 }
+
+/**
+ *Function that transforms date strings in this format:
+ * - `dd/mm/yyyy`
+ *
+ *
+ * Into this format:
+ * - `mm/dd/yyyy`
+ *
+ *
+ * @param {string} dateString
+ * @returns {string} New date in the American format
+ */
+export function invertDayAndMonth(dateString: string): string {
+  const splittedDate: string[] = splitString(dateString, "/");
+  const day: string = splittedDate[0];
+  const month: string = splittedDate[1];
+  const year: string = splittedDate[2];
+
+  return `${month}/${day}/${year}`;
+}
