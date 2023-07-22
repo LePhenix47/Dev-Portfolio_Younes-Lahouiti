@@ -94,6 +94,7 @@ export default function ContactInputLabel({
             setIsInputValid(inputIsValid);
 
             let inputValueIsEmpty = !reference.current?.value.length;
+            setIsEmpty(inputValueIsEmpty);
 
             if (inputValueIsEmpty) {
               setIsEmpty(true);

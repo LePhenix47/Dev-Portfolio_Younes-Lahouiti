@@ -1,4 +1,4 @@
-export default function NoiseFilter() {
+export default function NoiseFilter({ imageId }: { imageId: string }) {
   return (
     <svg className="svg-filter hide">
       <defs>
@@ -19,7 +19,7 @@ export default function NoiseFilter() {
               values="0;100;0"
               dur="1s"
               repeatCount="2"
-              begin="image.mouseenter"
+              begin={`${imageId}.mouseenter`}
             />
           </feTurbulence>
           {/*
@@ -27,7 +27,7 @@ export default function NoiseFilter() {
               https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap               */}
           <feDisplacementMap
             //Image we want to apply the effect to
-            in={`SourceGraphic`}
+            in="SourceGraphic"
             //Name of the result effect itself
             in2="static-effect"
             scale={1}
@@ -37,7 +37,7 @@ export default function NoiseFilter() {
               values="0;40;30;0"
               dur="1s"
               repeatCount="2"
-              begin="image.mouseenter"
+              begin={`${imageId}.mouseenter`}
             />
           </feDisplacementMap>
         </filter>

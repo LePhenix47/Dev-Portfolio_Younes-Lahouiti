@@ -30,6 +30,7 @@ import {
   Hydrate,
 } from "@tanstack/react-query";
 import PageLayout from "@/components/common/layout/PageLayout";
+import { UpArrowIcon } from "@/components/shared/icons/icons-index.components";
 
 /**
  * Root component where all the pages will pass through
@@ -68,16 +69,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
               }`}
               target="_top"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="currentColor"
-              >
-                <path d="M17 10c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l5 5c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
-                <path d="M7 10c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z" />
-                <path d="M12 21c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1s1 .4 1 1v16c0 .6-.4 1-1 1z" />
-              </svg>
+              <UpArrowIcon width={24} height={24} fill={"currentColor"} />
             </Link>
             <motion.div
               key={router.route}

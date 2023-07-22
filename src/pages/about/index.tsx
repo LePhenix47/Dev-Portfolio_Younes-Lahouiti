@@ -93,13 +93,13 @@ export default function About(): JSX.Element {
             <Image
               src={JPG_URLS.PROFILE_PIC_2}
               alt="Profile picture"
-              height={1920}
-              width={1080}
+              height={1_920}
+              width={1_080}
               className="about-page__image"
               id={imageId}
             />
             {/* Filter SVG to make the noise effect on my profile picture         */}
-            <NoiseFilter />
+            <NoiseFilter imageId={imageId} />
           </section>
           <section className="about-page__text-cards-container">
             <div className="about-page__cards">

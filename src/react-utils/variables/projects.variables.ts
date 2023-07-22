@@ -315,7 +315,7 @@ export const personalProjects: projectsMadeType = [
  */
 export const professionalProjects: projectsMadeType = [
   {
-    title: "Jenee React Native mobile app",
+    title: "Jenee React Native app (mobile + web)",
     image: PNG_IMAGES.JENEE,
     link: "",
     type: "professional",

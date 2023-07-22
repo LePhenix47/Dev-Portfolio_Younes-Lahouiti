@@ -28,7 +28,7 @@ import {
   ContactInputLabel,
   ContactMethodCard,
 } from "@/components/common/contact/contact-page.components";
-import { SendMailIcon } from "@/components/shared/icons/icons-index.components";
+import { PaperPlaneIcon } from "@/components/shared/icons/icons-index.components";
 
 /**
  * Contact page: `/contact`
@@ -400,7 +400,7 @@ export default function Contact(): JSX.Element {
               className="link-button contact-page__send-form-button"
             >
               Hit me up!
-              <SendMailIcon width={24} height={24} fill={"currentColor"} />
+              <PaperPlaneIcon width={24} height={24} fill={"currentColor"} />
             </button>
 
             {emailMutation.isIdle && null}

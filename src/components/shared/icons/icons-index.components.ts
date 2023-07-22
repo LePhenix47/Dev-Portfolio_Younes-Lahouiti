@@ -1,4 +1,4 @@
-import SendMailIcon from "./SendMailIcon/SendMailIcon";
+import PaperPlaneIcon from "./PaperPlaneIcon/PaperPlaneIcon";
 import ResumeIcon from "./ResumeIcon/ResumeIcon";
 import BlobIcon from "./BlobIcon/BlobIcon";
 import OpenLinkIcon from "./OpenLinkIcon/OpenLinkIcon";
@@ -11,7 +11,7 @@ import RoundCheckIcon from "./RoundCheckIcon/RoundCheckIcon";
 import RoundExclamationIcon from "./RoundExclamationIcon/RoundExclamationIcon";
 
 export {
-  SendMailIcon,
+  PaperPlaneIcon,
   ResumeIcon,
   BlobIcon,
   OpenLinkIcon,

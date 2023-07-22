@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SendMailIcon({
+export default function PaperPlaneIcon({
   width,
   height,
   fill,

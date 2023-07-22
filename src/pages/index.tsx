@@ -15,7 +15,7 @@ import { HomeSocialCardItem } from "@/components/common/home/home-page.component
 import { JPG_URLS } from "@/react-utils/constants/index.constants";
 import {
   BlobIcon,
-  SendMailIcon,
+  PaperPlaneIcon,
 } from "@/components/shared/icons/icons-index.components";
 
 export default function Home(): JSX.Element {
@@ -96,7 +96,7 @@ export default function Home(): JSX.Element {
 
             <Link href="/contact" className="link-button">
               Hit me up!
-              <SendMailIcon width={24} height={24} fill={"currentColor"} />
+              <PaperPlaneIcon width={24} height={24} fill={"currentColor"} />
             </Link>
           </div>
           <div className="home-page__blob">
