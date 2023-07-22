@@ -301,6 +301,13 @@ export const personalProjects: projectsMadeType = [
     type: "personal",
     date: new Date("06/10/2023"),
   },
+  {
+    title: "React Native test app",
+    image: PNG_IMAGES.REACT_NATIVE_APP,
+    link: "https://github.com/LePhenix47/react-native-test",
+    type: "personal",
+    date: new Date("06/29/2023"),
+  },
 ];
 
 /**

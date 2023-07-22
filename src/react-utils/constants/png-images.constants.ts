@@ -44,6 +44,7 @@ import PAINTBRUSH from "@public/png/Paintbrush.png";
 import DRAGANDDROP from "@public/png/Drag'n'drop.png";
 import VIDEO_COLOR_TEST_1 from "@public/png/Video color replacer test.png";
 import COLOR_MODEL_CONVERSION from "@public/png/Color model conversion.png";
+import REACT_NATIVE_APP from "@public/png/React Native app icon.png";
 
 //Professional
 import CALIFORNIA_GYM from "@public/png/californie gym.png";
@@ -105,6 +106,7 @@ const PERSONAL_PROJECTS = {
   DRAGANDDROP,
   VIDEO_COLOR_TEST_1,
   COLOR_MODEL_CONVERSION,
+  REACT_NATIVE_APP,
 };
 
 const PROFESSIONAL_PROJECTS = {
