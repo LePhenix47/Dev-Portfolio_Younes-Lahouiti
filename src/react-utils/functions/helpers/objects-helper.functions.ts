@@ -156,16 +156,20 @@ export function areObjectsEqual(
   obj1: Record<string, unknown>,
   obj2: Record<string, unknown>
 ): boolean {
+  const argumentsAreFalsy: boolean = !obj1 || !obj2;
+
+  const doNotHaveObjectType: boolean =
+    typeof obj1 !== "object" || typeof obj2 !== "object";
+
+  const areArrays: boolean = Array.isArray(obj1) || Array.isArray(obj2);
+
   const argumentsAreNotObjects: boolean =
-    typeof obj1 !== "object" ||
-    obj1 === null ||
-    Array.isArray(obj1) ||
-    typeof obj2 !== "object" ||
-    obj2 === null ||
-    Array.isArray(obj2);
+    areArrays || doNotHaveObjectType || argumentsAreFalsy;
   if (argumentsAreNotObjects) {
+    const typeObj1 = `${typeof obj1} ${getPrototypeOfValue(obj1)}`;
+    const typeObj2 = `${typeof obj2} ${getPrototypeOfValue(obj2)}`;
     throw new Error(
-      `Invalid input, expected both arguments to be objects, instead got ${typeof obj1} and ${typeof obj2}`
+      `Invalid input, expected both arguments to be objects, instead got ${typeObj1} and ${typeObj2}`
     );
   }
 
@@ -193,6 +197,37 @@ export function areObjectsEqual(
   return true;
 }
 
+/**
+ * Gets the prototype type of a value.
+ *
+ * @param {*} value - The value to get the prototype type from.
+ * @returns {string} - The prototype type of the value.
+ *
+ * @example
+ * const array = [1, 2, 3];
+ * const object = { name: 'John', age: 30 };
+ *
+ * console.log(getPrototypeOfValue(array)); // Output: "Array"
+ * console.log(getPrototypeOfValue(object)); // Output: "Object"
+ */
+export function getPrototypeOfValue(value: any): any {
+  return Object.prototype.toString.call(value).slice(8, -1);
+}
+
 /*
- In 2024, we will have the Object.groupBy() method 
+ In 2024, we will have the `Object.groupBy()` method :
+
+ const array = [1, 2, 3, 4];
+
+
+ const res =  Object.groupBy(array, (value, index) =>{
+    return value % 2 === 0 ? "even" : "odd";
+ })
+
+ console.log(res); 
+→ {
+    even: [2, 4],
+    odd: [1, 3]
+  }
+ 
 */
