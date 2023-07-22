@@ -9,6 +9,7 @@ import {
 } from "@/react-utils/functions/helper-functions";
 //Components
 import SliderCard from "../SliderCard/SliderCard";
+import { UpArrowIcon } from "@/components/shared/icons/icons-index.components";
 
 export default function Slider({
   sliderCards,
@@ -18,8 +19,8 @@ export default function Slider({
   cardToBeShown: number;
 }): JSX.Element {
   //Boolean values to buffer the component
-  let cardsToBeShownOverflow: boolean = cardToBeShown > sliderCards.length;
-  let cardsToBeShownUnderflow: boolean = cardToBeShown < 0;
+  const cardsToBeShownOverflow: boolean = cardToBeShown > sliderCards.length;
+  const cardsToBeShownUnderflow: boolean = cardToBeShown < 0;
 
   if (cardsToBeShownOverflow) {
     cardToBeShown = sliderCards.length;
@@ -50,7 +51,7 @@ export default function Slider({
    *
    * Reference for the card width and gaps between them
    *
-   * Does not change it's memory adress with the useRef hook
+   * Does not change it's memory address with the `useRef` hook
    */
   const cardInfosRef: React.MutableRefObject<any> = useRef<any>({});
 
@@ -84,7 +85,7 @@ export default function Slider({
   function goToPreviousIndex(): void {
     let newIndex: number = currentIndex - 1;
 
-    let indexUnderflows: boolean = newIndex < 0;
+    const indexUnderflows: boolean = newIndex < 0;
 
     if (indexUnderflows) {
       newIndex = cardToBeShown - 1;
@@ -100,7 +101,7 @@ export default function Slider({
   function goToNextIndex(): void {
     let newIndex: number = currentIndex + 1;
 
-    let indexOverflows: boolean = newIndex > cardToBeShown - 1;
+    const indexOverflows: boolean = newIndex > cardToBeShown - 1;
 
     if (indexOverflows) {
       newIndex = 0;
@@ -115,38 +116,20 @@ export default function Slider({
         className="slider__button slider__button--left"
         onClick={goToPreviousIndex}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-        >
-          <path d="M17 10c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l5 5c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z"></path>
-          <path d="M7 10c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z"></path>
-          <path d="M12 21c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1s1 .4 1 1v16c0 .6-.4 1-1 1z"></path>
-        </svg>
+        <UpArrowIcon width={24} height={24} fill={"currentColor"} />
       </button>
       <button
         type="button"
         className="slider__button slider__button--right"
         onClick={goToNextIndex}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-        >
-          <path d="M17 10c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l5 5c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z"></path>
-          <path d="M7 10c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z"></path>
-          <path d="M12 21c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1s1 .4 1 1v16c0 .6-.4 1-1 1z"></path>
-        </svg>
+        <UpArrowIcon width={24} height={24} fill={"currentColor"} />
       </button>
       <section className="slider__container" style={axisXMovement}>
         {sliderCards.map((card, index: number) => {
-          let cardShouldBeShown: boolean = index + 1 <= cardToBeShown;
+          const cardShouldNotBeShown: boolean = index + 1 > cardToBeShown;
 
-          if (!cardShouldBeShown) {
+          if (cardShouldNotBeShown) {
             return null;
           }
           const { image, name, description } = card;
@@ -163,16 +146,16 @@ export default function Slider({
       </section>
       <section className="slider__indexation-container">
         {sliderCards.map((card, index: number) => {
-          let buttonShouldBeShown: boolean = index + 1 <= cardToBeShown;
+          const buttonShouldNotBeShown: boolean = index + 1 > cardToBeShown;
 
-          if (!buttonShouldBeShown) {
+          if (buttonShouldNotBeShown) {
             return null;
           }
           return (
             <button
               type="button"
               className={`slider__index ${
-                currentIndex === index ? "slider__index--active" : ""
+                currentIndex === index && "slider__index--active"
               }`}
               key={`${card}-${index}`}
               onClick={() => {

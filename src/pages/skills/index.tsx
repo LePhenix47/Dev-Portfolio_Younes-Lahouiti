@@ -91,7 +91,7 @@ export default function Skills(): JSX.Element {
           <button
             type="button"
             className={`skills-page__qualifications-button ${
-              !isRotated ? "skills-page__qualifications-button--active" : ""
+              !isRotated && "skills-page__qualifications-button--active"
             }`}
             onClick={() => {
               setIsRotated(false);
@@ -103,7 +103,7 @@ export default function Skills(): JSX.Element {
           <button
             type="button"
             className={`skills-page__qualifications-button ${
-              !!isRotated ? "skills-page__qualifications-button--active" : ""
+              isRotated && "skills-page__qualifications-button--active"
             }`}
             onClick={() => {
               setIsRotated(true);
@@ -117,18 +117,14 @@ export default function Skills(): JSX.Element {
           <div className={`skills-page__qualifications-content`}>
             <div
               className={`skills-page__qualifications-education ${
-                !!isRotated
-                  ? "skills-page__qualifications-education--active"
-                  : ""
+                isRotated && "skills-page__qualifications-education--active"
               }`}
             >
               <Timeline arrayOfTimeLines={educationTimeline} />
             </div>
             <div
               className={`skills-page__qualifications-experience  ${
-                !isRotated
-                  ? "skills-page__qualifications-experience--active"
-                  : ""
+                !isRotated && "skills-page__qualifications-experience--active"
               }`}
             >
               <Timeline arrayOfTimeLines={experienceTimeline} reverse />
