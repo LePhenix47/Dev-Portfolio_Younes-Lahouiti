@@ -1,5 +1,5 @@
 import { LineEffect } from "@/react-utils/classes/line-effect.class";
-import { error } from "@/react-utils/functions/helpers/string-helper.functions";
+import { error } from "@/react-utils/functions/helpers/console-helper.functions";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
