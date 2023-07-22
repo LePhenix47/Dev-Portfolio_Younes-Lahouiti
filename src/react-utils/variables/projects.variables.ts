@@ -315,18 +315,11 @@ export const personalProjects: projectsMadeType = [
  */
 export const professionalProjects: projectsMadeType = [
   {
-    title: "Californie Gym (coming soon)",
-    image: PNG_IMAGES.CALIFORNIA_GYM,
+    title: "Jenee React Native mobile app",
+    image: PNG_IMAGES.JENEE,
     link: "",
     type: "professional",
-    date: new Date("11/02/2022"),
-  },
-  {
-    title: "SFCC delivery library (coming soon)",
-    image: PNG_IMAGES.SFCC,
-    link: "",
-    type: "professional",
-    date: new Date("02/11/2023"),
+    date: new Date("07/03/2023"),
   },
   {
     title: "Developer portfolio",

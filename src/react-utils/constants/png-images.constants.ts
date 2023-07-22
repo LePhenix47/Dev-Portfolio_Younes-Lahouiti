@@ -47,9 +47,8 @@ import COLOR_MODEL_CONVERSION from "@public/png/Color model conversion.png";
 import REACT_NATIVE_APP from "@public/png/React Native app icon.png";
 
 //Professional
-import CALIFORNIA_GYM from "@public/png/californie gym.png";
-import SFCC from "@public/png/sfcc-icon.png";
 import PORTFOLIO from "@public/png/portfolio-screenshot.png";
+import JENEE from "@public/png/Jenee-logo.png";
 
 //NPM
 import TIMEOUT_UTILITY from "@public/png/hourglass-clepsydra-icon.png";
@@ -110,9 +109,8 @@ const PERSONAL_PROJECTS = {
 };
 
 const PROFESSIONAL_PROJECTS = {
-  CALIFORNIA_GYM,
-  SFCC,
   PORTFOLIO,
+  JENEE,
 };
 
 const NPM_PROJECTS = {
