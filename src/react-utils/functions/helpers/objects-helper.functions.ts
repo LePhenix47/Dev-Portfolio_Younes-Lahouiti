@@ -144,3 +144,55 @@ export function getRandomPropertyFromObject(object: object): string {
 
   return randomProperty;
 }
+
+/**
+ * Checks if two objects are equal up to their property values.
+ *
+ * @param {object} obj1 - The first object to compare.
+ * @param {object} obj2 - The second object to compare.
+ * @returns {boolean} - Returns true if the objects are equal, otherwise false.
+ */
+export function areObjectsEqual(
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>
+): boolean {
+  const argumentsAreNotObjects: boolean =
+    typeof obj1 !== "object" ||
+    obj1 === null ||
+    Array.isArray(obj1) ||
+    typeof obj2 !== "object" ||
+    obj2 === null ||
+    Array.isArray(obj2);
+  if (argumentsAreNotObjects) {
+    throw new Error(
+      `Invalid input, expected both arguments to be objects, instead got ${typeof obj1} and ${typeof obj2}`
+    );
+  }
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  const doesNotContainSameAmountOfProperties = keys1.length !== keys2.length;
+  if (doesNotContainSameAmountOfProperties) {
+    return false;
+  }
+
+  for (const key in obj1) {
+    const propertyDoesNotExistOnOtherObject: boolean =
+      !obj2.hasOwnProperty(key);
+    if (propertyDoesNotExistOnOtherObject) {
+      return false;
+    }
+
+    const doesNotHaveSamePropertyValues: boolean = obj1[key] !== obj2[key];
+    if (doesNotHaveSamePropertyValues) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/*
+ In 2024, we will have the Object.groupBy() method 
+*/

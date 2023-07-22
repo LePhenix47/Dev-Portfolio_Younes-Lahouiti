@@ -15,18 +15,17 @@ import {
   allProjects,
 } from "@/react-utils/variables/projects.variables";
 
-import {
-  sortArrayOfObjects,
-  filterArrayByString,
-  formatStringCase,
-  formatDateToShort,
-} from "@/react-utils/functions/helper-functions";
-
 import { projectCategories } from "@/react-utils/variables/projects-categories.variables";
 import { projectsMadeType } from "@/react-utils/types/projects.types";
 import { CanvasComponent } from "@/components/shared/shared.components";
 import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
 import { SearchIcon } from "@/components/shared/icons/icons-index.components";
+import {
+  filterArrayByString,
+  sortArrayOfObjects,
+} from "@/react-utils/functions/helpers/arrays-helper.functions";
+import { formatStringCase } from "@/react-utils/functions/helpers/string-helper.functions";
+import { formatShortDate } from "@/react-utils/functions/helpers/internalization-helper.functions";
 
 //Components
 
@@ -361,7 +360,7 @@ export default function Portfolio(): JSX.Element {
           {dataToShow.map((project, index: number) => {
             const { title, image, link, date, type } = project;
 
-            const formattedDate = formatDateToShort(date);
+            const formattedDate = formatShortDate(date);
 
             return (
               <PortfolioProjectCard

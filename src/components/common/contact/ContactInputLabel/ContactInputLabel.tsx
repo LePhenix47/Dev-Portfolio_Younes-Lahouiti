@@ -6,12 +6,11 @@ import Image from "next/image";
 
 //Utils
 import { inputType } from "@/react-utils/types/input.types";
-import { voidCallback } from "@/react-utils/types/void-callback.type";
-import { log } from "@/react-utils/functions/helper-functions";
 import {
   RoundCheckIcon,
   RoundExclamationIcon,
 } from "@/components/shared/icons/icons-index.components";
+import { log } from "@/react-utils/functions/helpers/console-helper.functions";
 
 export default function ContactInputLabel({
   labelText = "",
@@ -79,7 +78,7 @@ export default function ContactInputLabel({
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
-            let inputValueIsEmpty: boolean = !e.currentTarget.value.length;
+            const inputValueIsEmpty: boolean = !e.currentTarget.value.length;
 
             if (inputValueIsEmpty) {
               setIsEmpty(false);
@@ -88,12 +87,12 @@ export default function ContactInputLabel({
             }
           }}
           onChange={(e) => {
-            let inputIsValid: boolean = onChangeCallback?.(e) || false;
+            const inputIsValid: boolean = onChangeCallback?.(e) || false;
 
             log({ inputIsValid });
             setIsInputValid(inputIsValid);
 
-            let inputValueIsEmpty = !reference.current?.value.length;
+            const inputValueIsEmpty = !reference.current?.value.length;
             setIsEmpty(inputValueIsEmpty);
 
             if (inputValueIsEmpty) {
@@ -106,7 +105,7 @@ export default function ContactInputLabel({
             setIsInputActive(true);
           }}
           onBlur={(e) => {
-            let valueOfInput: string = e.target.value.trim();
+            const valueOfInput: string = e.target.value.trim();
 
             const inputIsEmpty: boolean = !valueOfInput;
 

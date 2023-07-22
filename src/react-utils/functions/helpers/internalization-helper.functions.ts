@@ -1,3 +1,5 @@
+import { getOrdinalSuffix } from "./numbers-helper.functions";
+
 /**
  * Formats a number by separating every thousand with a format from the user's locale.
  *
@@ -54,36 +56,25 @@ export function formatCurrencyValueNumber(
 }
 
 /**
+ * Formats a given date into a short date string.
  *
- * Formats a date object according to the user's locale and specified options using the `Intl.DateTimeFormat` API
- *
- * @param {Date} unformattedDateObject - The Date object to format
- * @param {string} locale - The locale to use for formatting (optional)
- * @param {Object} options - The options object to pass to the formatter (optional)
- *
- * @returns {string} The formatted date string
- * @throws {string} If the first argument is not a Date object
+ * @param {Date | string} date - The date to format.
+ * @returns {string} The formatted short date string.
  */
-export function formatDate(
-  unformattedDateObject: Date,
-  locale: string | undefined,
-  options: any
-): string {
-  const dateIsNotADateObject: boolean = !(
-    unformattedDateObject instanceof Date
-  );
-  if (dateIsNotADateObject) {
-    throw TypeError(`"${unformattedDateObject}" is not a date object`);
-  }
+export function formatShortDate(date: string | Date): string {
+  const dateInstance: Date = date instanceof Date ? date : new Date(date);
 
-  /**
-   * We create the time formatter with the internalization web API
-   */
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(
-    locale,
-    options
-  );
-  return dateFormatter.format(unformattedDateObject);
+  const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const formattedDate: string = formatter.format(dateInstance);
+  const [month, day, year] = formattedDate.replaceAll(",", "").split(" ");
+  const formattedDay: string = getOrdinalSuffix(Number(day));
+
+  return `${month} ${formattedDay} ${year}`;
 }
 
 /**
@@ -206,27 +197,27 @@ export function getRelativeTimePeriod(dateInSeconds: number): {
     return { value: dateInSeconds, unit: "seconds" };
   } else if (isUnderAnHour) {
     //We get the amount of minutes
-    const minutes = Math.floor(dateInSeconds / ONE_MINUTE_IN_SECONDS);
+    const minutes: number = Math.floor(dateInSeconds / ONE_MINUTE_IN_SECONDS);
     return { value: minutes, unit: "minutes" };
   } else if (isUnderADay) {
     //We get the amount of hours
-    const hours = Math.floor(dateInSeconds / ONE_HOUR_IN_SECONDS);
+    const hours: number = Math.floor(dateInSeconds / ONE_HOUR_IN_SECONDS);
     return { value: hours, unit: "hours" };
   } else if (isUnderAWeek) {
     //We get the amount of days
-    const days = Math.floor(dateInSeconds / ONE_DAY_IN_SECONDS);
+    const days: number = Math.floor(dateInSeconds / ONE_DAY_IN_SECONDS);
     return { value: days, unit: "days" };
   } else if (isUnderAMonth) {
     //We get the amount of weeks
-    const weeks = Math.floor(dateInSeconds / ONE_WEEK_IN_SECONDS);
+    const weeks: number = Math.floor(dateInSeconds / ONE_WEEK_IN_SECONDS);
     return { value: weeks, unit: "weeks" };
   } else if (isUnderAYear) {
     //We get the amount of months
-    const months = Math.floor(dateInSeconds / ONE_MONTH_IN_SECONDS);
+    const months: number = Math.floor(dateInSeconds / ONE_MONTH_IN_SECONDS);
     return { value: months, unit: "months" };
   } else {
     //We get the amount of years
-    const years = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
+    const years: number = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
     return { value: years, unit: "years" };
   }
 }

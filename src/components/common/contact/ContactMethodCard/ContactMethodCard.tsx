@@ -3,9 +3,9 @@ import React from "react";
 
 //Next
 import Image from "next/image";
+import { formatStringCase } from "@/react-utils/functions/helpers/string-helper.functions";
 
 //Utils
-import { formatStringCase } from "@/react-utils/functions/helper-functions";
 
 export default function ContactMethodCard({
   icon,

@@ -3,10 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 //Utils
 import { sliderCardTypes } from "@/react-utils/types/slider.types";
-import {
-  log,
-  selectRandomElementsInArray,
-} from "@/react-utils/functions/helper-functions";
+
 //Components
 import SliderCard from "../SliderCard/SliderCard";
 import { UpArrowIcon } from "@/components/shared/icons/icons-index.components";

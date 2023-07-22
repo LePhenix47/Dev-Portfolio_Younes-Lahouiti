@@ -151,50 +151,6 @@ export function splitOnUpperCase(string: string): string {
 }
 
 /**
- *Formats a number with its ordinal suffix (e.g. "1st", "2nd", "3rd", "4th").
-
- *@param {number} number The number to format.
- *
- *@returns {string} The formatted string.
- */
-export function getOrdinalSuffix(number: number): string {
-  const argumentIsNotANumber: boolean = typeof number !== "number";
-
-  if (argumentIsNotANumber) {
-    throw new TypeError("Cannot add suffix to the value passed in argument");
-  }
-
-  const numberPassedIsNotPositive: boolean = number <= 0;
-  if (numberPassedIsNotPositive) {
-    throw new RangeError(
-      `The number passed in argument: ${number} is not strictly positive`
-    );
-  }
-
-  const numberIsOverTenButUnderFourteen: boolean = number > 10 && number < 14;
-  if (numberIsOverTenButUnderFourteen) {
-    return `${number}th`;
-  }
-
-  const lastDigit: string = number.toString().slice(-1);
-
-  switch (lastDigit) {
-    case "1": {
-      return `${number}st`;
-    }
-    case "2": {
-      return `${number}nd`;
-    }
-    case "3": {
-      return `${number}rd`;
-    }
-    default: {
-      return `${number}th`;
-    }
-  }
-}
-
-/**
  *Function that transforms date strings in this format:
  * - `dd/mm/yyyy`
  *

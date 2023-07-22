@@ -20,17 +20,21 @@ export function nthRoot(value: number, root: number = 2): number {
   // We check that the value is negative AND that the root is even
   const valueOfRootIsInvalid: boolean = value < 0 && root % 2 === 0;
   if (valueOfRootIsInvalid) {
-    // Negative values cannot have an even root
-    //∛(-27) = -3 but √(-16) = undefined
+    /*
+      Negative values cannot have an even root
+      ∛(-27) = -3 but √(-16) = undefined    
+    */
     throw new RangeError(
       `The root ${root} of the value ${value} is invalid, cannot have a negative value with an even root`
     );
   }
 
-  //To avoid JS returning us a NaN even with odd roots of negative values
-  //We set the value to be positive by taking their absolute value: |x|
-  //Then we use the formula ⁿ√(x) = x^(1/n)
-  let calculatedRoot: number = Math.abs(value) ** (1 / root);
+  /*
+    To avoid JS returning us a NaN even with odd roots of negative values
+    We set the value to be positive by taking their absolute value: |x|
+    Then we use the formula ⁿ√(x) = x^(1/n)
+  */
+  const calculatedRoot: number = Math.abs(value) ** (1 / root);
 
   //And we now return the nth root of a positive or negative value
   return value > 0 ? calculatedRoot : -1 * calculatedRoot;
@@ -46,8 +50,10 @@ export function nthRoot(value: number, root: number = 2): number {
  *  @returns {number | NaN} The logarithm of the value or Not A Number `NaN` if the arguments passed are invalid
  */
 export function logarithm(value: number, base: number = Math.E): number {
-  //We check that the base is positive but also different than 1
-  //since log(1) = 0 and logₙ(x) = log(x)/log(n), a base of 1 would give a division by 0
+  /*
+    We check that the base is positive but also different than 1
+    since log(1) = 0 and logₙ(x) = log(x)/log(n), a base of 1 would give a division by 0  
+  */
   const baseIsInvalid: boolean = base <= 0 || base === 1;
   if (baseIsInvalid) {
     throw new RangeError(

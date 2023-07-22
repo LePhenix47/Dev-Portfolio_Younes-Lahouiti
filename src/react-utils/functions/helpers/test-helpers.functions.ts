@@ -10,7 +10,7 @@ export function waitPromiseSuccess(milliseconds: number): Promise<unknown> {
 
 /**
  * Waits for a specified number of seconds and then returns a rejected promise with a specified error message.
- * @param {number} seconds - The number of seconds to wait before rejecting the promise.
+ * @param {number} milliseconds - The number of milliseconds to wait before rejecting the promise.
  * @param {string} errorMessage - The error message to include in the rejection reason.
  * @returns {Promise<unknown>} A promise that rejects after the specified number of seconds have passed.
  */

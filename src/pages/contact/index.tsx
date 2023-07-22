@@ -6,12 +6,6 @@ import Head from "next/head";
 
 //Variables
 import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
-import {
-  formatStringCase,
-  log,
-  error,
-  testRegExp,
-} from "@/react-utils/functions/helper-functions";
 
 //Components
 
@@ -29,6 +23,14 @@ import {
   ContactMethodCard,
 } from "@/components/common/contact/contact-page.components";
 import { PaperPlaneIcon } from "@/components/shared/icons/icons-index.components";
+import {
+  formatStringCase,
+  testRegExp,
+} from "@/react-utils/functions/helpers/string-helper.functions";
+import {
+  error,
+  log,
+} from "@/react-utils/functions/helpers/console-helper.functions";
 
 /**
  * Contact page: `/contact`
@@ -202,11 +204,11 @@ export default function Contact(): JSX.Element {
     valueOfInput = valueOfInput.trim();
 
     //String must not include numbers
-    const stringWithNoNumbersREGEX: RegExp = /^[^0-9]*$/;
+    const stringWithoutNumbersREGEX: RegExp = /^[^0-9]*$/;
 
     const valueDoesNotContainNumbers: boolean = testRegExp(
       valueOfInput,
-      stringWithNoNumbersREGEX
+      stringWithoutNumbersREGEX
     );
 
     // Can include characters with accents, dashes and apostrophes (for instance: Da'Shawn, François or Marie-Antoinette)

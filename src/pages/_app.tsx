@@ -13,8 +13,6 @@ import "../sass/main.scss";
 import { motion } from "framer-motion";
 
 //Utils
-import { log } from "@/react-utils/functions/helper-functions";
-
 //TanStack Query
 /**
  * We need to use the Hydrate component to enable pre-fetching on the `getServerSideProps` method when using SSR

@@ -1,5 +1,6 @@
 import { typeofTypes } from "@/react-utils/types/typeof.types";
-import { deepCopy, invertDayAndMonth, splitString } from "../helper-functions";
+import { copyObject } from "./objects-helper.functions";
+import { invertDayAndMonth, splitString } from "./string-helper.functions";
 
 /**
  * Checks if the provided argument value is an array.
@@ -88,7 +89,7 @@ export function sortArrayOfObjects(
   prop = prop.trim();
 
   //Makes a deep copy of the array
-  let newSortedArray: any[] = deepCopy(array);
+  let newSortedArray: any[] = copyObject(array);
 
   //We sort the array
   newSortedArray = newSortedArray.sort((obj1: any, obj2: any) => {
