@@ -1,5 +1,5 @@
 import { LineEffect } from "@/react-utils/classes/line-effect.class";
-import { error } from "@/react-utils/functions/helpers/console-helper.functions";
+import { warn } from "@/react-utils/functions/helpers/console-helper.functions";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
@@ -53,8 +53,9 @@ export default function CanvasComponent({
   ): void {
     const dimensionsPassedAreInvalid: boolean = isNaN(width) || isNaN(height);
     if (dimensionsPassedAreInvalid) {
-      error(
-        "Argument passed are not correct! Please enter numerical values only"
+      warn(
+        `Argument passed are not correct! Expected both dimensions to be valid numbers but instead got:
+        \n width: ${width}, height: ${height}`
       );
       return;
     }
@@ -102,17 +103,22 @@ export default function CanvasComponent({
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
     const handleWindowResize: () => void = () => {
+      const isNotHtmlCanvas = !canvas;
+      if (isNotHtmlCanvas) {
+        return;
+      }
+
       const { clientWidth, clientHeight } =
         parentElement.current as HTMLElement;
-      if (canvas) {
-        setCanvasSize(canvas, clientWidth, clientHeight);
-        setEffectHandler(() => {
-          return new LineEffect(
-            canvas,
-            AMOUNT_OF_PARTICLES + clientHeight / AMOUNT_OF_PARTICLES
-          );
-        });
-      }
+
+      setCanvasSize(canvas, clientWidth, clientHeight);
+
+      setEffectHandler(() => {
+        return new LineEffect(
+          canvas,
+          AMOUNT_OF_PARTICLES + clientHeight / AMOUNT_OF_PARTICLES
+        );
+      });
       // Perform any additional drawing or logic based on the resized dimensions
     };
 
@@ -124,7 +130,7 @@ export default function CanvasComponent({
       cancelAnimation();
       window.removeEventListener("resize", handleWindowResize);
     };
-  }, []);
+  }, [parentElement.current]);
 
   useEffect(() => {
     cancelAnimation();

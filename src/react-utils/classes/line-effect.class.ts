@@ -96,14 +96,14 @@ export class LineEffect {
         const distanceX: number = particle2.x - particle1.x;
         const distanceY: number = particle2.y - particle1.y;
 
-        const hypothenuse: number = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+        const hypotenuse: number = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
-        const particlesAreClose: boolean = hypothenuse <= 100;
+        const particlesAreClose: boolean = hypotenuse <= 100;
         if (particlesAreClose) {
           this.drawLine(
             particle1,
             particle2,
-            `rgba(255, 255, 255, ${1 - hypothenuse / 100})`
+            `rgba(255, 255, 255, ${1 - hypotenuse / 100})`
           );
         }
       }

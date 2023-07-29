@@ -1,9 +1,12 @@
+const MIN_CHARACTERS = 2;
+const MAX_CHARACTERS = 500;
+
 module.exports = {
   extends: ["@commitlint/config-conventional"],
   parserPreset: "conventional-changelog-conventionalcommits",
   rules: {
-    "header-max-length": [2, "always", 105], // Maximum 105 characters for the subject
-    "body-max-line-length": [2, "always", 300], // Maximum 300 characters per line in the body
+    "header-max-length": [MIN_CHARACTERS, "always", MAX_CHARACTERS], // Maximum 305 characters for the subject
+    "body-max-line-length": [MIN_CHARACTERS, "always", MAX_CHARACTERS], // Maximum 300 characters per line in the body
   },
   prompt: {
     messages: {
@@ -26,7 +29,7 @@ module.exports = {
           fix: {
             description: "Fixing a bug",
             title: "Bug Fixes",
-            emoji: "🐛",
+            emoji: "🐞",
           },
           docs: {
             description: "Adding or updating documentation",
@@ -34,7 +37,7 @@ module.exports = {
             emoji: "📚",
           },
           style: {
-            description: "Code style changes (spacing, commas, etc.)",
+            description: "Addition of SASS style",
             title: "Styles",
             emoji: "💎",
           },
@@ -62,14 +65,9 @@ module.exports = {
           },
           ci: {
             description:
-              "Changes to the CI configuration or scripts (e.g., Travis, CircleCI, BrowserStack)",
+              "Changes to the CI configuration or scripts (i.e: package.json, .gitignore, next.config.js... )",
             title: "Continuous Integrations",
             emoji: "⚙️",
-          },
-          chore: {
-            description: "Other changes that don't modify code or tests",
-            title: "Chores",
-            emoji: "♻️",
           },
           revert: {
             description: "Reverting a previous commit",
@@ -79,8 +77,7 @@ module.exports = {
         },
       },
       scope: {
-        description:
-          "What is the context of the changes (component, filename)?",
+        description: "Which components were changed ?",
       },
       subject: {
         description: "Write a concise description in the imperative mood",

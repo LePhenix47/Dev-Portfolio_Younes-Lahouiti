@@ -1,17 +1,11 @@
 import { typeofTypes } from "@/react-utils/types/typeof.types";
-import { copyObject } from "./objects-helper.functions";
-import { invertDayAndMonth, splitString } from "./string-helper.functions";
-
-/**
- * Checks if the provided argument value is an array.
- *
- * @param {any} value - The value to check.
- *
- * @returns {boolean} - True if the value is an array, false otherwise.
- */
-export function checkIfArray(value: any): boolean {
-  return Array.isArray(value);
-}
+import {
+  areObjectsEqual,
+  copyObject,
+  getPrototypeOfValue,
+  isExactlyAnObject,
+} from "./objects-helper.functions";
+import { invertDayAndMonth } from "./string-helper.functions";
 
 /**
  * Creates a new deep copied array of the provided array
@@ -22,6 +16,80 @@ export function checkIfArray(value: any): boolean {
  */
 export function copyArray(arrayToCopy: any): any[] {
   return Array.from(arrayToCopy);
+}
+
+/**
+ * Checks if the provided argument value is an array.
+ *
+ * @param {any} value - The value to check.
+ *
+ * @returns {boolean} - True if the value is an array, false otherwise.
+ */
+export function isExactlyAnArray(value: any): boolean {
+  return Array.isArray(value);
+}
+
+/**
+ * Checks if two arrays are exactly the same, including nested arrays and objects.
+ *
+ * @param {any[]} arr1 - The first array to compare.
+ * @param {any[]} arr2 - The second array to compare.
+ * @returns {boolean} - Returns true if the arrays are exactly the same, otherwise false.
+ */
+export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
+  const hasInvalidArguments =
+    !arr1 || !arr2 || !isExactlyAnArray(arr1) || !isExactlyAnArray(arr2);
+  // Check if either argument is falsy or not an array
+  if (hasInvalidArguments) {
+    const arr1Prototype = `[${typeof arr1} ${getPrototypeOfValue(arr1)}]`;
+    const arr2Prototype = `[${typeof arr2} ${getPrototypeOfValue(arr2)}]`;
+    throw new TypeError(
+      `Invalid input, expected both arguments to be non-null arrays, instead got: \n
+     arr1: ${arr1Prototype}, arr2: ${arr2Prototype}`
+    );
+  }
+
+  const haveDifferentLengths = arr1.length !== arr2.length;
+  // Check if arrays have the same length
+  if (haveDifferentLengths) {
+    return false;
+  }
+
+  // Compare array elements
+  for (let i = 0; i < arr1.length; i++) {
+    const element1: any = arr1[i];
+    const element2: any = arr2[i];
+
+    // Check if elements are objects or arrays
+    const areBothArrays: boolean =
+      isExactlyAnArray(element1) && isExactlyAnArray(element2);
+    if (areBothArrays) {
+      const haveDifferentArrayValues = !areArraysEqual(element1, element2);
+      if (haveDifferentArrayValues) {
+        return false;
+      }
+
+      continue;
+    }
+
+    const areBothObjects: boolean =
+      isExactlyAnObject(element1) && isExactlyAnObject(element2);
+    if (areBothObjects) {
+      const haveDifferentArrayValues = !areObjectsEqual(element1, element2);
+      if (haveDifferentArrayValues) {
+        return false;
+      }
+
+      continue;
+    }
+
+    const haveDifferentValues: boolean = element1 !== element2;
+    if (haveDifferentValues) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -89,7 +157,7 @@ export function sortArrayOfObjects(
   prop = prop.trim();
 
   //Makes a deep copy of the array
-  let newSortedArray: any[] = copyObject(array);
+  let newSortedArray: any[] = copyArray(array);
 
   //We sort the array
   newSortedArray = newSortedArray.sort((obj1: any, obj2: any) => {
@@ -101,13 +169,13 @@ export function sortArrayOfObjects(
     const typeOfObjectProperty: typeofTypes = typeof propOfObj1;
     switch (typeOfObjectProperty) {
       case "string": {
-        let dateStringREGEX: RegExp =
+        const dateStringREGEX: RegExp =
           /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
 
-        let isDateAsString: boolean = dateStringREGEX.test(obj1[prop]);
+        const isDateAsString: boolean = dateStringREGEX.test(obj1[prop]);
 
         if (isDateAsString) {
-          //We invert the day and month to make it work with the Date contructor
+          //We invert the day and month to make it work with the Date constructor
           propOfObj1 = invertDayAndMonth(propOfObj1);
           propOfObj1 = new Date(propOfObj1).toISOString();
 
@@ -127,15 +195,15 @@ export function sortArrayOfObjects(
       case "boolean": {
         //If true → 1, if false → 0
         propOfObj1 = propOfObj1 ? 1 : 0;
-        propOfObj1 = propOfObj1 ? 1 : 0;
+        propOfObj2 = propOfObj2 ? 1 : 0;
 
         return propOfObj2 - propOfObj1;
       }
       case "object": {
         //We check if the object was created with the `Date` class
-        const isDateAsOjbect: boolean = propOfObj1 instanceof Date;
+        const isDateAsObject: boolean = propOfObj1 instanceof Date;
 
-        if (isDateAsOjbect) {
+        if (isDateAsObject) {
           return propOfObj1 - propOfObj2;
         } else {
           throw "Object passed isn't a date, perhaps it's not an instance of Date or you entered an array?";
@@ -144,7 +212,7 @@ export function sortArrayOfObjects(
 
       default: {
         throw console.error(
-          "An error has occured, the property is undefined or null"
+          "An error has occurred, the property is undefined or null"
         );
       }
     }
@@ -165,31 +233,38 @@ export function sortArrayOfObjects(
  * @param {string} string
  * @returns
  */
-export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
-  let typeofArrayOfFirstItem: typeofTypes = typeof arrayToFilter[0];
+export function filterArrayByString(
+  arrayToFilter: Array<any>,
+  string: string,
+  isIntersection: boolean = false
+): Array<any> {
+  const typeofArrayOfFirstItem: typeofTypes = typeof arrayToFilter[0];
 
   const isArrayOfObjects: boolean = typeofArrayOfFirstItem === "object";
 
   //To make the filtering more efficient, we're going to use sets
-  let filteredSet: Set<unknown> = new Set();
+  const filteredSet: Set<unknown> = new Set();
+
+  const normalizedString = string.trim().toLowerCase();
 
   if (isArrayOfObjects) {
     //We iterate through every object in the array
-    for (let object of arrayToFilter) {
+    arrayOfObjects: for (const object of arrayToFilter) {
       //We iterate through every property in each object
-      for (let property in object) {
-        let valueOfObject: any = object[property].toString().toLowerCase();
+      objectProperties: for (const property in object) {
+        const valueOfObject: any = object[property].toString().toLowerCase();
 
-        const stringHasSpaces: boolean = string.trim().includes(" ");
+        const stringHasSpaces: boolean = normalizedString.includes(" ");
 
         if (stringHasSpaces) {
-          const arrayOfStrings: string[] = splitString(string, " ");
+          const arrayOfStrings: string[] = string.split(" ");
 
           //If the query contains multiple words, we iterate through each word
-          for (const word of arrayOfStrings) {
-            let includesQuery: boolean = valueOfObject.includes(
-              word.toLocaleLowerCase()
-            );
+          arrayOfStrings: for (const word of arrayOfStrings) {
+            const normalizedWord = (word as string).toLowerCase();
+
+            const includesQuery: boolean =
+              valueOfObject.includes(normalizedWord);
 
             if (includesQuery) {
               filteredSet.add(object);
@@ -197,7 +272,7 @@ export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
             }
           }
         } else {
-          let includesQuery = valueOfObject.includes(string.toLowerCase());
+          const includesQuery = valueOfObject.includes(normalizedString);
 
           if (includesQuery) {
             filteredSet.add(object);
@@ -206,11 +281,9 @@ export function filterArrayByString(arrayToFilter: Array<any>, string: string) {
       }
     }
   } else {
-    for (let word of arrayToFilter) {
-      let includesQuery: boolean = word
-        .toString()
-        .toLowerCase()
-        .includes(string.toLowerCase());
+    for (const word of arrayToFilter) {
+      const normalizedWord = (word as string).toLowerCase();
+      const includesQuery: boolean = normalizedWord.includes(normalizedString);
       if (includesQuery) {
         filteredSet.add(word);
       }
