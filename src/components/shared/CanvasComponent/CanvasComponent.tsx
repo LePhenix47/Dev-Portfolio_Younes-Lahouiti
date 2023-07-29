@@ -83,7 +83,8 @@ export default function CanvasComponent({
    * @returns {void}
    */
   function animateCanvas(): void {
-    if (!canvasRef.current) {
+    const hasNotFoundCanvas = !canvasRef.current;
+    if (hasNotFoundCanvas) {
       return;
     }
 
@@ -101,18 +102,14 @@ export default function CanvasComponent({
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
     const handleWindowResize: () => void = () => {
+      const { clientWidth, clientHeight } =
+        parentElement.current as HTMLElement;
       if (canvas) {
-        setCanvasSize(
-          canvas,
-          (parentElement.current as HTMLDialogElement).clientWidth,
-          (parentElement.current as HTMLDialogElement).clientHeight
-        );
+        setCanvasSize(canvas, clientWidth, clientHeight);
         setEffectHandler(() => {
           return new LineEffect(
             canvas,
-            AMOUNT_OF_PARTICLES +
-              (parentElement.current as HTMLDialogElement).clientHeight /
-                AMOUNT_OF_PARTICLES
+            AMOUNT_OF_PARTICLES + clientHeight / AMOUNT_OF_PARTICLES
           );
         });
       }
@@ -132,7 +129,7 @@ export default function CanvasComponent({
   useEffect(() => {
     cancelAnimation();
     animateCanvas();
-  }, [canvasRef.current?.clientHeight, canvasRef.current?.clientWidth]);
+  }, [canvasRef.current, parentElement]);
 
   return <canvas className="canvas" ref={canvasRef}></canvas>;
 }
