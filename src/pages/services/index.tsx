@@ -98,7 +98,7 @@ export default function Services(): JSX.Element | null {
           content="
           Welcome to my services page. As a skilled web developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life"
         />
-        <meta property="og:image" content="/profile-pic.jpg" />
+        <meta property="og:image" content="jpg/profile-pic.jpg" />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta
