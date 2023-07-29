@@ -1,6 +1,10 @@
 module.exports = {
   extends: ["@commitlint/config-conventional"],
   parserPreset: "conventional-changelog-conventionalcommits",
+  rules: {
+    "header-max-length": [2, "always", 105], // Maximum 105 characters for the subject
+    "body-max-line-length": [2, "always", 300], // Maximum 300 characters per line in the body
+  },
   prompt: {
     messages: {
       skip: ":skip",

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "git:commit": "git add . && git status && npx cz",
-    "git:push": "git add . && git status && npx cz && git push"
+    "git:push": "git diff --quiet || (echo 'You have uncommitted changes. Please commit your changes first.' && exit 1) && git push"
   },
   "dependencies": {
     "@commitlint/cli": "^17.6.7",
