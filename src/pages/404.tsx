@@ -40,7 +40,7 @@ export default function Error404(): JSX.Element | null {
           property="og:description"
           content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
         />
-        <meta property="og:image" content="jpg/profile-pic.jpg" />
+        <meta property="og:image" content="/jpg/profile-pic.jpg" />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta

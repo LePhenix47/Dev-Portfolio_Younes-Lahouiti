@@ -50,7 +50,7 @@ export default function Skills(): JSX.Element {
           content="
           Take a closer look at my technical skills as a web developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life"
         />
-        <meta property="og:image" content="jpg/profile-pic.jpg" />
+        <meta property="og:image" content="/jpg/profile-pic.jpg" />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta
