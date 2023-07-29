@@ -201,7 +201,10 @@ export default function Portfolio(): JSX.Element {
           content="
           Check out my latest work! This page showcases some of my most recent projects, from simple landing pages to complex web applications. Each project highlights my technical skills and my commitment to delivering high-quality and user-friendly web experiences."
         />
-        <meta property="og:image" content="/jpg/profile-pic.jpg" />
+        <meta
+          property="og:image"
+          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
+        />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta

@@ -23,7 +23,10 @@ export default function Error500(): JSX.Element {
           property="og:description"
           content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
         />
-        <meta property="og:image" content="/jpg/profile-pic.jpg" />
+        <meta
+          property="og:image"
+          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
+        />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta

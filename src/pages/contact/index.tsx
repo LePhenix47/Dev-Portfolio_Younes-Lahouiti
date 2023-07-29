@@ -296,7 +296,10 @@ export default function Contact(): JSX.Element {
           content="
           Let's get in touch! I'm always eager to connect with new people and discuss exciting projects. On this page, you'll find different ways to reach out to me, from email to social media. Don't hesitate to drop me a message and let's create something amazing together!"
         />
-        <meta property="og:image" content="/jpg/profile-pic.jpg" />
+        <meta
+          property="og:image"
+          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
+        />
         <meta property="og:image:width" content="130" />
         <meta property="og:image:height" content="170" />
         <meta
