@@ -3,10 +3,7 @@ import React from "react";
 
 //Link
 import Link from "next/link";
-import {
-  BugIcon,
-  OpenLinkIcon,
-} from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 export default function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();
@@ -20,14 +17,15 @@ export default function Footer(): JSX.Element {
           target="_blank"
         >
           View the source code for the portfolio?{" "}
-          <OpenLinkIcon width={18} height={18} fill={"currentColor"} />
+          <Icons.OpenLink width={18} height={18} fill={"currentColor"} />
         </Link>
         <Link
           href="https://github.com/LePhenix47/Dev-Portfolio_Younes-Lahouiti/issues"
           className="footer__link"
           target="_blank"
         >
-          Report a bug? <BugIcon width={18} height={18} fill={"currentColor"} />
+          Report a bug?{" "}
+          <Icons.Bug width={18} height={18} fill={"currentColor"} />
         </Link>
       </section>
 
@@ -37,14 +35,14 @@ export default function Footer(): JSX.Element {
           className="footer__link"
           target="_blank"
         >
-          <OpenLinkIcon width={18} height={18} fill={"currentColor"} />
+          <Icons.OpenLink width={18} height={18} fill={"currentColor"} />
         </Link>
         <Link
           href="https://github.com/LePhenix47/Dev-Portfolio_Younes-Lahouiti/issues"
           className="footer__link"
           target="_blank"
         >
-          <BugIcon width={18} height={18} fill={"currentColor"} />
+          <Icons.Bug width={18} height={18} fill={"currentColor"} />
         </Link>
       </section>
 

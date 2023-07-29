@@ -6,14 +6,8 @@ import { NextRouter, useRouter } from "next/router";
 import Link from "next/link";
 
 //Components
-import {
-  HomeMobileIcon,
-  AboutMobileIcon,
-  SkillsMobileIcon,
-  ServicesMobileIcon,
-  PortfolioMobileIcon,
-  ContactMobileIcon,
-} from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
+
 import { copyTextToClipBoard } from "@/react-utils/functions/helpers/string-helper.functions";
 import { log } from "@/react-utils/functions/helpers/console-helper.functions";
 
@@ -73,41 +67,45 @@ export default function Header(): JSX.Element {
         <ul className="header__list">
           <li
             className={`header__item header__item-home ${
-              asPath === "/" ? "active" : ""
+              asPath === "/" && "active"
             }`}
           >
             <Link href="/" className="header__item-link">
-              <HomeMobileIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
               Home
             </Link>
           </li>
           <li
             className={`header__item header__item-about ${
-              asPath === "/about" ? "active" : ""
+              asPath === "/about" && "active"
             }`}
           >
             <Link href="/about" className="header__item-link">
-              <AboutMobileIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.AboutMobile width={24} height={24} fill={"currentColor"} />
               About
             </Link>
           </li>
           <li
             className={`header__item header__item-skills ${
-              asPath === "/skills" ? "active" : ""
+              asPath === "/skills" && "active"
             }`}
           >
             <Link href="/skills" className="header__item-link">
-              <SkillsMobileIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.SkillsMobile
+                width={24}
+                height={24}
+                fill={"currentColor"}
+              />
               Skills
             </Link>
           </li>
           <li
             className={`header__item header__item-services ${
-              asPath === "/services" ? "active" : ""
+              asPath === "/services" && "active"
             }`}
           >
             <Link href="/services" className="header__item-link">
-              <ServicesMobileIcon
+              <Icons.ServicesMobile
                 width={24}
                 height={24}
                 fill={"currentColor"}
@@ -117,11 +115,11 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item header__item-portfolio ${
-              asPath === "/portfolio" ? "active" : ""
+              asPath === "/portfolio" && "active"
             }`}
           >
             <Link href="/portfolio" className="header__item-link">
-              <PortfolioMobileIcon
+              <Icons.PortfolioMobile
                 width={24}
                 height={24}
                 fill={"currentColor"}
@@ -131,7 +129,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item header__item-contact ${
-              asPath === "/contact" ? "active" : ""
+              asPath === "/contact" && "active"
             }`}
           >
             <Link
@@ -139,7 +137,11 @@ export default function Header(): JSX.Element {
               id="contact-page-link"
               className="header__item-link"
             >
-              <ContactMobileIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.ContactMobile
+                width={24}
+                height={24}
+                fill={"currentColor"}
+              />
               Contact
             </Link>
           </li>

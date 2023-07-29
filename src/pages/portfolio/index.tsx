@@ -19,7 +19,7 @@ import { projectCategories } from "@/react-utils/variables/projects-categories.v
 import { projectsMadeType } from "@/react-utils/types/projects.types";
 import { CanvasComponent } from "@/components/shared/shared.components";
 import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
-import { SearchIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 import {
   filterArrayByString,
   sortArrayOfObjects,
@@ -232,7 +232,7 @@ export default function Portfolio(): JSX.Element {
         <div className="portfolio-page__inputs-container">
           <div className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
-              <SearchIcon />
+              <Icons.Search />
             </label>
             <input
               ref={inputValueRef}

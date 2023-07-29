@@ -129,7 +129,7 @@ export default function CanvasComponent({
   useEffect(() => {
     cancelAnimation();
     animateCanvas();
-  }, [canvasRef.current, parentElement]);
+  }, [canvasRef.current, parentElement.current]);
 
   return <canvas className="canvas" ref={canvasRef}></canvas>;
 }

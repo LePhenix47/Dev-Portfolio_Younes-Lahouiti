@@ -1,6 +1,5 @@
 //React
-import { CalendarIcon } from "@/components/shared/icons/icons-index.components";
-import { time } from "console";
+import Icons from "@/components/shared/icons/Icons";
 import React from "react";
 
 export default function Timeline({
@@ -32,7 +31,7 @@ export default function Timeline({
                 <p className="timeline__card-establishment">{establishment}</p>
                 <p className="timeline__card-year-span">
                   <span>
-                    <CalendarIcon width={22} height={22} />
+                    <Icons.Calendar width={22} height={22} />
                   </span>
                   {yearSpan}
                 </p>

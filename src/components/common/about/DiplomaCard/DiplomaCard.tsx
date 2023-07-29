@@ -1,4 +1,4 @@
-import { OpenLinkIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 import React from "react";
 
 /**
@@ -19,7 +19,7 @@ export default function DiplomaCard({
         <h3 className="diploma-card__heading">
           <a className="diploma-card__link" href={pdfLink} target="_blank">
             {diplomaTitle}
-            <OpenLinkIcon width={18} height={18} fill={"currentColor"} />
+            <Icons.OpenLink width={18} height={18} fill={"currentColor"} />
           </a>
         </h3>
         <p className="diploma-card__paragraph">

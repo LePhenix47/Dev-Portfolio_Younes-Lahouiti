@@ -28,7 +28,7 @@ import {
   Hydrate,
 } from "@tanstack/react-query";
 import PageLayout from "@/components/common/layout/PageLayout";
-import { UpArrowIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 /**
  * Root component where all the pages will pass through
@@ -63,11 +63,11 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
             <Link
               href="#top"
               className={`portfolio-page__anchor ${
-                !route.includes("/portfolio") ? "hide" : ""
+                !route.includes("/portfolio") && "hide"
               }`}
               target="_top"
             >
-              <UpArrowIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
             </Link>
             <motion.div
               key={router.route}

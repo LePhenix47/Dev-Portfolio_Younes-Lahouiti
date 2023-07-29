@@ -13,10 +13,8 @@ import { socialAccountVariables } from "@/react-utils/variables/social-accounts.
 import { CanvasComponent } from "@/components/shared/shared.components";
 import { HomeSocialCardItem } from "@/components/common/home/home-page.components";
 import { JPG_URLS } from "@/react-utils/constants/index.constants";
-import {
-  BlobIcon,
-  PaperPlaneIcon,
-} from "@/components/shared/icons/icons-index.components";
+
+import Icons from "@/components/shared/icons/Icons";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
@@ -96,11 +94,11 @@ export default function Home(): JSX.Element {
 
             <Link href="/contact" className="link-button">
               Hit me up!
-              <PaperPlaneIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.PaperPlane width={24} height={24} fill={"currentColor"} />
             </Link>
           </div>
           <div className="home-page__blob">
-            <BlobIcon />
+            <Icons.Blob />
             <Image
               src={JPG_URLS.PROFILE_PIC_1}
               alt="Profile picture"

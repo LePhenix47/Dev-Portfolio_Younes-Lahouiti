@@ -1,4 +1,4 @@
-import { FlourishedCheckmarkIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 import React from "react";
 
 export default function SkillCardList({
@@ -10,7 +10,7 @@ export default function SkillCardList({
 }): JSX.Element {
   return (
     <div className="skills-page__card-item">
-      <FlourishedCheckmarkIcon width={24} height={24} />
+      <Icons.FlourishedCheckmark width={24} height={24} />
       <div className="skills-page__card-item-text">
         <h4 className="skills-page__card-item-skill">{skill}</h4>
         <p className="skills-page__card-item-level">{level}</p>

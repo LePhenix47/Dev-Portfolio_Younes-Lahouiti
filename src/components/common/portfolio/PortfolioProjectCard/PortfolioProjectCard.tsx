@@ -4,7 +4,7 @@ import React from "react";
 //Next
 import Image from "next/image";
 import Link from "next/link";
-import { OpenLinkIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 export default function PortfolioProjectCard({
   title,
@@ -67,7 +67,7 @@ export default function PortfolioProjectCard({
           {sentenceToViewProjectCode + " "}
           <span className="portfolio-page__project-card-link-arrow">
             {" "}
-            <OpenLinkIcon width={18} height={18} fill={"currentColor"} />
+            <Icons.OpenLink width={18} height={18} fill={"currentColor"} />
           </span>
         </Link>
       </div>

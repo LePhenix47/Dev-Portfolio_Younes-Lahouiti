@@ -20,7 +20,7 @@ import {
   DiplomaCard,
   NoiseFilter,
 } from "@/components/common/about/about-page.components";
-import { ResumeIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 /**
  * About me page: `/about`
@@ -142,7 +142,7 @@ export default function About(): JSX.Element {
                 download
               >
                 Scoop up my resume!
-                <ResumeIcon width={24} height={24} fill={"currentColor"} />
+                <Icons.Resume width={24} height={24} fill={"currentColor"} />
               </Link>
             </div>
           </section>

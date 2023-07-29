@@ -3,7 +3,7 @@ import React from "react";
 
 //Utils
 import { serviceType } from "@/react-utils/types/services.types";
-import { HollowCheckIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 export default function ServicesModalContent({
   title,
@@ -26,7 +26,7 @@ export default function ServicesModalContent({
               key={`${quality}-${index}`}
             >
               <span className="services-page__card-qualities-item-icon">
-                <HollowCheckIcon width={24} height={24} />
+                <Icons.HollowCheck width={24} height={24} />
               </span>
               {quality}
             </li>

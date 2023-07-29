@@ -6,7 +6,7 @@ import { sliderCardTypes } from "@/react-utils/types/slider.types";
 
 //Components
 import SliderCard from "../SliderCard/SliderCard";
-import { UpArrowIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 
 export default function Slider({
   sliderCards,
@@ -113,14 +113,14 @@ export default function Slider({
         className="slider__button slider__button--left"
         onClick={goToPreviousIndex}
       >
-        <UpArrowIcon width={24} height={24} fill={"currentColor"} />
+        <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
       </button>
       <button
         type="button"
         className="slider__button slider__button--right"
         onClick={goToNextIndex}
       >
-        <UpArrowIcon width={24} height={24} fill={"currentColor"} />
+        <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
       </button>
       <section className="slider__container" style={axisXMovement}>
         {sliderCards.map((card, index: number) => {

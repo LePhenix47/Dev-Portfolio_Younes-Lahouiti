@@ -6,10 +6,8 @@ import Image from "next/image";
 
 //Utils
 import { inputType } from "@/react-utils/types/input.types";
-import {
-  RoundCheckIcon,
-  RoundExclamationIcon,
-} from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
+
 import { log } from "@/react-utils/functions/helpers/console-helper.functions";
 
 export default function ContactInputLabel({
@@ -50,17 +48,20 @@ export default function ContactInputLabel({
    */
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
+  /**
+   * Id for the input using a React state
+   */
   const randomId = useId();
 
   return (
     <section
       className={`contact-page__input-label-container ${
-        !isEmpty ? "contact-page__input-label-container--empty-input" : ""
+        !isEmpty && "contact-page__input-label-container--empty-input"
       }`}
     >
       <label
         htmlFor={`${name}-${randomId}`}
-        className={`contact-page__label ${isInputActive ? "active" : ""}`}
+        className={`contact-page__label ${isInputActive && "active"}`}
       >
         {labelText}
       </label>
@@ -71,20 +72,17 @@ export default function ContactInputLabel({
       {isTextArea ? (
         <textarea
           required
-          className={`contact-page__text-area ${isInputActive ? "active" : ""}`}
+          className={`contact-page__text-area ${isInputActive && "active"}`}
           id={`${name}-${randomId}`}
           name={name}
           ref={reference}
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
-            const inputValueIsEmpty: boolean = !e.currentTarget.value.length;
+            const inputValueEmptyTruthiness: boolean =
+              !e.currentTarget.value.length;
 
-            if (inputValueIsEmpty) {
-              setIsEmpty(false);
-            } else {
-              setIsEmpty(true);
-            }
+            setIsEmpty(inputValueEmptyTruthiness);
           }}
           onChange={(e) => {
             const inputIsValid: boolean = onChangeCallback?.(e) || false;
@@ -92,14 +90,9 @@ export default function ContactInputLabel({
             log({ inputIsValid });
             setIsInputValid(inputIsValid);
 
-            const inputValueIsEmpty = !reference.current?.value.length;
-            setIsEmpty(inputValueIsEmpty);
+            const inputValueEmptyTruthiness = !reference.current?.value.length;
 
-            if (inputValueIsEmpty) {
-              setIsEmpty(true);
-            } else {
-              setIsEmpty(false);
-            }
+            setIsEmpty(inputValueEmptyTruthiness);
           }}
           onFocus={() => {
             setIsInputActive(true);
@@ -125,13 +118,10 @@ export default function ContactInputLabel({
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
-            const inputValueIsEmpty: boolean = !e.currentTarget.value.length;
+            const inputValueEmptyTruthiness: boolean =
+              !e.currentTarget.value.length;
 
-            if (inputValueIsEmpty) {
-              setIsEmpty(false);
-            } else {
-              setIsEmpty(true);
-            }
+            setIsEmpty(inputValueEmptyTruthiness);
           }}
           onChange={(e) => {
             const inputIsValid: boolean = onChangeCallback?.(e) || false;
@@ -139,13 +129,9 @@ export default function ContactInputLabel({
             log({ inputIsValid });
             setIsInputValid(inputIsValid);
 
-            const inputValueIsEmpty = !reference.current?.value.length;
+            const inputValueEmptyTruthiness = !reference.current?.value.length;
 
-            if (inputValueIsEmpty) {
-              setIsEmpty(true);
-            } else {
-              setIsEmpty(false);
-            }
+            setIsEmpty(inputValueEmptyTruthiness);
           }}
           onFocus={() => {
             setIsInputActive(true);
@@ -167,15 +153,15 @@ export default function ContactInputLabel({
         }`}
       >
         {errorInputMessage}
-        <RoundExclamationIcon width={16} height={16} fill={"currentColor"} />
+        <Icons.RoundExclamation width={16} height={16} fill={"currentColor"} />
       </p>
       <p
-        className={`contact-page__input-label-message contact-page__input-label-message--sucess ${
+        className={`contact-page__input-label-message contact-page__input-label-message--success ${
           !isEmpty && isValid ? "" : "hide"
         }`}
       >
         {validInputMessage}
-        <RoundCheckIcon width={16} height={16} fill={"currentColor"} />
+        <Icons.RoundCheck width={16} height={16} fill={"currentColor"} />
       </p>
     </section>
   );

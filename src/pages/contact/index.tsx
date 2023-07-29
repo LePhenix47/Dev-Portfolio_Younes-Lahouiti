@@ -22,7 +22,7 @@ import {
   ContactInputLabel,
   ContactMethodCard,
 } from "@/components/common/contact/contact-page.components";
-import { PaperPlaneIcon } from "@/components/shared/icons/icons-index.components";
+import Icons from "@/components/shared/icons/Icons";
 import {
   formatStringCase,
   testRegExp,
@@ -402,7 +402,7 @@ export default function Contact(): JSX.Element {
               className="link-button contact-page__send-form-button"
             >
               Hit me up!
-              <PaperPlaneIcon width={24} height={24} fill={"currentColor"} />
+              <Icons.PaperPlane width={24} height={24} fill={"currentColor"} />
             </button>
 
             {emailMutation.isIdle && null}

@@ -19,23 +19,25 @@ import ServicesMobileIcon from "./ServicesMobileIcon/ServicesMobileIcon";
 import PortfolioMobileIcon from "./PortfolioMobileIcon/PortfolioMobileIcon";
 import ContactMobileIcon from "./ContactMobileIcon/ContactMobileIcon";
 
-export {
-  PaperPlaneIcon,
-  ResumeIcon,
-  BlobIcon,
-  OpenLinkIcon,
-  BugIcon,
-  CalendarIcon,
-  UpArrowIcon,
-  HollowCheckIcon,
-  SearchIcon,
-  RoundCheckIcon,
-  RoundExclamationIcon,
-  HomeMobileIcon,
-  AboutMobileIcon,
-  SkillsMobileIcon,
-  ServicesMobileIcon,
-  PortfolioMobileIcon,
-  ContactMobileIcon,
-  FlourishedCheckmarkIcon,
+const Icons = {
+  PaperPlane: PaperPlaneIcon,
+  Resume: ResumeIcon,
+  Blob: BlobIcon,
+  OpenLink: OpenLinkIcon,
+  Bug: BugIcon,
+  Calendar: CalendarIcon,
+  UpArrow: UpArrowIcon,
+  HollowCheck: HollowCheckIcon,
+  Search: SearchIcon,
+  RoundCheck: RoundCheckIcon,
+  RoundExclamation: RoundExclamationIcon,
+  HomeMobile: HomeMobileIcon,
+  AboutMobile: AboutMobileIcon,
+  SkillsMobile: SkillsMobileIcon,
+  ServicesMobile: ServicesMobileIcon,
+  PortfolioMobile: PortfolioMobileIcon,
+  ContactMobile: ContactMobileIcon,
+  FlourishedCheckmark: FlourishedCheckmarkIcon,
 };
+
+export default Icons;
