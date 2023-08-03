@@ -1,0 +1,171 @@
+/**
+ * Generates a random number within a specified range.
+ * @param {number} min - The minimum value of the range.
+ * @param {number} max - The maximum value of the range.
+ * @param {boolean} includeMin - Whether to include the minimum value in the range.
+ * @param {boolean} includeMax - Whether to include the maximum value in the range.
+ *
+ * @returns {number} A random number within the specified range.
+ */
+export function getRandomNumber(
+  min: number = 0,
+  max: number = 1,
+  includeMin: boolean = true,
+  includeMax: boolean = true
+): number {
+  const hasInvalidRange: boolean = min > max || max < min;
+  if (hasInvalidRange) {
+    throw new RangeError(
+      `Unexpected error occurred in the passed argument values: ${
+        min > max ? "min > max" : "max < min"
+      }`
+    );
+  }
+
+  const mustIncludeBoth: boolean = includeMin && includeMax;
+
+  const mustIncludeOnlyMin: boolean = includeMin && !includeMax;
+
+  const mustIncludeOnlyMax: boolean = !includeMin && includeMax;
+
+  if (mustIncludeBoth) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  } else if (mustIncludeOnlyMin) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  } else if (mustIncludeOnlyMax) {
+    return Math.floor(Math.random() * (max - min)) + min + 1;
+  } else {
+    //We don't include either
+    return Math.floor(Math.random() * (max - min - 1)) + min + 1;
+  }
+}
+
+/**
+ *Formats a number with its ordinal suffix (e.g. "1st", "2nd", "3rd", "4th").
+
+ *@param {number} number The number to format.
+ *
+ *@returns {string} The formatted string.
+ */
+export function getOrdinalSuffix(number: number): string {
+  const argumentIsNotANumber: boolean = typeof number !== "number";
+
+  if (argumentIsNotANumber) {
+    throw new TypeError(
+      `Cannot add suffix to the value passed in argument, expected number instead got: ${typeof number}`
+    );
+  }
+
+  const numberPassedIsNotPositive: boolean = number <= 0;
+  if (numberPassedIsNotPositive) {
+    throw new RangeError(
+      `The number passed in argument: ${number} is not strictly positive`
+    );
+  }
+
+  const numberHasSpecialSuffixRule: boolean = number > 10 && number < 14;
+  if (numberHasSpecialSuffixRule) {
+    return `${number}th`;
+  }
+
+  const lastDigit: string = number.toString().slice(-1);
+
+  switch (lastDigit) {
+    case "1": {
+      return `${number}st`;
+    }
+    case "2": {
+      return `${number}nd`;
+    }
+    case "3": {
+      return `${number}rd`;
+    }
+    default: {
+      return `${number}th`;
+    }
+  }
+}
+
+/**
+ * Calculates the age from a given date of birth string in the format "MM/DD/YYYY".
+ *
+ * @param {string} dateOfBirth - The date of birth string in the format "MM/DD/YYYY".
+ * @throws {TypeError} If the `dateOfBirth` argument is not a string.
+ * @throws {Error} If the `dateOfBirth` argument has an incorrect date format, is in the future, or if there are other calculation errors.
+ *
+ * @returns {number} The age calculated from the date of birth.
+ */
+export function getAgeFromDateOfBirth(dateOfBirth: string): number {
+  const argumentHasInvalidType: boolean = typeof dateOfBirth !== "string";
+  if (argumentHasInvalidType) {
+    throw new TypeError(
+      `Invalid argument passed, expected a string but instead got ${typeof dateOfBirth}`
+    );
+  }
+
+  /**
+   * Date of birth in milliseconds
+   */
+  const dateOfBirthInMilliseconds: number = new Date(dateOfBirth).getTime();
+
+  /**
+   * Current year in milliseconds
+   */
+  const currentDate: number = new Date().getTime();
+
+  const hasIncorrectDateFormat: boolean = isNaN(dateOfBirthInMilliseconds);
+  if (hasIncorrectDateFormat) {
+    throw new Error(
+      `Invalid date of birth format: ${dateOfBirth}. Please use the format "MM/DD/YYYY".`
+    );
+  }
+
+  /**
+   * Milliseconds per year : `1s in ms` × `1min in s` × `1hr in mins` × `1 day in hrs` × `1 year in days`
+  (including leap years)
+   */
+  const MILLISECONDS_IN_A_YEAR: number = 1000 * 60 * 60 * 24 * 365.25;
+
+  const dateOfBirthIsInvalid: boolean = dateOfBirthInMilliseconds > currentDate;
+  if (dateOfBirthIsInvalid) {
+    throw new Error("Date of birth cannot be in the future.");
+  }
+
+  /**
+   * The actual age
+   */
+  const ageInYears: number = Math.floor(
+    (currentDate - dateOfBirthInMilliseconds) / MILLISECONDS_IN_A_YEAR
+  );
+
+  return ageInYears;
+}
+
+/**
+ * Calculates the amount of experience in years based on the current year and the year when my career started.
+ * @returns {number} The amount of experience in years.
+ */
+export function getAmountOfExperience(startingDate: string): number {
+  const argumentHasInvalidType: boolean = typeof startingDate !== "string";
+  if (argumentHasInvalidType) {
+    throw new TypeError(
+      `Invalid argument passed, expected a string but instead got ${typeof startingDate}`
+    );
+  }
+  /**
+   * The current year as a number.
+   */
+  const currentDate: number = new Date().getFullYear();
+
+  /**
+   * The year when the career started as a number.
+   */
+  const careerDateStart: number = new Date(startingDate).getFullYear();
+
+  const hasInvalidStartingDate: boolean = careerDateStart > currentDate;
+  if (hasInvalidStartingDate) {
+    throw new Error("The date for the starting career cannot be in the future");
+  }
+
+  return currentDate - careerDateStart;
+}

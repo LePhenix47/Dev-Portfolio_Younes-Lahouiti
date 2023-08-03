@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 //Utils
-import { sliderCardTypes } from "@/react-utils/types/slider.types";
+import { sliderCardTypes } from "@/react-utils/types/services/slider.types";
 
 //Components
 import SliderCard from "../SliderCard/SliderCard";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { formatStringCase } from "@/react-utils/functions/helpers/string-helper.functions";
+import { formatStringCase } from "@/react-utils/helpers/string-helper.functions";
 
 export default function HomeSocialCardItem({
   srcIcon,

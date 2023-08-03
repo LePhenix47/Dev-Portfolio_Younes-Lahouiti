@@ -1,7 +1,7 @@
 //Types
 
-import { PNG_IMAGES } from "../constants/index.constants";
-import { projectsMadeType } from "../types/projects.types";
+import { PNG_IMAGES } from "../../../assets/index.constants";
+import { projectsMadeType } from "../../../types/portfolio/projects.types";
 
 /**
  * Constant containing projects from my OpenClassrooms traineeships

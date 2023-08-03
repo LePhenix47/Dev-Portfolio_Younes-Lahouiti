@@ -2,9 +2,9 @@
 import React from "react";
 
 //Utils
-import { frontEndSkills } from "@/react-utils/variables/skill.variables";
+import { frontEndSkills } from "@/react-utils/variables/common/skills/skill.variables";
 import SkillCardList from "../SkillCardList/SkillCardList";
-import { skill } from "@/react-utils/types/skill.types";
+import { skill } from "@/react-utils/types/skills/skill.types";
 
 export default function SkillsCard({
   listClass,

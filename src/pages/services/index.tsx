@@ -16,9 +16,9 @@ import {
 } from "@/components/common/services/services-page.components";
 
 //Utils
-import { offeredServices } from "@/react-utils/variables/services.variables";
+import { offeredServices } from "@/react-utils/variables/common/services/services.variables";
 
-import { sliderCardsVariables } from "@/react-utils/variables/slider.variables";
+import { sliderCardsVariables } from "@/react-utils/variables/common/services/slider.variables";
 
 export default function Services(): JSX.Element | null {
   const servicesPageSectionRef = useRef<HTMLElement>(null);

@@ -36,7 +36,7 @@ export default function Error500(): JSX.Element {
         {/*
          <!--Title--> 
          */}
-        <title>Error 500 - Portfolio</title>
+        <title>Error 500 - Server error</title>
         {/*     Canonical link     */}
         <link
           rel="canonical"

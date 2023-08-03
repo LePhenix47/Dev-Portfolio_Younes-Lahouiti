@@ -2,7 +2,7 @@
 import React from "react";
 
 //Utils
-import { serviceType } from "@/react-utils/types/services.types";
+import { serviceType } from "@/react-utils/types/services/services.types";
 import Icons from "@/components/shared/icons/Icons";
 
 export default function ServicesModalContent({

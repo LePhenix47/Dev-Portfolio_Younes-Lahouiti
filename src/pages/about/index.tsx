@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Utils
-import { aboutCardsValues } from "@/react-utils/variables/about-cards.variables";
+import { aboutCardsValues } from "@/react-utils/variables/common/about/about-cards.variables";
 
 //React
 import { useRef } from "react";
@@ -13,14 +13,15 @@ import { useRef } from "react";
 import { CanvasComponent } from "@/components/shared/shared.components";
 
 //Variables
-import { diplomas } from "@/react-utils/variables/diplomas.variables";
-import { JPG_URLS, PDF_URLS } from "@/react-utils/constants/index.constants";
+import { diplomas } from "@/react-utils/variables/common/about/diplomas.variables";
+import { JPG_URLS, PDF_URLS } from "@/react-utils/assets/index.constants";
 import {
   AboutCard,
   DiplomaCard,
   NoiseFilter,
 } from "@/components/common/about/about-page.components";
 import Icons from "@/components/shared/icons/Icons";
+import { getAgeFromDateOfBirth } from "@/react-utils/helpers/numbers-helper.functions";
 
 /**
  * About me page: `/about`
@@ -30,26 +31,12 @@ export default function About(): JSX.Element {
   /**
    * My date of birth: June 13th 2002
    */
-  const dateOfBirth: number = new Date("06/13/2002").getTime();
-
-  /**
-   * Current year
-   */
-  const currentDate: number = new Date().getTime();
-
-  /**
-   * Milliseconds per year : `1s in ms` × `1min in s` × `1hr in mins` × `1 day in hrs` × `1 year in days`
-  (including leap years)
-   */
-  const MILLISECONDS_IN_A_YEAR: number = 1000 * 60 * 60 * 24 * 365.25;
+  const dateOfBirth: string = "06/13/2002";
 
   /**
    * My actual age
    */
-  const myAgeInYears: number = Math.floor(
-    (currentDate - dateOfBirth) / MILLISECONDS_IN_A_YEAR
-  );
-
+  const myAgeInYears: number = getAgeFromDateOfBirth(dateOfBirth);
   const imageId: string = "image";
 
   return (

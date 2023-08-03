@@ -217,8 +217,9 @@ export function updatePropertyOfObjectArray(
   const objectToRemove: object | undefined = arrayOfObjects.find(
     (object: object) => {
       const currentObject: object = (object as any)[property];
-      const newObject: object = newObject[property];
-      return areObjectsEqual(currentObject, newObject);
+      const newObjectToFind: object = (newObject as any)[property];
+
+      return areObjectsEqual(currentObject, newObjectToFind);
     }
   );
 

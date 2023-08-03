@@ -8,15 +8,18 @@ import {
 import { invertDayAndMonth } from "./string-helper.functions";
 
 /**
- * Creates a new deep copied array of the provided array using `Array.from()`
+ * Creates a new deep copied array or set of the provided value using `Array.from()`
  *
  * @param {any} arrayToCopy - The array or list to copy
  *
  * @returns {any[]} - The new array containing the copied elements
  */
 export function copyArray(arrayToCopy: any): any[] {
-  const isNotAnArrayOrSet: boolean =
-    !isExactlyAnArray(arrayToCopy) || getPrototypeOf(arrayToCopy) !== "Set";
+  const isNotAnArray: boolean = !isExactlyAnArray(arrayToCopy);
+  const isNotASet: boolean =
+    getPrototypeOf(arrayToCopy) !== "Array" &&
+    getPrototypeOf(arrayToCopy) !== "Set";
+  const isNotAnArrayOrSet: boolean = isNotAnArray || isNotASet;
   if (isNotAnArrayOrSet) {
     throw new TypeError(
       `Invalid argument passed, expected an array or set but got: \n ${typeof arrayToCopy} ${getPrototypeOf(
@@ -43,7 +46,7 @@ export function isExactlyAnArray(value: any): boolean {
 /**
  * Checks if two arrays are exactly the same, including nested arrays and objects.
  *
- * ⚠ WARNING: The arrays must be sorted beforehand
+ * **⚠ WARNING:** The arrays must be sorted beforehand in order for the results to be accurate
  *
  * @param {any[]} arr1 - The first array to compare.
  * @param {any[]} arr2 - The second array to compare.

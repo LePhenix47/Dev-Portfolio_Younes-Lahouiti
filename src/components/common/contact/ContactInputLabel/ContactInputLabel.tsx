@@ -5,10 +5,10 @@ import React, { MutableRefObject, useEffect, useId, useState } from "react";
 import Image from "next/image";
 
 //Utils
-import { inputType } from "@/react-utils/types/input.types";
+import { inputType } from "@/react-utils/types/contact/input.types";
 import Icons from "@/components/shared/icons/Icons";
 
-import { log } from "@/react-utils/functions/helpers/console-helper.functions";
+import { log } from "@/react-utils/helpers/console-helper.functions";
 
 export default function ContactInputLabel({
   labelText = "",

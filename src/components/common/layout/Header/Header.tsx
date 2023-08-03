@@ -8,8 +8,8 @@ import Link from "next/link";
 //Components
 import Icons from "@/components/shared/icons/Icons";
 
-import { copyTextToClipBoard } from "@/react-utils/functions/helpers/string-helper.functions";
-import { log } from "@/react-utils/functions/helpers/console-helper.functions";
+import { copyTextToClipBoard } from "@/react-utils/helpers/string-helper.functions";
+import { log } from "@/react-utils/helpers/console-helper.functions";
 
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();

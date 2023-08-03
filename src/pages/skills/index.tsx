@@ -11,12 +11,12 @@ import { CanvasComponent } from "@/components/shared/shared.components";
 import {
   frontEndSkills,
   backEndSkills,
-} from "@/react-utils/variables/skill.variables";
+} from "@/react-utils/variables/common/skills/skill.variables";
 
 import {
   educationTimeline,
   experienceTimeline,
-} from "@/react-utils/variables/education-experience.variables";
+} from "@/react-utils/variables/common/skills/education-experience.variables";
 import {
   SkillsCard,
   Timeline,

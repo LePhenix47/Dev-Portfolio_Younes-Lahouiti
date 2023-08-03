@@ -1,7 +1,7 @@
 import {
   educationType,
   experienceType,
-} from "../types/education-experience.types";
+} from "../../../types/skills/education-experience.types";
 
 export const educationTimeline: educationType = [
   {

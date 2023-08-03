@@ -13,19 +13,19 @@ import {
   npmProjects,
   browserExtensionProjects,
   allProjects,
-} from "@/react-utils/variables/projects.variables";
+} from "@/react-utils/variables/common/portfolio/projects.variables";
 
-import { projectCategories } from "@/react-utils/variables/projects-categories.variables";
-import { projectsMadeType } from "@/react-utils/types/projects.types";
+import { projectCategories } from "@/react-utils/variables/common/portfolio/projects-categories.variables";
+import { projectsMadeType } from "@/react-utils/types/portfolio/projects.types";
 import { CanvasComponent } from "@/components/shared/shared.components";
 import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
 import Icons from "@/components/shared/icons/Icons";
 import {
   filterArrayByString,
   sortArrayOfObjects,
-} from "@/react-utils/functions/helpers/arrays-helper.functions";
-import { formatStringCase } from "@/react-utils/functions/helpers/string-helper.functions";
-import { formatShortDate } from "@/react-utils/functions/helpers/internalization-helper.functions";
+} from "@/react-utils/helpers/arrays-helper.functions";
+import { formatStringCase } from "@/react-utils/helpers/string-helper.functions";
+import { formatShortDate } from "@/react-utils/helpers/internalization-helper.functions";
 
 //Components
 

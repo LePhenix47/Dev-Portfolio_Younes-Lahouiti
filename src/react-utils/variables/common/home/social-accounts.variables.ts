@@ -1,4 +1,4 @@
-import { socialAccountType } from "../types/social-accounts.types";
+import { socialAccountType } from "../../../types/home/social-accounts.types";
 
 import LINKEDIN from "@public/svg/linkedin-icon.svg";
 import TWITTER from "@public/svg/twitter-icon.svg";

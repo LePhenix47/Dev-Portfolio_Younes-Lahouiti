@@ -1,5 +1,5 @@
 //Types
-import { contactMethodType } from "../types/contact-methods.types";
+import { contactMethodType } from "../../../types/contact/contact-methods.types";
 
 //Images
 import EMAIL from "@public/svg/email.svg";

@@ -7,12 +7,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Utils
-import { socialAccountVariables } from "@/react-utils/variables/social-accounts.variables";
+import { socialAccountVariables } from "@/react-utils/variables/common/home/social-accounts.variables";
 
 //Components
 import { CanvasComponent } from "@/components/shared/shared.components";
 import { HomeSocialCardItem } from "@/components/common/home/home-page.components";
-import { JPG_URLS } from "@/react-utils/constants/index.constants";
+import { JPG_URLS } from "@/react-utils/assets/index.constants";
 
 import Icons from "@/components/shared/icons/Icons";
 

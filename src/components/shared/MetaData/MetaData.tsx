@@ -5,7 +5,7 @@ import Head from "next/head";
  *
  * @param {string} title - The title of the page.
  * @param {string} description - The description of the page.
- * @param {string} pageUrl - The URL of the page.
+ * @param {string} pageUrl - The URI of the page.
  * @param {boolean} needsIndexation - Determines if the page should be indexed by search engines.
  * @param {boolean} needsRobotFollow - Determines if search engine robots should follow links on the page.
  * @param {Object} openGraph - Open Graph metadata for social media sharing.
@@ -19,14 +19,14 @@ import Head from "next/head";
 export default function MetaData({
   title,
   description,
-  pageUrl,
+  pageUri,
   needsIndexation,
   needsRobotCrawlers,
   openGraph,
 }: {
   title: string;
   description: string;
-  pageUrl: string;
+  pageUri: string;
   needsIndexation: boolean;
   needsRobotCrawlers: boolean;
   openGraph: {
@@ -57,13 +57,17 @@ export default function MetaData({
    *
    * @type {string}
    */
-  const indexationValue: string = needsIndexation ? "index" : "noindex";
+  const indexationValue: string = !!needsIndexation ? "index" : "noindex";
   /**
    * Value to determine whether the links in the page should be followed by the robot crawlers
    *
    * @type {string}
    */
-  const robotCrawlersValue: string = needsRobotCrawlers ? "follow" : "nofollow";
+  const robotCrawlersValue: string = !!needsRobotCrawlers
+    ? "follow"
+    : "nofollow";
+
+  const pageUrl = `https://younes-portfolio-dev.vercel.app/${pageUri}`;
 
   return (
     <Head>

@@ -5,7 +5,7 @@ import { MutableRefObject, useRef } from "react";
 import Head from "next/head";
 
 //Variables
-import { contactMethods } from "@/react-utils/variables/contact-methods.variables";
+import { contactMethods } from "@/react-utils/variables/common/contact/contact-methods.variables";
 
 //Components
 
@@ -26,11 +26,8 @@ import Icons from "@/components/shared/icons/Icons";
 import {
   formatStringCase,
   testRegExp,
-} from "@/react-utils/functions/helpers/string-helper.functions";
-import {
-  error,
-  log,
-} from "@/react-utils/functions/helpers/console-helper.functions";
+} from "@/react-utils/helpers/string-helper.functions";
+import { error, log } from "@/react-utils/helpers/console-helper.functions";
 
 /**
  * Contact page: `/contact`
