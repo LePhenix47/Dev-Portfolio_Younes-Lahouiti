@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 /**
  *The _document file is a file for the structure in the entire app
@@ -18,6 +19,34 @@ export default function Document(): JSX.Element {
 
         {/*  Canonical link  */}
         <link rel="canonical" href="https://younes-portfolio-dev.vercel.app/" />
+
+        {/* Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+
+        {/* Icons */}
+        <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+        />
+
+        <link
+          rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+        />
+
+        <Script
+          src="https://kit.fontawesome.com/904e9ee361.js"
+          crossOrigin="anonymous"
+        ></Script>
       </Head>
       <body>
         <Main />
