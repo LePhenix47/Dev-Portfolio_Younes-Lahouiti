@@ -2,9 +2,9 @@
 import { contactMethodType } from "../types/contact-methods.types";
 
 //Images
-import EMAIL from "../../../public/svg/email.svg";
-import SLACK from "../../../public/svg/slack-logo.svg";
-import WHATSAPP from "../../../public/svg/whatsapp-logo.svg";
+import EMAIL from "@public/svg/email.svg";
+import SLACK from "@public/svg/slack-logo.svg";
+import WHATSAPP from "@public/svg/whatsapp-logo.svg";
 
 /**
  * Methods of contact to create the contact cards

@@ -55,6 +55,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Head>
+        <meta name="author" content="Younes Lahouiti" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <TanStackProvider client={queryClient}>

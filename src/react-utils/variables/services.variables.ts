@@ -2,9 +2,9 @@
 import { serviceType } from "../types/services.types";
 
 //Images
-import integrationIcon from "../../../public/svg/integration.svg";
-import debuggingIcon from "../../../public/svg/settings.svg";
-import apiIcon from "../../../public/svg/code.svg";
+import integrationIcon from "@public/svg/integration.svg";
+import debuggingIcon from "@public/svg/settings.svg";
+import apiIcon from "@public/svg/code.svg";
 
 export const offeredServices: serviceType = [
   {

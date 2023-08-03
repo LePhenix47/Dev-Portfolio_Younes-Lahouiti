@@ -12,7 +12,7 @@
  * @throws {TypeError} If either the string or the option parameter is not a string
  */
 export function formatStringCase(string: string, option: string): string {
-  const hasInvalidArguments =
+  const hasInvalidArguments: boolean =
     typeof string !== "string" || typeof option !== "string";
   if (hasInvalidArguments) {
     throw new TypeError(
@@ -20,7 +20,7 @@ export function formatStringCase(string: string, option: string): string {
     );
   }
 
-  const formattedOption = option.toLowerCase().trim();
+  const formattedOption: string = option.toLowerCase().trim();
 
   switch (formattedOption) {
     case "lowercase": {
@@ -32,12 +32,12 @@ export function formatStringCase(string: string, option: string): string {
     }
 
     case "titlecase": {
-      const words = string.split(" ");
+      const words: string[] = string.split(" ");
 
       for (let i = 0; i < words.length; i++) {
-        const firstLetter = words[i].charAt(0).toUpperCase();
+        const firstLetter: string = words[i].charAt(0).toUpperCase();
 
-        const remainingLetters = words[i].slice(1).toLowerCase();
+        const remainingLetters: string = words[i].slice(1).toLowerCase();
 
         words[i] = firstLetter + remainingLetters;
       }
@@ -49,21 +49,21 @@ export function formatStringCase(string: string, option: string): string {
       const sentences = string.split(/(?<=[.?!])/);
 
       for (let i = 0; i < sentences.length; i++) {
-        const sentence = sentences[i];
+        const sentence: string = sentences[i];
 
-        const trimmedSentence = sentence.trim();
+        const trimmedSentence: string = sentence.trim();
 
-        const sentenceHasNoWords = trimmedSentence.length === 0;
+        const sentenceHasNoWords: boolean = trimmedSentence.length === 0;
         if (sentenceHasNoWords) {
           sentences[i] = "";
           continue;
         }
 
         // We only make the first letter of the sentence uppercased
-        const firstChar = trimmedSentence.charAt(0).toUpperCase();
+        const firstChar: string = trimmedSentence.charAt(0).toUpperCase();
 
         // We only make the rest of the sentence lowercased
-        const restOfSentence = trimmedSentence.slice(1).toLowerCase();
+        const restOfSentence: string = trimmedSentence.slice(1).toLowerCase();
 
         sentences[i] = firstChar + restOfSentence;
       }

@@ -1,17 +1,16 @@
-import { cp } from "fs";
 import { warn } from "./console-helper.functions";
 import { getRandomNumber } from "./numbers-helper.functions";
 import { areArraysEqual, isExactlyAnArray } from "./arrays-helper.functions";
 
 /**
  * Copies an object (or array though using the `copyArray` function is better)
- * without using their reference by using the `structuredClone` function
+ * without using their reference by using the `structuredClone()` function
  *
  * @param {object | array} object Object or array to copy
  * @returns {object | array} A deep copied object
  */
 export function copyObject(object: any[]): any[] {
-  const isAnArray = Array.isArray(object);
+  const isAnArray = isExactlyAnArray(object);
   if (isAnArray) {
     warn(
       "An array was passed to ths function to copyObjects, it's better to use the copyArray function instead"
@@ -30,10 +29,10 @@ export function copyObject(object: any[]): any[] {
  * const array = [1, 2, 3];
  * const object = { name: 'John', age: 30 };
  *
- * console.log(getPrototypeOfValue(array)); // Output: "Array"
- * console.log(getPrototypeOfValue(object)); // Output: "Object"
+ * console.log(getPrototypeOf(array)); // Output: "Array"
+ * console.log(getPrototypeOf(object)); // Output: "Object"
  */
-export function getPrototypeOfValue(value: any): any {
+export function getPrototypeOf(value: any): any {
   const prototypeString: string = Object.prototype.toString.call(value);
   const formattedPrototypeString: string = prototypeString.slice(8, -1);
   return formattedPrototypeString;
@@ -47,7 +46,7 @@ export function getPrototypeOfValue(value: any): any {
  */
 export function isExactlyAnObject(value: any): boolean {
   const valueType: string = typeof value;
-  const valuePrototype: string = getPrototypeOfValue(value);
+  const valuePrototype: string = getPrototypeOf(value);
 
   return valueType === "object" && valuePrototype === "Object";
 }
@@ -70,18 +69,18 @@ export function areObjectsEqual<T extends object>(obj1: T, obj2: T): boolean {
   const argumentsAreNotObjects: boolean =
     areArrays || doNotHaveObjectType || argumentsAreFalsy;
   if (argumentsAreNotObjects) {
-    const typeObj1 = `${typeof obj1} ${getPrototypeOfValue(obj1)}`;
-    const typeObj2 = `${typeof obj2} ${getPrototypeOfValue(obj2)}`;
+    const typeObj1 = `${typeof obj1} ${getPrototypeOf(obj1)}`;
+    const typeObj2 = `${typeof obj2} ${getPrototypeOf(obj2)}`;
     throw new TypeError(
       `Invalid input, expected both arguments to be objects, instead got ${typeObj1} and ${typeObj2}`
     );
   }
 
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+  const keys1: any[] = getObjectProperties(obj1);
+  const keys2: any[] = getObjectProperties(obj2);
 
-  const doesNotContainSameAmountOfProperties = keys1.length !== keys2.length;
-  if (doesNotContainSameAmountOfProperties) {
+  const hasDifferentAmountOfProperties: boolean = keys1.length !== keys2.length;
+  if (hasDifferentAmountOfProperties) {
     return false;
   }
 
@@ -137,7 +136,7 @@ export function areObjectsEqual<T extends object>(obj1: T, obj2: T): boolean {
 }
 
 /**
- * Retrieves the values of an object inside an array.
+ * Retrieves the values of an object inside an array using `Object.values()`
  *
  * @param {object} object The object to retrieve values from.
  *
@@ -155,7 +154,7 @@ export function getObjectValues(object: object): any[] {
 }
 
 /**
- * Retrieves the properties themselves of an object inside an array.
+ * Retrieves the properties themselves of an object inside an array using `Object.keys()`
  *
  * @param {object} object The object to retrieve properties from.
  *
@@ -173,7 +172,7 @@ export function getObjectProperties(object: object): any[] {
 }
 
 /**
- * Retrieves the property names and values of an object inside an array.
+ * Retrieves the property names and values of an object inside an array using `Object.entries()`
  *
  * @param {object} object The object to retrieve property names and values from.
  *
@@ -216,8 +215,11 @@ export function updatePropertyOfObjectArray(
    * Object to be updated
    */
   const objectToRemove: object | undefined = arrayOfObjects.find(
-    (object: object) =>
-      (object as any)[property] === (newObject as any)[property]
+    (object: object) => {
+      const currentObject: object = (object as any)[property];
+      const newObject: object = newObject[property];
+      return areObjectsEqual(currentObject, newObject);
+    }
   );
 
   /**

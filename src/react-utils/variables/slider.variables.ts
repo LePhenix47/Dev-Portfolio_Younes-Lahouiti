@@ -1,7 +1,7 @@
 import { sliderCardTypes } from "../types/slider.types";
 
 //Images
-import USER_PFP from "../../../public/png/portfolio-screenshot.png";
+import USER_PFP from "@public/png/portfolio-screenshot.png";
 
 /**
  * Fictional characters to display my skills in creating a carousel

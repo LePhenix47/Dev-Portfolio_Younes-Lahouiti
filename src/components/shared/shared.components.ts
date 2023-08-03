@@ -6,4 +6,6 @@ import ModalWindow from "./ModalWindow/ModalWindow";
 
 import NavLink from "./NavLink/NavLink";
 
+import MetaData from "./MetaData/MetaData";
+
 export { BufferLoader, CanvasComponent, ModalWindow, NavLink };

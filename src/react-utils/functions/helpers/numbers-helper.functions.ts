@@ -13,9 +13,9 @@ export function getRandomNumber(
   includeMin: boolean = true,
   includeMax: boolean = true
 ): number {
-  const hasInvalidArgument: boolean = min > max || max < min;
-  if (hasInvalidArgument) {
-    throw new Error(
+  const hasInvalidRange: boolean = min > max || max < min;
+  if (hasInvalidRange) {
+    throw new RangeError(
       `Unexpected error occurred in the passed argument values: ${
         min > max ? "min > max" : "max < min"
       }`

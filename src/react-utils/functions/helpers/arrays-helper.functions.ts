@@ -2,24 +2,35 @@ import { typeofTypes } from "@/react-utils/types/typeof.types";
 import {
   areObjectsEqual,
   copyObject,
-  getPrototypeOfValue,
+  getPrototypeOf,
   isExactlyAnObject,
 } from "./objects-helper.functions";
 import { invertDayAndMonth } from "./string-helper.functions";
 
 /**
- * Creates a new deep copied array of the provided array
+ * Creates a new deep copied array of the provided array using `Array.from()`
  *
  * @param {any} arrayToCopy - The array or list to copy
  *
  * @returns {any[]} - The new array containing the copied elements
  */
 export function copyArray(arrayToCopy: any): any[] {
+  const isNotAnArrayOrSet: boolean =
+    !isExactlyAnArray(arrayToCopy) || getPrototypeOf(arrayToCopy) !== "Set";
+  if (isNotAnArrayOrSet) {
+    throw new TypeError(
+      `Invalid argument passed, expected an array or set but got: \n ${typeof arrayToCopy} ${getPrototypeOf(
+        arrayToCopy
+      )}`
+    );
+  }
+
+  // Arrays or sets are copyable with `Array.from()`
   return Array.from(arrayToCopy);
 }
 
 /**
- * Checks if the provided argument value is an array.
+ * Checks if the provided argument value is an array using `Array.isArray()`
  *
  * @param {any} value - The value to check.
  *
@@ -32,6 +43,8 @@ export function isExactlyAnArray(value: any): boolean {
 /**
  * Checks if two arrays are exactly the same, including nested arrays and objects.
  *
+ * ⚠ WARNING: The arrays must be sorted beforehand
+ *
  * @param {any[]} arr1 - The first array to compare.
  * @param {any[]} arr2 - The second array to compare.
  * @returns {boolean} - Returns true if the arrays are exactly the same, otherwise false.
@@ -41,8 +54,8 @@ export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
     !arr1 || !arr2 || !isExactlyAnArray(arr1) || !isExactlyAnArray(arr2);
   // Check if either argument is falsy or not an array
   if (hasInvalidArguments) {
-    const arr1Prototype = `[${typeof arr1} ${getPrototypeOfValue(arr1)}]`;
-    const arr2Prototype = `[${typeof arr2} ${getPrototypeOfValue(arr2)}]`;
+    const arr1Prototype = `[${typeof arr1} ${getPrototypeOf(arr1)}]`;
+    const arr2Prototype = `[${typeof arr2} ${getPrototypeOf(arr2)}]`;
     throw new TypeError(
       `Invalid input, expected both arguments to be non-null arrays, instead got: \n
      arr1: ${arr1Prototype}, arr2: ${arr2Prototype}`
@@ -75,8 +88,8 @@ export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
     const areBothObjects: boolean =
       isExactlyAnObject(element1) && isExactlyAnObject(element2);
     if (areBothObjects) {
-      const haveDifferentArrayValues = !areObjectsEqual(element1, element2);
-      if (haveDifferentArrayValues) {
+      const haveDifferentObjectValues = !areObjectsEqual(element1, element2);
+      if (haveDifferentObjectValues) {
         return false;
       }
 
@@ -206,12 +219,14 @@ export function sortArrayOfObjects(
         if (isDateAsObject) {
           return propOfObj1 - propOfObj2;
         } else {
-          throw "Object passed isn't a date, perhaps it's not an instance of Date or you entered an array?";
+          throw new TypeError(
+            "Object passed isn't a date, perhaps it's not an instance of Date or you entered an array?"
+          );
         }
       }
 
       default: {
-        throw console.error(
+        throw new TypeError(
           "An error has occurred, the property is undefined or null"
         );
       }

@@ -1,13 +1,13 @@
 import { socialAccountType } from "../types/social-accounts.types";
 
-import LINKEDIN from "../../../public/svg/linkedin-icon.svg";
-import TWITTER from "../../../public/svg/twitter-icon.svg";
-import YOUTUBE from "../../../public/svg/youtube-icon.svg";
-import GITHUB from "../../../public/svg/github-icon.svg";
-import STACKOVERFLOW from "../../../public/svg/stackoverflow-icon.svg";
-import NPM from "../../../public/svg/npm-icon.svg";
-import DISCORD from "../../../public/svg/discord-icon.svg";
-import CODEPEN from "../../../public/svg/codepen-icon.svg";
+import LINKEDIN from "@public/svg/linkedin-icon.svg";
+import TWITTER from "@public/svg/twitter-icon.svg";
+import YOUTUBE from "@public/svg/youtube-icon.svg";
+import GITHUB from "@public/svg/github-icon.svg";
+import STACKOVERFLOW from "@public/svg/stackoverflow-icon.svg";
+import NPM from "@public/svg/npm-icon.svg";
+import DISCORD from "@public/svg/discord-icon.svg";
+import CODEPEN from "@public/svg/codepen-icon.svg";
 
 export const socialAccountVariables: socialAccountType = [
   {
