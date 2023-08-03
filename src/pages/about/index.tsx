@@ -1,5 +1,5 @@
 //Next
-import Head from "next/head";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,6 +14,11 @@ import {
   CanvasComponent,
   MetaData,
 } from "@/components/shared/shared.components";
+
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
 
 //Variables
 import { diplomas } from "@/react-utils/variables/common/about/diplomas.variables";
@@ -30,6 +35,7 @@ import { getAgeFromDateOfBirth } from "@/react-utils/helpers/numbers-helper.func
  * About me page: `/about`
  */
 export default function About(): JSX.Element {
+  const { about } = PAGE_METADATA;
   const aboutPageSectionRef = useRef<HTMLElement>(null);
   /**
    * My date of birth: June 13th 2002
@@ -44,39 +50,14 @@ export default function About(): JSX.Element {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="
-          Get to know me better! I'm Younes LAHOUITI, a passionate web developer with 1 year of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences."
-        />
-        {/* Open Graph tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="About page" />
-        <meta
-          property="og:description"
-          content="
-          Get to know me better! I'm Younes LAHOUITI, a passionate web developer with 1 year of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences."
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/about"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>About page</title>
-      </Head>
+      <MetaData
+        title={about.title}
+        description={about.description}
+        pageUri={about.pageUri}
+        needsIndexation={about.needsIndexation}
+        needsRobotCrawlers={about.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="about-page" ref={aboutPageSectionRef}>
         <CanvasComponent parentElement={aboutPageSectionRef} />
         <h1 className="about-page__title">About me</h1>

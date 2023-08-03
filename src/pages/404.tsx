@@ -1,5 +1,5 @@
 //React
-import Head from "next/head";
+
 import React, { useEffect, useRef, useState } from "react";
 
 //Next
@@ -9,7 +9,13 @@ import {
   MetaData,
 } from "@/components/shared/shared.components";
 
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
+
 export default function Error404(): JSX.Element | null {
+  const { error404 } = PAGE_METADATA;
   const section404Ref = useRef<HTMLElement>(null);
 
   const router: NextRouter = useRouter();
@@ -28,41 +34,14 @@ export default function Error404(): JSX.Element | null {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="noindex, follow" />
-        <meta
-          name="description"
-          content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Page not found" />
-        <meta
-          property="og:description"
-          content="Sorry, the page you were looking for is not available. Please try again or contact me for assistance."
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/404"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Error 404 - Page not found</title>
-        {/*     Canonical link     */}
-        <link
-          rel="canonical"
-          href="https://https://younes-portfolio-dev.vercel.app/"
-        />
-      </Head>
+      <MetaData
+        title={error404.title}
+        description={error404.description}
+        pageUri={error404.pageUri}
+        needsIndexation={error404.needsIndexation}
+        needsRobotCrawlers={error404.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="error-404" ref={section404Ref}>
         <CanvasComponent parentElement={section404Ref} />
         <h1 className="error-404__main-title">404</h1>

@@ -2,7 +2,7 @@
 import { useRef } from "react";
 
 //Next
-import Head from "next/head";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,20 +24,20 @@ import { HomeSocialCardItem } from "@/components/common/home/home-page.component
 import { JPG_URLS } from "@/react-utils/assets/index.constants";
 
 import Icons from "@/components/shared/icons/Icons";
-import { log } from "@/react-utils/helpers/console-helper.functions";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
 
-  log(PAGE_METADATA.home, OPEN_GRAPH);
+  const { home } = PAGE_METADATA;
+
   return (
     <>
       <MetaData
-        title={PAGE_METADATA.home.title}
-        description={PAGE_METADATA.home.description}
-        pageUri={PAGE_METADATA.home.pageUri}
-        needsIndexation={PAGE_METADATA.home.needsIndexation}
-        needsRobotCrawlers={PAGE_METADATA.home.needsRobotCrawlers}
+        title={home.title}
+        description={home.description}
+        pageUri={home.pageUri}
+        needsIndexation={home.needsIndexation}
+        needsRobotCrawlers={home.needsRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="home-page" ref={homePageSectionRef}>

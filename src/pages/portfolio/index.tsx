@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 
 //Next
-import Head from "next/head";
 
 //Variables
 import {
@@ -22,6 +21,11 @@ import {
   MetaData,
 } from "@/components/shared/shared.components";
 
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
+
 import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
 import Icons from "@/components/shared/icons/Icons";
 import {
@@ -37,6 +41,7 @@ import { formatShortDate } from "@/react-utils/helpers/internalization-helper.fu
  * Portfolio page: `/portfolio`
  */
 export default function Portfolio(): JSX.Element {
+  const { portfolio } = PAGE_METADATA;
   const portfolioPageSectionRef = useRef<HTMLElement>(null);
   /**
    * State that holds the data for the cards within the container
@@ -188,38 +193,14 @@ export default function Portfolio(): JSX.Element {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="
-          Check out my latest work! This page showcases some of my most recent projects, from simple landing pages to complex web applications. Each project highlights my technical skills and my commitment to delivering high-quality and user-friendly web experiences."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Portfolio page" />
-        <meta
-          property="og:description"
-          content="
-          Check out my latest work! This page showcases some of my most recent projects, from simple landing pages to complex web applications. Each project highlights my technical skills and my commitment to delivering high-quality and user-friendly web experiences."
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/portfolio"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Portfolio page</title>
-      </Head>
+      <MetaData
+        title={portfolio.title}
+        description={portfolio.description}
+        pageUri={portfolio.pageUri}
+        needsIndexation={portfolio.needsIndexation}
+        needsRobotCrawlers={portfolio.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
 
       {/* 
       Because the parent element uses the `transform` property for the pages transitions, 

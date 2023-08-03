@@ -2,7 +2,6 @@
 import { MutableRefObject, useRef } from "react";
 
 //Next
-import Head from "next/head";
 
 //Variables
 import { contactMethods } from "@/react-utils/variables/common/contact/contact-methods.variables";
@@ -17,7 +16,14 @@ import { useMutation } from "@tanstack/react-query";
 import {
   BufferLoader,
   CanvasComponent,
+  MetaData,
 } from "@/components/shared/shared.components";
+
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
+
 import {
   ContactInputLabel,
   ContactMethodCard,
@@ -33,6 +39,7 @@ import { error, log } from "@/react-utils/helpers/console-helper.functions";
  * Contact page: `/contact`
  */
 export default function Contact(): JSX.Element {
+  const { contact } = PAGE_METADATA;
   const contactPageSectionRef = useRef<HTMLElement>(null);
   // References to get the value of their inputs
 
@@ -276,38 +283,14 @@ export default function Contact(): JSX.Element {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="
-          Let's get in touch! I'm always eager to connect with new people and discuss exciting projects. On this page, you'll find different ways to reach out to me, from email to social media. Don't hesitate to drop me a message and let's create something amazing together!"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Contact page" />
-        <meta
-          property="og:description"
-          content="
-          Let's get in touch! I'm always eager to connect with new people and discuss exciting projects. On this page, you'll find different ways to reach out to me, from email to social media. Don't hesitate to drop me a message and let's create something amazing together!"
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/contact"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Contact page</title>
-      </Head>
+      <MetaData
+        title={contact.title}
+        description={contact.description}
+        pageUri={contact.pageUri}
+        needsIndexation={contact.needsIndexation}
+        needsRobotCrawlers={contact.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="contact-page" ref={contactPageSectionRef}>
         <CanvasComponent parentElement={contactPageSectionRef} />
 

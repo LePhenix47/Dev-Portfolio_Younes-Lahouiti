@@ -2,13 +2,17 @@
 import { useRef, useState } from "react";
 
 //Next
-import Head from "next/head";
 
 //Components
 import {
   CanvasComponent,
   MetaData,
 } from "@/components/shared/shared.components";
+
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
 
 //Variables
 import {
@@ -26,6 +30,7 @@ import {
 } from "@/components/common/skills/skills-page.components";
 
 export default function Skills(): JSX.Element {
+  const { skills } = PAGE_METADATA;
   const skillsPageSectionRef = useRef<HTMLElement>(null);
 
   const [isRotated, setIsRotated] = useState<boolean>(false);
@@ -35,39 +40,14 @@ export default function Skills(): JSX.Element {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="
-          Take a closer look at my technical skills as a web developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life"
-        />
-        {/* Open Graph tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Skills page" />
-        <meta
-          property="og:description"
-          content="
-          Take a closer look at my technical skills as a web developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life"
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/skills"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Skills page</title>
-      </Head>
+      <MetaData
+        title={skills.title}
+        description={skills.description}
+        pageUri={skills.pageUri}
+        needsIndexation={skills.needsIndexation}
+        needsRobotCrawlers={skills.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="skills-page" ref={skillsPageSectionRef}>
         <CanvasComponent parentElement={skillsPageSectionRef} />
         <h1 className="skills-page__title">Skills</h1>

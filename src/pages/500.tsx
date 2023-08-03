@@ -4,49 +4,27 @@ import {
   MetaData,
 } from "@/components/shared/shared.components";
 
-import Head from "next/head";
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
+
 import React, { useRef } from "react";
 
 export default function Error500(): JSX.Element {
+  const { error500 } = PAGE_METADATA;
   const section500Ref = useRef<HTMLElement>(null);
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="noindex, follow" />
-        <meta
-          name="description"
-          content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Error 500 - Portfolio" />
-        <meta
-          property="og:description"
-          content="Oops, something went wrong. We apologize for the inconvenience and are working to fix the issue. Please try again later or contact me for assistance."
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/500"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Error 500 - Server error</title>
-        {/*     Canonical link     */}
-        <link
-          rel="canonical"
-          href="https://https://younes-portfolio-dev.vercel.app/"
-        />
-      </Head>
+      <MetaData
+        title={error500.title}
+        description={error500.description}
+        pageUri={error500.pageUri}
+        needsIndexation={error500.needsIndexation}
+        needsRobotCrawlers={error500.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="error-500" ref={section500Ref}>
         <CanvasComponent parentElement={section500Ref} />
         <h1 className="error-500__main-title">500</h1>

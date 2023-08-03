@@ -1,5 +1,5 @@
 //Next
-import Head from "next/head";
+
 import { useRef, useState } from "react";
 
 //Components
@@ -7,7 +7,13 @@ import { useRef, useState } from "react";
 import {
   CanvasComponent,
   ModalWindow,
+  MetaData,
 } from "@/components/shared/shared.components";
+
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
 
 import {
   ServicesCard,
@@ -21,6 +27,7 @@ import { offeredServices } from "@/react-utils/variables/common/services/service
 import { sliderCardsVariables } from "@/react-utils/variables/common/services/slider.variables";
 
 export default function Services(): JSX.Element | null {
+  const { services } = PAGE_METADATA;
   const servicesPageSectionRef = useRef<HTMLElement>(null);
   /**
    * State to tell the `<ModalWindow />` component whether it should open or not
@@ -80,39 +87,14 @@ export default function Services(): JSX.Element | null {
 
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="
-          Welcome to my services page. As a skilled web developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life"
-        />
-        {/* Open Graph tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Services page" />
-        <meta
-          property="og:description"
-          content="
-          Welcome to my services page. As a skilled web developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life"
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/services"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Services page</title>
-      </Head>
+      <MetaData
+        title={services.title}
+        description={services.description}
+        pageUri={services.pageUri}
+        needsIndexation={services.needsIndexation}
+        needsRobotCrawlers={services.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <ModalWindow
         isOpen={isOpen}
         setIsOpen={setIsOpen}
