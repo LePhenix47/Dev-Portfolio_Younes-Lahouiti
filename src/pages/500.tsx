@@ -2,12 +2,12 @@
 import {
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 import React, { useRef } from "react";
 

@@ -1,4 +1,4 @@
-import { skill } from "../../../types/skills/skill.types";
+import { skill } from "@utilities/types/skills/skill.types";
 /**
  * Front-End skills
  */

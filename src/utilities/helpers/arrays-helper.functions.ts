@@ -1,4 +1,4 @@
-import { typeofTypes } from "@/react-utils/types/typeof.types";
+import { typeofTypes } from "@utilities/types/typeof.types";
 import {
   areObjectsEqual,
   copyObject,

@@ -8,23 +8,23 @@ import {
   CanvasComponent,
   ModalWindow,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 import {
   ServicesCard,
   ServicesModalContent,
   Slider,
-} from "@/components/common/services/services-page.components";
+} from "@components/common/services/services-page.components";
 
 //Utils
-import { offeredServices } from "@/react-utils/variables/common/services/services.variables";
+import { offeredServices } from "@utilities/variables/common/services/services.variables";
 
-import { sliderCardsVariables } from "@/react-utils/variables/common/services/slider.variables";
+import { sliderCardsVariables } from "@utilities/variables/common/services/slider.variables";
 
 export default function Services(): JSX.Element | null {
   const { services } = PAGE_METADATA;
@@ -66,7 +66,7 @@ export default function Services(): JSX.Element | null {
     /**
      * Set the JSX content for the window modal
      */
-    const content = (
+    const content: JSX.Element = (
       <ServicesModalContent
         title={title}
         description={description}

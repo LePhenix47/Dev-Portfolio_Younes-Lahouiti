@@ -20,11 +20,23 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
       "@public/*": [
         "./public/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@utilities/*": [
+        "./src/utilities/*"
+      ],
+      "@sass/*": [
+        "./src/sass/*"
       ],
     }
   },

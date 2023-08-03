@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Utils
-import { aboutCardsValues } from "@/react-utils/variables/common/about/about-cards.variables";
+import { aboutCardsValues } from "@utilities/variables/common/about/about-cards.variables";
 
 //React
 import { useRef } from "react";
@@ -13,23 +13,23 @@ import { useRef } from "react";
 import {
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 //Variables
-import { diplomas } from "@/react-utils/variables/common/about/diplomas.variables";
-import { JPG_URLS, PDF_URLS } from "@/react-utils/assets/index.constants";
+import { diplomas } from "@utilities/variables/common/about/diplomas.variables";
+import { JPG_URLS, PDF_URLS } from "@assets/index.constants";
 import {
   AboutCard,
   DiplomaCard,
   NoiseFilter,
-} from "@/components/common/about/about-page.components";
-import Icons from "@/components/shared/icons/Icons";
-import { getAgeFromDateOfBirth } from "@/react-utils/helpers/numbers-helper.functions";
+} from "@components/common/about/about-page.components";
+import Icons from "@components/shared/icons/Icons";
+import { getAgeFromDateOfBirth } from "@utilities/helpers/numbers-helper.functions";
 
 /**
  * About me page: `/about`

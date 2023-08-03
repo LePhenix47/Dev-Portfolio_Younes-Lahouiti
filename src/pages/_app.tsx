@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 //SASS
-import "../sass/main.scss";
+import "@sass/main.scss";
 
 //Components
 
@@ -27,8 +27,8 @@ import {
   QueryClientProvider as TanStackProvider,
   Hydrate,
 } from "@tanstack/react-query";
-import PageLayout from "@/components/common/layout/PageLayout";
-import Icons from "@/components/shared/icons/Icons";
+import PageLayout from "@components/common/layout/PageLayout";
+import Icons from "@components/shared/icons/Icons";
 
 /**
  * Root component where all the pages will pass through

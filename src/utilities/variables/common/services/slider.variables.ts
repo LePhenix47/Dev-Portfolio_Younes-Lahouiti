@@ -1,4 +1,4 @@
-import { sliderCardTypes } from "../../../types/services/slider.types";
+import { sliderCardTypes } from "@utilities/types/services/slider.types";
 
 //Images
 import USER_PFP from "@public/png/portfolio-screenshot.png";

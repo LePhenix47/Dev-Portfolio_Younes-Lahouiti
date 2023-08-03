@@ -2,11 +2,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
 //Utils
-import { sliderCardTypes } from "@/react-utils/types/services/slider.types";
+import { sliderCardTypes } from "@utilities/types/services/slider.types";
 
 //Components
-import SliderCard from "../SliderCard/SliderCard";
-import Icons from "@/components/shared/icons/Icons";
+import { SliderCard } from "@components/common/services/services-page.components";
+import Icons from "@components/shared/icons/Icons";
 
 export default function Slider({
   sliderCards,

@@ -7,27 +7,27 @@ import { useRef, useState } from "react";
 import {
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 //Variables
 import {
   frontEndSkills,
   backEndSkills,
-} from "@/react-utils/variables/common/skills/skill.variables";
+} from "@utilities/variables/common/skills/skill.variables";
 
 import {
   educationTimeline,
   experienceTimeline,
-} from "@/react-utils/variables/common/skills/education-experience.variables";
+} from "@utilities/variables/common/skills/education-experience.variables";
 import {
   SkillsCard,
   Timeline,
-} from "@/components/common/skills/skills-page.components";
+} from "@components/common/skills/skills-page.components";
 
 export default function Skills(): JSX.Element {
   const { skills } = PAGE_METADATA;

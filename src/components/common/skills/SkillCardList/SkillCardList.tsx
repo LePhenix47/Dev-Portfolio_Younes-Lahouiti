@@ -1,4 +1,4 @@
-import Icons from "@/components/shared/icons/Icons";
+import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
 export default function SkillCardList({

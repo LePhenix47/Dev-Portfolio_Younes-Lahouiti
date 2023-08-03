@@ -1,4 +1,4 @@
-import { amountOfExperience } from "../../common/about/about-cards.variables";
+import { amountOfExperience } from "@utilities/variables/common/about/about-cards.variables";
 
 export const PAGE_METADATA = {
   home: {

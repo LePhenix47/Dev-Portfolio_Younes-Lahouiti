@@ -1,7 +1,7 @@
 //Types
-import { getAmountOfExperience } from "@/react-utils/helpers/numbers-helper.functions";
-import { SVG } from "../../../assets/index.constants";
-import { aboutCardsTypes } from "../../../types/about/about-cards.types";
+import { getAmountOfExperience } from "@utilities/helpers/numbers-helper.functions";
+import { SVG } from "@assets/index.constants";
+import { aboutCardsTypes } from "@utilities/types/about/about-cards.types";
 
 /**
  * Date where I started my web developer career

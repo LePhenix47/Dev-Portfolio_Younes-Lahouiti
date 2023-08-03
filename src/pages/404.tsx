@@ -7,12 +7,12 @@ import { NextRouter, useRouter } from "next/router";
 import {
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 export default function Error404(): JSX.Element | null {
   const { error404 } = PAGE_METADATA;

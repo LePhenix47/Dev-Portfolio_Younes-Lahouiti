@@ -3,7 +3,7 @@ import React from "react";
 
 //Link
 import Link from "next/link";
-import Icons from "@/components/shared/icons/Icons";
+import Icons from "@components/shared/icons/Icons";
 
 export default function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();

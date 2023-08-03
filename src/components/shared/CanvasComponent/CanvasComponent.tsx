@@ -1,5 +1,5 @@
-import { LineEffect } from "@/react-utils/classes/line-effect.class";
-import { warn } from "@/react-utils/helpers/console-helper.functions";
+import { LineEffect } from "@utilities/classes/line-effect.class";
+import { warn } from "@utilities/helpers/console-helper.functions";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**

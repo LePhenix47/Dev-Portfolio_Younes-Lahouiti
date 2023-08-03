@@ -7,23 +7,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Utils
-import { socialAccountVariables } from "@/react-utils/variables/common/home/social-accounts.variables";
+import { socialAccountVariables } from "@utilities/variables/common/home/social-accounts.variables";
 
 //Components
 import {
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
-import { HomeSocialCardItem } from "@/components/common/home/home-page.components";
-import { JPG_URLS } from "@/react-utils/assets/index.constants";
+import { HomeSocialCardItem } from "@components/common/home/home-page.components";
+import { JPG_URLS } from "@assets/index.constants";
 
-import Icons from "@/components/shared/icons/Icons";
+import Icons from "@components/shared/icons/Icons";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);

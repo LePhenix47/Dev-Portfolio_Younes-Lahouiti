@@ -4,7 +4,7 @@ import { MutableRefObject, useRef } from "react";
 //Next
 
 //Variables
-import { contactMethods } from "@/react-utils/variables/common/contact/contact-methods.variables";
+import { contactMethods } from "@utilities/variables/common/contact/contact-methods.variables";
 
 //Components
 
@@ -17,23 +17,23 @@ import {
   BufferLoader,
   CanvasComponent,
   MetaData,
-} from "@/components/shared/shared.components";
+} from "@components/shared/shared.components";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
-} from "@/react-utils/variables/shared/index-shared.variables";
+} from "@utilities/variables/shared/index-shared.variables";
 
 import {
   ContactInputLabel,
   ContactMethodCard,
-} from "@/components/common/contact/contact-page.components";
-import Icons from "@/components/shared/icons/Icons";
+} from "@components/common/contact/contact-page.components";
+import Icons from "@components/shared/icons/Icons";
 import {
   formatStringCase,
   testRegExp,
-} from "@/react-utils/helpers/string-helper.functions";
-import { error, log } from "@/react-utils/helpers/console-helper.functions";
+} from "@utilities/helpers/string-helper.functions";
+import { error, log } from "@utilities/helpers/console-helper.functions";
 
 /**
  * Contact page: `/contact`

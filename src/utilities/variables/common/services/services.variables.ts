@@ -1,5 +1,5 @@
 //Utils
-import { serviceType } from "../../../types/services/services.types";
+import { serviceType } from "@utilities/types/services/services.types";
 
 //Images
 import integrationIcon from "@public/svg/integration.svg";

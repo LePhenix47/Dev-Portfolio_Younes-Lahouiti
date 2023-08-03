@@ -4,7 +4,7 @@ import React from "react";
 //Next
 import Image from "next/image";
 import Link from "next/link";
-import Icons from "@/components/shared/icons/Icons";
+import Icons from "@components/shared/icons/Icons";
 
 export default function PortfolioProjectCard({
   title,
