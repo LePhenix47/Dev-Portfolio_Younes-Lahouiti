@@ -10,7 +10,10 @@ import { aboutCardsValues } from "@/react-utils/variables/common/about/about-car
 import { useRef } from "react";
 
 //Components
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
 
 //Variables
 import { diplomas } from "@/react-utils/variables/common/about/diplomas.variables";

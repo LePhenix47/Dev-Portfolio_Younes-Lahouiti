@@ -17,7 +17,11 @@ import {
 
 import { projectCategories } from "@/react-utils/variables/common/portfolio/projects-categories.variables";
 import { projectsMadeType } from "@/react-utils/types/portfolio/projects.types";
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
+
 import { PortfolioProjectCard } from "@/components/common/portfolio/portfolio-page.components";
 import Icons from "@/components/shared/icons/Icons";
 import {

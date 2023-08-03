@@ -67,7 +67,7 @@ export default function MetaData({
     ? "follow"
     : "nofollow";
 
-  const pageUrl = `https://younes-portfolio-dev.vercel.app/${pageUri}`;
+  const pageUrl = `https://younes-portfolio-dev.vercel.app${pageUri}`;
 
   return (
     <Head>
@@ -79,15 +79,19 @@ export default function MetaData({
         content={`${indexationValue}, ${robotCrawlersValue}`}
       />
       <meta name="description" content={description} />
+
       {/* 
       <!-- Open Graph tags -->
        */}
       <meta property="og:type" content="website" />
+
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
+
       <meta property="og:image" content={image.url} />
       <meta property="og:image:width" content={imageWidth} />
       <meta property="og:image:height" content={imageHeight} />
+
       <meta property="og:url" content={pageUrl} />
       {/*
          <!-- Title --> 

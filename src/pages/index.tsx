@@ -10,47 +10,36 @@ import Link from "next/link";
 import { socialAccountVariables } from "@/react-utils/variables/common/home/social-accounts.variables";
 
 //Components
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
+
+import {
+  PAGE_METADATA,
+  OPEN_GRAPH,
+} from "@/react-utils/variables/shared/index-shared.variables";
+
 import { HomeSocialCardItem } from "@/components/common/home/home-page.components";
 import { JPG_URLS } from "@/react-utils/assets/index.constants";
 
 import Icons from "@/components/shared/icons/Icons";
+import { log } from "@/react-utils/helpers/console-helper.functions";
 
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
+
+  log(PAGE_METADATA.home, OPEN_GRAPH);
   return (
     <>
-      <Head>
-        {/*
-         <!-- Meta tags-->
-         */}
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="Hello! My name is Younes LAHOUITI and I am a skilled web developer with 1 year of experience in JavaScript. My passion lies in creating captivating and immersive web experiences for users, utilizing modern web technologies to build dynamic and responsive websites. I am dedicated to crafting clean, efficient, and maintainable code that optimizes performance and scalability. Outside of work, I enjoy staying active by going to the gym and playing video-games. Thank you for taking the time to visit my portfolio. I look forward to collaborating with you!"
-        />
-        {/* Open Graph tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Home page" />
-        <meta
-          property="og:description"
-          content="Hello! My name is Younes LAHOUITI and I am a skilled web developer with 1 year of experience in JavaScript. My passion lies in creating captivating and immersive web experiences for users, utilizing modern web technologies to build dynamic and responsive websites. I am dedicated to crafting clean, efficient, and maintainable code that optimizes performance and scalability. Outside of work, I enjoy staying active by going to the gym and playing video-games. Thank you for taking the time to visit my portfolio. I look forward to collaborating with you!"
-        />
-        <meta
-          property="og:image"
-          content="https://younes-portfolio-dev.vercel.app/_next/image?url=%2Fjpg%2Fprofile-pic.jpg&w=256&q=75"
-        />
-        <meta property="og:image:width" content="130" />
-        <meta property="og:image:height" content="170" />
-        <meta
-          property="og:url"
-          content="https://younes-portfolio-dev.vercel.app/"
-        />
-        {/*
-         <!--Title--> 
-         */}
-        <title>Home page</title>
-      </Head>
+      <MetaData
+        title={PAGE_METADATA.home.title}
+        description={PAGE_METADATA.home.description}
+        pageUri={PAGE_METADATA.home.pageUri}
+        needsIndexation={PAGE_METADATA.home.needsIndexation}
+        needsRobotCrawlers={PAGE_METADATA.home.needsRobotCrawlers}
+        openGraph={OPEN_GRAPH}
+      />
       <section className="home-page" ref={homePageSectionRef}>
         <CanvasComponent parentElement={homePageSectionRef} />
         <aside className="home-page__socials">

@@ -4,7 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
 
 export default function Error404(): JSX.Element | null {
   const section404Ref = useRef<HTMLElement>(null);

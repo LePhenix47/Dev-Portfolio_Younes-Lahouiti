@@ -1,5 +1,9 @@
 //React
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
+
 import Head from "next/head";
 import React, { useRef } from "react";
 

@@ -5,7 +5,10 @@ import { useRef, useState } from "react";
 import Head from "next/head";
 
 //Components
-import { CanvasComponent } from "@/components/shared/shared.components";
+import {
+  CanvasComponent,
+  MetaData,
+} from "@/components/shared/shared.components";
 
 //Variables
 import {
