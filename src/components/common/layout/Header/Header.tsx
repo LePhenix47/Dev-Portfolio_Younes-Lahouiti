@@ -1,5 +1,5 @@
 //React
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
@@ -18,7 +18,114 @@ export default function Header(): JSX.Element {
 
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
+  const [activeLinkDimensions, setActiveLinkDimensions] =
+    useState<DOMRect | null>(null);
+
+  // Unordered list
   const unorderedListRef = useRef<HTMLUListElement>(null);
+
+  // Anchor links for the pages
+  const homeLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const aboutLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const skillsLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const servicesLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const portfolioLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const contactLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  //
+  function setStateForActiveLink(): void {
+    let anchorElement: HTMLAnchorElement | null = null;
+
+    let anchorDimensions: DOMRect | null = null;
+    switch (asPath) {
+      case "/": {
+        anchorElement = homeLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+      case "/about": {
+        anchorElement = aboutLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+      case "/skills": {
+        anchorElement = skillsLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+      case "/services": {
+        anchorElement = servicesLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+      case "/portfolio": {
+        anchorElement = portfolioLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+      case "/contact": {
+        anchorElement = contactLinkPageRef.current as HTMLAnchorElement;
+        break;
+      }
+
+      default: {
+        console.warn("Link of page not found");
+        break;
+      }
+    }
+
+    const hasNoLink: boolean = !anchorElement;
+    if (hasNoLink) {
+      setActiveLinkDimensions({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+        toJSON: () => {},
+      });
+      return;
+    }
+
+    anchorDimensions = (
+      anchorElement as HTMLAnchorElement
+    ).getBoundingClientRect();
+
+    setActiveLinkDimensions(anchorDimensions as DOMRect);
+  }
+
+  useEffect(() => {
+    // Won't work
+    setStateForActiveLink();
+    setUnderlineToLink();
+  }, [asPath]);
+
+  function setUnderlineToLink() {
+    const hasNotActiveLinkDimensions: boolean =
+      !activeLinkDimensions || !(activeLinkDimensions instanceof DOMRect);
+    if (hasNotActiveLinkDimensions) {
+      return;
+    }
+
+    const unorderedListElement: HTMLUListElement =
+      unorderedListRef.current as HTMLUListElement;
+
+    const ulDimensions: DOMRect = unorderedListElement.getBoundingClientRect();
+
+    // @ts-ignore, TS throws errors here because I didn't directly set the check in the if statement
+    const left: number = activeLinkDimensions.x - ulDimensions.x;
+
+    // @ts-ignore, TS throws errors here because
+    const width: number = activeLinkDimensions.width - ulDimensions.width;
+
+    return {
+      left,
+      width,
+    };
+  }
 
   async function showCopiedToolTip(
     event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
@@ -70,7 +177,7 @@ export default function Header(): JSX.Element {
               asPath === "/" && "active"
             }`}
           >
-            <Link href="/" className="header__item-link">
+            <Link href="/" className="header__item-link" ref={homeLinkPageRef}>
               <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
               Home
             </Link>
@@ -80,7 +187,11 @@ export default function Header(): JSX.Element {
               asPath === "/about" && "active"
             }`}
           >
-            <Link href="/about" className="header__item-link">
+            <Link
+              href="/about"
+              className="header__item-link"
+              ref={aboutLinkPageRef}
+            >
               <Icons.AboutMobile width={24} height={24} fill={"currentColor"} />
               About
             </Link>
@@ -90,7 +201,11 @@ export default function Header(): JSX.Element {
               asPath === "/skills" && "active"
             }`}
           >
-            <Link href="/skills" className="header__item-link">
+            <Link
+              href="/skills"
+              className="header__item-link"
+              ref={skillsLinkPageRef}
+            >
               <Icons.SkillsMobile
                 width={24}
                 height={24}
@@ -104,7 +219,11 @@ export default function Header(): JSX.Element {
               asPath === "/services" && "active"
             }`}
           >
-            <Link href="/services" className="header__item-link">
+            <Link
+              href="/services"
+              className="header__item-link"
+              ref={servicesLinkPageRef}
+            >
               <Icons.ServicesMobile
                 width={24}
                 height={24}
@@ -118,7 +237,11 @@ export default function Header(): JSX.Element {
               asPath === "/portfolio" && "active"
             }`}
           >
-            <Link href="/portfolio" className="header__item-link">
+            <Link
+              href="/portfolio"
+              className="header__item-link"
+              ref={portfolioLinkPageRef}
+            >
               <Icons.PortfolioMobile
                 width={24}
                 height={24}
@@ -134,8 +257,8 @@ export default function Header(): JSX.Element {
           >
             <Link
               href="/contact"
-              id="contact-page-link"
               className="header__item-link"
+              ref={contactLinkPageRef}
             >
               <Icons.ContactMobile
                 width={24}
