@@ -1,4 +1,4 @@
-import { getOrdinalSuffix } from "./numbers-helper.functions";
+import { getOrdinalSuffix } from "./numbers.helpers";
 
 /**
  * Formats a number by separating every thousand with a format from the user's locale.

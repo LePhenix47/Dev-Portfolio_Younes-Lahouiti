@@ -76,12 +76,16 @@ export default function Home(): JSX.Element {
               <strong>
                 <span itemProp="name">Younes Lahouiti</span>
               </strong>
-              , a <strong>web developer</strong> with a passion for creating{" "}
-              <em>beautiful and functional websites</em>. With strong
-              problem-solving skills and a keen eye for detail, I can create
-              websites that not only <em>look great</em>, but also{" "}
-              <em>perform well</em>. Let&apos;s bring your vision to life
-              together!
+              , a passionate <strong>web developer</strong> creating beautiful
+              and functional websites.
+              <em>
+                {" "}
+                From Scratch to Python, coding is my love. College didn&apos;t
+                fit, but self-learning led me to web development.
+              </em>
+              Now, with strong problem-solving skills and a keen eye for detail,
+              I craft <strong>captivating websites and applications</strong>.
+              Let&apos;s build something amazing together!
             </p>
 
             <Link href="/contact" className="link-button">

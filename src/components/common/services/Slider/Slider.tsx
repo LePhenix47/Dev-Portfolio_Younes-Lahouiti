@@ -7,6 +7,7 @@ import { sliderCardTypes } from "@utilities/types/services/slider.types";
 //Components
 import { SliderCard } from "@components/common/services/services-page.components";
 import Icons from "@components/shared/icons/Icons";
+import { isMobileViewport } from "@utilities/helpers/window.helpers";
 
 export default function Slider({
   sliderCards,
@@ -58,7 +59,7 @@ export default function Slider({
   cardInfosRef.current = { cardWidth: 400, cardGaps: 25 };
 
   useEffect(() => {
-    const isOnMobile: boolean = window.matchMedia("(max-width: 768px)").matches;
+    const isOnMobile: boolean = isMobileViewport();
 
     if (isOnMobile) {
       cardInfosRef.current = { cardWidth: 200, cardGaps: 25 };

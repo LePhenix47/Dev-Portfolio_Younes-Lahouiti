@@ -1,5 +1,5 @@
 //Types
-import { getAmountOfExperience } from "@utilities/helpers/numbers-helper.functions";
+import { getAmountOfExperience } from "@utilities/helpers/numbers.helpers";
 import { SVG } from "@assets/index.constants";
 import { aboutCardsTypes } from "@utilities/types/about/about-cards.types";
 

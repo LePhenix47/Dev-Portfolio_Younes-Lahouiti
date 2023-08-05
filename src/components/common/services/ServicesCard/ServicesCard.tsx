@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 
 //Utils
-import { formatStringCase } from "@utilities/helpers/string-helper.functions";
+import { formatStringCase } from "@utilities/helpers/string.helpers";
 import { voidCallback } from "@utilities/types/void-callback.type";
 
 export default function ServicesCard({

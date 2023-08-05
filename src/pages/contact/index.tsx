@@ -32,8 +32,8 @@ import Icons from "@components/shared/icons/Icons";
 import {
   formatStringCase,
   testRegExp,
-} from "@utilities/helpers/string-helper.functions";
-import { error, log } from "@utilities/helpers/console-helper.functions";
+} from "@utilities/helpers/string.helpers";
+import { error, log } from "@utilities/helpers/console.helpers";
 
 /**
  * Contact page: `/contact`

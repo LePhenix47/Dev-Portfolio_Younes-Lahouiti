@@ -31,9 +31,9 @@ import Icons from "@components/shared/icons/Icons";
 import {
   filterArrayByString,
   sortArrayOfObjects,
-} from "@utilities/helpers/arrays-helper.functions";
-import { formatStringCase } from "@utilities/helpers/string-helper.functions";
-import { formatShortDate } from "@utilities/helpers/internalization-helper.functions";
+} from "@utilities/helpers/arrays.helpers";
+import { formatStringCase } from "@utilities/helpers/string.helpers";
+import { formatShortDate } from "@utilities/helpers/internalization.helpers";
 
 //Components
 

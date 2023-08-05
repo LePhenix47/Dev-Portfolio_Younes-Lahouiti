@@ -1,11 +1,10 @@
 import { typeofTypes } from "@utilities/types/typeof.types";
 import {
   areObjectsEqual,
-  copyObject,
   getPrototypeOf,
   isExactlyAnObject,
-} from "./objects-helper.functions";
-import { invertDayAndMonth } from "./string-helper.functions";
+} from "./objects.helpers";
+import { invertDayAndMonth } from "./string.helpers";
 
 /**
  * Creates a new deep copied array or set of the provided value using `Array.from()`

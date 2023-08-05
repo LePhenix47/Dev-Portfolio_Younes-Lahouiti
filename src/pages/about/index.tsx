@@ -29,7 +29,7 @@ import {
   NoiseFilter,
 } from "@components/common/about/about-page.components";
 import Icons from "@components/shared/icons/Icons";
-import { getAgeFromDateOfBirth } from "@utilities/helpers/numbers-helper.functions";
+import { getAgeFromDateOfBirth } from "@utilities/helpers/numbers.helpers";
 
 /**
  * About me page: `/about`
@@ -97,16 +97,17 @@ export default function About(): JSX.Element {
             </div>
             <div className="about-page__text">
               <p className="about-page__description">
-                I&apos;m a{" "}
                 <strong>
-                  <span itemProp="age">{myAgeInYears}</span> years old Italian
+                  I&apos;m a passionate {myAgeInYears}-year-old Italian
                   full-stack developer
                 </strong>{" "}
-                with expertise in <strong>developing web applications</strong>,{" "}
-                <em>including the integration of UI/UX interfaces</em>. While my
-                primary focus is on{" "}
-                <em>developing the functionality of the applications</em>, I am
-                also <em>proficient in integrating Figma mockups</em>.
+                with a love for coding since a young age.{" "}
+                <em>
+                  Despite college not aligning with my coding journey, I chose
+                  self-learning and discovered my true passion: web development.
+                </em>{" "}
+                Now, I create captivating websites, blending formal education
+                with self-taught expertise.
               </p>
 
               <Link

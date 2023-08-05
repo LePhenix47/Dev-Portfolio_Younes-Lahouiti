@@ -1,5 +1,5 @@
 //React
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
@@ -8,8 +8,8 @@ import Link from "next/link";
 //Components
 import Icons from "@components/shared/icons/Icons";
 
-import { copyTextToClipBoard } from "@utilities/helpers/string-helper.functions";
-import { log } from "@utilities/helpers/console-helper.functions";
+import { copyTextToClipBoard } from "@utilities/helpers/string.helpers";
+import { log } from "@utilities/helpers/console.helpers";
 
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();
@@ -17,6 +17,8 @@ export default function Header(): JSX.Element {
   const { route, pathname, query, asPath } = router;
 
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
+
+  const unorderedListRef = useRef<HTMLUListElement>(null);
 
   async function showCopiedToolTip(
     event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
@@ -50,9 +52,7 @@ export default function Header(): JSX.Element {
       <div
         className="header__dev"
         title="Share the portfolio link?"
-        onClick={(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
-          showCopiedToolTip(e);
-        }}
+        onClick={showCopiedToolTip}
       >
         <p className="header__dev-name">Younes-Portfolio-Dev</p>
         <div
@@ -64,7 +64,7 @@ export default function Header(): JSX.Element {
         </div>
       </div>
       <nav className="header__nav">
-        <ul className="header__list">
+        <ul className="header__list" ref={unorderedListRef}>
           <li
             className={`header__item header__item-home ${
               asPath === "/" && "active"

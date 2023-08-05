@@ -3,7 +3,7 @@ import React from "react";
 
 //Next
 import Image from "next/image";
-import { formatStringCase } from "@utilities/helpers/string-helper.functions";
+import { formatStringCase } from "@utilities/helpers/string.helpers";
 
 //Utils
 

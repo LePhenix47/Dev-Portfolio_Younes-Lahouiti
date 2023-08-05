@@ -1,6 +1,6 @@
-import { warn } from "./console-helper.functions";
-import { getRandomNumber } from "./numbers-helper.functions";
-import { areArraysEqual, isExactlyAnArray } from "./arrays-helper.functions";
+import { warn } from "./console.helpers";
+import { getRandomNumber } from "./numbers.helpers";
+import { areArraysEqual, isExactlyAnArray } from "./arrays.helpers";
 
 /**
  * Copies an object (or array though using the `copyArray` function is better)

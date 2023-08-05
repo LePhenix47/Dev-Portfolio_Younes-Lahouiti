@@ -8,7 +8,7 @@ import Image from "next/image";
 import { inputType } from "@utilities/types/contact/input.types";
 import Icons from "@components/shared/icons/Icons";
 
-import { log } from "@utilities/helpers/console-helper.functions";
+import { log } from "@utilities/helpers/console.helpers";
 
 export default function ContactInputLabel({
   labelText = "",
