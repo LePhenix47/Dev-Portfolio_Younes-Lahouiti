@@ -84,10 +84,18 @@
 
         @include laptop-only {
             flex: 1;
+
+            &:nth-of-type(1) {
+                flex: 2
+            }
         }
 
         @include tablet-only {
             flex: 1;
+
+            &:nth-of-type(1) {
+                flex: 2
+            }
         }
 
         @include mobile-only {
@@ -216,6 +224,21 @@
 
     &__categories-container {
         display: flex;
+        gap: 50px;
+
+        margin-bottom: -30px;
+
+        @include tablet-only {
+            flex-direction: column-reverse;
+        }
+
+        @include mobile-only {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__categories {
+        display: flex;
         gap: 35px;
 
         @include tablet-only {
@@ -230,6 +253,33 @@
 
             width: 80%;
             margin: auto;
+        }
+    }
+
+    &__counter {
+
+        align-self: flex-start;
+
+        @include tablet-only {
+            align-self: center;
+            @include center-flex-column;
+        }
+
+        @include mobile-only {
+            align-self: center;
+            @include center-flex-column;
+        }
+
+        margin: auto;
+        width: 85%;
+
+        &-paragraph {
+            width: fit-content;
+        }
+
+        &-text {
+            text-decoration: underline;
+
         }
     }
 

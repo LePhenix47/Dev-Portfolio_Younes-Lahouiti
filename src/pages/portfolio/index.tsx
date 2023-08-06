@@ -326,37 +326,48 @@ export default function Portfolio(): JSX.Element {
         </div>
 
         <div className="portfolio-page__categories-container">
-          {/* Categories   */}
-          {projectCategories.map((category: string, index: number) => {
-            const lowerCaseCategory = formatStringCase(category, "lowercase");
-            return (
-              <button
-                key={`${category}`}
-                onClick={() => {
-                  changeCards(lowerCaseCategory);
+          <div className="portfolio-page__counter">
+            <p className="portfolio-page__counter-paragraph">
+              <span className="portfolio-page__counter-text">
+                Projects created:
+              </span>{" "}
+              {dataToShow.length}
+            </p>
+          </div>
 
-                  setNeedsFiltering(false);
-                  setFilterValue("");
-                }}
-                type="button"
-                className={`portfolio-page__filter-button ${
-                  categoryState === lowerCaseCategory &&
-                  "portfolio-page__filter-button--active"
-                }  portfolio-page__filter-button-all`}
-              >
-                {category}
-              </button>
-            );
-          })}
-          {/*            */}
+          <div className="portfolio-page__categories">
+            {/* Categories   */}
+            {projectCategories.map((category: string, index: number) => {
+              const lowerCaseCategory = formatStringCase(category, "lowercase");
+              return (
+                <button
+                  key={`${category}`}
+                  onClick={() => {
+                    changeCards(lowerCaseCategory);
+
+                    setNeedsFiltering(false);
+                    setFilterValue("");
+                  }}
+                  type="button"
+                  className={`portfolio-page__filter-button ${
+                    categoryState === lowerCaseCategory &&
+                    "portfolio-page__filter-button--active"
+                  }  portfolio-page__filter-button-all`}
+                >
+                  {category}
+                </button>
+              );
+            })}
+            {/*            */}
+          </div>
         </div>
 
         <div className="portfolio-page__project-cards-container">
           {/*     Project Cards       */}
-          {dataToShow.map((project, index: number) => {
+          {dataToShow.map((project) => {
             const { title, image, link, date, type } = project;
 
-            const formattedDate = formatShortDate(date);
+            const formattedDate: string = formatShortDate(date);
 
             return (
               <PortfolioProjectCard
@@ -365,15 +376,15 @@ export default function Portfolio(): JSX.Element {
                 formattedDate={formattedDate}
                 link={link}
                 type={type}
-                key={`${index}-${title}-${link}`}
+                key={`${title}-${link}`}
               />
             );
           })}
 
           {!dataToShow.length && needsFiltering && (
             <p className="portfolio-page__project-cards-container-not-found">
-              Sorry, we find any results matching your search: &quot;
-              {inputValueRef.current}&quot;
+              Sorry, we couldn&apos;t find any results matching your search for:
+              &quot;{inputValueRef.current}&quot;
               <br />
               ಠ_ಠ
             </p>
