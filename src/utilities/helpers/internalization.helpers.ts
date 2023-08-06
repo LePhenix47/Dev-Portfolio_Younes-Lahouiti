@@ -1,4 +1,52 @@
+import { copyArray } from "./arrays.helpers";
 import { getOrdinalSuffix } from "./numbers.helpers";
+
+/**
+ * Returns the real length of a string, taking into account grapheme clusters instead of the codepoints.
+ *
+ * [Watch a video by Wes Bos explaining grapheme clusters](https://youtube.com/shorts/_7bOCOOBYPE?feature=share)
+ *
+ * **⚠ IMPORTANT: This function may not work in some browsers such as Firefox. [Check here to see which browsers support the Intl.Segmenter API](https://caniuse.com/?search=Intl.Segmenter) ⚠**
+ *
+ * This function uses a regular expression to match grapheme clusters instead of the `Intl.Segmenter` API which is not fully supported by all browsers as of 06/08/2023.
+ *
+ * @param {string} string - The string to measure.
+ * @returns {number} The real length of the string, in grapheme clusters.
+ *
+ * @throws {TypeError} If the provided argument is not a string.
+ *
+ * @example
+ * // Example usage:
+ * const str = "👉👉🏻👉🏼👉🏽👉🏾👉🏿";
+ * console.log(str.length); // Outputs 22
+ * console.log(getRealStringLength(str)); // Outputs 6
+ */
+export function getRealStringLength(string: string): number {
+  const hasInvalidArgument: boolean = typeof string !== "string";
+  if (hasInvalidArgument) {
+    throw new TypeError(
+      `Invalid argument, expected a string but got ${typeof string}`
+    );
+  }
+
+  const browserDoesNotSupportsTheAPI: boolean =
+    typeof Intl === "undefined" || typeof Intl.Segmenter !== "function";
+  if (browserDoesNotSupportsTheAPI) {
+    return string.length;
+  }
+
+  const segmenter: Intl.Segmenter = new Intl.Segmenter();
+  const arrayOfSegments: Intl.SegmentData[] = copyArray(
+    segmenter.segment(string)
+  );
+  return arrayOfSegments.length;
+
+  /**
+   // Once fully supported, you can use the commented out code below for more accurate results:
+   const segmenter = new Intl.Segmenter();
+   const arrayOfSegments = Array.from(segmenter.segment(string));
+   return arrayOfSegments.length;  */
+}
 
 /**
  * Formats a number by separating every thousand with a format from the user's locale.

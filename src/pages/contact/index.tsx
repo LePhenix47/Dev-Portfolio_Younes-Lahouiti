@@ -34,6 +34,7 @@ import {
   testRegExp,
 } from "@utilities/helpers/string.helpers";
 import { error, log } from "@utilities/helpers/console.helpers";
+import { getRealStringLength } from "@utilities/helpers/internalization.helpers";
 
 /**
  * Contact page: `/contact`
@@ -240,7 +241,8 @@ export default function Contact(): JSX.Element {
 
     //We verify that the length of the name is between 2 and 50
     const nameIsAtRightLength: boolean =
-      valueOfInput.length >= 2 && valueOfInput.length <= 50;
+      getRealStringLength(valueOfInput) >= 2 &&
+      getRealStringLength(valueOfInput) <= 50;
 
     return (
       valueDoesNotContainNumbers &&
@@ -293,7 +295,8 @@ export default function Contact(): JSX.Element {
     valueOfInput = valueOfInput.trim();
 
     const messageIsAtRightLength: boolean =
-      valueOfInput.length >= 50 && valueOfInput.length <= 2_000;
+      getRealStringLength(valueOfInput) >= 50 &&
+      getRealStringLength(valueOfInput) <= 2_000;
 
     log({ messageIsAtRightLength });
 
