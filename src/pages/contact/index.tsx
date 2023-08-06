@@ -239,10 +239,11 @@ export default function Contact(): JSX.Element {
       validNameCharsREGEX
     );
 
+    const realStringLength: number = getRealStringLength(valueOfInput);
+
     //We verify that the length of the name is between 2 and 50
     const nameIsAtRightLength: boolean =
-      getRealStringLength(valueOfInput) >= 2 &&
-      getRealStringLength(valueOfInput) <= 50;
+      realStringLength >= 2 && realStringLength <= 50;
 
     return (
       valueDoesNotContainNumbers &&
@@ -294,9 +295,10 @@ export default function Contact(): JSX.Element {
       (reference as MutableRefObject<any>).current.value;
     valueOfInput = valueOfInput.trim();
 
+    const realStringLength: number = getRealStringLength(valueOfInput);
+
     const messageIsAtRightLength: boolean =
-      getRealStringLength(valueOfInput) >= 50 &&
-      getRealStringLength(valueOfInput) <= 2_000;
+      realStringLength >= 50 && realStringLength <= 2_000;
 
     log({ messageIsAtRightLength });
 
