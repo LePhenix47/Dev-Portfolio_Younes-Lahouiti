@@ -22,7 +22,7 @@ import {
 
 //Variables
 import { diplomas } from "@utilities/variables/common/about/diplomas.variables";
-import { JPG_URLS, PDF_URLS } from "@assets/index.constants";
+import { JPG_URLS, PDF_URLS } from "@assets/index.assets";
 import {
   AboutCard,
   DiplomaCard,

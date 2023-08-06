@@ -21,7 +21,7 @@ import {
 } from "@utilities/variables/shared/index-shared.variables";
 
 import { HomeSocialCardItem } from "@components/common/home/home-page.components";
-import { JPG_URLS } from "@assets/index.constants";
+import { JPG_URLS } from "@assets/index.assets";
 
 import Icons from "@components/shared/icons/Icons";
 
@@ -87,9 +87,10 @@ export default function Home(): JSX.Element {
               and functional websites.
               <em>
                 {" "}
-                From Scratch to Python, coding is my love. College didn&apos;t
-                fit, but self-learning led me to web development.
-              </em>
+                Started with Scratch and Python, coding is my love. College
+                didn&apos;t fit, but self-learning led me to web development.
+              </em>{" "}
+              <br />
               Now, with strong problem-solving skills and a keen eye for detail,
               I craft <strong>captivating websites and applications</strong>.
               Let&apos;s build something amazing together!

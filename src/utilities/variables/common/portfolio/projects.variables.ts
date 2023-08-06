@@ -1,6 +1,6 @@
 //Types
 
-import { PNG_IMAGES } from "@assets/index.constants";
+import { PNG_IMAGES } from "@assets/index.assets";
 import { projectsMadeType } from "@utilities/types/portfolio/projects.types";
 
 /**

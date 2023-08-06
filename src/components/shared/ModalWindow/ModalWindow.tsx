@@ -35,7 +35,7 @@ export default function ModalWindow({
   /**
    * Boolean to check if the window opened only once
    */
-  const openedOnlyOnce: boolean = !modalWindow.hasAttribute("open");
+  const openedOnlyOnce: boolean = !modalWindow?.hasAttribute("open");
 
   /**
    * Function that closes the modal with a fading animation

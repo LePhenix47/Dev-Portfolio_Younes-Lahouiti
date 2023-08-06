@@ -1,4 +1,4 @@
-import { PDF_URLS } from "@assets/index.constants";
+import { PDF_URLS } from "@assets/index.assets";
 
 /**
  * Diplomas I earned
