@@ -58,7 +58,7 @@ export function logarithm(value: number, base: number = Math.E): number {
   if (baseIsInvalid) {
     throw new RangeError(
       `The base of the logarithm ${
-        base <= 0 ? "is negative or null" : "returns a division by 0"
+        base <= 0 ? "is negative" : "returns a division by 0"
       }`
     );
   }

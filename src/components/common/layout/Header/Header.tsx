@@ -1,5 +1,5 @@
 //React
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
@@ -9,7 +9,8 @@ import Link from "next/link";
 import Icons from "@components/shared/icons/Icons";
 
 import { copyTextToClipBoard } from "@utilities/helpers/string.helpers";
-import { log } from "@utilities/helpers/console.helpers";
+import { log, warn } from "@utilities/helpers/console.helpers";
+import { setStyleProperty } from "@utilities/helpers/dom.helpers";
 
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();
@@ -18,8 +19,17 @@ export default function Header(): JSX.Element {
 
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
-  const [activeLinkDimensions, setActiveLinkDimensions] =
-    useState<DOMRect | null>(null);
+  const [activeLinkDimensions, setActiveLinkDimensions] = useState<DOMRect>({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    toJSON: () => {},
+  });
 
   // Unordered list
   const unorderedListRef = useRef<HTMLUListElement>(null);
@@ -36,6 +46,8 @@ export default function Header(): JSX.Element {
   const portfolioLinkPageRef = useRef<HTMLAnchorElement>(null);
 
   const contactLinkPageRef = useRef<HTMLAnchorElement>(null);
+
+  const underlineListItemRef = useRef<HTMLLIElement>(null);
 
   //
   function setStateForActiveLink(): void {
@@ -69,25 +81,8 @@ export default function Header(): JSX.Element {
       }
 
       default: {
-        console.warn("Link of page not found");
-        break;
+        return;
       }
-    }
-
-    const hasNoLink: boolean = !anchorElement;
-    if (hasNoLink) {
-      setActiveLinkDimensions({
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        top: 0,
-        toJSON: () => {},
-      });
-      return;
     }
 
     anchorDimensions = (
@@ -98,38 +93,72 @@ export default function Header(): JSX.Element {
   }
 
   useEffect(() => {
-    // Won't work
     setStateForActiveLink();
-    setUnderlineToLink();
   }, [asPath]);
 
-  function setUnderlineToLink() {
+  useEffect(() => {
+    setUnderlineToLink();
+  }, [activeLinkDimensions]);
+
+  /**
+   * Sets the underline to the active link.
+   */
+  function setUnderlineToLink(): void {
     const hasNotActiveLinkDimensions: boolean =
       !activeLinkDimensions || !(activeLinkDimensions instanceof DOMRect);
     if (hasNotActiveLinkDimensions) {
       return;
     }
 
+    const hasInvalidWidth: boolean =
+      (activeLinkDimensions as DOMRect).width <= 0;
+    if (hasInvalidWidth) {
+      warn(`The active link dimensions are invalid: ${activeLinkDimensions}`);
+    }
+
     const unorderedListElement: HTMLUListElement =
       unorderedListRef.current as HTMLUListElement;
 
-    const ulDimensions: DOMRect = unorderedListElement.getBoundingClientRect();
+    const computedUlDimensions: DOMRect =
+      unorderedListElement.getBoundingClientRect();
 
-    // @ts-ignore, TS throws errors here because I didn't directly set the check in the if statement
-    const left: number = activeLinkDimensions.x - ulDimensions.x;
+    const x: number =
+      (activeLinkDimensions as DOMRect).x - computedUlDimensions.x;
 
-    // @ts-ignore, TS throws errors here because
-    const width: number = activeLinkDimensions.width - ulDimensions.width;
+    const width: number = (activeLinkDimensions as DOMRect).width;
 
-    return {
-      left,
-      width,
-    };
+    const liUnderlineElement: HTMLLIElement =
+      underlineListItemRef.current as HTMLLIElement;
+
+    giveUnderlineCssVariablesValues({ width, x, liUnderlineElement });
   }
 
-  async function showCopiedToolTip(
-    event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
-  ) {
+  /**
+   * Sets the width and x CSS variables for the `<li>` underline.
+   * @param {number} width - Width of the the `<li>` underline.
+   * @param {number} x - x offset of the the `<li>` underline.
+   * @param {HTMLLIElement} liUnderlineElement - The LI element to set the CSS variables for the underline.
+   */
+  function giveUnderlineCssVariablesValues({
+    width,
+    x,
+    liUnderlineElement,
+  }: {
+    width: number;
+    x: number;
+    liUnderlineElement: HTMLLIElement;
+  }): void {
+    const normalizedX: string = x + "px";
+    setStyleProperty("--_left", normalizedX, liUnderlineElement);
+
+    const normalizedWidth: string = width + "px";
+    setStyleProperty("--_width", normalizedWidth, liUnderlineElement);
+  }
+
+  /**
+   * Shows the tooltip when portfolio link is copied
+   */
+  async function showCopiedToolTip(): Promise<void> {
     //We copy the URL of the portfolio so that the visitor can share it.
     copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
 
@@ -156,7 +185,7 @@ export default function Header(): JSX.Element {
         ></label>
       </section>
 
-      <div
+      <section
         className="header__dev"
         title="Share the portfolio link?"
         onClick={showCopiedToolTip}
@@ -169,24 +198,16 @@ export default function Header(): JSX.Element {
         >
           <p className="header__dev-pop-up-paragraph">Copied!</p>
         </div>
-      </div>
+      </section>
       <nav className="header__nav">
         <ul className="header__list" ref={unorderedListRef}>
-          <li
-            className={`header__item header__item-home ${
-              asPath === "/" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link href="/" className="header__item-link" ref={homeLinkPageRef}>
               <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
               Home
             </Link>
           </li>
-          <li
-            className={`header__item header__item-about ${
-              asPath === "/about" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link
               href="/about"
               className="header__item-link"
@@ -196,11 +217,7 @@ export default function Header(): JSX.Element {
               About
             </Link>
           </li>
-          <li
-            className={`header__item header__item-skills ${
-              asPath === "/skills" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link
               href="/skills"
               className="header__item-link"
@@ -214,11 +231,7 @@ export default function Header(): JSX.Element {
               Skills
             </Link>
           </li>
-          <li
-            className={`header__item header__item-services ${
-              asPath === "/services" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link
               href="/services"
               className="header__item-link"
@@ -232,11 +245,7 @@ export default function Header(): JSX.Element {
               Services
             </Link>
           </li>
-          <li
-            className={`header__item header__item-portfolio ${
-              asPath === "/portfolio" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link
               href="/portfolio"
               className="header__item-link"
@@ -250,11 +259,7 @@ export default function Header(): JSX.Element {
               Portfolio
             </Link>
           </li>
-          <li
-            className={`header__item header__item-contact ${
-              asPath === "/contact" && "active"
-            }`}
-          >
+          <li className={"header__item"}>
             <Link
               href="/contact"
               className="header__item-link"
@@ -269,7 +274,21 @@ export default function Header(): JSX.Element {
             </Link>
           </li>
           {/*  The &nbsp; is an HTML unicode character for non-breaking space */}
-          <li className={`header__item header__item-follow`}>&nbsp;</li>
+          <li
+            className={"header__item header__item-follow"}
+            ref={underlineListItemRef}
+            // style={{
+            //   width: (activeLinkDimensions as DOMRect).width,
+            //   left: !!activeLinkDimensions
+            //     ? (activeLinkDimensions as DOMRect).x -
+            //       (
+            //         unorderedListRef.current as HTMLUListElement
+            //       )?.getBoundingClientRect().x
+            //     : 0,
+            // }}
+          >
+            &nbsp;
+          </li>
         </ul>
       </nav>
     </header>

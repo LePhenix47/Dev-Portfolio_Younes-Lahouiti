@@ -43,7 +43,7 @@
 
     }
 
-    --padding-inside-card: 5%;
+    --_padding-inside-card: 5%;
 
     &__title {
         margin-top: 50px;
@@ -293,7 +293,7 @@
         &-image-container {
             width: 90%;
             // margin: auto
-            padding-block: var(--padding-inside-card);
+            padding-block: var(--_padding-inside-card);
         }
 
         &-image {
@@ -307,7 +307,7 @@
         &-text {
             text-align: left;
 
-            padding: 50px var(--padding-inside-card);
+            padding: 50px var(--_padding-inside-card);
             width: 100%;
         }
 

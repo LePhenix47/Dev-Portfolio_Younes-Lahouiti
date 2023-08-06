@@ -1,11 +1,11 @@
 @use "../utils/" as *;
 
 .timeline {
-    --separation: 165px;
+    --_separation: 165px;
 
     display: flex;
     flex-direction: column;
-    gap: var(--separation);
+    gap: var(--_separation);
 
     &__dot {
         position: relative;
@@ -22,7 +22,7 @@
                 content: "";
                 position: absolute;
                 width: 2px;
-                height: var(--separation);
+                height: var(--_separation);
                 background-color: var(--color-secondary);
                 left: 50%;
                 top: 100%;

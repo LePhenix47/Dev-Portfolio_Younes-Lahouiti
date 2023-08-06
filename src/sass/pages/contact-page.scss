@@ -60,11 +60,9 @@
       width: inherit;
     }
 
-    &-icon-container {
-    }
+    &-icon-container {}
 
-    &-icon {
-    }
+    &-icon {}
 
     &-text {
       @include center-flex-column(10px);
@@ -141,24 +139,24 @@
     /**
         If the container has inputs or textareas that aren't focused, add this color to the label
         */
-    &:has(:is(input, textarea):not(:focus)) > label {
+    &:has(:is(input, textarea):not(:focus))>label {
       color: var(--color-secondary);
     }
 
-    &--empty-input > input {
+    &--empty-input>input {
       border-radius: 20px 20px 0 0;
       border-bottom: none;
     }
 
-    &--empty-input > textarea {
+    &--empty-input>textarea {
       border-radius: 20px 20px 0 0;
       border-bottom: none;
     }
   }
 
-  --input-message-color: white;
-  --input-message-bg-success: darkgreen;
-  --input-message-bg-error: red;
+  --_input-message-color: white;
+  --_input-message-bg-success: darkgreen;
+  --_input-message-bg-error: red;
 
   &__input-label-message {
     font-size: 14px;
@@ -173,16 +171,16 @@
     padding: 10px 15px;
 
     background-color: var(--color-primary);
-    color: var(--input-message-color);
+    color: var(--_input-message-color);
 
     border-radius: 0 0 15px 15px;
 
     &--success {
-      background-color: var(--input-message-bg-success);
+      background-color: var(--_input-message-bg-success);
     }
 
     &--error {
-      background-color: var(--input-message-bg-error);
+      background-color: var(--_input-message-bg-error);
     }
   }
 
@@ -206,17 +204,18 @@
 
     scale: 115%;
 
-    transition: top 250ms ease-in-out, left 250ms ease-in-out,
-      translate 250ms ease-in-out, scale 250ms ease-in-out,
-      background-color 250ms ease-in-out, color 250ms ease-in-out;
+    transition: top 250ms ease-in-out,
+    left 250ms ease-in-out,
+    translate 250ms ease-in-out,
+    scale 250ms ease-in-out,
+    background-color 250ms ease-in-out,
+    color 250ms ease-in-out;
 
     &.active {
       background-color: none;
-      background-image: linear-gradient(
-        180deg,
-        transparent 50%,
-        var(--bg-primary) 50%
-      );
+      background-image: linear-gradient(180deg,
+          transparent 50%,
+          var(--bg-primary) 50%);
       color: currentColor;
 
       scale: 90%;
@@ -224,11 +223,9 @@
       left: 13px;
 
       @include mobile-only {
-        background-image: linear-gradient(
-          0deg,
-          transparent 35%,
-          var(--bg-primary) 0%
-        );
+        background-image: linear-gradient(0deg,
+            transparent 35%,
+            var(--bg-primary) 0%);
       }
     }
   }
