@@ -211,7 +211,7 @@ export default function Portfolio(): JSX.Element {
         description={portfolio.description}
         pageUri={portfolio.pageUri}
         needsIndexation={portfolio.needsIndexation}
-        needsRobotCrawlers={portfolio.needsRobotCrawlers}
+        allowRobotCrawlers={portfolio.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
 

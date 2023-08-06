@@ -3,11 +3,21 @@ import { warn } from "@utilities/helpers/console.helpers";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
- * A component that renders a canvas element with a LineEffect effect.
+ * A component that renders a canvas element with the LineEffect effect.
+ *
+ * This component creates a canvas element and applies the LineEffect effect to it, animating particles that move across the canvas.
+ *
  * @param {Object} props - The component props.
  * @param {RefObject<HTMLElement>} props.parentElement - The parent element of the canvas element.
  *
- * @returns {JSX.Element} - The rendered canvas element.
+ * @returns {JSX.Element} The rendered canvas element.
+ *
+ * @example
+ * // Usage:
+ * function App() {
+ *   const parentElement = useRef(null);
+ *   return <CanvasComponent parentElement={parentElement} />;
+ * }
  *
  * @component
  */
@@ -103,7 +113,7 @@ export default function CanvasComponent({
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
     const handleWindowResize: () => void = () => {
-      const isNotHtmlCanvas = !canvas;
+      const isNotHtmlCanvas: boolean = !canvas;
       if (isNotHtmlCanvas) {
         return;
       }
@@ -111,11 +121,11 @@ export default function CanvasComponent({
       const { clientWidth, clientHeight } =
         parentElement.current as HTMLElement;
 
-      setCanvasSize(canvas, clientWidth, clientHeight);
+      setCanvasSize(canvas as HTMLCanvasElement, clientWidth, clientHeight);
 
       setEffectHandler(() => {
         return new LineEffect(
-          canvas,
+          canvas as HTMLCanvasElement,
           AMOUNT_OF_PARTICLES + clientHeight / AMOUNT_OF_PARTICLES
         );
       });

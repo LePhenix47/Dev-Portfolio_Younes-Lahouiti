@@ -49,7 +49,7 @@ export default function Skills(): JSX.Element {
         description={skills.description}
         pageUri={skills.pageUri}
         needsIndexation={skills.needsIndexation}
-        needsRobotCrawlers={skills.needsRobotCrawlers}
+        allowRobotCrawlers={skills.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="skills-page" ref={skillsPageSectionRef}>

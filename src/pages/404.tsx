@@ -46,7 +46,7 @@ export default function Error404(): JSX.Element | null {
         description={error404.description}
         pageUri={error404.pageUri}
         needsIndexation={error404.needsIndexation}
-        needsRobotCrawlers={error404.needsRobotCrawlers}
+        allowRobotCrawlers={error404.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="error-404" ref={section404Ref}>

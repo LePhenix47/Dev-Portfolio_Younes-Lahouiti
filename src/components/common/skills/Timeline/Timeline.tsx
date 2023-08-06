@@ -2,6 +2,36 @@
 import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
+/**
+ * Represents a timeline component displaying educational and work experiences.
+ *
+ * @param {Object[]} arrayOfTimeLines - An array of objects representing individual timelines.
+ * @param {string} arrayOfTimeLines[].education - The educational background for the timeline.
+ * @param {string} arrayOfTimeLines[].experience - The work experience for the timeline.
+ * @param {string} arrayOfTimeLines[].establishment - The name of the educational institution or workplace.
+ * @param {string} arrayOfTimeLines[].yearSpan - The year span or duration of the timeline.
+ * @param {boolean} [reverse=false] - A boolean indicating whether to reverse the order of the timelines.
+ * @returns {JSX.Element} A JSX element representing the Timeline component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <Timeline
+ *   arrayOfTimeLines={[
+ *     {
+ *       education: "Bachelor's Degree in Computer Science",
+ *       establishment: "University of Example",
+ *       yearSpan: "2015 - 2019",
+ *     },
+ *     {
+ *       experience: "Front-end Developer",
+ *       establishment: "Tech Company XYZ",
+ *       yearSpan: "2020 - Present",
+ *     },
+ *   ]}
+ *   reverse={true}
+ * />
+ */
 export default function Timeline({
   arrayOfTimeLines,
   reverse = false,

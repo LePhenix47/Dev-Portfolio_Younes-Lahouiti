@@ -69,7 +69,7 @@ export default function About(): JSX.Element {
         description={about.description}
         pageUri={about.pageUri}
         needsIndexation={about.needsIndexation}
-        needsRobotCrawlers={about.needsRobotCrawlers}
+        allowRobotCrawlers={about.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="about-page" ref={aboutPageSectionRef}>

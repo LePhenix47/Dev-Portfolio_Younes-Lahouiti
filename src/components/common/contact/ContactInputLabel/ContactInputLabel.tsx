@@ -1,15 +1,48 @@
 //React
 import React, { MutableRefObject, useEffect, useId, useState } from "react";
 
-//Next
-import Image from "next/image";
-
 //Utils
 import { inputType } from "@utilities/types/contact/input.types";
 import Icons from "@components/shared/icons/Icons";
 
 import { log } from "@utilities/helpers/console.helpers";
 
+/**
+ * Represents an input label component for the contact page.
+ *
+ * @param {string} labelText - The text of the label.
+ * @param {string} name - The name of the input element.
+ * @param {MutableRefObject<any>} reference - The reference to the input element.
+ * @param {Function} [onChangeCallback] - The callback function to validate the input value.
+ * @param {string} [errorInputMessage="Invalid"] - The error message to display when the input value is invalid.
+ * @param {string} [validInputMessage="Valid"] - The success message to display when the input value is valid.
+ * @param {inputType | ""} [inputType="text"] - The type of the input element.
+ * @param {string} [placeholder=""] - The placeholder text for the input element.
+ * @param {boolean} [isTextArea=false] - A boolean indicating whether to render a textarea instead of an input element.
+ * @param {string} [inputDefaultValue=""] - The default value for the input element.
+ *
+ * @returns {JSX.Element} A JSX element representing the ContactInputLabel component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * const nameRef = useRef<HTMLInputElement>(null);
+ * const onChangeCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+ *   // Your validation logic here...
+ *   return true; // Return true if input is valid, false otherwise
+ * };
+ *
+ * <ContactInputLabel
+ *   labelText="First Name"
+ *   name="first-name"
+ *   reference={nameRef}
+ *   onChangeCallback={onChangeCallback}
+ *   errorInputMessage="Please enter a valid first name."
+ *   validInputMessage="First name is valid."
+ *   inputType="text"
+ *   placeholder="Enter your first name..."
+ * />
+ */
 export default function ContactInputLabel({
   labelText = "",
   name = "",
@@ -51,7 +84,7 @@ export default function ContactInputLabel({
   /**
    * Id for the input using a React state
    */
-  const randomId = useId();
+  const randomId: string = useId();
 
   return (
     <section

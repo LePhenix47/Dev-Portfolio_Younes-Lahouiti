@@ -1,4 +1,5 @@
 //React
+import { addClass, removeClass } from "@utilities/helpers/dom.helpers";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 //Utils
@@ -14,11 +15,11 @@ import { Dispatch, SetStateAction, useRef } from "react";
  *
  */
 export default function ModalWindow({
-  content,
+  children,
   isOpen,
   setIsOpen,
 }: {
-  content: JSX.Element | null;
+  children: JSX.Element | null;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
@@ -27,49 +28,50 @@ export default function ModalWindow({
    */
   const dialogRef = useRef<HTMLDialogElement>(null);
 
+  const modalWindow: HTMLDialogElement = dialogRef.current as HTMLDialogElement;
+
+  const TRANSITION_DURATION: number = 500;
+
   /**
    * Boolean to check if the window opened only once
    */
-  const openedOnlyOnce: boolean = !dialogRef.current?.hasAttribute("open");
+  const openedOnlyOnce: boolean = !modalWindow.hasAttribute("open");
 
   /**
    * Function that closes the modal with a fading animation
    */
   function closeModal() {
-    (dialogRef.current as HTMLDialogElement).classList.add("fade-out");
+    addClass(modalWindow, "fade-out");
 
     setTimeout(() => {
-      (dialogRef.current as HTMLDialogElement).close();
+      modalWindow.close();
 
       setIsOpen(false);
 
-      (dialogRef.current as HTMLDialogElement).classList.remove("fade-out");
-    }, 500);
+      removeClass(modalWindow, "fade-out");
+    }, TRANSITION_DURATION);
   }
 
   /**
    * Structural condition to open the window
    */
   if (isOpen && openedOnlyOnce) {
-    (dialogRef.current as HTMLDialogElement).showModal();
+    modalWindow.showModal();
 
-    (dialogRef.current as HTMLDialogElement).classList.add("fade-in");
+    addClass(modalWindow, "fade-in");
 
     setTimeout(() => {
-      (dialogRef.current as HTMLDialogElement).classList.remove("fade-in");
-    }, 500);
+      removeClass(modalWindow, "fade-in");
+    }, TRANSITION_DURATION);
   }
   return (
     <dialog className="modal-window" ref={dialogRef}>
       <div className="modal-window__content-wrapper">
         <button
           className="modal-window__close-button"
-          onClick={() => {
-            //Add a function that create a transition when closing the window here:
-            closeModal();
-          }}
+          onClick={closeModal}
         ></button>
-        {content}
+        {children}
       </div>
     </dialog>
   );

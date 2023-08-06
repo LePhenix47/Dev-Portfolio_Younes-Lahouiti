@@ -1,4 +1,24 @@
-export default function NoiseFilter({ imageId }: { imageId: string }) {
+/**
+ * Represents a noise filter SVG component used for applying a pixel noise effect with displacement to an image.
+ *
+
+ * @param {string} imageId - The ID of the image to which the noise filter effect is applied.
+ * @returns {JSX.Element} A JSX element representing the NoiseFilter component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * const imageId = "myImageId";
+ *
+ * <NoiseFilter imageId={imageId} />
+ * ...
+ * <img src={...} id={imageId}/>
+ */
+export default function NoiseFilter({
+  imageId,
+}: {
+  imageId: string;
+}): JSX.Element {
   return (
     <svg className="svg-filter hide">
       <defs>
@@ -24,7 +44,8 @@ export default function NoiseFilter({ imageId }: { imageId: string }) {
           </feTurbulence>
           {/*
               Doc explaining how displacement maps work:
-              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap               */}
+              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap
+              */}
           <feDisplacementMap
             //Image we want to apply the effect to
             in="SourceGraphic"

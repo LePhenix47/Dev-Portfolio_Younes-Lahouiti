@@ -1,6 +1,23 @@
 import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
+/**
+ * Represents a card item used in the SkillCardList component.
+ *
+ * @param {string} skill - The name of the skill.
+ * @param {string} level - The proficiency level or description of the skill.
+ * @returns {JSX.Element} A JSX element representing the SkillCardList component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <SkillCardList
+ *   skill="JavaScript"
+ *   level="Intermediate"
+ * />
+ *
+ * @component
+ */
 export default function SkillCardList({
   skill,
   level,

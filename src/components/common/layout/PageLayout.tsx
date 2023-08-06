@@ -15,6 +15,8 @@ export default function PageLayout(props: {
 }): JSX.Element {
   const mainElementRef = useRef<HTMLElement>(null);
 
+  const { children } = props;
+
   return (
     <>
       {/* The header section */}
@@ -22,7 +24,7 @@ export default function PageLayout(props: {
 
       {/* The main content section */}
       <main className="page-layout" ref={mainElementRef}>
-        {props.children}
+        {children}
       </main>
 
       {/* The footer section */}

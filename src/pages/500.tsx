@@ -28,7 +28,7 @@ export default function Error500(): JSX.Element {
         description={error500.description}
         pageUri={error500.pageUri}
         needsIndexation={error500.needsIndexation}
-        needsRobotCrawlers={error500.needsRobotCrawlers}
+        allowRobotCrawlers={error500.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="error-500" ref={section500Ref}>

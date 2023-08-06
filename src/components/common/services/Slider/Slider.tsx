@@ -9,6 +9,25 @@ import { SliderCard } from "@components/common/services/services-page.components
 import Icons from "@components/shared/icons/Icons";
 import { isMobileViewport } from "@utilities/helpers/window.helpers";
 
+/**
+ * Represents a slider component to display cards with a left/right navigation and indexation buttons.
+ *
+ * @param {sliderCardTypes} sliderCards - An array of cards to be shown in the slider.
+ * @param {number} cardToBeShown - The number of cards to be shown in the slider at a time.
+ * @returns {JSX.Element} A JSX element representing the Slider component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <Slider
+ *   sliderCards={[
+ *     { image: "image1.jpg", name: "Card 1", description: "Card 1 Description" },
+ *     { image: "image2.jpg", name: "Card 2", description: "Card 2 Description" },
+ *     // ... more cards
+ *   ]}
+ *   cardToBeShown={3}
+ * />
+ */
 export default function Slider({
   sliderCards,
   cardToBeShown,

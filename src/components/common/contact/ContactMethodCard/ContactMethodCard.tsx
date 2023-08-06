@@ -7,6 +7,28 @@ import { formatStringCase } from "@utilities/helpers/string.helpers";
 
 //Utils
 
+/**
+ * Represents a contact method card component for the contact page.
+ *
+
+ * @param {any} icon - The icon representing the contact method.
+ * @param {string} platform - The platform or service of the contact method.
+ * @param {string} user - The username or recipient of the contact method.
+ * @param {string} link - The link or URL associated with the contact method.
+ * @returns {JSX.Element} A JSX element representing the ContactMethodCard component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <ContactMethodCard
+ *   icon={contactIcon}
+ *   platform="Email"
+ *   user="john.doe@example
+@component.com"
+ *   link="mailto:john.doe@example
+@component.com"
+ * />
+ */
 export default function ContactMethodCard({
   icon,
   platform,

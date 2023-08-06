@@ -1,34 +1,65 @@
 import Head from "next/head";
 
 /**
- * Component to handle Open Graph and metadata tags for a Next.js page
+ * A component to set metadata and Open Graph tags for social media sharing.
  *
- * @param {string} title - The title of the page.
- * @param {string} description - The description of the page.
- * @param {string} pageUrl - The URI of the page.
- * @param {boolean} needsIndexation - Determines if the page should be indexed by search engines.
- * @param {boolean} needsRobotFollow - Determines if search engine robots should follow links on the page.
- * @param {Object} openGraph - Open Graph metadata for social media sharing.
- * @param {Object} openGraph.image - The image metadata for social media sharing.
- * @param {string} openGraph.image.url - The URL of the image.
- * @param {number} openGraph.image.width - The width of the image in pixels.
- * @param {number} openGraph.image.height - The height of the image in pixels.
+ * This component sets various metadata tags and Open Graph tags for better SEO and social media sharing. It allows specifying the page title, description, URL, indexation, robot crawlers, and Open Graph image.
  *
- * @returns {JSX.Element} - The Head component with all the metadata and Open Graph tags.
+ * @param {string} title - The page title.
+ * @param {string} description - The page description.
+ * @param {string} pageUri - The URI of the page.
+ * @param {boolean} needsIndexation - Determines whether the page should be indexed by search engines.
+ * @param {boolean} allowRobotCrawlers - Determines whether the robot crawlers should follow the links in the page.
+ * @param {Object} openGraph - The Open Graph properties for social media sharing.
+ * @param {string} openGraph.image.url - The URL of the Open Graph image.
+ * @param {number} openGraph.image.width - The width of the Open Graph image for social media sharing.
+ * @param {number} openGraph.image.height - The height of the Open Graph image for social media sharing.
+ *
+ * @returns {JSX.Element} The rendered Head component with metadata and Open Graph tags.
+ *
+ * @example
+@component
+ * // Usage:
+ * function MyPage() {
+ *   return (
+ *    <>
+ *       <MetaData
+ *         title="My Page Title"
+ *         description="This is a description of my page"
+ *         pageUri="/my-page"
+ *         needsIndexation
+ *         allowRobotCrawlers
+ *         openGraph={{
+ *           image: {
+ *             url: "https://example.com/image.jpg",
+ *             width: 1200,
+ *             height: 630,
+ *           },
+ *         }}
+ *       />
+ *     <div>
+ *       <h1>My Page</h1>
+ *       ...
+ *     </div>
+ *    </>
+ *   );
+ * }
+ *
+ * @component
  */
 export default function MetaData({
   title,
   description,
   pageUri,
   needsIndexation,
-  needsRobotCrawlers,
+  allowRobotCrawlers,
   openGraph,
 }: {
   title: string;
   description: string;
   pageUri: string;
   needsIndexation: boolean;
-  needsRobotCrawlers: boolean;
+  allowRobotCrawlers: boolean;
   openGraph: {
     image: {
       url: string;
@@ -53,7 +84,7 @@ export default function MetaData({
   const imageHeight: string = image.height.toString();
 
   /**
-   * Value to determine whether the should be indexed by search engines
+   * Value to determine whether the page should be indexed by search engines
    *
    * @type {string}
    */
@@ -63,11 +94,11 @@ export default function MetaData({
    *
    * @type {string}
    */
-  const robotCrawlersValue: string = !!needsRobotCrawlers
+  const robotCrawlersValue: string = !!allowRobotCrawlers
     ? "follow"
     : "nofollow";
 
-  const pageUrl = `https://younes-portfolio-dev.vercel.app${pageUri}`;
+  const pageUrl: string = `https://younes-portfolio-dev.vercel.app${pageUri}`;
 
   return (
     <Head>

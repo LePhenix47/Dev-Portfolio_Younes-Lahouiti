@@ -105,14 +105,12 @@ export default function Services(): JSX.Element {
         description={services.description}
         pageUri={services.pageUri}
         needsIndexation={services.needsIndexation}
-        needsRobotCrawlers={services.needsRobotCrawlers}
+        allowRobotCrawlers={services.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <ModalWindow
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        content={windowContent}
-      />
+      <ModalWindow isOpen={isOpen} setIsOpen={setIsOpen}>
+        {windowContent}
+      </ModalWindow>
 
       <section className="services-page" ref={servicesPageSectionRef}>
         <CanvasComponent parentElement={servicesPageSectionRef} />

@@ -44,7 +44,7 @@ export default function Home(): JSX.Element {
         description={home.description}
         pageUri={home.pageUri}
         needsIndexation={home.needsIndexation}
-        needsRobotCrawlers={home.needsRobotCrawlers}
+        allowRobotCrawlers={home.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="home-page" ref={homePageSectionRef}>

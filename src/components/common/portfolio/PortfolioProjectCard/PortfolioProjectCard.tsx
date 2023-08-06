@@ -6,6 +6,28 @@ import Image from "next/image";
 import Link from "next/link";
 import Icons from "@components/shared/icons/Icons";
 
+/**
+ * Represents a card displaying information about a portfolio project.
+ *
+
+ * @param {string} title - The title of the portfolio project.
+ * @param {any} image - The image representing the portfolio project.
+ * @param {string} link - The link or URL associated with the portfolio project.
+ * @param {string} formattedDate - The formatted date when the project was made.
+ * @param {string} type - The type of the portfolio project (e.g., "npm", "extension", "professional").
+ * @returns {JSX.Element} A JSX element representing the PortfolioProjectCard component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <PortfolioProjectCard
+ *   title="Sample Project"
+ *   image="/path/to/project-image.jpg"
+ *   link="https://www.example.com/sample-project"
+ *   formattedDate="May 2023"
+ *   type="npm"
+ * />
+ */
 export default function PortfolioProjectCard({
   title,
   image,

@@ -5,6 +5,23 @@ import React from "react";
 import { serviceType } from "@utilities/types/services/services.types";
 import Icons from "@components/shared/icons/Icons";
 
+/**
+ * Represents the content of a modal that displays information about a service.
+ *
+ * @param {string} title - The title of the service.
+ * @param {string} description - The description of the service.
+ * @param {serviceType} qualities - An array containing the qualities/features of the service.
+ * @returns {JSX.Element} A JSX element representing the ServicesModalContent component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * <ServicesModalContent
+ *   title="Sample Service"
+ *   description="This is a sample service description."
+ *   qualities={['Quality 1', 'Quality 2', 'Quality 3']}
+ * />
+ */
 export default function ServicesModalContent({
   title,
   description,

@@ -312,7 +312,7 @@ export default function Contact(): JSX.Element {
         description={contact.description}
         pageUri={contact.pageUri}
         needsIndexation={contact.needsIndexation}
-        needsRobotCrawlers={contact.needsRobotCrawlers}
+        allowRobotCrawlers={contact.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
       <section className="contact-page" ref={contactPageSectionRef}>

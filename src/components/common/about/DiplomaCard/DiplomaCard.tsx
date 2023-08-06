@@ -2,7 +2,26 @@ import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
 /**
- * Diploma card
+ * Represents a diploma card component used in the About section.
+ *
+
+ * @param {string} diplomaTitle - The title of the diploma.
+ * @param {string} obtainedYearRangeDate - The year range or date when the diploma was obtained.
+ * @param {string} pdfLink - The link to the PDF file of the diploma.
+ * @returns {JSX.Element} A JSX element representing the DiplomaCard component.
+ *
+ * @example
+@component
+ * // Example usage:
+ * const diplomaTitle = "Bachelor of Science";
+ * const obtainedYearRangeDate = "2015 - 2019";
+ * const pdfLink = "/path/to/diploma.pdf";
+ *
+ * <DiplomaCard
+ *   diplomaTitle={diplomaTitle}
+ *   obtainedYearRangeDate={obtainedYearRangeDate}
+ *   pdfLink={pdfLink}
+ * />
  */
 export default function DiplomaCard({
   diplomaTitle,
