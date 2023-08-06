@@ -220,13 +220,21 @@ export default function Header(): JSX.Element {
       </section>
       <nav className="header__nav">
         <ul className="header__list" ref={unorderedListRef}>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/" && "active"}
+          `}
+          >
             <Link href="/" className="header__item-link" ref={homeLinkPageRef}>
               <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
               Home
             </Link>
           </li>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/about" && "active"}
+          `}
+          >
             <Link
               href="/about"
               className="header__item-link"
@@ -236,7 +244,11 @@ export default function Header(): JSX.Element {
               About
             </Link>
           </li>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/skills" && "active"}
+          `}
+          >
             <Link
               href="/skills"
               className="header__item-link"
@@ -250,7 +262,11 @@ export default function Header(): JSX.Element {
               Skills
             </Link>
           </li>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/services" && "active"}
+          `}
+          >
             <Link
               href="/services"
               className="header__item-link"
@@ -264,7 +280,11 @@ export default function Header(): JSX.Element {
               Services
             </Link>
           </li>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/portfolio" && "active"}
+          `}
+          >
             <Link
               href="/portfolio"
               className="header__item-link"
@@ -278,7 +298,11 @@ export default function Header(): JSX.Element {
               Portfolio
             </Link>
           </li>
-          <li className={"header__item"}>
+          <li
+            className={`header__item
+          ${asPath === "/contact" && "active"}
+          `}
+          >
             <Link
               href="/contact"
               className="header__item-link"
