@@ -14,6 +14,12 @@ import {
   OPEN_GRAPH,
 } from "@utilities/variables/shared/index-shared.variables";
 
+/**
+ * Page component representing the custom 404 (Page Not Found) error page.
+ * This page is displayed when the user navigates to a non-existent page.
+ *
+ * @returns {JSX.Element | null} The JSX element representing the 404 error page or null if the component is not yet initialized.
+ */
 export default function Error404(): JSX.Element | null {
   const { error404 } = PAGE_METADATA;
   const section404Ref = useRef<HTMLElement>(null);
@@ -28,7 +34,8 @@ export default function Error404(): JSX.Element | null {
     setInitialRender(true);
   }, []);
 
-  if (!initialRender) {
+  const isFirstRender: boolean = !initialRender;
+  if (isFirstRender) {
     return null;
   }
 

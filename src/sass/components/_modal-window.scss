@@ -15,7 +15,7 @@
     transition: filter 350ms ease-in-out;
 
     &::backdrop {
-        background-color: var(--backdrop-bg-color);
+        backdrop-filter: brightness(50%);
     }
 
     & :is(div, section):not(.modal-window__content-wrapper) {

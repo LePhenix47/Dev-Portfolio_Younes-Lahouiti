@@ -12,6 +12,12 @@ import { copyTextToClipBoard } from "@utilities/helpers/string.helpers";
 import { log, warn } from "@utilities/helpers/console.helpers";
 import { setStyleProperty } from "@utilities/helpers/dom.helpers";
 
+/**
+ * Header component representing the top navigation bar of the website.
+ * Displays a list of links and an underline for the active link.
+ *
+ * @returns {JSX.Element} The JSX element representing the header component.
+ */
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();
 
@@ -49,8 +55,12 @@ export default function Header(): JSX.Element {
 
   const underlineListItemRef = useRef<HTMLLIElement>(null);
 
-  //
-  function setStateForActiveLink(): void {
+  /**
+   * Sets the dimensions for the active link based on the current URL path.
+   * Updates the `activeLinkDimensions` state with the computed dimensions.
+   *
+   * @returns {void}
+   */ function setStateForActiveLink(): void {
     let anchorElement: HTMLAnchorElement | null = null;
 
     let anchorDimensions: DOMRect | null = null;
@@ -101,7 +111,10 @@ export default function Header(): JSX.Element {
   }, [activeLinkDimensions]);
 
   /**
-   * Sets the underline to the active link.
+   * Sets the position and width of the underline element based on the active link.
+   * Retrieves the active link dimensions and updates the underline position.
+   *
+   * @returns {void}
    */
   function setUnderlineToLink(): void {
     const hasNotActiveLinkDimensions: boolean =
@@ -134,10 +147,13 @@ export default function Header(): JSX.Element {
   }
 
   /**
-   * Sets the width and x CSS variables for the `<li>` underline.
-   * @param {number} width - Width of the the `<li>` underline.
-   * @param {number} x - x offset of the the `<li>` underline.
+   * Sets the CSS variables for the `<li>` underline.
+   * Updates the `--_left` and `--_width` CSS variables.
+   *
+   * @param {number} width - Width of the `<li>` underline.
+   * @param {number} x - X offset of the `<li>` underline.
    * @param {HTMLLIElement} liUnderlineElement - The LI element to set the CSS variables for the underline.
+   * @returns {void}
    */
   function giveUnderlineCssVariablesValues({
     width,
@@ -156,7 +172,10 @@ export default function Header(): JSX.Element {
   }
 
   /**
-   * Shows the tooltip when portfolio link is copied
+   * Shows the tooltip when the portfolio link is copied to clipboard.
+   * Copies the URL to the clipboard and sets the `popUpOpen` state to display the tooltip.
+   *
+   * @returns {Promise<void>}
    */
   async function showCopiedToolTip(): Promise<void> {
     //We copy the URL of the portfolio so that the visitor can share it.

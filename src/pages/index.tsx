@@ -25,6 +25,13 @@ import { JPG_URLS } from "@assets/index.constants";
 
 import Icons from "@components/shared/icons/Icons";
 
+/**
+ * Home page component: `/`
+ *
+ * This component represents the home page of the website. It includes information about the developer, social media links, and a call-to-action (CTA) button to contact the developer.
+ *
+ * @returns {JSX.Element} The JSX element representing the home page.
+ */
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
 

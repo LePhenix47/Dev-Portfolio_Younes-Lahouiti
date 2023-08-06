@@ -29,14 +29,18 @@ import {
   Timeline,
 } from "@components/common/skills/skills-page.components";
 
+/**
+ * Skills page component: `/skills`
+ *
+ * This component represents the Skills page of the website. It showcases the developer's technical skills, including front-end and back-end skills. It also provides a timeline of the developer's education and experience.
+ *
+ * @returns {JSX.Element} The JSX element representing the Skills page.
+ */
 export default function Skills(): JSX.Element {
   const { skills } = PAGE_METADATA;
   const skillsPageSectionRef = useRef<HTMLElement>(null);
 
   const [isRotated, setIsRotated] = useState<boolean>(false);
-
-  const rotateRef = useRef<boolean>(true);
-  rotateRef.current = true;
 
   return (
     <>
@@ -81,7 +85,6 @@ export default function Skills(): JSX.Element {
             }`}
             onClick={() => {
               setIsRotated(false);
-              rotateRef.current = false;
             }}
           >
             Experience
@@ -93,7 +96,6 @@ export default function Skills(): JSX.Element {
             }`}
             onClick={() => {
               setIsRotated(true);
-              rotateRef.current = true;
             }}
           >
             Education

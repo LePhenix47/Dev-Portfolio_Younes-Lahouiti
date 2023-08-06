@@ -31,17 +31,19 @@ import PageLayout from "@components/common/layout/PageLayout";
 import Icons from "@components/shared/icons/Icons";
 
 /**
- * Root component where all the pages will pass through
+ * The `_app.tsx` file is the root component where all pages will pass through. It sets up the global layout, providers, and configurations for the entire app.
  *
- * This file should be changed *only if*:
+ * This file should only be modified in the following scenarios:
  *
- * - You want to set a page layout
+ * - If you want to set a common page layout for all pages, you can make changes to the `PageLayout` component imported from `@components/common/layout/PageLayout`.
  *
- * - You want to add a provider for a global state (for React, Redux, TanStackQuery...)
+ * - If you want to add a provider for a global state management library (e.g., React Context, Redux, TanStack Query), you can do so by wrapping the components with the respective provider(s).
  *
- * This file **must not** be nested inside a React Fragment
+ * **Note:** When modifying this file, ensure that you do not break the page's structure, and consider any limitations or considerations related to providers and layout changes.
+ *
+ * @param {AppProps} props - The AppProps object containing the `Component` and `pageProps`.
+ * @returns {JSX.Element} The root JSX element for the entire app.
  */
-
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   /**
    * This `queryClient` constant ensures that data is not shared between different users and requests, while still only creating the QueryClient once per component lifecycle.
@@ -61,6 +63,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <TanStackProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <PageLayout>
+            {/* 
+            Because the parent element of this anchor uses the `transform` property for the pages transitions, 
+            child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
+            */}
             <Link
               href="#top"
               className={`portfolio-page__anchor ${

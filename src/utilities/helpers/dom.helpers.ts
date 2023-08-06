@@ -60,7 +60,7 @@ export function getAttribute(
  * @returns {HTMLOptionElement[] | string[]} - An array of selected HTMLOptionElement elements if `valuesOnly` is false, or an array of the values of the selected options if `valuesOnly` is true.
  * @throws {Error} - Throws an error if the provided element is not a HTMLSelectElement.
  */
-export function getSelectOptions(
+export function getSelectMultipleOptions(
   selectElement: HTMLSelectElement,
   valuesOnly: boolean = false
 ): HTMLOptionElement[] | string[] {

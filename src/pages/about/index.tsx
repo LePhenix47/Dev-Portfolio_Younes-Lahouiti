@@ -32,20 +32,34 @@ import Icons from "@components/shared/icons/Icons";
 import { getAgeFromDateOfBirth } from "@utilities/helpers/numbers.helpers";
 
 /**
- * About me page: `/about`
+ * About Me page component: `/about`
+ *
+ * This component represents the About Me page of the website. It includes information about the developer's introduction, skills, and earned diplomas.
+ *
+ * @returns {JSX.Element} The JSX element representing the About Me page.
  */
 export default function About(): JSX.Element {
   const { about } = PAGE_METADATA;
   const aboutPageSectionRef = useRef<HTMLElement>(null);
   /**
    * My date of birth: June 13th 2002
+   *
+   * @type {string}
    */
   const dateOfBirth: string = "06/13/2002";
 
   /**
    * My actual age
+   *
+   * @type {number}
    */
   const myAgeInYears: number = getAgeFromDateOfBirth(dateOfBirth);
+
+  /**
+   * Id of the image used to apply the SVG filter
+   *
+   * @type {string}
+   */
   const imageId: string = "image";
 
   return (

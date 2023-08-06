@@ -37,6 +37,10 @@ import { error, log } from "@utilities/helpers/console.helpers";
 
 /**
  * Contact page: `/contact`
+ *
+ * This component represents the Contact page of the website. It allows users to get in touch with the developer through various contact methods and a form. The form includes fields for first name, last name, email, and a project message. The form input values are validated to ensure they meet specific criteria. Users can submit the form to send an email with their project details to the developer using the EmailJS API.
+ *
+ * @returns {JSX.Element} The JSX element representing the Contact page.
  */
 export default function Contact(): JSX.Element {
   const { contact } = PAGE_METADATA;
@@ -88,9 +92,13 @@ export default function Contact(): JSX.Element {
   */
 
   /**
-   * Function that sends the form with their field values
+   * Function that sends the form with their field values.
+   *
+   * This function is triggered when the user submits the form. It validates the input fields and sends an email with the project details if all fields are valid.
+   *
+   * @returns {void}
    */
-  function submitForm() {
+  function submitForm(): void {
     //We get their values
     const firstName: string = formatStringCase(
       firstNameRef.current.value,
@@ -123,9 +131,14 @@ export default function Contact(): JSX.Element {
   }
 
   /**
-   * Function that send the email to `EmailJS`
+   * Function that sends an email using the EmailJS API.
+   *
+   * This function makes a POST API call to send an email with the project details using the EmailJS API. It sets the required parameters for the API call, such as the service ID, template ID, and public key.
+   *
+   * @param {Object} formValue - An object containing the form field values (firstName, lastName, email, projectIdea).
+   * @returns {Promise<void>} A promise that resolves when the email is successfully sent or rejects if there is an error.
    */
-  async function sendEmail(formValue: any) {
+  async function sendEmail(formValue: any): Promise<void> {
     //Variables to make the call to the API
     const SERVICE_ID = "service_fqz2fbf";
     const TEMPLATE_ID = "template_bxtugu9";
@@ -190,17 +203,19 @@ export default function Contact(): JSX.Element {
   });
 
   /**
-   * Verifies if a given string is a valid name, based on the following criteria:
-   * 1. Must not include numbers
-   * 2. Can include characters with accents, dashes and apostrophes (for instance: Da'Shawn, François or Marie-Antoinette)
-   * 3. The length of the name is between 2 and 50
+   * Verifies if a given string is a valid name.
    *
-   * @param event - The event object from the input element that triggered the function.
-   * @returns - A boolean value indicating whether the given string is a valid name.
+   * This function checks whether the given string meets the following criteria:
+   * 1. Must not include numbers
+   * 2. Can include characters with accents, dashes, and apostrophes (e.g., Da'Shawn, François, or Marie-Antoinette)
+   * 3. The length of the name is between 2 and 50 characters.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>} reference - The event object from the input element that triggered the function or a mutable reference to the input element.
+   * @returns {boolean} A boolean value indicating whether the given string is a valid name.
    */
   function verifyNames(
     reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
-  ) {
+  ): boolean {
     //We get the value of the input
     let valueOfInput: string =
       (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
@@ -235,15 +250,17 @@ export default function Contact(): JSX.Element {
   }
 
   /**
-   * Verifies if a given string is a valid email, based on the following criteria:
-   * 1. The email should respect the format of nickname@domain.domain (can also contain a subdomain)
+   * Verifies if a given string is a valid email.
    *
-   * @param event - The event object from the input element that triggered the function.
-   * @returns  - A boolean value indicating whether the given string is a valid email.
+   * This function checks whether the given string is a valid email address based on the following criteria:
+   * 1. The email should be in the format "nickname@domain.domain" and can also contain a subdomain.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>} reference - The event object from the input element that triggered the function or a mutable reference to the input element.
+   * @returns {boolean} A boolean value indicating whether the given string is a valid email address.
    */
   function verifyEmail(
     reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
-  ) {
+  ): boolean {
     //We get the value of the input
     let valueOfInput: string =
       (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
@@ -259,14 +276,16 @@ export default function Contact(): JSX.Element {
   }
 
   /**
-   * Verify if the message has a proper length
+   * Verifies if the project message has a proper length.
    *
-   * @param event - The event that triggered the function
-   * @returns - Returns true if the message has a proper length, otherwise false
+   * This function checks whether the project message is between 50 and 2,000 characters long.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>} reference - The event object from the input element that triggered the function or a mutable reference to the input element.
+   * @returns {boolean} A boolean value indicating whether the project message has a proper length.
    */
   function verifyMessage(
     reference: React.ChangeEvent<HTMLTextAreaElement> | MutableRefObject<any>
-  ) {
+  ): boolean {
     //We get the value of the input
     let valueOfInput: string =
       (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??

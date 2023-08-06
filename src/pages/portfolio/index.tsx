@@ -39,6 +39,10 @@ import { formatShortDate } from "@utilities/helpers/internalization.helpers";
 
 /**
  * Portfolio page: `/portfolio`
+ *
+ * This component represents the Portfolio page of the website. It showcases the developer's personal and professional projects. The page includes project cards that can be filtered, sorted, and searched by title or date. The user can also select different project categories to view specific types of projects.
+ *
+ * @returns {JSX.Element} The JSX element representing the Portfolio page.
  */
 export default function Portfolio(): JSX.Element {
   const { portfolio } = PAGE_METADATA;
@@ -97,44 +101,53 @@ export default function Portfolio(): JSX.Element {
   const [isInReverse, setIsInReverse] = useState<boolean>(false);
 
   /**
-   * Function that sorts randomly the cards
+   * Function that sorts the cards randomly.
+   *
+   * This function is used as the sorting function when the user selects the random sorting option.
+   *
+   * @returns {number} The random sort value.
    */
-  function randomSort() {
+  function randomSort(): number {
     return Math.random() - 0.5;
   }
 
   /**
-   * Function that changes the cards to shown to the container
+   * Function that sets the cards to show in the container.
+   *
+   * This function is used internally by `changeCards` function. It sets the state `dataToShow` with the provided project data and sets the state `copiedData` with a copy of the same data to enable filtering.
+   *
+   * @param {string} category - The category of the projects to be displayed.
+   * @returns {void}
    */
-  function changeCards(category: string) {
+  function changeCards(category: string): void {
     switch (category) {
       case "openclassrooms": {
         //openclassroomsProjects
-        setCardsToShow(openClassroomsProjects, category);
+        changeCardsToShow(openClassroomsProjects, category);
         break;
       }
       case "personal": {
         //personalProjects
-        setCardsToShow(personalProjects, category);
+        changeCardsToShow(personalProjects, category);
         break;
       }
       case "professional": {
         //professionalProjects
-        setCardsToShow(professionalProjects, category);
+        changeCardsToShow(professionalProjects, category);
         break;
       }
       case "npm": {
         //npmProjects
-        setCardsToShow(npmProjects, category);
+        changeCardsToShow(npmProjects, category);
         break;
       }
       case "extensions": {
         //browserExtensionProjects
-        setCardsToShow(browserExtensionProjects, category);
+        changeCardsToShow(browserExtensionProjects, category);
         break;
       }
       default: {
-        setCardsToShow(allProjects, category);
+        changeCardsToShow(allProjects, category);
         break;
       }
     }
@@ -145,7 +158,7 @@ export default function Portfolio(): JSX.Element {
    *
    * @returns {void}
    */
-  function setCardsToShow(cards: projectsMadeType, category: string): void {
+  function changeCardsToShow(cards: projectsMadeType, category: string): void {
     setDataToShow(cards.sort(randomSort));
     setCopiedData(cards);
     setCategory(category);
@@ -201,11 +214,6 @@ export default function Portfolio(): JSX.Element {
         needsRobotCrawlers={portfolio.needsRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-
-      {/* 
-      Because the parent element uses the `transform` property for the pages transitions, 
-      child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
-     */}
 
       <section className="portfolio-page" ref={portfolioPageSectionRef}>
         <CanvasComponent parentElement={portfolioPageSectionRef} />

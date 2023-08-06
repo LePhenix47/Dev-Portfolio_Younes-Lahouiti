@@ -5,8 +5,14 @@ import React from "react";
 import Link from "next/link";
 import Icons from "@components/shared/icons/Icons";
 
+/**
+ * Footer component representing the bottom section of the website.
+ * Displays links to the source code and bug reporting on GitHub, and the copyright notice.
+ *
+ * @returns {JSX.Element} The JSX element representing the footer component.
+ */
 export default function Footer(): JSX.Element {
-  const currentYear = new Date().getFullYear();
+  const currentYear: number = new Date().getFullYear();
 
   return (
     <footer className="footer">

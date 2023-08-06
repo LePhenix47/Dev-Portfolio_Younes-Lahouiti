@@ -11,6 +11,12 @@ import {
 
 import React, { useRef } from "react";
 
+/**
+ * Page component representing the custom 500 (Internal Server Error) error page.
+ * This page is displayed when there are server-side errors or technical difficulties.
+ *
+ * @returns {JSX.Element} The JSX element representing the 500 error page.
+ */
 export default function Error500(): JSX.Element {
   const { error500 } = PAGE_METADATA;
   const section500Ref = useRef<HTMLElement>(null);
