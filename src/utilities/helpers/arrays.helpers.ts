@@ -14,19 +14,6 @@ import { invertDayAndMonth } from "./string.helpers";
  * @returns {any[]} - The new array containing the copied elements
  */
 export function copyArray(arrayToCopy: any): any[] {
-  const isNotAnArray: boolean = !isExactlyAnArray(arrayToCopy);
-  const isNotASet: boolean =
-    getPrototypeOf(arrayToCopy) !== "Array" &&
-    getPrototypeOf(arrayToCopy) !== "Set";
-  const isNotAnArrayOrSet: boolean = isNotAnArray || isNotASet;
-  if (isNotAnArrayOrSet) {
-    throw new TypeError(
-      `Invalid argument passed, expected an array or set but got: \n ${typeof arrayToCopy} ${getPrototypeOf(
-        arrayToCopy
-      )}`
-    );
-  }
-
   // Arrays or sets are copyable with `Array.from()`
   return Array.from(arrayToCopy);
 }
