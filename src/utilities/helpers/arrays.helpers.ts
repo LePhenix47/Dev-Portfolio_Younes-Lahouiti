@@ -52,7 +52,7 @@ export function isExactlyAnArray(value: any): boolean {
  * @returns {boolean} - Returns true if the arrays are exactly the same, otherwise false.
  */
 export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
-  const hasInvalidArguments =
+  const hasInvalidArguments: boolean =
     !arr1 || !arr2 || !isExactlyAnArray(arr1) || !isExactlyAnArray(arr2);
   // Check if either argument is falsy or not an array
   if (hasInvalidArguments) {
@@ -64,7 +64,7 @@ export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
     );
   }
 
-  const haveDifferentLengths = arr1.length !== arr2.length;
+  const haveDifferentLengths: boolean = arr1.length !== arr2.length;
   // Check if arrays have the same length
   if (haveDifferentLengths) {
     return false;
@@ -108,7 +108,7 @@ export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
 }
 
 /**
- * Removes elements from an array and optionally inserts new elements in their place using the `splice` method.
+ * Removes elements from an array and optionally inserts new elements in their place using the `.splice()` method.
  *
  * @param {any[]} originalArray - The array to modify.
  * @param {number} startIndex - The index to start removing elements from.
@@ -128,7 +128,7 @@ export function toSpliced(
 }
 
 /**
- * Joins the elements of an array into a string using the specified character as the separator.
+ * Joins the elements of an array into a string using the specified character as the separator using the `.join()` method
  * @param {any[]} array - The array to join.
  * @param {string} [char=""] - The character used as the separator. Defaults to an empty string.
  * @returns {string} The joined string.

@@ -20,7 +20,7 @@ export function copyObject(object: any[]): any[] {
 }
 
 /**
- * Gets the prototype type of a value.
+ * Gets the prototype type of a value using `Object.prototype.toString.call()`
  *
  * @param {*} value - The value to get the prototype type from.
  * @returns {string} - The prototype type of the value.

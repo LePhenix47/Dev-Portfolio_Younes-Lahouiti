@@ -46,7 +46,7 @@ export function formatStringCase(string: string, option: string): string {
     }
 
     case "sentencecase": {
-      const sentences = string.split(/(?<=[.?!])/);
+      const sentences: string[] = string.split(/(?<=[.?!])/);
 
       for (let i = 0; i < sentences.length; i++) {
         const sentence: string = sentences[i];
@@ -80,7 +80,7 @@ export function formatStringCase(string: string, option: string): string {
 }
 
 /**
- * Removes diacritical marks (accents) from a string.
+ * Removes diacritical marks (accents) from a string using the `.normalize().replace()` methods
  *
  * @param {string} string - The string to remove diacritical marks from.
  * @returns {string} The string without diacritical marks.
@@ -91,7 +91,7 @@ export function removeAccents(string: string): string {
 
 /**
  * Tests a regular expression against a string and
- * returns a boolean value indicating whether the regular expression matches the string.
+ * returns a boolean value indicating whether the regular expression matches the string using the `.test()` method
  *
  * @param {string} string - The string to test against the regular expression.
  * @param {RegExp} RegularExpression - The regular expression to test against the string.
@@ -110,7 +110,7 @@ export function copyTextToClipBoard(textToCopy: string): Promise<void> {
   return navigator.clipboard.writeText(textToCopy);
 }
 /**
- *Splits a string on a character, word or regular expression
+ *Splits a string on a character, word or regular expression using the `.split()` method
  *ex: Split on every space → "hello world" → ["hello", "world"]
  *
  * @param string
