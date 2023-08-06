@@ -1,12 +1,28 @@
 import React from "react";
 
+/**
+ * FlourishedCheckmarkIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ *
+ * @returns {JSX.Element} - The rendered FlourishedCheckmarkIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.FlourishedCheckmark width={24} height={24} />
+ */
 export default function FlourishedCheckmarkIcon({
   width,
   height,
 }: {
   width: number;
   height: number;
-}) {
+}): JSX.Element {
   const enlargedWidth = width * 30;
   const enlargedHeight = height * 30;
   return (

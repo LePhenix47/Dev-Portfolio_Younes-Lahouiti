@@ -1,3 +1,20 @@
+/**
+ * BugIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The color to fill the icon.
+ *
+ * @returns {JSX.Element} The rendered BugIcon component.
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.Bug width={24} height={24} fill="blue" />
+ *
+ * @component
+ */
 export default function BugIcon({
   width,
   height,
@@ -6,7 +23,7 @@ export default function BugIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   const enlargedWidth = width * 100;
   const enlargedHeight = height * 100;
 

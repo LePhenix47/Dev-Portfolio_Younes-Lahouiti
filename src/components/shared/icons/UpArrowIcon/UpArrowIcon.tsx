@@ -1,5 +1,23 @@
 import React from "react";
 
+/**
+ * UpArrowIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The fill color of the icon.
+ *
+ * @returns {JSX.Element} - The rendered UpArrowIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ *
+ * <Icons.UpArrow width={24} height={24} fill="#000" />
+ */
 export default function UpArrowIcon({
   width,
   height,
@@ -8,7 +26,7 @@ export default function UpArrowIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

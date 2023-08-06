@@ -19,6 +19,11 @@ import ServicesMobileIcon from "./ServicesMobileIcon/ServicesMobileIcon";
 import PortfolioMobileIcon from "./PortfolioMobileIcon/PortfolioMobileIcon";
 import ContactMobileIcon from "./ContactMobileIcon/ContactMobileIcon";
 
+/**
+ * A *compound component* that holds all the available SVG icons (as components) for the application
+ *
+ * @type {Object} Icon in particular
+ */
 const Icons = {
   PaperPlane: PaperPlaneIcon,
   Resume: ResumeIcon,

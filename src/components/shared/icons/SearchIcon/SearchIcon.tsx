@@ -1,6 +1,19 @@
 import React from "react";
 
-export default function SearchIcon() {
+/**
+ * SearchIcon component.
+ *
+ * @returns {JSX.Element} - The rendered SearchIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.Search />
+ */
+export default function SearchIcon(): JSX.Element {
   return (
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
       <g

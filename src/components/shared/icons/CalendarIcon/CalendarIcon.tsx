@@ -1,10 +1,26 @@
+/**
+ * CalendarIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ *
+ * @returns {JSX.Element} - The rendered CalendarIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.Calendar width={24} height={24} />
+ */
 export default function CalendarIcon({
   width,
   height,
 }: {
   width: number;
   height: number;
-}) {
+}): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

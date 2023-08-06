@@ -1,6 +1,17 @@
 import React from "react";
 
-export default function BlobIcon() {
+/**
+ * BlobIcon component.
+ *
+ * @returns {JSX.Element} - The rendered BlobIcon component.
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.Blob />
+ */
+export default function BlobIcon(): JSX.Element {
   return (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(100 100)">

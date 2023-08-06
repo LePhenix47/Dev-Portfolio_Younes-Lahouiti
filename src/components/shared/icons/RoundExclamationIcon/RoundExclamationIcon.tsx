@@ -1,5 +1,22 @@
 import React from "react";
 
+/**
+ * RoundExclamationIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The fill color of the icon.
+ *
+ * @returns {JSX.Element} - The rendered RoundExclamationIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.RoundExclamationIcon width={24} height={24} fill="#000" />
+ */
 export default function RoundExclamationIcon({
   width,
   height,
@@ -8,7 +25,7 @@ export default function RoundExclamationIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   const enlargedWidth = width * 32;
   const enlargedHeight = height * 32;
   return (

@@ -1,5 +1,22 @@
 import React from "react";
 
+/**
+ * OpenLinkIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The color to fill the icon.
+ *
+ * @returns {JSX.Element} - The rendered OpenLinkIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.OpenLink width={24} height={24} fill="blue" />
+ */
 export default function OpenLinkIcon({
   width,
   height,
@@ -8,7 +25,7 @@ export default function OpenLinkIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   const enlargedWidth = width * (1 + 1 / 3);
   const enlargedHeight = height * (1 + 1 / 3);
 

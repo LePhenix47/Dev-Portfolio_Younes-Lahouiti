@@ -1,5 +1,24 @@
 import React from "react";
 
+/**
+ * ContactMobileIcon component used in the <header> when the user has a small viewport device.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The fill color of the icon.
+ *
+ * @returns {JSX.Element} - The rendered ContactMobileIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.ContactMobile width={24} height={24} fill="currentColor" />
+ *
+ * @component
+ */
 export default function ContactMobileIcon({
   width,
   height,
@@ -8,7 +27,7 @@ export default function ContactMobileIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

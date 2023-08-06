@@ -1,5 +1,22 @@
 import React from "react";
 
+/**
+ * RoundCheckIcon component.
+ *
+ * @param {number} width - The width of the icon.
+ * @param {number} height - The height of the icon.
+ * @param {string} fill - The color to fill the icon.
+ *
+ * @returns {JSX.Element} - The rendered RoundCheckIcon component.
+ *
+ * @component
+ *
+ * @example
+ * // Usage
+ * import Icons from "@components/shared/icons/Icons";
+ *
+ * <Icons.RoundCheck width={24} height={24} fill="green" />
+ */
 export default function RoundCheckIcon({
   width,
   height,
@@ -8,7 +25,7 @@ export default function RoundCheckIcon({
   width: number;
   height: number;
   fill: string;
-}) {
+}): JSX.Element {
   const enlargedWidth = width * 32;
   const enlargedHeight = height * 32;
   return (
