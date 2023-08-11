@@ -49,29 +49,51 @@ export function getRealStringLength(string: string): number {
 }
 
 /**
- * Formats a number by separating every thousand with a format from the user's locale.
+ * Formats a number with a specified number of decimal places and a locale.
  *
- * *If no locale is specified, it uses the **default locale of the user's browser**.*
- *
- *  *example*:
- * `const number = formatPrecisionNumber(1_930)`
- *
- * - If the user lived in Italy:
- *  `→ returns "1.930"`
- *
- * - If the user lived in the US:
- *  `→ returns "1,930"`
- *
- *
- * @param {number} number
- * @returns
+ * @param {number} number - The number to format.
+ * @param {string} [locale] - The locale to use for formatting. Defaults to the user's locale if not provided.
+ * @param {number} [minimumFractionDigits=0] - The minimum number of decimal places to display. Default is 0.
+ * @param {number} [maximumFractionDigits=20] - The maximum number of decimal places to display. Default is 20.
+ * @returns {string} The formatted number as a string.
+ * @throws {Error} Throws an error if the input arguments are invalid or if the range of decimal places is invalid.
  */
 export function formatPrecisionNumber(
   number: number,
-  locale: string | undefined = undefined
-) {
+  locale: string | undefined = undefined,
+  minimumFractionDigits: number = 0,
+  maximumFractionDigits: number = 20
+): string {
+  // Validate the types of input arguments
+  // Validate the types of input arguments
+  const hasInvalidTypes: boolean =
+    typeof number !== "number" ||
+    typeof minimumFractionDigits !== "number" ||
+    typeof maximumFractionDigits !== "number";
+  if (hasInvalidTypes) {
+    throw new TypeError(
+      `Invalid argument types: ${typeof number} ${typeof minimumFractionDigits} and ${typeof maximumFractionDigits}`
+    );
+  }
+
+  // Validate the range of minimumFractionDigits and maximumFractionDigits
+  const hasInvalidRanges: boolean =
+    minimumFractionDigits < 0 ||
+    maximumFractionDigits < 0 ||
+    minimumFractionDigits > maximumFractionDigits;
+  if (hasInvalidRanges) {
+    throw new RangeError(
+      `Invalid range of decimal places. \n minimumFractionDigits ${
+        minimumFractionDigits < 0 || maximumFractionDigits < 0
+          ? "must be non-negative"
+          : "less than or equal to maximumFractionDigits"
+      }.`
+    );
+  }
+
   const formatter: Intl.NumberFormat = new Intl.NumberFormat(locale, {
-    maximumSignificantDigits: 3,
+    minimumFractionDigits,
+    maximumFractionDigits,
   });
 
   return formatter.format(number);
