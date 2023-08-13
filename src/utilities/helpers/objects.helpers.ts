@@ -9,7 +9,7 @@ import { areArraysEqual, isExactlyAnArray } from "./arrays.helpers";
  * @param {object | array} object Object or array to copy
  * @returns {object | array} A deep copied object
  */
-export function copyObject(object: any[]): any[] {
+export function copyObject<DataType>(object: DataType[]): DataType[] {
   const isAnArray = isExactlyAnArray(object);
   if (isAnArray) {
     warn(
@@ -32,7 +32,7 @@ export function copyObject(object: any[]): any[] {
  * console.log(getPrototypeOf(array)); // Output: "Array"
  * console.log(getPrototypeOf(object)); // Output: "Object"
  */
-export function getPrototypeOf(value: any): any {
+export function getPrototypeOf(value: any): string {
   const prototypeString: string = Object.prototype.toString.call(value);
   const formattedPrototypeString: string = prototypeString.slice(8, -1);
   return formattedPrototypeString;
@@ -58,7 +58,10 @@ export function isExactlyAnObject(value: any): boolean {
  * @param {object} obj2 - The second object to compare.
  * @returns {boolean} - Returns true if the objects are equal, otherwise false.
  */
-export function areObjectsEqual<T extends object>(obj1: T, obj2: T): boolean {
+export function areObjectsEqual<DataType extends object>(
+  obj1: DataType,
+  obj2: DataType
+): boolean {
   const argumentsAreFalsy: boolean = !obj1 || !obj2;
 
   const doNotHaveObjectType: boolean =
