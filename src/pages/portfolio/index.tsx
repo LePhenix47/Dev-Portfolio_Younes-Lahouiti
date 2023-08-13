@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 //React
 import { useEffect, useRef, useState } from "react";
 
@@ -33,7 +32,10 @@ import {
   sortArrayOfObjects,
 } from "@utilities/helpers/arrays.helpers";
 import { formatStringCase } from "@utilities/helpers/string.helpers";
-import { formatShortDate } from "@utilities/helpers/internalization.helpers";
+import {
+  formatPrecisionNumber,
+  formatShortDate,
+} from "@utilities/helpers/internalization.helpers";
 
 //Components
 
@@ -46,11 +48,16 @@ import { formatShortDate } from "@utilities/helpers/internalization.helpers";
  */
 export default function Portfolio(): JSX.Element {
   const { portfolio } = PAGE_METADATA;
+
   const portfolioPageSectionRef = useRef<HTMLElement>(null);
   /**
    * State that holds the data for the cards within the container
    */
   const [dataToShow, setDataToShow] = useState<projectsMadeType>(allProjects);
+
+  const formattedAmountOfProjects: string = formatPrecisionNumber(
+    dataToShow.length
+  );
 
   /**
    * State that stores the copied data for the data to show to make the filtering work
@@ -186,13 +193,12 @@ export default function Portfolio(): JSX.Element {
    * changes the select value or the order of the sorting
    */
   useEffect(() => {
-    const sortedData: any[] = sortArrayOfObjects(
-      dataToShow,
-      selectValue,
-      isInReverse
-    );
-
     if (needsSorting) {
+      const sortedData: any[] = sortArrayOfObjects(
+        dataToShow,
+        selectValue,
+        isInReverse
+      );
       setDataToShow(sortedData);
     }
   }, [needsSorting, selectValue, isInReverse]);
@@ -202,6 +208,66 @@ export default function Portfolio(): JSX.Element {
    */
   function resetDataToShow() {
     setDataToShow(copiedData);
+  }
+
+  /**
+   * Function that changes the cards to show based on the selected category.
+   *
+   * @param {string} category - The category of the projects to be displayed.
+   */
+  function handleCategoryChange(category: string): void {
+    changeCards(category);
+    setNeedsFiltering(false);
+    setFilterValue("");
+  }
+
+  /**
+   * Function that handles sorting order change when the checkbox is clicked.
+   *
+   * @param {boolean} isChecked - The new value of the checkbox.
+   */
+  function handleSortingOrderChange(isChecked: boolean): void {
+    setIsInReverse(isChecked);
+  }
+
+  /**
+   * Function that handles input change in the search field.
+   *
+   * @param {string} inputValue - The value of the search input.
+   */
+  function handleSearchInputChange(inputValue: string): void {
+    inputValueRef.current = inputValue.trim();
+    const valueIsEmpty: boolean = !inputValueRef.current.length;
+
+    if (valueIsEmpty) {
+      setFilterValue("");
+      setNeedsFiltering(false);
+
+      resetDataToShow();
+      return;
+    }
+
+    setNeedsFiltering(true);
+    setFilterValue(inputValueRef.current);
+  }
+
+  /**
+   * Function that handles the change of the select element.
+   *
+   * @param {string} value - The value selected in the select element.
+   */
+  function handleSelectChange(value: string): void {
+    console.log("Change");
+    // We don't want to sort if they have the default value: "---" selected
+    const isInitialPlaceholderValue: boolean = value.includes("---");
+
+    if (isInitialPlaceholderValue) {
+      console.log("Is initial placeholder value");
+      return;
+    }
+
+    setSelectValue(value);
+    setNeedsSorting(true);
   }
 
   return (
@@ -225,8 +291,8 @@ export default function Portfolio(): JSX.Element {
           A showcase of my personal and professional work
         </h2>
 
-        <div className="portfolio-page__inputs-container">
-          <div className="portfolio-page__label-input">
+        <form className="portfolio-page__inputs-container">
+          <fieldset className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
               <Icons.Search />
             </label>
@@ -238,53 +304,22 @@ export default function Portfolio(): JSX.Element {
               list="search-datalist"
               placeholder="Search for a project by their title or date"
               className="portfolio-page__input"
-              onInput={(e) => {
-                const valueOfInput: string = e.currentTarget.value.trim();
-
-                inputValueRef.current = valueOfInput;
-
-                const valueIsEmpty: boolean = !valueOfInput.length;
-
-                if (valueIsEmpty) {
-                  setFilterValue("");
-                  setNeedsFiltering(false);
-
-                  resetDataToShow();
-                  return;
-                }
-
-                setNeedsFiltering(true);
-                setFilterValue(valueOfInput);
-              }}
+              onInput={(e) => handleSearchInputChange(e.currentTarget.value)}
             />
             <datalist id="search-datalist">
-              <option value="DW">OpenClassrooms Projects</option>
-              <option value="JS-React">OpenClassrooms Projects</option>
+              <option value="DW">OC path: Web developer</option>
+              <option value="JS-React">OC path: Front-end developer</option>
               <option value="Audio">Personal project</option>
               <option value="Color converter">NPM library</option>
             </datalist>
-          </div>
-          <div className="portfolio-page__select-container">
+          </fieldset>
+          <fieldset className="portfolio-page__select-container">
             <select
               name="sort"
               id="sort"
               ref={selectValueRef}
               className="portfolio-page__select"
-              onChange={(e) => {
-                const valueOfSelect: string = e.target.value;
-
-                // We don't want to sort if they have the default value: "---" selected
-                const isInitialPlaceholderValue: boolean =
-                  valueOfSelect.includes("---");
-
-                if (isInitialPlaceholderValue) {
-                  return;
-                }
-
-                setSelectValue(valueOfSelect);
-
-                setNeedsSorting(true);
-              }}
+              onChange={(e) => handleSelectChange(e.currentTarget.value)}
             >
               <option className="portfolio-page__option" value="---">
                 ---
@@ -300,9 +335,9 @@ export default function Portfolio(): JSX.Element {
               className="portfolio-page__select-label"
               htmlFor="sort"
             ></label>
-          </div>
+          </fieldset>
 
-          <div className="portfolio-page__sorting-order-label-input">
+          <fieldset className="portfolio-page__sorting-order-label-input">
             <label
               htmlFor="sort-order"
               className="portfolio-page__sorting-order-label"
@@ -323,14 +358,10 @@ export default function Portfolio(): JSX.Element {
               id="sort-order"
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
-              onClick={(e) => {
-                const isChecked: boolean = e.currentTarget.checked;
-
-                setIsInReverse(isChecked);
-              }}
+              onClick={(e) => handleSortingOrderChange(e.currentTarget.checked)}
             />
-          </div>
-        </div>
+          </fieldset>
+        </form>
 
         <div className="portfolio-page__categories-container">
           <div className="portfolio-page__counter">
@@ -338,7 +369,7 @@ export default function Portfolio(): JSX.Element {
               <span className="portfolio-page__counter-text">
                 Projects created:
               </span>{" "}
-              {dataToShow.length}
+              {formattedAmountOfProjects}
             </p>
           </div>
 
@@ -349,12 +380,7 @@ export default function Portfolio(): JSX.Element {
               return (
                 <button
                   key={`${category}`}
-                  onClick={() => {
-                    changeCards(lowerCaseCategory);
-
-                    setNeedsFiltering(false);
-                    setFilterValue("");
-                  }}
+                  onClick={() => handleCategoryChange(lowerCaseCategory)}
                   type="button"
                   className={`portfolio-page__filter-button ${
                     categoryState === lowerCaseCategory &&

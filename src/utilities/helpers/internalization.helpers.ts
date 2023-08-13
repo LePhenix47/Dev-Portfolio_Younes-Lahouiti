@@ -1,3 +1,4 @@
+import { BlobOptions } from "buffer";
 import { copyArray } from "./arrays.helpers";
 import { getOrdinalSuffix } from "./numbers.helpers";
 
@@ -36,7 +37,7 @@ export function getRealStringLength(string: string): number {
   }
 
   const segmenter: Intl.Segmenter = new Intl.Segmenter();
-  const arrayOfSegments: Intl.SegmentData[] = copyArray(
+  const arrayOfSegments: Intl.SegmentData[] = Array.from(
     segmenter.segment(string)
   );
   return arrayOfSegments.length;
@@ -60,11 +61,10 @@ export function getRealStringLength(string: string): number {
  */
 export function formatPrecisionNumber(
   number: number,
-  locale: string | undefined = undefined,
+  locale: string = navigator.language,
   minimumFractionDigits: number = 0,
   maximumFractionDigits: number = 20
 ): string {
-  // Validate the types of input arguments
   // Validate the types of input arguments
   const hasInvalidTypes: boolean =
     typeof number !== "number" ||
@@ -111,7 +111,7 @@ export function formatPrecisionNumber(
  */
 export function formatCurrencyValueNumber(
   number: number,
-  locale: string | undefined = undefined,
+  locale: string = navigator.language,
   currencyType: string = "USD",
   options?: Intl.NumberFormatOptions
 ): string {

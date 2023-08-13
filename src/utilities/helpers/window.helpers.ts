@@ -50,7 +50,7 @@ export function getWindowDimensions(): { width: number; height: number } {
 /**
  * Scroll the window to the top.
  */
-export function scrollTo(x: number = 0, y: number = 0): void {
+export function scrollWindowTo(x: number = 0, y: number = 0): void {
   checkIfWindowIsAvailable();
 
   window.scrollTo(x, y);

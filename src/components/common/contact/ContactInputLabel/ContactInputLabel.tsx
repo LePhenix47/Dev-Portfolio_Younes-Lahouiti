@@ -23,8 +23,8 @@ import { log } from "@utilities/helpers/console.helpers";
  *
  * @returns {JSX.Element} A JSX element representing the ContactInputLabel component.
  *
- * @example
 @component
+ * @example
  * // Example usage:
  * const nameRef = useRef<HTMLInputElement>(null);
  * const onChangeCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,26 +112,29 @@ export default function ContactInputLabel({
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
-            const inputValueEmptyTruthiness: boolean =
-              !e.currentTarget.value.length;
+            const textarea = e.currentTarget as HTMLTextAreaElement;
+            const textareaValueEmptyTruthiness: boolean =
+              !textarea.value.length;
 
-            setIsEmpty(inputValueEmptyTruthiness);
+            setIsEmpty(textareaValueEmptyTruthiness);
           }}
           onChange={(e) => {
-            const inputIsValid: boolean = onChangeCallback?.(e) || false;
+            const textareaIsValid: boolean = onChangeCallback?.(e) || false;
 
-            log({ inputIsValid });
-            setIsInputValid(inputIsValid);
+            log({ textareaIsValid });
+            setIsInputValid(textareaIsValid);
 
-            const inputValueEmptyTruthiness = !reference.current?.value.length;
+            const textareaValueEmptyTruthiness =
+              !reference.current?.value.length;
 
-            setIsEmpty(inputValueEmptyTruthiness);
+            setIsEmpty(textareaValueEmptyTruthiness);
           }}
           onFocus={() => {
             setIsInputActive(true);
           }}
           onBlur={(e) => {
-            const valueOfInput: string = e.target.value.trim();
+            const input = e.currentTarget as HTMLTextAreaElement;
+            const valueOfInput: string = input.value.trim();
 
             const inputIsEmpty: boolean = !valueOfInput;
 
@@ -151,8 +154,8 @@ export default function ContactInputLabel({
           placeholder={placeholder}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
-            const inputValueEmptyTruthiness: boolean =
-              !e.currentTarget.value.length;
+            const input = e.currentTarget as HTMLInputElement;
+            const inputValueEmptyTruthiness: boolean = !input.value.length;
 
             setIsEmpty(inputValueEmptyTruthiness);
           }}
@@ -170,7 +173,8 @@ export default function ContactInputLabel({
             setIsInputActive(true);
           }}
           onBlur={(e) => {
-            const valueOfInput: string = e.target.value.trim();
+            const input = e.currentTarget as HTMLInputElement;
+            const valueOfInput: string = input.value.trim();
 
             const inputIsEmpty: boolean = !valueOfInput;
 
