@@ -296,38 +296,8 @@
     }
 
     &__item-follow {
-        --_left: 0;
-        --_width: 0;
-
-        // home {
-        //     left: 14px;
-        //     width: 54px;
-        // }
-
-        // about {
-        //     left: 116px;
-        //     width: 55px;
-        // }
-
-        // skills {
-        //     left: 219px;
-        //     width: 44px;
-        // }
-
-        // services {
-        //     left: 311px;
-        //     width: 76px;
-        // }
-
-        // portfolio {
-        //     left: 435px;
-        //     width: 74px;
-        // }
-
-        // contact {
-        //     left: 557px;
-        //     width: 74px;
-        // }
+        --_translation-x: 0px;
+        --_scale-x: 0;
 
         @include mobile-only {
             display: none;
@@ -335,14 +305,18 @@
 
         position: absolute;
         bottom: 0;
-        left: var(--_left);
 
-        width: var(--_width);
+        translate: var(--_translation-x) 0;
 
-        transition: left 300ms cubic-bezier(0.42, 0, 0.58, 1),
-        width 250ms cubic-bezier(0.42, 0, 0.58, 1);
+        scale: var(--_scale-x) 1;
+
+        height: 2px;
+
+        transform-origin: left;
+
+        transition: translate 300ms ease-in-out,
+        scale 250ms ease-in-out;
 
         background-color: var(--color-primary);
-        height: 2px;
     }
 }

@@ -164,11 +164,18 @@ export default function Header(): JSX.Element {
     x: number;
     liUnderlineElement: HTMLLIElement;
   }): void {
-    const normalizedX: string = x + "px";
-    setStyleProperty("--_left", normalizedX, liUnderlineElement);
+    // We set the position of the underline element
+    const normalizedXTranslation: string = Math.round(x) + "px";
+    setStyleProperty(
+      "--_translation-x",
+      normalizedXTranslation,
+      liUnderlineElement
+    );
 
-    const normalizedWidth: string = width + "px";
-    setStyleProperty("--_width", normalizedWidth, liUnderlineElement);
+    // We set the width of the underline element using translation with a CSS local variable
+    const INITIAL_WIDTH: number = 4.69;
+    const normalizedXScale: number = Math.floor(width / INITIAL_WIDTH);
+    setStyleProperty("--_scale-x", normalizedXScale, liUnderlineElement);
   }
 
   /**

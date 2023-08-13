@@ -13,7 +13,7 @@ import { invertDayAndMonth } from "./string.helpers";
  *
  * @returns {any[]} - The new array containing the copied elements
  */
-export function copyArray(arrayToCopy: any): any[] {
+export function copyArray<DataType>(arrayToCopy: DataType[]): DataType[] {
   // Arrays or sets are copyable with `Array.from()`
   return Array.from(arrayToCopy);
 }
@@ -25,7 +25,7 @@ export function copyArray(arrayToCopy: any): any[] {
  *
  * @returns {boolean} - True if the value is an array, false otherwise.
  */
-export function isExactlyAnArray(value: any): boolean {
+export function isExactlyAnArray<DataType>(value: DataType): boolean {
   return Array.isArray(value);
 }
 
@@ -38,7 +38,10 @@ export function isExactlyAnArray(value: any): boolean {
  * @param {any[]} arr2 - The second array to compare.
  * @returns {boolean} - Returns true if the arrays are exactly the same, otherwise false.
  */
-export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
+export function areArraysEqual<DataType>(
+  arr1: DataType[],
+  arr2: DataType[]
+): boolean {
   const hasInvalidArguments: boolean =
     !arr1 || !arr2 || !isExactlyAnArray(arr1) || !isExactlyAnArray(arr2);
   // Check if either argument is falsy or not an array
@@ -104,8 +107,8 @@ export function areArraysEqual(arr1: any[], arr2: any[]): boolean {
  *
  * @returns {any[]} - The updated array after the modifications.
  */
-export function toSpliced(
-  originalArray: any[],
+export function toSpliced<DataType>(
+  originalArray: DataType[],
   startIndex: number,
   deleteCount: number,
   ...items: any[]
@@ -120,7 +123,10 @@ export function toSpliced(
  * @param {string} [char=""] - The character used as the separator. Defaults to an empty string.
  * @returns {string} The joined string.
  */
-export function joinArrayOnChar(array: any[], char: string = ""): string {
+export function joinArrayOnChar<DataType>(
+  array: DataType[],
+  char: string = ""
+): string {
   return array.join(char);
 }
 
@@ -150,8 +156,8 @@ export function joinArrayOnChar(array: any[], char: string = ""): string {
  * @param {boolean} reverse Boolean value to know if the array has to be reversed or not
  * @returns A new sorted array
  */
-export function sortArrayOfObjects(
-  array: any[],
+export function sortArrayOfObjects<DataType>(
+  array: DataType[],
   prop: string,
   reverse: boolean = false
 ) {
@@ -159,7 +165,7 @@ export function sortArrayOfObjects(
   prop = prop.trim();
 
   //Makes a deep copy of the array
-  let newSortedArray: any[] = copyArray(array);
+  let newSortedArray: DataType[] = copyArray(array);
 
   //We sort the array
   newSortedArray = newSortedArray.sort((obj1: any, obj2: any) => {
@@ -237,17 +243,17 @@ export function sortArrayOfObjects(
  * @param {string} string
  * @returns
  */
-export function filterArrayByString(
-  arrayToFilter: Array<any>,
+export function filterArrayByString<DataType>(
+  arrayToFilter: DataType[],
   string: string,
   isIntersection: boolean = false
-): Array<any> {
+): DataType[] {
   const typeofArrayOfFirstItem: typeofTypes = typeof arrayToFilter[0];
 
   const isArrayOfObjects: boolean = typeofArrayOfFirstItem === "object";
 
   //To make the filtering more efficient, we're going to use sets
-  const filteredSet: Set<unknown> = new Set();
+  const filteredSet: Set<DataType> = new Set();
 
   const normalizedString = string.trim().toLowerCase();
 
@@ -256,7 +262,7 @@ export function filterArrayByString(
     arrayOfObjects: for (const object of arrayToFilter) {
       //We iterate through every property in each object
       objectProperties: for (const property in object) {
-        const valueOfObject: any = object[property].toString().toLowerCase();
+        const valueOfObject: any = object[property]?.toString().toLowerCase();
 
         const stringHasSpaces: boolean = normalizedString.includes(" ");
 
