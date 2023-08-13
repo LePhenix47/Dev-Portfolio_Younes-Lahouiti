@@ -235,6 +235,7 @@ export default function Portfolio(): JSX.Element {
               type="search"
               name="search"
               id="search"
+              list="search-datalist"
               placeholder="Search for a project by their title or date"
               className="portfolio-page__input"
               onInput={(e) => {
@@ -256,6 +257,12 @@ export default function Portfolio(): JSX.Element {
                 setFilterValue(valueOfInput);
               }}
             />
+            <datalist id="search-datalist">
+              <option value="DW">OpenClassrooms Projects</option>
+              <option value="JS-React">OpenClassrooms Projects</option>
+              <option value="Audio">Personal project</option>
+              <option value="Color converter">NPM library</option>
+            </datalist>
           </div>
           <div className="portfolio-page__select-container">
             <select
