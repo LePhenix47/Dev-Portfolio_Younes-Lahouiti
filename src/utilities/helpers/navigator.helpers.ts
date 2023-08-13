@@ -1,7 +1,14 @@
 import { warn } from "./console.helpers";
 import { formatStringCase } from "./string.helpers";
+
 export function checkNavigatorSupport() {
-  return typeof navigator === "object";
+  const navigatorIsNotSupported: boolean = typeof navigator !== "object";
+  if (navigatorIsNotSupported) {
+    warn(
+      "The navigator object does not exist, this is probably due to the fact that the app's using SSR or a different JS runtime environment"
+    );
+    return;
+  }
 }
 
 /**
@@ -27,13 +34,7 @@ export function checkNavigatorSupport() {
  * }
  */
 export function checkFeatureSupport(method: string): void {
-  const navigatorIsNotSupported: boolean = !checkNavigatorSupport();
-  if (navigatorIsNotSupported) {
-    warn(
-      "The navigator object does not exist, this is probably due to the fact that the app's using SSR or a different JS runtime environment"
-    );
-    return;
-  }
+  checkNavigatorSupport();
 
   const hasInvalidArgument = typeof method !== "string";
   if (hasInvalidArgument) {
@@ -49,14 +50,14 @@ export function checkFeatureSupport(method: string): void {
       "Sentencecase"
     );
     throw new Error(
-      `${formattedMethodString} property is not supported in the ${navigator.userAgent} browser`
+      `${formattedMethodString} property is not supported in the ${navigator?.userAgent} browser`
     );
   }
 }
 
 /**
  * Retrieves the current geolocation coordinates (latitude and longitude).
- * Promisified version of the `navigator.geolocation.getCurrentPosition` API.
+ * Promisified version of the `navigator?.geolocation.getCurrentPosition` API.
  *
  * @returns {Promise<{ latitude: number; longitude: number }>} A Promise that resolves with the latitude and longitude coordinates, or rejects with a GeolocationPositionError.
  */
@@ -66,7 +67,7 @@ export function getGeolocationCoordinates(): Promise<{
 }> {
   checkFeatureSupport("geolocation");
 
-  const { getCurrentPosition } = navigator.geolocation;
+  const { getCurrentPosition } = navigator?.geolocation;
 
   return new Promise((resolve, reject) => {
     getCurrentPosition(
@@ -102,7 +103,7 @@ export function getUserMedia(
 ): Promise<MediaStream> {
   checkFeatureSupport("mediaDevices");
 
-  const { getUserMedia } = navigator.mediaDevices;
+  const { getUserMedia } = navigator?.mediaDevices;
 
   return getUserMedia(constraints);
 }
@@ -155,7 +156,7 @@ export function getBrowserName(): string {
  * @returns {boolean} - `true` if the user's device supports touch, otherwise `false`.
  */
 export function isTouchDevice(): boolean {
-  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  return "ontouchstart" in window || navigator?.maxTouchPoints > 0;
 }
 
 /**
@@ -164,7 +165,7 @@ export function isTouchDevice(): boolean {
  * @returns {boolean} - `true` if the browser is online, otherwise `false`.
  */
 export function isOnline(): boolean {
-  return navigator.onLine;
+  return navigator?.onLine;
 }
 
 /**
@@ -173,5 +174,5 @@ export function isOnline(): boolean {
  * @returns {string} - The preferred language of the user (e.g., `"it-IT"`, `"en-US"`, `"fr"`, etc.).
  */
 export function getPreferredLanguage(): string {
-  return navigator.language;
+  return navigator?.language;
 }
