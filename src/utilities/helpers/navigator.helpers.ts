@@ -1,4 +1,8 @@
+import { warn } from "./console.helpers";
 import { formatStringCase } from "./string.helpers";
+export function checkNavigatorSupport() {
+  return typeof navigator === "object";
+}
 
 /**
  *Checks if a specific feature is supported the `navigator` object of the user's browser.
@@ -23,6 +27,14 @@ import { formatStringCase } from "./string.helpers";
  * }
  */
 export function checkFeatureSupport(method: string): void {
+  const navigatorIsNotSupported: boolean = !checkNavigatorSupport();
+  if (navigatorIsNotSupported) {
+    warn(
+      "The navigator object does not exist, this is probably due to the fact that the app's using SSR or a different JS runtime environment"
+    );
+    return;
+  }
+
   const hasInvalidArgument = typeof method !== "string";
   if (hasInvalidArgument) {
     throw new TypeError(
