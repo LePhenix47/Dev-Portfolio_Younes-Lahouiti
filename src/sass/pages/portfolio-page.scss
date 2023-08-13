@@ -233,6 +233,7 @@
         }
 
         @include mobile-only {
+            width: 100%;
             flex-direction: column-reverse;
         }
     }
@@ -286,6 +287,8 @@
     &__filter-button {
         padding: 5px 10px;
         border-radius: 5px;
+
+        transition: background-color 350ms ease-in-out;
 
         &--active {
             background-color: var(--color-primary);
