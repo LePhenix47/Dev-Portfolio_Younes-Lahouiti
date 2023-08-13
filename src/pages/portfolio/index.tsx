@@ -55,9 +55,10 @@ export default function Portfolio(): JSX.Element {
    */
   const [dataToShow, setDataToShow] = useState<projectsMadeType>(allProjects);
 
-  const formattedAmountOfProjects: string = formatPrecisionNumber(
-    dataToShow.length
-  );
+  const formattedAmountOfProjects: number = dataToShow.length;
+  // const formattedAmountOfProjects: string = formatPrecisionNumber(
+  //   dataToShow.length
+  // );
 
   /**
    * State that stores the copied data for the data to show to make the filtering work
