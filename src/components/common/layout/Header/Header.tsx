@@ -8,9 +8,9 @@ import Link from "next/link";
 //Components
 import Icons from "@components/shared/icons/Icons";
 
-import { copyTextToClipBoard } from "@utilities/helpers/string.helpers";
-import { log, warn } from "@utilities/helpers/console.helpers";
+import { error, log, warn } from "@utilities/helpers/console.helpers";
 import { setStyleProperty } from "@utilities/helpers/dom.helpers";
+import { copyTextToClipBoard } from "@utilities/helpers/navigator.helpers";
 
 /**
  * Header component representing the top navigation bar of the website.
@@ -129,8 +129,7 @@ export default function Header(): JSX.Element {
       warn(`The active link dimensions are invalid: ${activeLinkDimensions}`);
     }
 
-    const unorderedListElement: HTMLUListElement =
-      unorderedListRef.current as HTMLUListElement;
+    const unorderedListElement = unorderedListRef.current as HTMLUListElement;
 
     const computedUlDimensions: DOMRect =
       unorderedListElement.getBoundingClientRect();
@@ -186,14 +185,18 @@ export default function Header(): JSX.Element {
    */
   async function showCopiedToolTip(): Promise<void> {
     //We copy the URL of the portfolio so that the visitor can share it.
-    copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
+    try {
+      copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
+      log("Copied to clipboard!");
+    } catch (copyClipboardError) {
+      error(copyClipboardError);
+    } finally {
+      setPopUpOpen(true);
 
-    setPopUpOpen(true);
-
-    setTimeout(() => {
-      setPopUpOpen(false);
-    }, 500);
-    log("Copied to clipboard!");
+      setTimeout(() => {
+        setPopUpOpen(false);
+      }, 500);
+    }
   }
 
   return (

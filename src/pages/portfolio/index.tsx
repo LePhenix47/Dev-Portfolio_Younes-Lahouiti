@@ -36,6 +36,7 @@ import {
   formatPrecisionNumber,
   formatShortDate,
 } from "@utilities/helpers/internalization.helpers";
+import { log } from "@utilities/helpers/console.helpers";
 
 //Components
 
@@ -55,10 +56,9 @@ export default function Portfolio(): JSX.Element {
    */
   const [dataToShow, setDataToShow] = useState<projectsMadeType>(allProjects);
 
-  const formattedAmountOfProjects: number = dataToShow.length;
-  // const formattedAmountOfProjects: string = formatPrecisionNumber(
-  //   dataToShow.length
-  // );
+  const formattedAmountOfProjects: string = formatPrecisionNumber(
+    dataToShow.length
+  );
 
   /**
    * State that stores the copied data for the data to show to make the filtering work
@@ -67,17 +67,19 @@ export default function Portfolio(): JSX.Element {
   /**
    * Reference for the `<select>` element
    */
-  const selectValueRef = useRef<any>(null);
+  const selectValueRef = useRef<HTMLSelectElement>(null);
 
   /**
    * Reference for the `<input type="text" /> element`
    */
-  const inputValueRef = useRef<any>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const inputValueRef = useRef<string>("");
 
   /**
    * Reference for the `<input type="checkbox" />` element
    */
-  const checkboxValueRef = useRef<any>(null);
+  const checkboxValueRef = useRef<HTMLInputElement>(null);
   /**
    * State that determines the category of the cards to be displayed
    */
@@ -237,8 +239,8 @@ export default function Portfolio(): JSX.Element {
    * @param {string} inputValue - The value of the search input.
    */
   function handleSearchInputChange(inputValue: string): void {
-    inputValueRef.current = inputValue.trim();
-    const valueIsEmpty: boolean = !inputValueRef.current.length;
+    const trimmedInputValue: string = inputValue.trim();
+    const valueIsEmpty: boolean = !trimmedInputValue.length;
 
     if (valueIsEmpty) {
       setFilterValue("");
@@ -249,7 +251,14 @@ export default function Portfolio(): JSX.Element {
     }
 
     setNeedsFiltering(true);
-    setFilterValue(inputValueRef.current);
+    setFilterValue(trimmedInputValue);
+
+    const inputIsDefined: boolean = !!searchInputRef.current;
+    if (inputIsDefined) {
+      inputValueRef.current = trimmedInputValue;
+    }
+
+    log(`current: "${inputValueRef.current}"`);
   }
 
   /**
@@ -298,7 +307,7 @@ export default function Portfolio(): JSX.Element {
               <Icons.Search />
             </label>
             <input
-              ref={inputValueRef}
+              ref={searchInputRef}
               type="search"
               name="search"
               id="search"

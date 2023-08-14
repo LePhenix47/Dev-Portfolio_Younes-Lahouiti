@@ -35,6 +35,81 @@ export default function CanvasComponent({
   const AMOUNT_OF_PARTICLES: number = 50;
 
   /**
+   * Handles window resize event to adjust the canvas size based on the parent element's dimensions.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element to resize.
+   * @returns {void}
+   */
+  function handleWindowResize(canvas: HTMLCanvasElement): void {
+    const isNotHtmlCanvas: boolean = !canvas;
+    if (isNotHtmlCanvas) {
+      return;
+    }
+
+    const { clientWidth, clientHeight } = parentElement.current as HTMLElement;
+
+    setCanvasSize(canvas, clientWidth, clientHeight);
+
+    setEffectHandler(() => {
+      return new LineEffect(
+        canvas,
+        (AMOUNT_OF_PARTICLES + clientHeight) / AMOUNT_OF_PARTICLES
+      );
+    });
+    // Perform any additional drawing or logic based on the resized dimensions
+  }
+
+  // Function to handle resizing of the canvas
+  function handleParentDimensionsChange(entries: ResizeObserverEntry[]) {
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+
+    if (!canvas) {
+      return;
+    }
+
+    const { width, height } = entries[0].contentRect;
+    setCanvasSize(canvas, width, height);
+  }
+
+  /**
+   * Initializes the canvas element, setting up a resize event listener and calling `handleWindowResize`
+   * to set the initial dimensions on component mount.
+   *
+   * @returns {void}
+   */
+  function initializeCanvas(): void {
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+
+    const hasNoCanvas = !canvas;
+    if (hasNoCanvas) {
+      return;
+    }
+
+    window.addEventListener("resize", () => {
+      handleWindowResize(canvas);
+    });
+    handleWindowResize(canvas); // Set initial dimensions on component mount
+  }
+
+  /**
+   * Removes the canvas-related event listeners, cleaning up the canvas setup.
+   *
+   * @returns {void}
+   */
+  function removeCanvasListeners(): void {
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+
+    const hasNoCanvas = !canvas;
+    if (hasNoCanvas) {
+      return;
+    }
+
+    window.removeEventListener("resize", () => {
+      handleWindowResize(canvas);
+    });
+  }
+
+  /**
    * Animates the particles in the LineEffect effect.
    *
    * @returns {void}
@@ -110,35 +185,23 @@ export default function CanvasComponent({
   }
 
   useEffect(() => {
-    const canvas: HTMLCanvasElement | null = canvasRef.current;
+    initializeCanvas();
 
-    const handleWindowResize: () => void = () => {
-      const isNotHtmlCanvas: boolean = !canvas;
-      if (isNotHtmlCanvas) {
-        return;
-      }
+    // Create a ResizeObserver instance to watch for changes in the parent element's size
+    const resizeObserver: ResizeObserver = new ResizeObserver(
+      handleParentDimensionsChange
+    );
 
-      const { clientWidth, clientHeight } =
-        parentElement.current as HTMLElement;
-
-      setCanvasSize(canvas as HTMLCanvasElement, clientWidth, clientHeight);
-
-      setEffectHandler(() => {
-        return new LineEffect(
-          canvas as HTMLCanvasElement,
-          AMOUNT_OF_PARTICLES + clientHeight / AMOUNT_OF_PARTICLES
-        );
-      });
-      // Perform any additional drawing or logic based on the resized dimensions
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-    handleWindowResize(); // Set initial dimensions on component mount
+    // Observe the parent element
+    if (parentElement.current) {
+      resizeObserver.observe(parentElement.current);
+    }
 
     // Clean up the event listener on component unmount
     return () => {
       cancelAnimation();
-      window.removeEventListener("resize", handleWindowResize);
+      resizeObserver.disconnect();
+      removeCanvasListeners();
     };
   }, [parentElement.current]);
 

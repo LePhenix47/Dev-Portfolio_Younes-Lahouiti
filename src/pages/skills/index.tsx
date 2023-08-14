@@ -57,8 +57,6 @@ export default function Skills(): JSX.Element {
         <h1 className="skills-page__title">Skills</h1>
         <h2 className="skills-page__subtitle">My technical level</h2>
         <div className="skills-page__skills-container">
-          {/* BEGIN           */}
-
           <SkillsCard
             listClass="skills-page__skills-front-end"
             skillsArray={frontEndSkills}
@@ -70,8 +68,6 @@ export default function Skills(): JSX.Element {
             skillsArray={backEndSkills}
             title="Back-end skills"
           />
-
-          {/* END           */}
         </div>
         <h2 className="skills-page__qualifications-title">Qualifications</h2>
         <h3 className="skills-page__qualifications-subtitle">

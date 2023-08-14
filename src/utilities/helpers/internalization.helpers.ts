@@ -1,7 +1,3 @@
-import { BlobOptions } from "buffer";
-import { copyArray } from "./arrays.helpers";
-import { getOrdinalSuffix } from "./numbers.helpers";
-
 /**
  * Returns the real length of a string, taking into account grapheme clusters instead of the codepoints.
  *
@@ -61,7 +57,7 @@ export function getRealStringLength(string: string): number {
  */
 export function formatPrecisionNumber(
   number: number,
-  locale: string = navigator.language,
+  locale: string | undefined = undefined,
   minimumFractionDigits: number = 0,
   maximumFractionDigits: number = 20
 ): string {
@@ -111,7 +107,7 @@ export function formatPrecisionNumber(
  */
 export function formatCurrencyValueNumber(
   number: number,
-  locale: string = navigator.language,
+  locale: string | undefined = undefined,
   currencyType: string = "USD",
   options?: Intl.NumberFormatOptions
 ): string {
@@ -145,6 +141,56 @@ export function formatShortDate(date: string | Date): string {
   const formattedDay: string = getOrdinalSuffix(Number(day));
 
   return `${month} ${formattedDay} ${year}`;
+}
+
+/**
+ * Get the ordinal suffix for a given number.
+ *
+ * This function returns the appropriate ordinal suffix for a given positive number, following the English ordinal rules.
+ *
+ * @param {number} number - The positive number for which to get the ordinal suffix.
+ * @throws {TypeError} Throws a TypeError if the argument is not a number.
+ * @throws {RangeError} Throws a RangeError if the argument is not a strictly positive number.
+ *
+ * @returns {string} The ordinal suffix for the given number (e.g., "1st", "2nd", "3rd", "4th", etc.).
+ */
+export function getOrdinalSuffix(number: number): string {
+  const argumentIsNotANumber: boolean = typeof number !== "number";
+
+  if (argumentIsNotANumber) {
+    throw new TypeError(
+      `Cannot add suffix to the value passed in argument, expected number instead got: ${typeof number}`
+    );
+  }
+
+  const numberPassedIsNotPositive: boolean = number <= 0;
+  if (numberPassedIsNotPositive) {
+    throw new RangeError(
+      `The number passed in argument: ${number} is not strictly positive`
+    );
+  }
+
+  const englishOrdinalRules: Intl.PluralRules = new Intl.PluralRules("en-US", {
+    type: "ordinal",
+  });
+
+  const ordinalText: Intl.LDMLPluralRule = englishOrdinalRules.select(number);
+
+  switch (ordinalText) {
+    case "one": {
+      return `${number}st`;
+    }
+    case "two": {
+      return `${number}nd`;
+    }
+    case "few": {
+      return `${number}rd`;
+    }
+    default: {
+      // default = "other"
+      return `${number}th`;
+    }
+  }
 }
 
 /**

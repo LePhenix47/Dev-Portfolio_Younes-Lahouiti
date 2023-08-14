@@ -46,7 +46,7 @@ export default function Services(): JSX.Element {
    */
   const [windowContent, setWindowContent] = useState<any>(null);
 
-  const numberOfShownCards: number = 7;
+  const NUMBER_OF_SHOWN_CARDS: number = 7;
 
   /**
    * Function that opens the window modal with detailed information about the selected service.
@@ -146,7 +146,7 @@ export default function Services(): JSX.Element {
 
           <Slider
             sliderCards={sliderCardsVariables}
-            cardToBeShown={numberOfShownCards}
+            cardToBeShown={NUMBER_OF_SHOWN_CARDS}
           />
         </section>
       </section>

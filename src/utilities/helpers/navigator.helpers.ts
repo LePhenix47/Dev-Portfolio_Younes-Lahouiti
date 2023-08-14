@@ -1,11 +1,18 @@
 import { warn } from "./console.helpers";
 import { formatStringCase } from "./string.helpers";
 
-export function checkNavigatorSupport() {
+/**
+ * Checks if the `navigator` object is supported and available.
+
+* If the `navigator` object is not supported, a warning is logged and we stop
+ *
+ * @returns {void}
+ */
+export function checkNavigatorSupport(): void {
   const navigatorIsNotSupported: boolean = typeof navigator !== "object";
   if (navigatorIsNotSupported) {
     warn(
-      "The navigator object does not exist, this is probably due to the fact that the app's using SSR or a different JS runtime environment"
+      "The navigator object is unavailable, likely due to the app's utilization of Server-Side Rendering (SSR) or a JavaScript runtime environment lacking support for it"
     );
     return;
   }
@@ -53,6 +60,17 @@ export function checkFeatureSupport(method: string): void {
       `${formattedMethodString} property is not supported in the ${navigator?.userAgent} browser`
     );
   }
+}
+
+/**
+ * Copies the given text to the clipboard.
+ * @param {string} textToCopy - The text to be copied to the clipboard.
+ * @returns {Promise<void>} - A Promise that resolves when the text has been successfully copied to the clipboard.
+ */
+export function copyTextToClipBoard(textToCopy: string): Promise<void> {
+  checkFeatureSupport("clipboard");
+
+  return navigator?.clipboard.writeText(textToCopy);
 }
 
 /**
@@ -119,6 +137,7 @@ export function getUserMedia(
  */
 export function getBrowserName(): string {
   checkFeatureSupport("userAgent");
+
   const { userAgent } = navigator;
 
   // Regular expressions to match popular browsers
@@ -156,6 +175,8 @@ export function getBrowserName(): string {
  * @returns {boolean} - `true` if the user's device supports touch, otherwise `false`.
  */
 export function isTouchDevice(): boolean {
+  checkFeatureSupport("maxTouchPoints");
+
   return "ontouchstart" in window || navigator?.maxTouchPoints > 0;
 }
 
@@ -165,6 +186,8 @@ export function isTouchDevice(): boolean {
  * @returns {boolean} - `true` if the browser is online, otherwise `false`.
  */
 export function isOnline(): boolean {
+  checkFeatureSupport("onLine");
+
   return navigator?.onLine;
 }
 
@@ -174,5 +197,7 @@ export function isOnline(): boolean {
  * @returns {string} - The preferred language of the user (e.g., `"it-IT"`, `"en-US"`, `"fr"`, etc.).
  */
 export function getPreferredLanguage(): string {
+  checkFeatureSupport("language");
+
   return navigator?.language;
 }
