@@ -70,7 +70,7 @@ export default function Portfolio(): JSX.Element {
   const selectValueRef = useRef<HTMLSelectElement>(null);
 
   /**
-   * Reference for the `<input type="text" /> element`
+   * Reference for the `<input type="search" /> element`
    */
   const searchInputRef = useRef<HTMLInputElement>(null);
 

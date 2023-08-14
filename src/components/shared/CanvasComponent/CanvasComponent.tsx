@@ -41,34 +41,29 @@ export default function CanvasComponent({
    * @returns {void}
    */
   function handleWindowResize(canvas: HTMLCanvasElement): void {
-    const isNotHtmlCanvas: boolean = !canvas;
-    if (isNotHtmlCanvas) {
+    const canvasDoesNotExist: boolean = !canvas;
+    if (canvasDoesNotExist) {
       return;
     }
 
     const { clientWidth, clientHeight } = parentElement.current as HTMLElement;
 
-    setCanvasSize(canvas, clientWidth, clientHeight);
+    changeCanvasSize(canvas, clientWidth, clientHeight);
 
     setEffectHandler(() => {
       return new LineEffect(
         canvas,
-        (AMOUNT_OF_PARTICLES + clientHeight) / AMOUNT_OF_PARTICLES
+        AMOUNT_OF_PARTICLES + Math.floor(clientHeight / AMOUNT_OF_PARTICLES)
       );
     });
-    // Perform any additional drawing or logic based on the resized dimensions
   }
 
   // Function to handle resizing of the canvas
   function handleParentDimensionsChange(entries: ResizeObserverEntry[]) {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
-    if (!canvas) {
-      return;
-    }
-
     const { width, height } = entries[0].contentRect;
-    setCanvasSize(canvas, width, height);
+    changeCanvasSize(canvas as HTMLCanvasElement, width, height);
   }
 
   /**
@@ -77,11 +72,11 @@ export default function CanvasComponent({
    *
    * @returns {void}
    */
-  function initializeCanvas(): void {
+  function initializeCanvasListeners(): void {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
-    const hasNoCanvas = !canvas;
-    if (hasNoCanvas) {
+    const canvasDoesNotExist = !canvas;
+    if (canvasDoesNotExist) {
       return;
     }
 
@@ -99,8 +94,8 @@ export default function CanvasComponent({
   function removeCanvasListeners(): void {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
-    const hasNoCanvas = !canvas;
-    if (hasNoCanvas) {
+    const canvasDoesNotExist = !canvas;
+    if (canvasDoesNotExist) {
       return;
     }
 
@@ -114,7 +109,7 @@ export default function CanvasComponent({
    *
    * @returns {void}
    */
-  function setParticlesEffect(): void {
+  function startParticlesEffect(): void {
     effectHandler?.animateParticles();
   }
 
@@ -131,11 +126,16 @@ export default function CanvasComponent({
    *
    * @returns {void}
    */
-  function setCanvasSize(
+  function changeCanvasSize(
     canvas: HTMLCanvasElement,
     width: number,
     height: number
   ): void {
+    const canvasDoesNotExist: boolean = !canvas;
+    if (canvasDoesNotExist) {
+      return;
+    }
+
     const dimensionsPassedAreInvalid: boolean = isNaN(width) || isNaN(height);
     if (dimensionsPassedAreInvalid) {
       warn(
@@ -178,14 +178,14 @@ export default function CanvasComponent({
     clearCanvas(canvasRef.current);
 
     //We animate the particles
-    setParticlesEffect();
+    startParticlesEffect();
 
     //We loop the animation
     animationIdRef.current = requestAnimationFrame(animateCanvas);
   }
 
   useEffect(() => {
-    initializeCanvas();
+    initializeCanvasListeners();
 
     // Create a ResizeObserver instance to watch for changes in the parent element's size
     const resizeObserver: ResizeObserver = new ResizeObserver(
@@ -193,8 +193,9 @@ export default function CanvasComponent({
     );
 
     // Observe the parent element
-    if (parentElement.current) {
-      resizeObserver.observe(parentElement.current);
+    const parentElementExists: boolean = !!parentElement.current;
+    if (parentElementExists) {
+      resizeObserver.observe(parentElement.current as HTMLElement);
     }
 
     // Clean up the event listener on component unmount
