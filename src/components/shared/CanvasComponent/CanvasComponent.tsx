@@ -58,8 +58,15 @@ export default function CanvasComponent({
     });
   }
 
-  // Function to handle resizing of the canvas
-  function handleParentDimensionsChange(entries: ResizeObserverEntry[]) {
+  /**
+   * Handles changes in the dimensions of the parent element observed by the `ResizeObserver`.
+   * Updates the size of the canvas to match the new dimensions of the parent element.
+   *
+   * @param {ResizeObserverEntry[]} entries - An array of `ResizeObserverEntry` objects representing the observed elements.
+   * @returns {void}
+   */ function handleParentDimensionsChange(
+    entries: ResizeObserverEntry[]
+  ): void {
     const canvas: HTMLCanvasElement | null = canvasRef.current;
 
     const { width, height } = entries[0].contentRect;
@@ -204,12 +211,12 @@ export default function CanvasComponent({
       resizeObserver.disconnect();
       removeCanvasListeners();
     };
-  }, [parentElement.current]);
+  }, []);
 
   useEffect(() => {
     cancelAnimation();
     animateCanvas();
-  }, [canvasRef.current, parentElement.current]);
+  }, [canvasRef.current?.height, canvasRef.current?.width]);
 
   return <canvas className="canvas" ref={canvasRef}></canvas>;
 }
