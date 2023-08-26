@@ -99,7 +99,9 @@ export async function generateCryptoHash(
 
     const hashArray: Array<number> = Array.from(unsigned8BitIntegersArray);
     const hashHex: string = hashArray
-      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .map((byte) => {
+        return byte.toString(16).padStart(2, "0");
+      })
       .join("");
 
     return hashHex;

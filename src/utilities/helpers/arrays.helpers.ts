@@ -13,7 +13,9 @@ import { invertDayAndMonth } from "./string.helpers";
  *
  * @returns {any[]} - The new array containing the copied elements
  */
-export function copyArray<DataType>(arrayToCopy: DataType[]): DataType[] {
+export function copyArray<DataType>(
+  arrayToCopy: ArrayLike<DataType>
+): Array<DataType> {
   // Arrays or sets are copyable with `Array.from()`
   return Array.from(arrayToCopy);
 }
