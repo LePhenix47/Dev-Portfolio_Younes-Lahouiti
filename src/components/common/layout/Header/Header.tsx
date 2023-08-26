@@ -171,7 +171,7 @@ export default function Header(): JSX.Element {
       liUnderlineElement
     );
 
-    const normalizedWidth: number = Math.floor(width);
+    const normalizedWidth: string = Math.round(width) + "px";
     setStyleProperty("--_width", normalizedWidth, liUnderlineElement);
   }
 

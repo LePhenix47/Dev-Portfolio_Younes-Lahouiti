@@ -46,6 +46,11 @@ export default function CanvasComponent({
       return;
     }
 
+    const hasNoParentRef = (parentElement?.current as null) === null;
+    if (hasNoParentRef) {
+      return;
+    }
+
     const { clientWidth, clientHeight } = parentElement.current as HTMLElement;
 
     changeCanvasSize(canvas, clientWidth, clientHeight);
