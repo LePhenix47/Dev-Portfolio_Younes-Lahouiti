@@ -171,10 +171,8 @@ export default function Header(): JSX.Element {
       liUnderlineElement
     );
 
-    // We set the width of the underline element using translation with a CSS local variable
-    const INITIAL_WIDTH: number = 4.69;
-    const normalizedXScale: number = Math.floor(width / INITIAL_WIDTH);
-    setStyleProperty("--_scale-x", normalizedXScale, liUnderlineElement);
+    const normalizedWidth: number = Math.floor(width);
+    setStyleProperty("--_width", normalizedWidth, liUnderlineElement);
   }
 
   /**

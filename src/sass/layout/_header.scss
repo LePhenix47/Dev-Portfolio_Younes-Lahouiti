@@ -297,7 +297,7 @@
 
     &__item-follow {
         --_translation-x: 0px;
-        --_scale-x: 0;
+        --_width: 0;
 
         @include mobile-only {
             display: none;
@@ -308,7 +308,7 @@
 
         translate: var(--_translation-x) 0;
 
-        scale: var(--_scale-x) 1;
+        width:var(--_width);
 
         height: 2px;
 
