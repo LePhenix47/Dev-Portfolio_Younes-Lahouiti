@@ -308,14 +308,14 @@
 
         translate: var(--_translation-x) 0;
 
-        width:var(--_width);
+        width: var(--_width);
 
         height: 2px;
 
         transform-origin: left;
 
         transition: translate 300ms ease-in-out,
-        scale 250ms ease-in-out;
+        width 250ms ease-in-out;
 
         background-color: var(--color-primary);
 

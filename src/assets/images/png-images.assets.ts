@@ -45,6 +45,7 @@ import DRAGANDDROP from "@public/png/Drag'n'drop.png";
 import VIDEO_COLOR_TEST_1 from "@public/png/Video color replacer test.png";
 import COLOR_MODEL_CONVERSION from "@public/png/Color model conversion.png";
 import REACT_NATIVE_APP from "@public/png/React Native app icon.png";
+import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/Advanced custom gradient.png";
 
 //Professional
 import PORTFOLIO from "@public/png/portfolio-screenshot.png";
@@ -106,6 +107,7 @@ const PERSONAL_PROJECTS = {
   VIDEO_COLOR_TEST_1,
   COLOR_MODEL_CONVERSION,
   REACT_NATIVE_APP,
+  ADVANCED_LINEAR_GRADIENT_CREATOR,
 };
 
 const PROFESSIONAL_PROJECTS = {

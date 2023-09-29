@@ -308,6 +308,13 @@ export const personalProjects: projectsMadeType = [
     type: "personal",
     date: new Date("06/29/2023"),
   },
+  {
+    title: "Advanced gradient creator",
+    image: PNG_IMAGES.ADVANCED_LINEAR_GRADIENT_CREATOR,
+    link: "https://github.com/LePhenix47/Advanced-Custom-linear-gradient_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("09/04/2023"),
+  },
 ];
 
 /**
