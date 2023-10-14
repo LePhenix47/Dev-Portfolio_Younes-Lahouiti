@@ -319,6 +319,7 @@ export default function Portfolio(): JSX.Element {
             <datalist id="search-datalist">
               <option value="DW">OC path: Web developer</option>
               <option value="JS-React">OC path: Front-end developer</option>
+              <option value="Java-Angular">OC path: Fullstack developer</option>
               <option value="Audio">Personal project</option>
               <option value="Color converter">NPM library</option>
             </datalist>

@@ -106,6 +106,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("02/06/2023"),
   },
+  {
+    title: "[Java-Angular] P2: Télésport",
+    image: PNG_IMAGES.P2_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_2_05102023",
+    type: "oc",
+    date: new Date("10/05/2023"),
+  },
 ];
 
 /**

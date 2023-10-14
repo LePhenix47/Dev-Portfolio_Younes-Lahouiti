@@ -16,6 +16,8 @@ import P12_JSReact from "@public/png/P12-JS_React-image.png";
 import P13_JSReact from "@public/png/P13-JS_React-image.png";
 import P14_JSReact from "@public/png/P14-JS_React-image.png";
 
+import P2_FSJAngular from "@public/png/P2-FS_Java-Angular-image.png";
+
 //Personal
 import PASSWORD_GENERATOR from "@public/png/Password generator.png";
 import CUSTOM_VIDEO from "@public/png/Custom video player.png";
@@ -76,6 +78,7 @@ const OC_PROJECTS = {
   P12_JSReact,
   P13_JSReact,
   P14_JSReact,
+  P2_FSJAngular,
 };
 
 const PERSONAL_PROJECTS = {
