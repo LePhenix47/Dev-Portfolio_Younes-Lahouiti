@@ -301,7 +301,12 @@ export default function Portfolio(): JSX.Element {
           A showcase of my personal and professional work
         </h2>
 
-        <form className="portfolio-page__inputs-container">
+        <form
+          className="portfolio-page__inputs-container"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <fieldset className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
               <Icons.Search />

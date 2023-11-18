@@ -272,7 +272,7 @@ export default function Contact(): JSX.Element {
 
     //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
     const emailREGEX: RegExp =
-      /^([a-z A-Z 0-9\.-]+)@([a-z A-Z 0-9]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+      /^(?!\.)(?!.*\.\.)[a-zA-Z0-9.-]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,8})+(\.[a-zA-Z]{2,8})?$/;
     const respectsEmailFormat: boolean = testRegExp(valueOfInput, emailREGEX);
 
     return respectsEmailFormat;
