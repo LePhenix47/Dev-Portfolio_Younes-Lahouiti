@@ -61,7 +61,7 @@ export default function ModalWindow({
     const clickedOutsideOnXAxis: boolean =
       e.clientX < modalDomRect.left || e.clientX > modalDomRect.right;
     const clickedOutsideOnYAxis: boolean =
-      e.clientY < modalDomRect.top || e.clientX > modalDomRect.bottom;
+      e.clientY < modalDomRect.top || e.clientY > modalDomRect.bottom;
 
     const clickedOutsideModel: boolean =
       clickedOutsideOnXAxis || clickedOutsideOnYAxis;
