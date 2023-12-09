@@ -1,5 +1,5 @@
-//Images
-//OC
+// * Images
+// * OC
 import P2_DW from "@public/png/P2-DW-image.png";
 import P3_DW from "@public/png/P3-DW-image.png";
 import P4_DW from "@public/png/P4-DW-image.png";
@@ -17,8 +17,9 @@ import P13_JSReact from "@public/png/P13-JS_React-image.png";
 import P14_JSReact from "@public/png/P14-JS_React-image.png";
 
 import P2_FSJAngular from "@public/png/P2-FS_Java-Angular-image.png";
+import P3_FSJAngular from "@public/png/P3-FS_Java-Angular-image.png";
 
-//Personal
+// * Personal
 import PASSWORD_GENERATOR from "@public/png/Password generator.png";
 import CUSTOM_VIDEO from "@public/png/Custom video player.png";
 import CUSTOM_GRADIENT from "@public/png/Customizable background.png";
@@ -49,11 +50,11 @@ import COLOR_MODEL_CONVERSION from "@public/png/Color model conversion.png";
 import REACT_NATIVE_APP from "@public/png/React Native app icon.png";
 import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/Advanced custom gradient.png";
 
-//Professional
+// * Professional
 import PORTFOLIO from "@public/png/portfolio-screenshot.png";
 import JENEE from "@public/png/Jenee-logo.png";
 
-//NPM
+// * NPM
 import TIMEOUT_UTILITY from "@public/png/hourglass-clepsydra-icon.png";
 import INTERVAL_UTILITY from "@public/png/interval-icon.png";
 import WEBSTORAGE_UTILITY from "@public/png/webstorage-icon.png";
@@ -61,7 +62,7 @@ import COOKIES_UTILITY from "@public/png/cookie-utility-icon.png";
 import REACT_DATA_TABLE from "@public/png/Data Table.png";
 import COLOR_CONVERSION_PACKAGE from "@public/png/colorconversion- npm-icon.png";
 
-//Browser extensions
+// * Browser extensions
 import NDL from "@public/png/nommage des livrables.png";
 const OC_PROJECTS = {
   P2_DW,
@@ -79,6 +80,7 @@ const OC_PROJECTS = {
   P13_JSReact,
   P14_JSReact,
   P2_FSJAngular,
+  P3_FSJAngular,
 };
 
 const PERSONAL_PROJECTS = {

@@ -36,6 +36,12 @@ html {
     scroll-padding-top: 50%;
 
     color-scheme: dark light;
+    scrollbar-gutter: stable;
+}
+
+
+html:has(:modal) {
+    overflow: hidden;
 }
 
 body {
@@ -63,8 +69,8 @@ body {
 }
 
 /*
-//⚠ We make the border transparent so that if the user has a high contrast text mode enable the border will still appear for them
-//Good for accessibility
+! ⚠ We make the border transparent so that if the user has a high contrast text mode enable the border will still appear for them
+ Good for accessibility
 */
 button {
     border-color: transparent;

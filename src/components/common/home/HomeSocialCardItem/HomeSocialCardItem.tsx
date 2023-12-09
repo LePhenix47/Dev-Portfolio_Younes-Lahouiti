@@ -25,10 +25,12 @@ export default function HomeSocialCardItem({
   srcIcon,
   title,
   link,
+  needsInversionOnDarkMode,
 }: {
   srcIcon: string;
   title: string;
   link: string;
+  needsInversionOnDarkMode: boolean;
 }): JSX.Element {
   return (
     <li className="home-page__social-item">
@@ -44,10 +46,11 @@ export default function HomeSocialCardItem({
           height={30}
           width={30}
           priority
-          className={`home-page__social-image home-page__social-image-${formatStringCase(
-            title,
-            "lowercase"
-          )}`}
+          className={`home-page__social-image ${
+            needsInversionOnDarkMode
+              ? "home-page__social--dark-mode-inverted "
+              : ""
+          }`}
         />
       </Link>
     </li>

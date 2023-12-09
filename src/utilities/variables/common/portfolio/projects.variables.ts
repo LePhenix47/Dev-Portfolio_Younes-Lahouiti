@@ -113,6 +113,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("10/05/2023"),
   },
+  {
+    title: "[Java-Angular] P3: Châtop",
+    image: PNG_IMAGES.P3_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_P3_05112023",
+    type: "oc",
+    date: new Date("11/05/2023"),
+  },
 ];
 
 /**

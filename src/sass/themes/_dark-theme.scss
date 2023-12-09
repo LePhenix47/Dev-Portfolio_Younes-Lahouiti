@@ -23,8 +23,7 @@
         --selection-color: white;
 
         //For the images
-        .home-page__social-image-github,
-        .home-page__social-image-codepen {
+        .home-page__social--dark-mode-inverted {
             filter: invert(100%) hue-rotate(180deg);
         }
 
@@ -36,11 +35,11 @@
             filter: invert(100%) hue-rotate(180deg);
         }
 
-        .canvas{
+        .canvas {
             filter: blur(5px) invert(0%);
         }
-        
-        .svg-icon{
+
+        .svg-icon {
             filter: invert(100%) hue-rotate(180deg);
         }
     }

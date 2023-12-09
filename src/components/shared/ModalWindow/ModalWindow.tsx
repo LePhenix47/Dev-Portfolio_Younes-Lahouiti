@@ -52,6 +52,23 @@ export default function ModalWindow({
     }, TRANSITION_DURATION);
   }
 
+  // function checkIfCloseDialog(e: MouseEvent) {
+  // e.stopPropagation();
+  //   const modalDomRect: DOMRect = modalWindow.getBoundingClientRect();
+
+  //   const clickedOutsideOnXAxis: boolean =
+  //     e.clientX < modalDomRect.left || e.clientX > modalDomRect.right;
+  //   const clickedOutsideOnYAxis: boolean =
+  //     e.clientY < modalDomRect.top || e.clientX > modalDomRect.bottom;
+
+  //   const clickedOutsideModel: boolean =
+  //     clickedOutsideOnXAxis || clickedOutsideOnYAxis;
+
+  //   if (clickedOutsideModel) {
+  //     closeModal();
+  //   }
+  // }
+
   /**
    * Structural condition to open the window
    */
@@ -65,7 +82,11 @@ export default function ModalWindow({
     }, TRANSITION_DURATION);
   }
   return (
-    <dialog className="modal-window" ref={dialogRef}>
+    <dialog
+      className="modal-window"
+      ref={dialogRef}
+      // onClick={checkIfCloseDialog}
+    >
       <div className="modal-window__content-wrapper">
         <button
           className="modal-window__close-button"

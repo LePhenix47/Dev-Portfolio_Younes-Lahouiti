@@ -52,7 +52,8 @@ export default function Home(): JSX.Element {
         <aside className="home-page__socials">
           <ul className="home-page__social-list">
             {socialAccountVariables.map((account, index: number) => {
-              const { srcIcon, title, link } = account;
+              const { srcIcon, title, link, needsInversionOnDarkMode } =
+                account;
 
               return (
                 <HomeSocialCardItem
@@ -60,6 +61,7 @@ export default function Home(): JSX.Element {
                   title={title}
                   srcIcon={srcIcon}
                   link={link}
+                  needsInversionOnDarkMode={needsInversionOnDarkMode}
                 />
               );
             })}
