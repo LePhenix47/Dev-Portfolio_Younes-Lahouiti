@@ -52,22 +52,24 @@ export default function ModalWindow({
     }, TRANSITION_DURATION);
   }
 
-  // function checkIfCloseDialog(e: MouseEvent) {
-  // e.stopPropagation();
-  //   const modalDomRect: DOMRect = modalWindow.getBoundingClientRect();
+  function checkIfCloseDialog(
+    e: React.MouseEvent<HTMLDialogElement, MouseEvent>
+  ) {
+    e.stopPropagation();
+    const modalDomRect: DOMRect = modalWindow.getBoundingClientRect();
 
-  //   const clickedOutsideOnXAxis: boolean =
-  //     e.clientX < modalDomRect.left || e.clientX > modalDomRect.right;
-  //   const clickedOutsideOnYAxis: boolean =
-  //     e.clientY < modalDomRect.top || e.clientX > modalDomRect.bottom;
+    const clickedOutsideOnXAxis: boolean =
+      e.clientX < modalDomRect.left || e.clientX > modalDomRect.right;
+    const clickedOutsideOnYAxis: boolean =
+      e.clientY < modalDomRect.top || e.clientX > modalDomRect.bottom;
 
-  //   const clickedOutsideModel: boolean =
-  //     clickedOutsideOnXAxis || clickedOutsideOnYAxis;
+    const clickedOutsideModel: boolean =
+      clickedOutsideOnXAxis || clickedOutsideOnYAxis;
 
-  //   if (clickedOutsideModel) {
-  //     closeModal();
-  //   }
-  // }
+    if (clickedOutsideModel) {
+      closeModal();
+    }
+  }
 
   /**
    * Structural condition to open the window
@@ -85,7 +87,7 @@ export default function ModalWindow({
     <dialog
       className="modal-window"
       ref={dialogRef}
-      // onClick={checkIfCloseDialog}
+      onClick={checkIfCloseDialog}
     >
       <div className="modal-window__content-wrapper">
         <button
