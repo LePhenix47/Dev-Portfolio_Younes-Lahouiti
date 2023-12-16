@@ -278,6 +278,10 @@
 
 
     &__blob {
+        --_rotate-x: 0deg;
+        --_rotate-y: 0deg;
+
+        --_perspective: 100px;
         position: relative;
 
         margin-right: 25px;
@@ -285,7 +289,17 @@
         flex: 1;
 
         aspect-ratio: 1/1;
-        height: 400px;
+
+        transform-style: preserve-3d;
+
+        perspective: var(--_perspective);
+
+        transform: rotateX(var(--_rotate-x)) rotateY(var(--_rotate-y));
+
+
+        &.home-page__blob--mouse-leave {
+            transition: transform 350ms ease-in-out;
+        }
 
         @include tablet-only {
             order: -1;
@@ -294,6 +308,8 @@
             margin: 25px 0;
 
             @include center-flex-column;
+
+            transform: rotateX(0deg) rotateY(0deg);
         }
 
 
@@ -308,10 +324,19 @@
             @include center-flex;
 
             border-radius: 25px;
+
+            transform: rotateX(0deg) rotateY(0deg);
         }
 
         &>svg {
-            transition: scale 250ms ease-out;
+            // Relative to the perspective of the .home__blob element
+            --_z-offset: -200px;
+            --_scaling-factor: 300%;
+
+            transform: translateZ(var(--_z-offset)) scale(var(--_scaling-factor));
+
+            transition: transform 250ms ease-out;
+
             stroke-linecap: round;
 
             @include tablet-only {
@@ -333,38 +358,20 @@
         }
 
         &:hover {
-            &>svg {
-                scale: 150%;
-
-
-                @include mobile-only {
-                    scale: 105%
-                }
-            }
-
             & path {
                 stroke-dasharray: 710;
                 stroke-dashoffset: 355;
             }
 
             &>.home-page__profile-picture {
-                scale: 150%;
-                translate: -30% -25%;
+                --_z-offset: 20px;
 
                 @include tablet-only {
                     filter: drop-shadow(0px 0px 30px var(--color-primary));
-
-                    translate: 0 0;
-
-                    scale: 100%;
                 }
 
                 @include mobile-only {
                     filter: drop-shadow(0px 0px 30px var(--color-primary));
-
-                    translate: 0 0;
-
-                    scale: 100%;
                 }
             }
         }
@@ -378,6 +385,8 @@
         top: 22%;
         translate: -50% 0;
 
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.733);
+
         transition:
             translate 250ms ease-out,
             scale 250ms ease-out,
@@ -388,9 +397,6 @@
 
         @include mobile-only {
             &:hover {
-                scale: 150%;
-                translate: -30% -25%;
-
                 @include tablet-only {
                     filter: drop-shadow(0px 0px 30px var(--color-primary));
 

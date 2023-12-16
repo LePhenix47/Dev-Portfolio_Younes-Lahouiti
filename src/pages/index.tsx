@@ -24,6 +24,12 @@ import { HomeSocialCardItem } from "@components/common/home/home-page.components
 import { JPG_URLS } from "@assets/index.assets";
 
 import Icons from "@components/shared/icons/Icons";
+import { log } from "@utilities/helpers/console.helpers";
+import {
+  addClass,
+  removeClass,
+  setStyleProperty,
+} from "@utilities/helpers/dom.helpers";
 
 /**
  * Home page component: `/`
@@ -34,8 +40,51 @@ import Icons from "@components/shared/icons/Icons";
  */
 export default function Home(): JSX.Element {
   const homePageSectionRef = useRef<HTMLElement>(null);
+  const blobDivRef = useRef<HTMLDivElement>(null);
 
   const { home } = PAGE_METADATA;
+
+  /**
+   * Updates the CSS variables of the blob element to rotate it.
+   *
+   * @param e - The mouse event object containing information about the mouse movement.
+   */
+  function rotateBlob(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const blobDiv = blobDivRef.current as HTMLDivElement;
+    removeClass(blobDiv, "home-page__blob--mouse-leave");
+
+    const blobDomRect: DOMRect = blobDiv.getBoundingClientRect();
+
+    const {
+      x: blobX,
+      y: blobY,
+      width: blobWidth,
+      height: blobHeight,
+    } = blobDomRect;
+
+    const centerBlobX: number = blobWidth / 2;
+    const centerBlobY: number = blobHeight / 2;
+
+    // Max rotation allowed in degrees
+    const MAX_ROTATION: number = 45;
+
+    const offsetX: number =
+      ((e.pageX - (blobX + centerBlobX)) / centerBlobX) * MAX_ROTATION;
+
+    const offsetY: number =
+      ((e.pageY - (blobY + centerBlobY)) / centerBlobY) * MAX_ROTATION;
+
+    setStyleProperty("--_rotate-y", offsetX + "deg", blobDiv);
+    setStyleProperty("--_rotate-x", -1 * offsetY + "deg", blobDiv);
+  }
+
+  function resetBlob() {
+    const blobDiv = blobDivRef.current as HTMLDivElement;
+    addClass(blobDiv, "home-page__blob--mouse-leave");
+
+    setStyleProperty("--_rotate-y", 0, blobDiv);
+    setStyleProperty("--_rotate-x", 0, blobDiv);
+  }
 
   return (
     <>
@@ -103,7 +152,12 @@ export default function Home(): JSX.Element {
               <Icons.PaperPlane width={24} height={24} fill={"currentColor"} />
             </Link>
           </div>
-          <div className="home-page__blob">
+          <div
+            className="home-page__blob"
+            onMouseMove={rotateBlob}
+            onMouseLeave={resetBlob}
+            ref={blobDivRef}
+          >
             <Icons.Blob />
             <Image
               src={JPG_URLS.PROFILE_PIC_1}
