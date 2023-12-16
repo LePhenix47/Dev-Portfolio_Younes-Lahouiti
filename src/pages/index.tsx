@@ -24,7 +24,6 @@ import { HomeSocialCardItem } from "@components/common/home/home-page.components
 import { JPG_URLS } from "@assets/index.assets";
 
 import Icons from "@components/shared/icons/Icons";
-import { log } from "@utilities/helpers/console.helpers";
 import {
   addClass,
   removeClass,
