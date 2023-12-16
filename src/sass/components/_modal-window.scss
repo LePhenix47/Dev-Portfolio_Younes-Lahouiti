@@ -12,7 +12,8 @@
     width: 600px;
     height: 500px;
 
-    transition: filter 350ms ease-in-out;
+    --_transition-duration: 350ms;
+    transition: filter var(--_transition-duration) ease-in-out;
 
     &::backdrop {
         backdrop-filter: brightness(50%);

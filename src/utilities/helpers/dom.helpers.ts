@@ -4,27 +4,61 @@ import { getPrototypeOf } from "./objects.helpers";
  * Selects all elements with a given class name inside a given container or the whole document.
  *
  * @param {string} className - The class name of the elements to select.
- * @param {any} container - The parent element to search within.
+ * @param {any} container - The parent element to search within (default: document).
  *
  * @returns {HTMLElement[]|[]} A collection of elements with the specified class name.
  */
-export function selectByClass<T extends HTMLElement>(
+export function selectByClass<T extends HTMLElement | SVGElement>(
   className: string,
-  container?: any
+  container: any = document
 ): T[] | [] {
-  const hasNoParentContainer: boolean = !container;
+  const hasNoParentContainer: boolean = container === document;
   if (hasNoParentContainer) {
     return Array.from(document.getElementsByClassName(className)) as T[];
   }
 
-  const containerIsWebComponent: boolean = container?.tagName?.includes("-");
+  switch (true) {
+    case container.tagName?.includes("-"): {
+      // Web component
+      return Array.from(
+        container.shadowRoot?.getElementsByClassName(className) || []
+      ) as T[];
+    }
+    case container instanceof HTMLTemplateElement: {
+      // Template element
+      return Array.from(
+        document.importNode(container.content, true).querySelectorAll(className)
+      ) as T[];
+    }
 
-  if (containerIsWebComponent) {
-    return Array.from(
-      container.shadowRoot.getElementsByClassName(className)
-    ) as T[];
+    case container instanceof HTMLIFrameElement: {
+      // Iframe
+      return Array.from(
+        container.contentDocument?.getElementsByClassName(className) || []
+      ) as T[];
+    }
+    default:
+      return Array.from(container.getElementsByClassName(className)) as T[];
   }
-  return Array.from(container.getElementsByClassName(className)) as T[];
+}
+
+/**
+ * Selects the first element with the specified class name within the given container.
+ *
+ * @template T - The generic type of element to select (HTMLElement or SVGElement).
+ *
+ * @param {string} className - The class name of the element to select.
+ *
+ * @param {HTMLElement | ShadowRoot | undefined} [container] - The container element to search within (default: document).
+ *
+ * @returns {T | null} - The selected element or null if not found.
+ *
+ */
+export function selectFirstByClass<T extends HTMLElement | SVGElement>(
+  className: string,
+  container: any = document
+): T | null {
+  return selectByClass<T>(className, container)[0] || null;
 }
 
 /**
@@ -32,76 +66,105 @@ export function selectByClass<T extends HTMLElement>(
  * Selects an element with a given ID inside a given container or the whole document.
  *
  * @param {string} id - The ID of the element to select.
- * @param {any} container - The parent element to search within.
+ * @param {any} container - The parent element to search within (default: document).
  *
  * @returns {HTMLElement} The element with the specified ID.
  */
-export function selectById<T extends HTMLElement>(
+export function selectById<T extends HTMLElement | SVGElement>(
   id: string,
-  container?: any
+  container: any = document
 ): T | null {
-  const hasNoParentContainer: boolean = !container;
+  const hasNoParentContainer: boolean = container === document;
   if (hasNoParentContainer) {
     return document.getElementById(id) as T | null;
   }
 
-  const containerIsWebComponent: boolean = container?.tagName?.includes("-");
+  switch (true) {
+    case container.tagName?.includes("-"): // Web component
+      return container.shadowRoot?.getElementById(id) as T | null;
 
-  if (containerIsWebComponent) {
-    return container.shadowRoot.getElementById(id) as T | null;
+    case container instanceof HTMLTemplateElement: // Template element
+      return document
+        .importNode(container.content, true)
+        .getElementById(id) as T | null;
+
+    case container instanceof HTMLIFrameElement: // Iframe
+      return container.contentDocument?.getElementById(id) as T | null;
+
+    default:
+      return container.getElementById(id) as T | null;
   }
-  return container.getElementById(id) as T | null;
 }
 
 /**
  * A simplified version of `document.querySelector()`
  *
  * @param {string} query - CSS query of the HTML Element to select
- * @param {any} container - HTML Element to select the query from
+ * @param {any} container - HTML Element to select the query from (default: document).
  *
  * @returns {HTMLElement} - The element selected or `null` if the element doesn't exist
  */
-export function selectQuery<T extends HTMLElement>(
+export function selectQuery<T extends HTMLElement | SVGElement>(
   query: string,
-  container?: any
+  container: any = document
 ): T | null {
-  const hasNoParentContainer: boolean = !container;
+  const hasNoParentContainer: boolean = container === document;
   if (hasNoParentContainer) {
     return document.querySelector(query) as T | null;
   }
 
-  const containerIsWebComponent: boolean = container?.tagName?.includes("-");
+  switch (true) {
+    case container.tagName?.includes("-"): // Web component
+      return container.shadowRoot?.querySelector(query) as T | null;
 
-  if (containerIsWebComponent) {
-    return container.shadowRoot.querySelector(query) as T | null;
+    case container instanceof HTMLTemplateElement: // Template element
+      return document
+        .importNode(container.content, true)
+        .querySelector(query) as T | null;
+
+    case container instanceof HTMLIFrameElement: // Iframe
+      return container.contentDocument?.querySelector(query) as T | null;
+
+    default:
+      return container.querySelector(query) as T | null;
   }
-
-  return container.querySelector(query) as T | null;
 }
 
 /**
  * A simplified version of `document.querySelectorAll()`
  *
  * @param {string} query - CSS query of the HTML Elements to select
- * @param {any} container - HTML Element to select the query from
- * @returns {HTMLElement[] | []} - An array with all the elements selected or `null` if the element doesn't exist
+ * @param {any} container - HTML Element to select the query from (default: document).
+ * @returns {HTMLElement[]} - An array with all the elements selected or `null` if the element doesn't exist
  */
-export function selectQueryAll<T extends HTMLElement>(
+export function selectQueryAll<T extends HTMLElement | SVGElement>(
   query: string,
-  container?: any
-): T[] | [] {
-  const hasNoParentContainer: boolean = !container;
+  container: any = document
+): T[] {
+  const hasNoParentContainer: boolean = container === document;
   if (hasNoParentContainer) {
     return Array.from(document.querySelectorAll(query)) as T[];
   }
 
-  const isWebComponent: boolean = container.tagName.includes("-");
+  switch (true) {
+    case container.tagName?.includes("-"): // Web component
+      return Array.from(
+        container.shadowRoot?.querySelectorAll(query) || []
+      ) as T[];
 
-  if (isWebComponent) {
-    return Array.from(container.shadowRoot.querySelectorAll(query)) as T[];
+    case container instanceof HTMLTemplateElement: // Template element
+      return Array.from(
+        document.importNode(container.content, true).querySelectorAll(query)
+      ) as T[];
+
+    case container instanceof HTMLIFrameElement: // Iframe
+      return Array.from(
+        container.contentDocument?.querySelectorAll(query) || []
+      ) as T[];
+
+    default:
+      return Array.from(container.querySelectorAll(query)) as T[];
   }
-
-  return Array.from(container.querySelectorAll(query)) as T[];
 }
 
 /**
@@ -184,6 +247,22 @@ export function checkElementNotNull(element: HTMLElement | null): void {
       `Element passed as argument is ${getPrototypeOf(element)}`
     );
   }
+}
+
+/**
+ * Get the computed style property value of an HTML element.
+ *
+ * @param {string} property - The name of the CSS property to retrieve.
+ * @param {HTMLElement} [element=document.body] - The HTML element to get the style property from.
+ *                                                Defaults to the `document.body` if not specified.
+ * @returns {string} The value of the specified CSS property for the given element.
+ */
+export function getStyleProperty<T extends HTMLElement | Element>(
+  property: string,
+  element: T
+): string {
+  const computedStyle: CSSStyleDeclaration = getComputedStyle(element);
+  return computedStyle.getPropertyValue(property);
 }
 
 /**

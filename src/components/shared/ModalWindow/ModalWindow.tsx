@@ -1,5 +1,10 @@
 //React
-import { addClass, removeClass } from "@utilities/helpers/dom.helpers";
+import { log } from "@utilities/helpers/console.helpers";
+import {
+  addClass,
+  getStyleProperty,
+  removeClass,
+} from "@utilities/helpers/dom.helpers";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 //Utils
@@ -30,7 +35,7 @@ export default function ModalWindow({
 
   const modalWindow: HTMLDialogElement = dialogRef.current as HTMLDialogElement;
 
-  const TRANSITION_DURATION: number = 500;
+  const TRANSITION_DURATION: number = 350;
 
   /**
    * Boolean to check if the window opened only once
@@ -52,6 +57,11 @@ export default function ModalWindow({
     }, TRANSITION_DURATION);
   }
 
+  /**
+   * Checks if a click event occurred outside of a modal window and closes the modal if it did.
+   *
+   * @param e - The click event object.
+   */
   function checkIfCloseDialog(
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>
   ) {
@@ -59,9 +69,9 @@ export default function ModalWindow({
     const modalDomRect: DOMRect = modalWindow.getBoundingClientRect();
 
     const clickedOutsideOnXAxis: boolean =
-      e.clientX < modalDomRect.left || e.clientX > modalDomRect.right;
+      e.pageX < modalDomRect.left || e.pageX > modalDomRect.right;
     const clickedOutsideOnYAxis: boolean =
-      e.clientY < modalDomRect.top || e.clientY > modalDomRect.bottom;
+      e.pageY < modalDomRect.top || e.pageY > modalDomRect.bottom;
 
     const clickedOutsideModel: boolean =
       clickedOutsideOnXAxis || clickedOutsideOnYAxis;
