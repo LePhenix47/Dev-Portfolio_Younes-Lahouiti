@@ -167,7 +167,7 @@
     }
 
     &__select {
-
+        text-transform: capitalize;
         width: inherit;
 
         -webkit-appearance: none;
@@ -195,6 +195,8 @@
 
 
     &__option {
+        text-transform: inherit;
+
         background-color: var(--bg-primary);
     }
 
@@ -229,6 +231,7 @@
         margin-bottom: -30px;
 
         @include tablet-only {
+            width: 100%;
             flex-direction: column-reverse;
         }
 
@@ -324,6 +327,7 @@
 
         &>p {
             text-overflow: ellipsis;
+            text-wrap: balance;
             overflow: hidden;
             max-width: 100%;
         }

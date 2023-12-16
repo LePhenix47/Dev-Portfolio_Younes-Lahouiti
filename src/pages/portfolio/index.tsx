@@ -1,7 +1,16 @@
 //React
-import { useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from "react";
 
 //Next
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import router from "next/router";
 
 //Variables
 import {
@@ -27,16 +36,12 @@ import {
 
 import { PortfolioProjectCard } from "@components/common/portfolio/portfolio-page.components";
 import Icons from "@components/shared/icons/Icons";
-import {
-  filterArrayByString,
-  sortArrayOfObjects,
-} from "@utilities/helpers/arrays.helpers";
+
 import { formatStringCase } from "@utilities/helpers/string.helpers";
 import {
   formatPrecisionNumber,
   formatShortDate,
 } from "@utilities/helpers/internalization.helpers";
-import { log } from "@utilities/helpers/console.helpers";
 
 //Components
 
@@ -50,20 +55,129 @@ import { log } from "@utilities/helpers/console.helpers";
 export default function Portfolio(): JSX.Element {
   const { portfolio } = PAGE_METADATA;
 
-  const portfolioPageSectionRef = useRef<HTMLElement>(null);
   /**
-   * State that holds the data for the cards within the container
+   * Reference to the portfolio page section to be used for the canvas element
    */
-  const [dataToShow, setDataToShow] = useState<projectsMadeType>(allProjects);
+  const portfolioPageSectionRef = useRef<HTMLElement>(null);
 
-  const formattedAmountOfProjects: string = formatPrecisionNumber(
-    dataToShow.length
+  /**
+   * State and dispatcher for managing project cards.
+   */
+  const [projectCardsState, projectCardsDispatch] = useReducer(
+    (
+      state: {
+        category: string;
+        query: string;
+        sortBy: string;
+        sortOrder: string;
+      },
+      action: { type: string; payload: string }
+    ) => {
+      switch (action.type) {
+        case "SET_CATEGORY": {
+          return { ...state, category: action.payload };
+        }
+        case "SET_QUERY": {
+          return { ...state, query: action.payload };
+        }
+        case "SET_SORT_BY": {
+          return { ...state, sortBy: action.payload };
+        }
+        case "TOGGLE_SORT_ORDER": {
+          return { ...state, sortOrder: action.payload };
+        }
+        default:
+          return state;
+      }
+    },
+    { category: "all", query: "", sortBy: "date", sortOrder: "asc" }
   );
 
   /**
-   * State that stores the copied data for the data to show to make the filtering work
+   * Memoized project card data for displaying on the page.
    */
-  const [copiedData, setCopiedData] = useState<any>(allProjects);
+  const filteredAndSortedData: projectsMadeType = useMemo(() => {
+    const dataToShow: projectsMadeType = changeCards(
+      projectCardsState.category
+    );
+
+    const filteredData: projectsMadeType = filterProjectsData(
+      dataToShow,
+      projectCardsState.query
+    );
+
+    const sortedData: projectsMadeType = sortProjectsData(
+      filteredData,
+      projectCardsState.sortBy as (typeof sortOptions)[number],
+      projectCardsState.sortOrder
+    );
+
+    return sortedData;
+  }, [projectCardsState]);
+
+  /**
+   * Formatted amount of projects diplayed
+   */
+  const formattedAmountOfProjects: string = formatPrecisionNumber(
+    filteredAndSortedData.length
+  );
+
+  /**
+   * URL search parameters.
+   */
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
+
+  useEffect(() => {
+    const category: string = searchParams.get("category") || "all";
+    const query: string = searchParams.get("query") || "";
+    const sortBy: string = searchParams.get("sort") || "date";
+    const sortOrder: string = searchParams.get("order") || "asc";
+
+    projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
+    projectCardsDispatch({ type: "SET_QUERY", payload: query });
+    projectCardsDispatch({ type: "SET_SORT_BY", payload: sortBy });
+    projectCardsDispatch({ type: "TOGGLE_SORT_ORDER", payload: sortOrder });
+  }, [searchParams]);
+
+  /**
+   * Handles input in the search bar to filter the project cards
+   * @param {FormEvent<HTMLInputElement>} e - The input event.
+   */
+  function handleSearchInput(e: FormEvent<HTMLInputElement>): void {
+    e.preventDefault();
+    // Update the URL with the new query parameter
+    const inputElement = searchInputRef.current as HTMLInputElement;
+    const newQuery = inputElement.value;
+
+    projectCardsDispatch({
+      type: "SET_QUERY",
+      payload: newQuery,
+    });
+
+    // Clone the existing search params to make modifications
+    updateSearchParams({ query: newQuery });
+  }
+
+  /**
+   * List of values for the search input's datalist.
+   */
+  const dataListValues = useMemo(() => {
+    return [
+      { value: "DW", description: "OC path: Web developer" },
+      { value: "JS-React", description: "OC path: Front-end developer" },
+      { value: "Java-Angular", description: "OC path: Fullstack developer" },
+      { value: "Audio", description: "Personal project" },
+      { value: "Color converter", description: "NPM library" },
+    ];
+  }, []);
+
+  /**
+   * List of sorting options.
+   */
+  const sortOptions = useMemo(() => {
+    return ["title", "date"] as const;
+  }, []);
+
   /**
    * Reference for the `<select>` element
    */
@@ -74,210 +188,145 @@ export default function Portfolio(): JSX.Element {
    */
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const inputValueRef = useRef<string>("");
-
   /**
    * Reference for the `<input type="checkbox" />` element
    */
   const checkboxValueRef = useRef<HTMLInputElement>(null);
-  /**
-   * State that determines the category of the cards to be displayed
-   */
-  const [categoryState, setCategory] = useState<string>("all");
 
   /**
-   * State that determines if the cards need to be sorted
+   * Filters an array of projects based on the provided query.
+   * @param {projectsMadeType} data - The array of projects to filter.
+   * @param {string} query - The search query.
+   * @returns {projectsMadeType} - The filtered array of projects.
    */
-  const [needsSorting, setNeedsSorting] = useState<boolean>(false);
-
-  /**
-   * State that stores the value of the `<select>`
-   */
-  const [selectValue, setSelectValue] = useState<string>("title");
-
-  /**
-   * State that determines if the cards need to be filtered
-   */
-  const [needsFiltering, setNeedsFiltering] = useState<boolean>(false);
-
-  /**
-   * State that sets the value to be filtered by
-   */
-  const [filterValue, setFilterValue] = useState<string>("");
-
-  /**
-   * State that determines if the cards needs to be sorted in reverse
-   */
-  const [isInReverse, setIsInReverse] = useState<boolean>(false);
-
-  /**
-   * Function that sorts the cards randomly.
-   *
-   * This function is used as the sorting function when the user selects the random sorting option.
-   *
-   * @returns {number} The random sort value.
-   */
-  function randomSort(): number {
-    return Math.random() - 0.5;
+  function filterProjectsData(
+    data: projectsMadeType,
+    query: string
+  ): projectsMadeType {
+    return data.filter((project) => {
+      return project.title.toLowerCase().includes(query.toLowerCase());
+    });
   }
 
   /**
-   * Function that sets the cards to show in the container.
-   *
-   * This function is used internally by `changeCards` function. It sets the state `dataToShow` with the provided project data and sets the state `copiedData` with a copy of the same data to enable filtering.
-   *
-   * @param {string} category - The category of the projects to be displayed.
-   * @returns {void}
+   * Sorts an array of projects by the specified options.
+   * @param {projectsMadeType} data - The array of projects to sort.
+   * @param {(typeof sortOptions)[number]} sortBy - The property to sort by.
+   * @param {string} sortOrder - The sorting order ('asc' or 'desc').
+   * @returns {projectsMadeType} - The sorted array of projects.
    */
-  function changeCards(category: string): void {
+  function sortProjectsData(
+    data: projectsMadeType,
+    sortBy: (typeof sortOptions)[number],
+    sortOrder: string
+  ): projectsMadeType {
+    const sortedData = data.sort((a, b) => {
+      const valueA: string | Date = a[sortBy];
+      const valueB: string | Date = b[sortBy];
+
+      switch (sortBy) {
+        case "date": {
+          return (valueA as Date).getTime() < (valueB as Date).getTime()
+            ? 1
+            : -1;
+        }
+        case "title": {
+          return (valueB as string).localeCompare(valueA as string);
+        }
+        default: {
+          const randomNumber: boolean = Math.random() * 20 >= 10;
+          return randomNumber ? 1 : -1;
+        }
+      }
+    });
+
+    return sortOrder === "asc" ? sortedData : sortedData.reverse();
+  }
+
+  /**
+   * Changes the set of cards based on the selected category.
+   * @param {string} category - The selected category.
+   * @returns {projectsMadeType} The updated set of projects.
+   */
+  function changeCards(category: string): projectsMadeType {
     switch (category) {
       case "openclassrooms": {
         //openclassroomsProjects
-        changeCardsToShow(openClassroomsProjects, category);
-        break;
+        return openClassroomsProjects;
       }
       case "personal": {
         //personalProjects
-        changeCardsToShow(personalProjects, category);
-        break;
+        return personalProjects;
       }
       case "professional": {
         //professionalProjects
-        changeCardsToShow(professionalProjects, category);
-        break;
+        return professionalProjects;
       }
       case "npm": {
         //npmProjects
-        changeCardsToShow(npmProjects, category);
-        break;
+        return npmProjects;
       }
       case "extensions": {
         //browserExtensionProjects
-        changeCardsToShow(browserExtensionProjects, category);
-        break;
+        return browserExtensionProjects;
       }
       default: {
-        changeCardsToShow(allProjects, category);
-        break;
+        return allProjects;
       }
     }
   }
 
   /**
-   * Function that sets the cards to show
-   *
-   * @returns {void}
-   */
-  function changeCardsToShow(cards: projectsMadeType, category: string): void {
-    setDataToShow(cards.sort(randomSort));
-    setCopiedData(cards);
-    setCategory(category);
-  }
-
-  /**
-   * Will update the component whenever the user
-   * inputs something in the field
-   *
-   */
-  useEffect(() => {
-    /**
-     * We take the original unfiltered data and we then filter it
-     */
-    const filteredData: any[] = filterArrayByString(copiedData, filterValue);
-
-    if (needsFiltering) {
-      //We set the state to be equal to the filtered data
-      setDataToShow(filteredData);
-    }
-  }, [needsFiltering, filterValue]);
-
-  /**
-   * Will update the component whenever the user
-   * changes the select value or the order of the sorting
-   */
-  useEffect(() => {
-    if (needsSorting) {
-      const sortedData: any[] = sortArrayOfObjects(
-        dataToShow,
-        selectValue,
-        isInReverse
-      );
-      setDataToShow(sortedData);
-    }
-  }, [needsSorting, selectValue, isInReverse]);
-
-  /**
-   * Function that resets the cards when the input is empty
-   */
-  function resetDataToShow() {
-    setDataToShow(copiedData);
-  }
-
-  /**
-   * Function that changes the cards to show based on the selected category.
-   *
-   * @param {string} category - The category of the projects to be displayed.
+   * Handles a change in the selected category.
+   * @param {string} category - The selected category.
    */
   function handleCategoryChange(category: string): void {
+    projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
     changeCards(category);
-    setNeedsFiltering(false);
-    setFilterValue("");
+
+    updateSearchParams({ category });
   }
 
   /**
-   * Function that handles sorting order change when the checkbox is clicked.
-   *
-   * @param {boolean} isChecked - The new value of the checkbox.
+   * Handles a change in the selected sort option.
+   * @param {ChangeEvent<HTMLSelectElement>} e - The select change event.
    */
-  function handleSortingOrderChange(isChecked: boolean): void {
-    setIsInReverse(isChecked);
+  function handleSelectChange(e: ChangeEvent<HTMLSelectElement>): void {
+    const sortByValue: string = e.target.value;
+    projectCardsDispatch({ type: "SET_SORT_BY", payload: sortByValue });
+
+    updateSearchParams({ sort: sortByValue });
   }
 
   /**
-   * Function that handles input change in the search field.
-   *
-   * @param {string} inputValue - The value of the search input.
+   * Handles a change in the sorting order.
+   * @param {ChangeEvent<HTMLInputElement>} e - The checkbox change event.
    */
-  function handleSearchInputChange(inputValue: string): void {
-    const trimmedInputValue: string = inputValue.trim();
-    const valueIsEmpty: boolean = !trimmedInputValue.length;
+  function handleSortingOrderChange(e: ChangeEvent<HTMLInputElement>): void {
+    const isReverse: string = e.target.checked ? "asc" : "desc";
+    projectCardsDispatch({ type: "TOGGLE_SORT_ORDER", payload: isReverse });
 
-    if (valueIsEmpty) {
-      setFilterValue("");
-      setNeedsFiltering(false);
-
-      resetDataToShow();
-      return;
-    }
-
-    setNeedsFiltering(true);
-    setFilterValue(trimmedInputValue);
-
-    const inputIsDefined: boolean = !!searchInputRef.current;
-    if (inputIsDefined) {
-      inputValueRef.current = trimmedInputValue;
-    }
-
-    log(`current: "${inputValueRef.current}"`);
+    updateSearchParams({ order: isReverse });
   }
 
   /**
-   * Function that handles the change of the select element.
-   *
-   * @param {string} value - The value selected in the select element.
+   * Updates the URL search parameters based on the provided parameters.
+   * @param {{ [key: string]: string }} params - The parameters to update in the URL.
+   * @returns {void}
+   * @description This function updates the URL search parameters based on the provided parameters object.
+   * It retrieves the key from the object property and sets the corresponding value in the URL search parameters.
+   * The updated URL is then used to replace the current URL without a full page reload.
    */
-  function handleSelectChange(value: string): void {
-    console.log("Change");
-    // We don't want to sort if they have the default value: "---" selected
-    const isInitialPlaceholderValue: boolean = value.includes("---");
+  function updateSearchParams(params: { [key: string]: string }): void {
+    const newSearchParams = new URLSearchParams(searchParams);
 
-    if (isInitialPlaceholderValue) {
-      console.log("Is initial placeholder value");
-      return;
+    for (const [key, value] of Object.entries(params)) {
+      newSearchParams.set(key, value);
     }
 
-    setSelectValue(value);
-    setNeedsSorting(true);
+    router.replace({ search: newSearchParams.toString() }, undefined, {
+      shallow: true,
+    });
   }
 
   return (
@@ -317,16 +366,20 @@ export default function Portfolio(): JSX.Element {
               name="search"
               id="search"
               list="search-datalist"
+              value={projectCardsState.query}
               placeholder="Search for a project by their title or date"
               className="portfolio-page__input"
-              onInput={(e) => handleSearchInputChange(e.currentTarget.value)}
+              onInput={handleSearchInput}
             />
             <datalist id="search-datalist">
-              <option value="DW">OC path: Web developer</option>
-              <option value="JS-React">OC path: Front-end developer</option>
-              <option value="Java-Angular">OC path: Fullstack developer</option>
-              <option value="Audio">Personal project</option>
-              <option value="Color converter">NPM library</option>
+              {dataListValues.map((dataListValue, index) => {
+                const { value, description } = dataListValue;
+                return (
+                  <option value={value} key={index}>
+                    {description}
+                  </option>
+                );
+              })}
             </datalist>
           </fieldset>
           <fieldset className="portfolio-page__select-container">
@@ -335,33 +388,41 @@ export default function Portfolio(): JSX.Element {
               id="sort"
               ref={selectValueRef}
               className="portfolio-page__select"
-              onChange={(e) => handleSelectChange(e.currentTarget.value)}
+              onChange={handleSelectChange}
+              value={projectCardsState.sortBy || "---"}
             >
               <option className="portfolio-page__option" value="---">
                 ---
               </option>
-              <option className="portfolio-page__option" value="title">
-                Title
-              </option>
-              <option className="portfolio-page__option" value="date">
-                Date
-              </option>
+              {sortOptions.map((option, index) => {
+                return (
+                  <option
+                    className="portfolio-page__option"
+                    value={option}
+                    key={index}
+                  >
+                    {option}
+                  </option>
+                );
+              })}
             </select>
             <label
               className="portfolio-page__select-label"
               htmlFor="sort"
             ></label>
           </fieldset>
-
+          {/* The  */}
           <fieldset className="portfolio-page__sorting-order-label-input">
             <label
               htmlFor="sort-order"
               className="portfolio-page__sorting-order-label"
             >
-              {isInReverse ? "Descending" : "Ascending"}{" "}
+              {projectCardsState.sortOrder === "desc"
+                ? "Descending"
+                : "Ascending"}{" "}
               <span
                 className={`portfolio-page__sorting-order-label-arrow ${
-                  isInReverse &&
+                  projectCardsState.sortOrder === "desc" &&
                   "portfolio-page__sorting-order-label-arrow--rotate"
                 }`}
               >
@@ -374,7 +435,8 @@ export default function Portfolio(): JSX.Element {
               id="sort-order"
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
-              onClick={(e) => handleSortingOrderChange(e.currentTarget.checked)}
+              onChange={handleSortingOrderChange}
+              value={(projectCardsState.sortBy === "asc").toString()}
             />
           </fieldset>
         </form>
@@ -399,7 +461,7 @@ export default function Portfolio(): JSX.Element {
                   onClick={() => handleCategoryChange(lowerCaseCategory)}
                   type="button"
                   className={`portfolio-page__filter-button ${
-                    categoryState === lowerCaseCategory &&
+                    projectCardsState.category === lowerCaseCategory &&
                     "portfolio-page__filter-button--active"
                   }  portfolio-page__filter-button-all`}
                 >
@@ -407,13 +469,12 @@ export default function Portfolio(): JSX.Element {
                 </button>
               );
             })}
-            {/*            */}
           </div>
         </div>
 
         <div className="portfolio-page__project-cards-container">
-          {/*     Project Cards       */}
-          {dataToShow.map((project) => {
+          {/* Project cards */}
+          {filteredAndSortedData.map((project) => {
             const { title, image, link, date, type } = project;
 
             const formattedDate: string = formatShortDate(date);
@@ -430,15 +491,15 @@ export default function Portfolio(): JSX.Element {
             );
           })}
 
-          {!dataToShow.length && needsFiltering && (
+          {!filteredAndSortedData.length && projectCardsState.query !== "" && (
             <p className="portfolio-page__project-cards-container-not-found">
               Sorry, we couldn&apos;t find any results matching your search for:
-              &quot;{inputValueRef.current}&quot;
+              &quot;{(searchInputRef.current as HTMLInputElement).value}
+              &quot;
               <br />
               ಠ_ಠ
             </p>
           )}
-          {/*            */}
         </div>
       </section>
     </>
