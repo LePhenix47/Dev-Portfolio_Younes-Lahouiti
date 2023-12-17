@@ -45,6 +45,36 @@ export function getRealStringLength(string: string): number {
    return arrayOfSegments.length;  */
 }
 
+export function formatNumberWithOptions(
+  number: number,
+  locale: string | undefined,
+  options: Intl.NumberFormatOptions
+) {
+  try {
+    // Validate the types of input arguments
+    const hasInvalidTypes = typeof number !== "number" || Number.isNaN(number);
+    if (hasInvalidTypes) {
+      throw new TypeError(
+        `Invalid argument for number: Type: ${typeof number} of value ${number}`
+      );
+    }
+
+    const hasInvalidLocale = typeof locale !== "string" && locale !== undefined;
+    if (hasInvalidLocale) {
+      throw new TypeError(
+        `Invalid argument for the locale: must be either a string with the country code or undefined`
+      );
+    }
+
+    const formatter = new Intl.NumberFormat(locale, options);
+
+    return formatter.format(number);
+  } catch (error: any) {
+    console.error(error.message);
+    return `Invalid number: ${error.message}`;
+  }
+}
+
 /**
  * Formats a number with a specified number of decimal places and a locale.
  *
@@ -119,6 +149,58 @@ export function formatCurrencyValueNumber(
   });
 
   return formatter.format(number);
+}
+
+/**
+ * Formats a given date using provided formatting options.
+ *
+ * @param {Date | string | number} date - The date to format.
+ * @param {Object} options - The formatting options for Intl.DateTimeFormat.
+ * @param {string} [locale="en-US"] - The locale for formatting the date.
+ * @returns {string} The formatted date string, or an error message if formatting fails.
+ */
+export function formatDateWithOptions(
+  date: Date | string,
+  locale: string,
+  options: Intl.DateTimeFormatOptions
+): string {
+  try {
+    const dateIsInvalid =
+      // The date is invalid if the date is not an instance of the Date prototype or
+      // that its type is not a string nor a number
+      !(date instanceof Date) &&
+      typeof date !== "string" &&
+      typeof date !== "number";
+    if (dateIsInvalid) {
+      throw new TypeError(
+        `Invalid date argument found, expected it to be an instance of the Date prototype or at least either a string or a number but instead got 
+          \nValue: ${date}, of type: ${typeof date}`
+      );
+    }
+
+    const optionsAreInvalid = !options;
+    if (optionsAreInvalid) {
+      throw new TypeError(
+        `Invalid options argument found, expected it to be an object but instead got \nValue: ${options}, of type: ${typeof options}`
+      );
+    }
+
+    const localeIsInvalid = typeof locale !== "string";
+    if (localeIsInvalid) {
+      throw new TypeError(
+        `Invalid locale argument found, expected it to be a string but instead got \nValue: ${locale}, of type: ${typeof locale}`
+      );
+    }
+
+    const dateInstance = date instanceof Date ? date : new Date(date);
+
+    const formatter = new Intl.DateTimeFormat(locale, options);
+
+    return formatter.format(dateInstance);
+  } catch (error: any) {
+    console.error("Error formatting date:", error.message);
+    return `Invalid date`;
+  }
 }
 
 /**
@@ -335,5 +417,50 @@ export function getRelativeTimePeriod(dateInSeconds: number): {
     //We get the amount of years
     const years: number = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
     return { value: years, unit: "years" };
+  }
+}
+
+/**
+ * Formats an array of string words into a formatted string using the specified locale and options.
+ *
+ * @param arrayOfStringWords - An array of string words to be formatted.
+ * @param locale - The locale to be used for formatting. It should be a string with the country code or undefined.
+ * @param options - Options for formatting the list. It can include properties like `style` (e.g., "long", "short", "narrow") and `type` (e.g., "conjunction", "disjunction", "unit").
+ *
+ * @returns A formatted string representing the array of string words according to the specified locale and options.
+ *
+ * @throws {TypeError} If the input arguments are invalid.
+ */
+export function formatListWithOptions(
+  arrayOfStringWords: string[],
+  locale: string | undefined,
+  options: Intl.ListFormatOptions
+) {
+  try {
+    // Validate the types of input arguments
+    const hasInvalidTypes =
+      !Array.isArray(arrayOfStringWords) ||
+      arrayOfStringWords.every((s) => {
+        return typeof s !== "string";
+      });
+    if (hasInvalidTypes) {
+      throw new TypeError(
+        `Invalid argument for string, expected an array of strings but instead got: ${arrayOfStringWords} of type: ${typeof arrayOfStringWords}`
+      );
+    }
+
+    const hasInvalidLocale = typeof locale !== "string" && locale !== undefined;
+    if (hasInvalidLocale) {
+      throw new TypeError(
+        `Invalid argument for the locale: must be either a string with the country code or undefined`
+      );
+    }
+
+    const formatter = new Intl.ListFormat(locale, options);
+
+    return formatter.format(arrayOfStringWords);
+  } catch (error: any) {
+    console.error(error.message);
+    return `Invalid string: ${error.message}`;
   }
 }
