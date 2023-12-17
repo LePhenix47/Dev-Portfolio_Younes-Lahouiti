@@ -226,16 +226,16 @@ export default function Portfolio(): JSX.Element {
 
       switch (sortBy) {
         case "date": {
-          return (valueA as Date).getTime() < (valueB as Date).getTime()
+          return (valueA as Date).getTime() > (valueB as Date).getTime()
             ? 1
             : -1;
         }
         case "title": {
-          return (valueB as string).localeCompare(valueA as string);
+          return (valueA as string).localeCompare(valueB as string);
         }
         default: {
-          const randomNumber: boolean = Math.random() * 20 >= 10;
-          return randomNumber ? 1 : -1;
+          const randomNumberIsOverTen: boolean = Math.random() * 20 >= 10;
+          return randomNumberIsOverTen ? 1 : -1;
         }
       }
     });

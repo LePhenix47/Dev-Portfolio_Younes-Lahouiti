@@ -21,7 +21,7 @@ import { copyTextToClipBoard } from "@utilities/helpers/navigator.helpers";
 export default function Header(): JSX.Element {
   const router: NextRouter = useRouter();
 
-  const { route, pathname, query, asPath } = router;
+  const { pathname } = router;
 
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
@@ -64,7 +64,9 @@ export default function Header(): JSX.Element {
     let anchorElement: HTMLAnchorElement | null = null;
 
     let anchorDimensions: DOMRect | null = null;
-    switch (asPath) {
+
+    const url = new URL(location.href);
+    switch (url.pathname.toLowerCase()) {
       case "/": {
         anchorElement = homeLinkPageRef.current as HTMLAnchorElement;
         break;
@@ -104,11 +106,15 @@ export default function Header(): JSX.Element {
 
   useEffect(() => {
     setStateForActiveLink();
-  }, [asPath]);
+  }, [router]);
 
   useEffect(() => {
     setUnderlineToLink();
   }, [activeLinkDimensions]);
+
+  useEffect(() => {
+    setUnderlineToLink();
+  }, []);
 
   /**
    * Sets the position and width of the underline element based on the active link.
@@ -147,7 +153,7 @@ export default function Header(): JSX.Element {
 
   /**
    * Sets the CSS variables for the `<li>` underline.
-   * Updates the `--_left` and `--_width` CSS variables.
+   * Updates the `--_translation-x` and `--_width` CSS variables.
    *
    * @param {number} width - Width of the `<li>` underline.
    * @param {number} x - X offset of the `<li>` underline.
@@ -230,7 +236,7 @@ export default function Header(): JSX.Element {
         <ul className="header__list" ref={unorderedListRef}>
           <li
             className={`header__item
-          ${asPath === "/" && "active"}
+          ${pathname === "/" && "active"}
           `}
           >
             <Link href="/" className="header__item-link" ref={homeLinkPageRef}>
@@ -240,7 +246,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item
-          ${asPath === "/about" && "active"}
+          ${pathname === "/about" && "active"}
           `}
           >
             <Link
@@ -254,7 +260,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item
-          ${asPath === "/skills" && "active"}
+          ${pathname === "/skills" && "active"}
           `}
           >
             <Link
@@ -272,7 +278,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item
-          ${asPath === "/services" && "active"}
+          ${pathname === "/services" && "active"}
           `}
           >
             <Link
@@ -290,7 +296,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item
-          ${asPath === "/portfolio" && "active"}
+          ${pathname === "/portfolio" && "active"}
           `}
           >
             <Link
@@ -308,7 +314,7 @@ export default function Header(): JSX.Element {
           </li>
           <li
             className={`header__item
-          ${asPath === "/contact" && "active"}
+          ${pathname === "/contact" && "active"}
           `}
           >
             <Link
@@ -328,15 +334,6 @@ export default function Header(): JSX.Element {
           <li
             className={"header__item header__item-follow"}
             ref={underlineListItemRef}
-            // style={{
-            //   width: (activeLinkDimensions as DOMRect).width,
-            //   left: !!activeLinkDimensions
-            //     ? (activeLinkDimensions as DOMRect).x -
-            //       (
-            //         unorderedListRef.current as HTMLUListElement
-            //       )?.getBoundingClientRect().x
-            //     : 0,
-            // }}
           >
             &nbsp;
           </li>

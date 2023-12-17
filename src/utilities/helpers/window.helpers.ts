@@ -18,6 +18,21 @@ export function checkIfWindowIsAvailable() {
 }
 
 /**
+ * Checks if the given CSS media query matches the current window.
+ *
+ * @param cssMediaQuery - The CSS media query to match.
+ * @returns Returns `true` if the `cssMediaQuery` matches the current window, otherwise returns `false`.
+ * @throws Throws an error if the window object is not available.
+ * @example
+ * const isMatching = matchesCssMediaQuery("width <= 600px");
+ * console.log(isMatching); // true or false
+ */
+export function matchesCssMediaQuery(cssMediaQuery: string): boolean {
+  checkIfWindowIsAvailable();
+  return window.matchMedia(cssMediaQuery).matches;
+}
+
+/**
  * Check if the viewport matches a media query for a maximum width of 768 pixels (mobile viewport).
  *
  * @returns {boolean} - True if the viewport matches the mobile media query, false otherwise.
@@ -25,7 +40,7 @@ export function checkIfWindowIsAvailable() {
 export function isMobileViewport(): boolean {
   checkIfWindowIsAvailable();
 
-  return window.matchMedia("(max-width: 768px)").matches;
+  return window.matchMedia("width <= 768px").matches;
 }
 
 /**
