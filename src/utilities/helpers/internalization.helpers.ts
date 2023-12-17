@@ -464,3 +464,47 @@ export function formatListWithOptions(
     return `Invalid string: ${error.message}`;
   }
 }
+
+/**
+ * Creates an Intl.Collator instance with the provided options.
+ *
+ * This function is designed to be used as an abstraction for creating an Intl.Collator
+ * with specific collation options. It helps ensure consistency in collation settings
+ * across different parts of your application.
+ *
+ * @param {string} [locale] - The locale for collation.
+ * @param {Intl.CollatorOptions} [options] - The collation options.
+ * @returns {Intl.Collator} The Intl.Collator instance.
+ * @throws {TypeError} If invalid arguments are provided.
+ *
+ * @example
+  // Creating a collator for English language with sensitivity set to 'accent':
+ * const collator = createCollatorWithOptions('en-US', { sensitivity: 'accent' });
+ *
+  // Using the collator to compare two strings:
+ * const result = collator.compare('cliché', 'cliche'); // Returns 0, indicating equality with accent sensitivity.
+
+  // Works about the same as a `.toLocaleCompare()`
+ */
+export function createCollatorWithOptions(
+  locale: string | undefined,
+  options: Intl.CollatorOptions | undefined
+): Intl.Collator | string {
+  try {
+    // Validate the types of input arguments
+    const hasInvalidLocale: boolean =
+      typeof locale !== "string" && locale !== undefined;
+    if (hasInvalidLocale) {
+      throw new TypeError(
+        `Invalid argument for the locale: must be either a string with the country code or undefined`
+      );
+    }
+
+    const collator = new Intl.Collator(locale, options);
+
+    return collator;
+  } catch (error: any) {
+    console.error(error.message);
+    return `Invalid collator creation: ${error.message}`;
+  }
+}
