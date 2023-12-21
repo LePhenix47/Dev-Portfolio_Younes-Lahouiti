@@ -1,6 +1,6 @@
 //Next
 import type { AppProps } from "next/app";
-import { NextRouter, useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -50,9 +50,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
    */
   const queryClient: QueryClient = new QueryClient();
 
-  const router: NextRouter = useRouter();
-
-  const { route } = router;
+  const pathname: string = usePathname();
 
   return (
     <>
@@ -64,20 +62,20 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <Hydrate state={pageProps.dehydratedState}>
           <PageLayout>
             {/* 
-            Because the parent element of this anchor uses the `transform` property for the pages transitions, 
-            child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
+           // ? Because the parent element of this anchor uses the `transform` property for the pages transitions, 
+           // ? child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
             */}
             <Link
               href="#top"
               className={`portfolio-page__anchor ${
-                !route.includes("/portfolio") && "hide"
+                !pathname.includes("/portfolio") && "hide"
               }`}
               target="_top"
             >
               <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
             </Link>
             <motion.div
-              key={router.route}
+              key={pathname}
               initial="pageInitial"
               animate="pageAnimate"
               exit="pageExit"

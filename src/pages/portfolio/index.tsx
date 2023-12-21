@@ -351,9 +351,9 @@ export default function Portfolio(): JSX.Element {
         </h2>
 
         {/*
-         // * Ignore error here
+         // * Once support on React TSX I'll need to replace the `<form>` with a `<search>`
          */}
-        <search className="portfolio-page__inputs-container">
+        <form className="portfolio-page__inputs-container">
           <fieldset className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
               <Icons.Search />
@@ -437,7 +437,7 @@ export default function Portfolio(): JSX.Element {
               value={(projectCardsState.sortBy === "asc").toString()}
             />
           </fieldset>
-        </search>
+        </form>
 
         <div className="portfolio-page__categories-container">
           <div className="portfolio-page__counter">
