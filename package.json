@@ -11,6 +11,7 @@
     "git:push": "(git diff --quiet || (echo 'You have uncommitted changes. Please commit your changes first.' && exit 1)) && git push"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.23.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@commitlint/cz-commitlint": "^18.4.3",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "sass": "^1.58.3"
   }
 }
