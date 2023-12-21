@@ -208,7 +208,7 @@ export default function Portfolio(): JSX.Element {
   ): projectsMadeType {
     return data.filter((project) => {
       const normalizedQuery: string = removeAccents(query.toLowerCase());
-      const normalizedProjectTitle: string = project.title.toLowerCase();
+      const normalizedProjectTitle: string = removeAccents(project.title.toLowerCase());
 
       return normalizedProjectTitle.includes(normalizedQuery);
     });
