@@ -76,36 +76,6 @@ module.exports = {
           },
         },
       },
-      scope: {
-        description: "Which components were changed ?",
-      },
-      subject: {
-        description: "Write a concise description in the imperative mood",
-      },
-      body: {
-        description: "Provide a more detailed description of the changes",
-      },
-      isBreaking: {
-        description: "Are there any breaking changes?",
-      },
-      breakingBody: {
-        description:
-          "A breaking change requires a body in the commit message. Please provide a longer and more detailed description than the first line of the commit.",
-      },
-      breaking: {
-        description: "Describe the breaking changes",
-      },
-      isIssueAffected: {
-        description: "Does this commit affect an existing issue?",
-      },
-      issuesBody: {
-        description:
-          "If this commit resolves any issues, you must add a body to the commit message. Please provide a longer and more detailed description than the first line of the commit.",
-      },
-      issues: {
-        description:
-          'Add a reference to the related issue ("fix #123", "ref #123")',
-      },
     },
   },
 };
