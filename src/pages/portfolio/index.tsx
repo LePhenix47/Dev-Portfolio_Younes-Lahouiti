@@ -37,7 +37,10 @@ import {
 import { PortfolioProjectCard } from "@components/common/portfolio/portfolio-page.components";
 import Icons from "@components/shared/icons/Icons";
 
-import { formatStringCase } from "@utilities/helpers/string.helpers";
+import {
+  formatStringCase,
+  removeAccents,
+} from "@utilities/helpers/string.helpers";
 import {
   formatPrecisionNumber,
   formatShortDate,
@@ -168,7 +171,7 @@ export default function Portfolio(): JSX.Element {
       { value: "Java-Angular", description: "OC path: Fullstack developer" },
       { value: "Audio", description: "Personal project" },
       { value: "Color converter", description: "NPM library" },
-    ];
+    ] as const;
   }, []);
 
   /**
@@ -204,7 +207,10 @@ export default function Portfolio(): JSX.Element {
     query: string
   ): projectsMadeType {
     return data.filter((project) => {
-      return project.title.toLowerCase().includes(query.toLowerCase());
+      const normalizedQuery: string = removeAccents(query.toLowerCase());
+      const normalizedProjectTitle: string = project.title.toLowerCase();
+
+      return normalizedProjectTitle.includes(normalizedQuery);
     });
   }
 
