@@ -278,12 +278,19 @@
         width: 85%;
 
         &-paragraph {
-            width: fit-content;
+            min-width: 180px;
+
+            display: inline-flex;
+            gap: 5px
         }
 
         &-text {
             text-decoration: underline;
 
+        }
+
+        &-value {
+            font-variant-numeric: tabular-nums;
         }
     }
 

@@ -350,12 +350,10 @@ export default function Portfolio(): JSX.Element {
           A showcase of my personal and professional work
         </h2>
 
-        <form
-          className="portfolio-page__inputs-container"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        {/*
+         // * Ignore error here
+         */}
+        <search className="portfolio-page__inputs-container">
           <fieldset className="portfolio-page__label-input">
             <label htmlFor="search" className="portfolio-page__label">
               <Icons.Search />
@@ -439,15 +437,17 @@ export default function Portfolio(): JSX.Element {
               value={(projectCardsState.sortBy === "asc").toString()}
             />
           </fieldset>
-        </form>
+        </search>
 
         <div className="portfolio-page__categories-container">
           <div className="portfolio-page__counter">
             <p className="portfolio-page__counter-paragraph">
               <span className="portfolio-page__counter-text">
                 Projects created:
-              </span>{" "}
-              {formattedAmountOfProjects}
+              </span>
+              <span className="portfolio-page__counter-value">
+                {formattedAmountOfProjects}
+              </span>
             </p>
           </div>
 

@@ -53,6 +53,7 @@ import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/Advanced custom gradie
 // * Professional
 import PORTFOLIO from "@public/png/portfolio-screenshot.png";
 import JENEE from "@public/png/Jenee-logo.png";
+import UNCOVE from "@public/png/Uncove-logo.png";
 
 // * NPM
 import TIMEOUT_UTILITY from "@public/png/hourglass-clepsydra-icon.png";
@@ -118,6 +119,7 @@ const PERSONAL_PROJECTS = {
 const PROFESSIONAL_PROJECTS = {
   PORTFOLIO,
   JENEE,
+  UNCOVE,
 };
 
 const NPM_PROJECTS = {

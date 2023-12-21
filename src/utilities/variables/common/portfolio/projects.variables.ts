@@ -336,6 +336,13 @@ export const personalProjects: projectsMadeType = [
  */
 export const professionalProjects: projectsMadeType = [
   {
+    title: "Developer portfolio",
+    image: PNG_IMAGES.PORTFOLIO,
+    link: "https://younes-portfolio-dev.vercel.app/",
+    type: "professional",
+    date: new Date("02/25/2023"),
+  },
+  {
     title: "JENee React Native mobile app",
     image: PNG_IMAGES.JENEE,
     link: "https://www.jenee.fr/",
@@ -343,11 +350,11 @@ export const professionalProjects: projectsMadeType = [
     date: new Date("07/03/2023"),
   },
   {
-    title: "Developer portfolio",
-    image: PNG_IMAGES.PORTFOLIO,
-    link: "https://younes-portfolio-dev.vercel.app/",
+    title: "Uncove",
+    image: PNG_IMAGES.UNCOVE,
+    link: "https://uncove.com/",
     type: "professional",
-    date: new Date("02/25/2023"),
+    date: new Date("10/02/2023"),
   },
 ];
 
