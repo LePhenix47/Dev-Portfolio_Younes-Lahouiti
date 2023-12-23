@@ -1,12 +1,12 @@
 /**
  * Represents a noise filter SVG component used for applying a pixel noise effect with displacement to an image.
  *
-
+ * See ["Recreating an epic hover effect" by Hyperplexed](https://youtu.be/z1wZp4jV4cQ?si=HjWgG1PYpR8KNsQC&t=152) for a demonstration.
+ *
  * @param {string} imageId - The ID of the image to which the noise filter effect is applied.
  * @returns {JSX.Element} A JSX element representing the NoiseFilter component.
  *
  * @example
-@component
  * // Example usage:
  * const imageId = "myImageId";
  *

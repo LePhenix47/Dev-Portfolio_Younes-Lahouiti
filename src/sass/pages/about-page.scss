@@ -7,8 +7,7 @@
     margin-top: 50px;
   }
 
-  &__subtitle {
-  }
+  &__subtitle {}
 
   &__introduction-content {
     display: flex;
@@ -33,40 +32,42 @@
 
   &__image-container {
     flex: 1;
-    
+
     @include center-flex-column;
   }
-  
+
   &__image {
     object-position: center;
-    
-    
+
+
     border-radius: 25px;
-    
+
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 100%) 70%, rgba(0, 0, 0, 0%));
+
     filter: url(#pixel-noise);
-    
-    @include desktop-only{
+
+    @include desktop-only {
       object-fit: contain;
       max-height: 304px;
-        width: auto;
-      
-        scale: 135%;
+      width: auto;
+
+      scale: 135%;
     }
 
-    @include desktop-small-only{
-        object-fit: cover;
-          max-height: 304px;
-          width: 50%;
-        
-          scale: 135%;
+    @include desktop-small-only {
+      object-fit: cover;
+      max-height: 304px;
+      width: 50%;
+
+      scale: 135%;
     }
 
-    @include laptop-only{
-        object-fit: cover;
-          max-height: 304px;
-          width: 50%;
-        
-          scale: 135%;
+    @include laptop-only {
+      object-fit: cover;
+      max-height: 304px;
+      width: 50%;
+
+      scale: 135%;
     }
 
 
@@ -110,7 +111,7 @@
     @include tablet-only {
       @include grid(1, 2, 15px);
 
-      & > .card:last-child:not(:nth-last-child(2n)) {
+      &>.card:last-child:not(:nth-last-child(2n)) {
         grid-column: span 2;
       }
     }
