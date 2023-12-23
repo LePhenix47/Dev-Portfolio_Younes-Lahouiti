@@ -208,7 +208,9 @@ export default function Portfolio(): JSX.Element {
   ): projectsMadeType {
     return data.filter((project) => {
       const normalizedQuery: string = removeAccents(query.toLowerCase());
-      const normalizedProjectTitle: string = removeAccents(project.title.toLowerCase());
+      const normalizedProjectTitle: string = removeAccents(
+        project.title.toLowerCase()
+      );
 
       return normalizedProjectTitle.includes(normalizedQuery);
     });
@@ -286,11 +288,25 @@ export default function Portfolio(): JSX.Element {
    * Handles a change in the selected category.
    * @param {string} category - The selected category.
    */
-  function handleCategoryChange(category: string): void {
-    projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
-    changeCards(category);
+  function handleCategoryChange(category: string): () => void {
+    return () => {
+      // * When the view transition API will be available for all browsers we'll be able to use it
+      const supportsViewTransitionApi: boolean = Boolean(
+        // @ts-ignore
+        document.startViewTransition
+      );
+      if (supportsViewTransitionApi) {
+        // *Makes a nice transition whenever we click on a category (currently not supported on other browsers)
+        document
+          // @ts-ignore
+          .startViewTransition(() => {});
+      }
 
-    updateSearchParams({ category });
+      projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
+      changeCards(category);
+
+      updateSearchParams({ category });
+    };
   }
 
   /**
@@ -464,7 +480,7 @@ export default function Portfolio(): JSX.Element {
               return (
                 <button
                   key={`${category}`}
-                  onClick={() => handleCategoryChange(lowerCaseCategory)}
+                  onClick={handleCategoryChange(lowerCaseCategory)}
                   type="button"
                   className={`portfolio-page__filter-button ${
                     projectCardsState.category === lowerCaseCategory &&
