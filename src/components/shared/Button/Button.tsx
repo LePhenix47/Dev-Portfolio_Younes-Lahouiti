@@ -1,4 +1,8 @@
-import { addClass, setStyleProperty } from "@utilities/helpers/dom.helpers";
+import {
+  addClass,
+  calculateOffset,
+  setStyleProperty,
+} from "@utilities/helpers/dom.helpers";
 import React, {
   ButtonHTMLAttributes,
   ReactNode,
@@ -6,8 +10,9 @@ import React, {
   useImperativeHandle,
   Ref,
   useRef,
-  ReactElement,
 } from "react";
+import { Bubble } from "../shared.components";
+import { createRoot } from "react-dom/client";
 
 type ButtonProps = {
   children: ReactNode;
@@ -56,11 +61,13 @@ function Button(
   useImperativeHandle(
     ref,
     () => ({
-      getButtonRef: () => {
-        // Implement the focus logic
-        // For example, if you have a button element ref, you can focus it
-        // buttonRef.current?.focus();
-        console.log("Button focused");
+      /**
+       * Gets the reference to the button element.
+       *
+       * @function
+       * @returns {HTMLButtonElement | null} The button element reference.
+       */
+      getButtonRef: (): HTMLButtonElement | null => {
         const buttonElement = buttonRef.current;
         return buttonElement;
       },
@@ -68,33 +75,58 @@ function Button(
     []
   );
 
-  function animateButton(mouseX: number, mouseY: number): void {
-    const bubbleSpanElement = document.createElement("span");
-
-    setStyleProperty("--_mouse-x", `${mouseX}px`, bubbleSpanElement);
-    setStyleProperty("--_mouse-y", `${mouseY}px`, bubbleSpanElement);
-    addClass(bubbleSpanElement, "button__bubble");
-
+  /**
+   * Animates the button with a bubble effect.
+   *
+   * @function
+   * @param {number} mouseX - The X-coordinate of the mouse click event.
+   * @param {number} mouseY - The Y-coordinate of the mouse click event.
+   */
+  function animateBubble(mouseX: number, mouseY: number): void {
     const buttonElement: HTMLButtonElement | null = buttonRef.current;
-    buttonElement?.appendChild(bubbleSpanElement);
 
-    // Set a timeout to remove the bubble element after the animation duration
-    setTimeout(() => {
-      bubbleSpanElement.remove();
-    }, 500); // Adjust the duration as needed
+    if (!buttonElement) {
+      return;
+    }
+
+    // Create a span as a target container for the portal
+    const portalContainer: HTMLSpanElement = document.createElement("span");
+
+    const bubbleJsxElement: JSX.Element = (
+      <Bubble
+        mouseX={mouseX}
+        mouseY={mouseY}
+        onAnimationEnd={() => {
+          // Handle animation end if needed
+          buttonElement.removeChild(portalContainer);
+        }}
+      />
+    );
+
+    // Use createRoot to render the Bubble component
+    createRoot(portalContainer).render(bubbleJsxElement);
+
+    // Append the portal container to the body
+    buttonElement.appendChild(portalContainer);
   }
 
+  /**
+   * Handles the button click event.
+   *
+   * @function
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event - The button click event.
+   */
   function handleButtonClick(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
-    const offsetX: number = e.nativeEvent.offsetX;
-    const offsetY: number = e.nativeEvent.offsetY;
+    const { offsetX, offsetY } = calculateOffset(
+      buttonRef.current as HTMLButtonElement,
+      event
+    );
 
-    console.log(offsetX, offsetY);
+    animateBubble(offsetX, offsetY);
 
-    animateButton(offsetX, offsetY);
-
-    onClick?.(e);
+    onClick?.(event);
   }
 
   return (

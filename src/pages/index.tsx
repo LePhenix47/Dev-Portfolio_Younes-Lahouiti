@@ -11,7 +11,6 @@ import { socialAccountVariables } from "@utilities/variables/common/home/social-
 
 //Components
 import {
-  Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
@@ -27,6 +26,7 @@ import { JPG_URLS } from "@assets/index.assets";
 import Icons from "@components/shared/icons/Icons";
 import {
   addClass,
+  calculateOffset,
   removeClass,
   setStyleProperty,
 } from "@utilities/helpers/dom.helpers";
@@ -73,6 +73,8 @@ export default function Home(): JSX.Element {
 
     const offsetY: number =
       ((e.pageY - (blobY + centerBlobY)) / centerBlobY) * MAX_ROTATION;
+
+    // const {} = calculateOffset(e, blobDiv, true);
 
     setStyleProperty("--_rotate-y", offsetX + "deg", blobDiv);
     setStyleProperty("--_rotate-x", -1 * offsetY + "deg", blobDiv);

@@ -443,3 +443,43 @@ export function getSelectMultipleOptions(
 
   return selectedOptionsArray;
 }
+
+/**
+ * Calculates the offset of a mouse event relative to an HTML element.
+ * The offset is calculated either from the top-left corner of the element or from its center,
+ * depending on the value of the `calculateFromCenter` parameter.
+ *
+ * @param element - The HTML element to calculate the offset for.
+ * @param event - The mouse event that triggered the calculation.
+ * @param calculateFromCenter - Determines whether the offset should be calculated from the center of the element. Default is `false`.
+ * @returns An object with the offsetX and offsetY values, rounded to the nearest integer.
+ */
+export function calculateOffset(
+  element: HTMLElement,
+  event: React.MouseEvent<HTMLElement, MouseEvent>,
+  calculateFromCenter: boolean = false
+): { offsetX: number; offsetY: number } {
+  const elementRect: DOMRect = element.getBoundingClientRect();
+
+  const {
+    x: elementX,
+    y: elementY,
+    width: elementWidth,
+    height: elementHeight,
+  } = elementRect;
+
+  const centerOffset = (cursorOffset: number, size: number): number => {
+    const centerElement = size / 2;
+    return (cursorOffset - (elementX + centerElement)) / centerElement;
+  };
+
+  const offsetX: number = calculateFromCenter
+    ? centerOffset(event.pageX, elementWidth)
+    : event.pageX - elementX;
+
+  const offsetY: number = calculateFromCenter
+    ? centerOffset(event.pageY, elementHeight)
+    : event.pageY - elementY;
+
+  return { offsetX: Math.round(offsetX), offsetY: Math.round(offsetY) };
+}

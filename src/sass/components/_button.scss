@@ -9,13 +9,14 @@
             display: inline-block;
         }
 
-        opacity: 80%;
+        --_mouse-x: 0px;
+        --_mouse-y: 0px;
+
+        opacity: 5%;
 
         animation: fade-in 500ms ease-in-out forwards reverse,
         scale-up 500ms ease-in-out forwards normal;
 
-        --_mouse-x: 0px;
-        --_mouse-y: 0px;
         position: absolute;
 
         aspect-ratio: 1/1;
@@ -28,5 +29,7 @@
 
         top: var(--_mouse-y);
         left: var(--_mouse-x);
+
+        pointer-events: none;
     }
 }
