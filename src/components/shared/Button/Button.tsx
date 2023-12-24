@@ -121,7 +121,7 @@ function Button(
   ): void {
     const { offsetX, offsetY } = calculateOffset(
       buttonRef.current as HTMLButtonElement,
-      event
+      event.nativeEvent
     );
 
     animateBubble(offsetX, offsetY);

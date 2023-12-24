@@ -15,11 +15,6 @@ function Bubble({ mouseX, mouseY, onAnimationEnd }: BubbleProps) {
   const bubbleRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    console.log(
-      "%cRendered bubble!",
-      "background: green; padding: 10px; font-size: 16px"
-    );
-
     const bubbleSpanElement: HTMLSpanElement | null = bubbleRef.current;
 
     if (!bubbleSpanElement) {

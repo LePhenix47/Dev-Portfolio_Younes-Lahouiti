@@ -296,9 +296,11 @@
 
         transform: rotateX(var(--_rotate-x)) rotateY(var(--_rotate-y));
 
-
         &.home-page__blob--mouse-leave {
             transition: transform 350ms ease-in-out;
+
+            --_rotate-x: 0deg !important;
+            --_rotate-y: 0deg !important;
         }
 
         @include tablet-only {

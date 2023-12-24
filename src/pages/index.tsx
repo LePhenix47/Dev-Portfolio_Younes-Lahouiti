@@ -53,39 +53,30 @@ export default function Home(): JSX.Element {
     const blobDiv = blobDivRef.current as HTMLDivElement;
     removeClass(blobDiv, "home-page__blob--mouse-leave");
 
-    const blobDomRect: DOMRect = blobDiv.getBoundingClientRect();
-
-    const {
-      x: blobX,
-      y: blobY,
-      width: blobWidth,
-      height: blobHeight,
-    } = blobDomRect;
-
-    const centerBlobX: number = blobWidth / 2;
-    const centerBlobY: number = blobHeight / 2;
-
     // Max rotation allowed in degrees
     const MAX_ROTATION: number = 45;
 
-    const offsetX: number =
-      ((e.pageX - (blobX + centerBlobX)) / centerBlobX) * MAX_ROTATION;
+    const { offsetX: offsetXPercentage, offsetY: offsetYPercentage } =
+      calculateOffset(blobDiv, e.nativeEvent, {
+        calculateFromCenter: true,
+        toPercentage: true,
+      });
 
-    const offsetY: number =
-      ((e.pageY - (blobY + centerBlobY)) / centerBlobY) * MAX_ROTATION;
-
-    // const {} = calculateOffset(e, blobDiv, true);
-
-    setStyleProperty("--_rotate-y", offsetX + "deg", blobDiv);
-    setStyleProperty("--_rotate-x", -1 * offsetY + "deg", blobDiv);
+    setStyleProperty(
+      "--_rotate-y",
+      `${offsetXPercentage * MAX_ROTATION}deg`,
+      blobDiv
+    );
+    setStyleProperty(
+      "--_rotate-x",
+      `${-1 * (offsetYPercentage * MAX_ROTATION)}deg`,
+      blobDiv
+    );
   }
 
   function resetBlob() {
     const blobDiv = blobDivRef.current as HTMLDivElement;
     addClass(blobDiv, "home-page__blob--mouse-leave");
-
-    setStyleProperty("--_rotate-y", 0, blobDiv);
-    setStyleProperty("--_rotate-x", 0, blobDiv);
   }
 
   return (

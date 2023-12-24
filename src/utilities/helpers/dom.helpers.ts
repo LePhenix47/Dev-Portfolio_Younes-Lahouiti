@@ -1,3 +1,4 @@
+import { roundToFloat } from "./numbers.helpers";
 import { getPrototypeOf } from "./objects.helpers";
 /**
  * Simpler version of `document.getElementsByClassName()`
@@ -449,16 +450,23 @@ export function getSelectMultipleOptions(
  * The offset is calculated either from the top-left corner of the element or from its center,
  * depending on the value of the `calculateFromCenter` parameter.
  *
- * @param element - The HTML element to calculate the offset for.
- * @param event - The mouse event that triggered the calculation.
- * @param calculateFromCenter - Determines whether the offset should be calculated from the center of the element. Default is `false`.
- * @returns An object with the offsetX and offsetY values, rounded to the nearest integer.
+ * @param {HTMLElement} element - The HTML element to calculate the offset for.
+ * @param {MouseEvent} event - The mouse event that triggered the calculation.
+ * @param {Object} options - Additional options for the calculation.
+ * @param {boolean} options.calculateFromCenter - Determines whether the offset should be calculated from the center of the element. Default is `false`.
+ * @param {boolean} options.toPercentage - Determines whether the offset values should be converted to percentages. Default is `false`.
+ * @returns {{ offsetX: number; offsetY: number }} An object with the offsetX and offsetY values.
  */
 export function calculateOffset(
   element: HTMLElement,
-  event: React.MouseEvent<HTMLElement, MouseEvent>,
-  calculateFromCenter: boolean = false
+  event: MouseEvent,
+  options?: {
+    calculateFromCenter: boolean;
+    toPercentage: boolean;
+  }
 ): { offsetX: number; offsetY: number } {
+  const { toPercentage, calculateFromCenter } = options || {};
+
   const elementRect: DOMRect = element.getBoundingClientRect();
 
   const {
@@ -468,18 +476,49 @@ export function calculateOffset(
     height: elementHeight,
   } = elementRect;
 
-  const centerOffset = (cursorOffset: number, size: number): number => {
-    const centerElement = size / 2;
-    return (cursorOffset - (elementX + centerElement)) / centerElement;
+  /**
+   * Calculates the offset from the center of the element.
+   *
+   * @param {number} cursorAxisCoord - The coordinate of the cursor on the axis (e.g., pageX or pageY).
+   * @param {number} elementAxisCoord - The coordinate of the element on the axis (e.g., elementX or elementY).
+   * @param {number} elementSize - The size of the element on the axis (e.g., elementWidth or elementHeight).
+   * @returns {number} The calculated offset.
+   */
+  const centerOffset = (
+    cursorAxisCoord: number,
+    elementAxisCoord: number,
+    elementSize: number
+  ): number => {
+    const centerElement: number = elementSize / 2;
+    const offset: number = cursorAxisCoord - (elementAxisCoord + centerElement);
+    return toPercentage ? offset / centerElement : offset;
+  };
+
+  /**
+   * Calculates the normal offset from the top-left corner of the element.
+   *
+   * @param {number} cursorAxisCoord - The coordinate of the cursor on the axis (e.g., pageX or pageY).
+   * @param {number} elementAxisCoord - The coordinate of the element on the axis (e.g., elementX or elementY).
+   * @returns {number} The calculated offset.
+   */
+  const normalOffset = (
+    cursorAxisCoord: number,
+    elementAxisCoord: number
+  ): number => {
+    const offset: number = cursorAxisCoord - elementAxisCoord;
+    return toPercentage ? offset / elementAxisCoord : offset;
   };
 
   const offsetX: number = calculateFromCenter
-    ? centerOffset(event.pageX, elementWidth)
-    : event.pageX - elementX;
+    ? centerOffset(event.pageX, elementX, elementWidth)
+    : normalOffset(event.pageX, elementX);
 
   const offsetY: number = calculateFromCenter
-    ? centerOffset(event.pageY, elementHeight)
-    : event.pageY - elementY;
+    ? centerOffset(event.pageY, elementY, elementHeight)
+    : normalOffset(event.pageY, elementY);
 
-  return { offsetX: Math.round(offsetX), offsetY: Math.round(offsetY) };
+  return {
+    offsetX,
+    offsetY,
+  };
 }
