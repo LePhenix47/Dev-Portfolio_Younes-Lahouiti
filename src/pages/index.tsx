@@ -11,6 +11,7 @@ import { socialAccountVariables } from "@utilities/variables/common/home/social-
 
 //Components
 import {
+  Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
@@ -145,7 +146,6 @@ export default function Home(): JSX.Element {
               I craft <strong>captivating websites and applications</strong>.
               Let&apos;s build something amazing together!
             </p>
-
             <Link href="/contact" className="link-button">
               Hit me up!
               <Icons.PaperPlane width={24} height={24} fill={"currentColor"} />

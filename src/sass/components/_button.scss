@@ -1,0 +1,32 @@
+@use "../utils/" as *;
+
+.button {
+    position: relative;
+    overflow: hidden;
+
+    &__bubble {
+        &:empty {
+            display: inline-block;
+        }
+
+        opacity: 80%;
+
+        animation: fade-in 500ms ease-in-out forwards reverse,
+        scale-up 500ms ease-in-out forwards normal;
+
+        --_mouse-x: 0px;
+        --_mouse-y: 0px;
+        position: absolute;
+
+        aspect-ratio: 1/1;
+        height: 50px;
+        translate: -50% -50%;
+
+        border-radius: 50%;
+
+        background-color: var(--bg-primary);
+
+        top: var(--_mouse-y);
+        left: var(--_mouse-x);
+    }
+}

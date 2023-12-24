@@ -1,6 +1,6 @@
 @use "../utils/" as *;
 
-.active {}
+// .active {}
 
 //Simple classes to show or hide elements
 .hide {
@@ -14,81 +14,73 @@
 //Animation classes
 .fade {
     &-in {
-        -webkit-animation-name: fade-in;
         animation-name: fade-in;
-        -webkit-animation-duration: 250ms;
         animation-duration: 250ms;
-        -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
-        -webkit-animation-fill-mode: forwards;
         animation-fill-mode: forwards;
-        -webkit-animation-direction: normal;
         animation-direction: normal;
 
         &::-webkit-backdrop {
-            -webkit-animation-name: fade-in;
             animation-name: fade-in;
-            -webkit-animation-duration: 250ms;
             animation-duration: 250ms;
-            -webkit-animation-timing-function: ease-in-out;
             animation-timing-function: ease-in-out;
-            -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-            -webkit-animation-direction: normal;
             animation-direction: normal;
 
         }
 
         &::backdrop {
-            -webkit-animation-name: fade-in;
             animation-name: fade-in;
-            -webkit-animation-duration: 250ms;
             animation-duration: 250ms;
-            -webkit-animation-timing-function: ease-in-out;
             animation-timing-function: ease-in-out;
-            -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-            -webkit-animation-direction: normal;
             animation-direction: normal;
 
         }
     }
 
     &-out {
-        -webkit-animation-name: fade-in;
+        //We play it in reverse
+        animation-direction: reverse;
         animation-name: fade-in;
-        -webkit-animation-duration: 250ms;
         animation-duration: 250ms;
-        -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
-        -webkit-animation-fill-mode: forwards;
         animation-fill-mode: forwards;
-        animation-direction: reverse; //We play it in reverse
 
         &::-webkit-backdrop {
-            -webkit-animation-name: fade-in;
             animation-name: fade-in;
-            -webkit-animation-duration: 250ms;
             animation-duration: 250ms;
-            -webkit-animation-timing-function: ease-in-out;
             animation-timing-function: ease-in-out;
-            -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-            animation-direction: reverse; //We play it in reverse
-
+            animation-direction: reverse;
         }
 
         &::backdrop {
-            -webkit-animation-name: fade-in;
             animation-name: fade-in;
-            -webkit-animation-duration: 250ms;
             animation-duration: 250ms;
-            -webkit-animation-timing-function: ease-in-out;
             animation-timing-function: ease-in-out;
-            -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-            animation-direction: reverse; //We play it in reverse
-
+            animation-direction: reverse;
         }
+    }
+}
+
+.scale {
+
+    &-up {
+        animation-name: scale-up;
+        animation-duration: 250ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+    }
+
+    &-down {
+        //We play it in reverse
+        animation-name: scale-up;
+        animation-duration: 250ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
     }
 }

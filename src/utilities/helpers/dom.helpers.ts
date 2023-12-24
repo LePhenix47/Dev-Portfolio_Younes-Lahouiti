@@ -240,7 +240,9 @@ export function getSibling(
  * @param {HTMLElement | null} element - The HTML element to check.
  * @throws {Error} - Throws an error with the specified error message if the element is null.
  */
-export function checkElementNotNull(element: HTMLElement | null): void {
+export function checkElementNotNull<T extends HTMLElement>(
+  element: HTMLElement | null
+): void {
   const elementIsNullOrUndefined: boolean = !element;
   if (elementIsNullOrUndefined) {
     throw new TypeError(
@@ -274,12 +276,12 @@ export function getStyleProperty<T extends HTMLElement | Element>(
 
 * @returns {void}
  */
-export function setStyleProperty(
+export function setStyleProperty<T extends HTMLElement>(
   property: string,
   value: any,
-  element: HTMLElement = document.body
+  element: T
 ): void {
-  checkElementNotNull(element);
+  checkElementNotNull<T>(element);
 
   const stringifiedValue: string = value.toString();
   return element.style.setProperty(property, stringifiedValue);

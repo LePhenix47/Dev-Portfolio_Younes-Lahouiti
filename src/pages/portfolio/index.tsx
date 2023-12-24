@@ -25,6 +25,7 @@ import {
 import { projectCategories } from "@utilities/variables/common/portfolio/projects-categories.variables";
 import { projectsMadeType } from "@utilities/types/portfolio/projects.types";
 import {
+  Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
@@ -290,17 +291,17 @@ export default function Portfolio(): JSX.Element {
    */
   function handleCategoryChange(category: string): () => void {
     return () => {
-      // * When the view transition API will be available for all browsers we'll be able to use it
-      const supportsViewTransitionApi: boolean = Boolean(
-        // @ts-ignore
-        document.startViewTransition
-      );
-      if (supportsViewTransitionApi) {
-        // *Makes a nice transition whenever we click on a category (currently not supported on other browsers)
-        document
-          // @ts-ignore
-          .startViewTransition(() => {});
-      }
+      // // * When the view transition API will be available for all browsers we'll be able to use it
+      // const supportsViewTransitionApi: boolean = Boolean(
+      //   // @ts-ignore
+      //   document.startViewTransition
+      // );
+      // if (supportsViewTransitionApi) {
+      //   // *Makes a nice transition whenever we click on a category (currently not supported on other browsers)
+      //   document
+      //     // @ts-ignore
+      //     .startViewTransition(() => {});
+      // }
 
       projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
       changeCards(category);
@@ -473,25 +474,25 @@ export default function Portfolio(): JSX.Element {
             </p>
           </div>
 
-          <div className="portfolio-page__categories">
+          <nav className="portfolio-page__categories">
             {/* Categories   */}
             {projectCategories.map((category: string, index: number) => {
               const lowerCaseCategory = formatStringCase(category, "lowercase");
               return (
-                <button
-                  key={`${category}`}
+                <Button
+                  key={index}
                   onClick={handleCategoryChange(lowerCaseCategory)}
                   type="button"
-                  className={`portfolio-page__filter-button ${
+                  arrayOfClasses={`portfolio-page__filter-button ${
                     projectCardsState.category === lowerCaseCategory &&
                     "portfolio-page__filter-button--active"
-                  }  portfolio-page__filter-button-all`}
+                  }  portfolio-page__filter-button-all`.split(" ")}
                 >
                   {category}
-                </button>
+                </Button>
               );
             })}
-          </div>
+          </nav>
         </div>
 
         <div className="portfolio-page__project-cards-container">

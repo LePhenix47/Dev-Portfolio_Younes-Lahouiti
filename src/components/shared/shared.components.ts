@@ -1,9 +1,11 @@
 import BufferLoader from "./BufferLoader/BufferLoader";
 
-import CanvasComponent from "./CanvasComponent/CanvasComponent";
+import Button from "./Button/Button";
 
-import ModalWindow from "./ModalWindow/ModalWindow";
+import CanvasComponent from "./CanvasComponent/CanvasComponent";
 
 import MetaData from "./MetaData/MetaData";
 
-export { BufferLoader, CanvasComponent, ModalWindow, MetaData };
+import ModalWindow from "./ModalWindow/ModalWindow";
+
+export { BufferLoader, Button, CanvasComponent, MetaData, ModalWindow };

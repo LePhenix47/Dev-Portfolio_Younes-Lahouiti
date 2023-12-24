@@ -31,6 +31,17 @@
     }
 }
 
+//Animation for the page transitions
+@keyframes scale-up {
+    from {
+        scale: 0;
+    }
+
+    to {
+        scale: 5;
+    }
+}
+
 //Animation for the hand emoji
 @keyframes wave-hand {
 
