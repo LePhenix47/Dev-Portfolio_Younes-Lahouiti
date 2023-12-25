@@ -311,6 +311,7 @@
         text-align: center;
         display: grid;
         grid-auto-flow: dense;
+        grid-auto-rows: auto 130px;
         gap: 10px;
 
         grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
@@ -327,43 +328,41 @@
     }
 
     &__project-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
 
+        align-items: start;
+        justify-items: start;
+        grid-template-rows: subgrid;
 
-        min-height: 435px;
-        min-width: 60%;
+        grid-row: span 2;
 
-        // display: grid;
         overflow: hidden;
 
         background-color: var(--semi-transparent-bg);
 
-        @include mobile-only {
-            @include card-styling;
-        }
-
         &-image-container {
-            width: 90%;
-            margin: auto;
-            padding-block: var(--_padding-inside-card);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         &-image {
             @include fit-image;
-            width: 100%;
-            height: 205px;
+            height: 190px;
 
-            border-radius: 10px;
+            border-radius: inherit;
         }
 
         &-text {
             text-align: left;
-
-            padding: 50px var(--_padding-inside-card);
             width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            padding: 15px;
         }
 
         &-title {}
@@ -373,10 +372,9 @@
         }
 
         &-link {
+            margin-top: 15px;
             display: inline-flex;
             gap: 7px;
-
-            margin-top: 25px;
 
 
             transition: color 350ms ease-in-out;
