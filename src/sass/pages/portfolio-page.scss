@@ -308,26 +308,12 @@
 
 
     &__project-cards-container {
+        text-align: center;
+        display: grid;
+        grid-auto-flow: dense;
+        gap: 10px;
 
-        &:has(>:not(div)) {
-            @include grid(1, 1, 25px)
-        }
-
-
-        @include grid(auto, 3, 15px);
-        grid-auto-rows: minmax(100px, 1fr);
-
-        @include laptop-only {
-            @include grid(auto, 2, 15px)
-        }
-
-        @include tablet-only {
-            @include grid(auto, 2, 15px)
-        }
-
-        @include mobile-only {
-            @include grid(auto, 1, 15px)
-        }
+        grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
 
         width: 85%;
         margin: 50px auto;
@@ -340,10 +326,6 @@
         }
     }
 
-    &__project-cards-container {
-        text-align: center;
-    }
-
     &__project-card {
         display: flex;
         flex-direction: column;
@@ -354,6 +336,9 @@
         min-height: 435px;
         min-width: 60%;
 
+        // display: grid;
+        overflow: hidden;
+
         background-color: var(--semi-transparent-bg);
 
         @include mobile-only {
@@ -362,7 +347,7 @@
 
         &-image-container {
             width: 90%;
-            // margin: auto
+            margin: auto;
             padding-block: var(--_padding-inside-card);
         }
 
