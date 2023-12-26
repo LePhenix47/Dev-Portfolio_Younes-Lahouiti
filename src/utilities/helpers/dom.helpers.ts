@@ -461,11 +461,12 @@ export function calculateOffset(
   element: HTMLElement,
   event: MouseEvent,
   options?: {
-    calculateFromCenter: boolean;
-    toPercentage: boolean;
+    calculateFromCenter?: boolean;
+    toPercentage?: boolean;
+    withClientCoords?: boolean;
   }
 ): { offsetX: number; offsetY: number } {
-  const { toPercentage, calculateFromCenter } = options || {};
+  const { toPercentage, calculateFromCenter, withClientCoords } = options || {};
 
   const elementRect: DOMRect = element.getBoundingClientRect();
 
@@ -475,6 +476,13 @@ export function calculateOffset(
     width: elementWidth,
     height: elementHeight,
   } = elementRect;
+
+  const cursorXAxisCoord: number = withClientCoords
+    ? event.clientX
+    : event.pageX;
+  const cursorYAxisCoord: number = withClientCoords
+    ? event.clientY
+    : event.pageY;
 
   /**
    * Calculates the offset from the center of the element.
@@ -510,12 +518,12 @@ export function calculateOffset(
   };
 
   const offsetX: number = calculateFromCenter
-    ? centerOffset(event.pageX, elementX, elementWidth)
-    : normalOffset(event.pageX, elementX);
+    ? centerOffset(cursorXAxisCoord, elementX, elementWidth)
+    : normalOffset(cursorXAxisCoord, elementX);
 
   const offsetY: number = calculateFromCenter
-    ? centerOffset(event.pageY, elementY, elementHeight)
-    : normalOffset(event.pageY, elementY);
+    ? centerOffset(cursorYAxisCoord, elementY, elementHeight)
+    : normalOffset(cursorYAxisCoord, elementY);
 
   return {
     offsetX,
