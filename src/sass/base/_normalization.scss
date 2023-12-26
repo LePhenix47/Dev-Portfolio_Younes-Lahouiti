@@ -42,6 +42,10 @@ html {
 
 html:has(:modal) {
     overflow: hidden;
+
+    & .header {
+        opacity: 0;
+    }
 }
 
 body {

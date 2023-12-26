@@ -35,7 +35,7 @@ export default function ModalWindow({
 
   const modalWindow: HTMLDialogElement = dialogRef.current as HTMLDialogElement;
 
-  const TRANSITION_DURATION: number = 350;
+  const TRANSITION_DURATION_IN_MS: number = 350;
 
   /**
    * Boolean to check if the window opened only once
@@ -54,7 +54,7 @@ export default function ModalWindow({
       setIsOpen(false);
 
       removeClass(modalWindow, "fade-out");
-    }, TRANSITION_DURATION);
+    }, TRANSITION_DURATION_IN_MS);
   }
 
   /**
@@ -82,7 +82,7 @@ export default function ModalWindow({
   }
 
   /**
-   * Structural condition to open the window
+   * Structural condition to open the window even on Strict mode
    */
   if (isOpen && openedOnlyOnce) {
     modalWindow.showModal();
@@ -91,7 +91,7 @@ export default function ModalWindow({
 
     setTimeout(() => {
       removeClass(modalWindow, "fade-in");
-    }, TRANSITION_DURATION);
+    }, TRANSITION_DURATION_IN_MS);
   }
   return (
     <dialog
