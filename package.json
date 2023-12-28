@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "git:commit": "git add . && git status && npx cz",
-    "git:push": "(git diff --quiet || (echo 'You have uncommitted changes. Please commit your changes first.' && exit 1)) && git push"
+    "git:push": "(git diff --quiet || (echo 'You have uncommitted changes. Please commit your changes first.' && exit 1)) && git push",
+    "git:push-d": "npm run git:commit && npm run git:push"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.23.3",
