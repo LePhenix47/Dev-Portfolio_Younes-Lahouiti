@@ -1,5 +1,6 @@
 import { LineEffect } from "@utilities/classes/line-effect.class";
 import { warn } from "@utilities/helpers/console.helpers";
+import { isMobileViewport } from "@utilities/helpers/window.helpers";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
@@ -126,6 +127,8 @@ export default function CanvasComponent({
   }
 
   function cancelAnimation() {
+    console.log("cancel");
+
     const id: number = animationIdRef.current;
     cancelAnimationFrame(id);
   }
@@ -181,19 +184,23 @@ export default function CanvasComponent({
    * @returns {void}
    */
   function animateCanvas(): void {
-    const hasNotFoundCanvas = !canvasRef.current;
-    if (hasNotFoundCanvas) {
-      return;
+    try {
+      const hasNotFoundCanvas = !canvasRef.current;
+      if (hasNotFoundCanvas) {
+        return;
+      }
+
+      //We clear the canvas from old paint
+      clearCanvas(canvasRef.current);
+
+      //We animate the particles
+      startParticlesEffect();
+
+      //We loop the animation
+      animationIdRef.current = requestAnimationFrame(animateCanvas);
+    } catch (error) {
+      cancelAnimation();
     }
-
-    //We clear the canvas from old paint
-    clearCanvas(canvasRef.current);
-
-    //We animate the particles
-    startParticlesEffect();
-
-    //We loop the animation
-    animationIdRef.current = requestAnimationFrame(animateCanvas);
   }
 
   useEffect(() => {

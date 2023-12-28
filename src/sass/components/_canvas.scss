@@ -10,9 +10,5 @@
 
     opacity: 50%;
 
-    @include mobile-only {
-        display: none;
-
-        pointer-events: none;
-    }
+    pointer-events: none;
 }
