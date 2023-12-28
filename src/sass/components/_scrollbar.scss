@@ -1,39 +1,63 @@
 @use "../utils/" as *;
 
-* {
-    &::-webkit-scrollbar {
-        background-color: var(--scrollbar-track-bg-color);
-        border-radius: 100vmax;
-        margin-block: 15px;
+@layer scrollbar {
+    * {
+        --_scrollbar-track-bg: transparent;
 
-        width: 9px;
-    }
+        --_scrollbar-bg: var(--scrollbar-track-bg-color);
+        --_scrollbar-border-radius: 100vmax;
+        --_scrollbar-width: 10px;
+        --_scrollbar-moz-width: thin;
+        --_scrollbar-margin-block: 0px;
 
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--scrollbar-thumb-bg-color);
+        --_scrollbar-thumb-border: 3px solid var(--bg-primary);
 
-        border: 2px solid var(--scrollbar-track-bg-color);
-        border-radius: 100vmax;
+        --_scrollbar-thumb-bg: var(--scrollbar-thumb-bg-color);
+        --_scrollbar-thumb-bg-hover: var(--scrollbar-thumb-bg-color);
+        --_scrollbar-thumb-bg-active: var(--scrollbar-thumb-bg-color);
 
-        &:hover {
-            background-color: var(--scrollbar-thumb-bg-color--hover);
+        &::-webkit-scrollbar {
+            background-color: var(--_scrollbar-bg);
+            border-radius: var(--_scrollbar-border-radius);
+
+            width: var(--_scrollbar-width);
+            margin-block: var(--_scrollbar-margin-block);
         }
 
-        &:active {
-            background-color: var(--scrollbar-thumb-bg-color--active);
+        &::-webkit-scrollbar-track {
+            margin-block: var(--_scrollbar-margin-block);
+
+            background-color: var(--_scrollbar-track-bg);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--_scrollbar-thumb-bg);
+            border: var(--_scrollbar-thumb-border);
+            border-radius: var(--_scrollbar-border-radius);
+
+            &:hover {
+                background-color: var(--_scrollbar-thumb-bg-hover);
+            }
+
+            &:active {
+                background-color: var(--_scrollbar-thumb-bg-active);
+            }
+
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+
+            border-top: none;
+            border-left: none;
         }
     }
 
-}
-
-
-//Added this support for the scrollbar since the webkit pseudo::element doesn't work on Mozilla Firefox
-// The @supports rule in CSS is used to detect if a particular CSS property or value is supported by the browser
-//If it isn't supported, then it uses the fallback proprties added inside
-
-@supports (scrollbar-color: black white) {
-    :root {
-        scrollbar-width: thin;
-        scrollbar-color: var(--scrollbar-thumb-bg-color) var(--scrollbar-track-bg-color); // BGC for the scrollbar thumb - BGC for the scrollbar track
+    // FIX: Move the Firefox scrollbar styling inside this selector
+    @supports (scrollbar-color: black white) {
+        * {
+            scrollbar-width: var(--_scrollbar-moz-width);
+            scrollbar-color: var(--_scrollbar-thumb-bg) var(--_scrollbar-bg);
+        }
     }
 }

@@ -1,6 +1,9 @@
 @use "../utils/" as *;
 
 .modal-window {
+    --_scrollbar-margin-block: 30px;
+    --_scrollbar-bg: transparent;
+
     background-color: var(--bg-secondary);
     border: 2px solid currentColor;
 
