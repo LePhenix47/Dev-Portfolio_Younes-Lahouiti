@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 
 //Components
 import {
+  Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
@@ -74,28 +75,29 @@ export default function Skills(): JSX.Element {
           My path of growth and development
         </h3>
         <div className="skills-page__qualifications-buttons">
-          <button
-            type="button"
-            className={`skills-page__qualifications-button ${
+          <Button
+            arrayOfClasses={`skills-page__qualifications-button ${
               !isRotated && "skills-page__qualifications-button--active"
-            }`}
+            }`.split(" ")}
+            type="button"
             onClick={() => {
               setIsRotated(false);
             }}
           >
             Experience
-          </button>
-          <button
-            type="button"
-            className={`skills-page__qualifications-button ${
+          </Button>
+
+          <Button
+            arrayOfClasses={`skills-page__qualifications-button ${
               isRotated && "skills-page__qualifications-button--active"
-            }`}
+            }`.split(" ")}
+            type="button"
             onClick={() => {
               setIsRotated(true);
             }}
           >
             Education
-          </button>
+          </Button>
         </div>
         <div className="skills-page__qualifications-container">
           <div className={`skills-page__qualifications-content`}>
