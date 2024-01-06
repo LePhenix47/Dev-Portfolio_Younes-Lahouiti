@@ -1,3 +1,5 @@
+@use "../utils/" as *;
+
 @media (prefers-color-scheme: dark) {
 
     //CSS
@@ -37,6 +39,10 @@
 
         .canvas {
             filter: blur(5px) invert(0%);
+
+            @include mobile-only {
+                filter: blur(10px) invert(0%);
+            }
         }
 
         .svg-icon {

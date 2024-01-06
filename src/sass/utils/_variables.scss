@@ -19,6 +19,13 @@
 
     /* Pixel variables */
     --timeline-space: 100px;
+
+}
+
+@property --mask-image-rotation {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 180deg;
 }
 
 ::backdrop {

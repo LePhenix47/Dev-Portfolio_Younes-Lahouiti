@@ -37,12 +37,16 @@
   }
 
   &__image {
+
+
     object-position: center;
 
 
     border-radius: 25px;
 
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 100%) 70%, rgba(0, 0, 0, 0%));
+    mask-image: linear-gradient(var(--mask-image-rotation), black 70%, transparent);
+
+    transition: --mask-image-rotation 500ms ease-in-out;
 
     filter: url(#pixel-noise);
 
@@ -85,6 +89,10 @@
       width: 75%;
 
       scale: 100%
+    }
+
+    &:hover {
+      --mask-image-rotation: 360deg;
     }
   }
 

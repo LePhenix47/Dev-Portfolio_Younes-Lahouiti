@@ -2,6 +2,6 @@
 
 .page-layout {
     @include mobile-only {
-        min-height: 75vh;
+        min-height: 75svh;
     }
 }

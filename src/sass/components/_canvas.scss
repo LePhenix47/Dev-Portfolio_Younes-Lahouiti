@@ -11,4 +11,8 @@
     opacity: 50%;
 
     pointer-events: none;
+
+    @include mobile-only {
+        filter: blur(10px) invert(100%);
+    }
 }

@@ -2,7 +2,7 @@
 
 .home-page {
     @include center-flex;
-    min-height: 74vh;
+    min-height: 74svh;
 
     @include desktop-small-only {
         margin-block: 30px;

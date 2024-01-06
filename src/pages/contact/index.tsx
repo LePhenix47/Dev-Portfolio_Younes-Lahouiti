@@ -35,6 +35,7 @@ import {
 } from "@utilities/helpers/string.helpers";
 import { error, log } from "@utilities/helpers/console.helpers";
 import { getRealStringLength } from "@utilities/helpers/internalization.helpers";
+import { useFetchV2 } from "@utilities/hooks/useFetchV2.hook";
 
 /**
  * Contact page: `/contact`

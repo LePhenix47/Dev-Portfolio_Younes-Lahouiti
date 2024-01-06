@@ -1,4 +1,14 @@
 //Media queries
+/*
+ * These properties will be available in the future
+
+ @custom-media --mobile-viewport (width <=768px);
+ @custom-media --tablet-viewport (768px <=width <=992px);
+ @custom-media --laptop-viewport (992px <=width <=1150px);
+ @custom-media --desktop-viewport (width <=768px);
+*/
+
+
 @mixin mobile-only {
     @media screen and (width <=768px) {
         @content;

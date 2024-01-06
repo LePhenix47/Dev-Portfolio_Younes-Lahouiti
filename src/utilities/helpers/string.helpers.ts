@@ -162,3 +162,67 @@ export function invertDayAndMonth(dateString: string): string {
 
   return `${month}/${day}/${year}`;
 }
+
+/**
+ * Checks if a given URL is valid.
+ *
+ * @param {string} url - The URL to be checked for validity.
+ * @returns {boolean} A boolean value indicating whether the provided URL is valid or not.
+ *
+ * @example
+ * let url = "a";
+ * console.log(isUrlValid(url)); // Output: false
+ *
+ * url = "https://www.example.com";
+ * console.log(isUrlValid(url)); // Output: true
+ */
+export function isUrlValid(url: string): boolean {
+  try {
+    const newUrl = new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ * Replacer function used as a callback for the `JSON.stringify` method to customize the serialization of certain types of objects,
+ * specifically for the Maps and Sets
+ *
+ * @param key - The key of the object being serialized.
+ * @param value - The value of the object being serialized.
+ * @returns The serialized representation of the value object with customized serialization for Map and Set objects.
+ * @see {@link https://www.builder.io/blog/maps Steve's article on Maps}
+ */
+export function replacer(key: string, value: any): any {
+  if (value instanceof Map) {
+    return { __type: "Map", value: Object.fromEntries(value) };
+  }
+  if (value instanceof Set) {
+    return { __type: "Set", value: Array.from(value) };
+  }
+  return value;
+}
+
+/**
+ * Replacer function used as a callback for the `JSON.parse` method to customize the serialization of certain types of objects,
+ * specifically for the Maps and Sets
+ *
+ * @param key - The key of the object being serialized.
+ * @param value - The value of the object being serialized.
+ * @returns The serialized representation of the value object with customized serialization for Map and Set objects.
+ * @see {@link https://www.builder.io/blog/maps Steve's article on Maps}
+ */
+export function reviver(key: string, value: any): any {
+  switch (value?.__type) {
+    case "Set": {
+      return new Set(value?.value);
+    }
+    case "Map": {
+      return new Map(value?.value);
+    }
+
+    default:
+      return value;
+  }
+}
