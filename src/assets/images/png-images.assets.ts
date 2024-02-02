@@ -18,6 +18,7 @@ import P14_JSReact from "@public/png/P14-JS_React-image.png";
 
 import P2_FSJAngular from "@public/png/P2-FS_Java-Angular-image.png";
 import P3_FSJAngular from "@public/png/P3-FS_Java-Angular-image.png";
+import P5_FSJAngular from "@public/png/P5-FS_Java-Angular-image.png";
 
 // * Personal
 import PASSWORD_GENERATOR from "@public/png/Password generator.png";
@@ -82,6 +83,7 @@ const OC_PROJECTS = {
   P14_JSReact,
   P2_FSJAngular,
   P3_FSJAngular,
+  P5_FSJAngular,
 };
 
 const PERSONAL_PROJECTS = {

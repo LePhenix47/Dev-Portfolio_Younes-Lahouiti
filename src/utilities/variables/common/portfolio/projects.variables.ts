@@ -120,6 +120,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("11/05/2023"),
   },
+  {
+    title: "[Java-Angular] P5: Numdev",
+    image: PNG_IMAGES.P5_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_P5_30122023",
+    type: "oc",
+    date: new Date("12/30/2023"),
+  },
 ];
 
 /**

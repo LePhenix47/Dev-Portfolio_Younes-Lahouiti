@@ -84,17 +84,59 @@ The contact page includes a form to get in touch with me, as well as links to my
 ### 3.1 Folder structure
 
 ```bash
-# Public folder
-public/  
-├─ svg/
-├─ png/
-├─ jpg/
- # Source folder
-src/
-├─ components/ # Folder for React components of the app
-├─ pages/ # Folder for the pages of the app
-├─ react-utils/ # Utilities such as function and services
-├─ sass/ # Folder for the styling of the app
+Portfolio/
+┣ public/
+┃ ┣ jpg/
+┃ ┣ mockups/
+┃ ┣ pdf/
+┃ ┣ png/
+┃ ┣ svg/
+┃ ┗ favicon.ico
+┣ src/
+┃ ┣ assets/
+┃ ┃ ┣ icons/
+┃ ┃ ┣ images/
+┃ ┃ ┣ urls/
+┃ ┃ ┗ index.assets.ts
+┃ ┣ components/
+┃ ┃ ┣ common/
+┃ ┃ ┗ shared/
+┃ ┣ pages/
+┃ ┃ ┣ about/
+┃ ┃ ┣ contact/
+┃ ┃ ┣ portfolio/
+┃ ┃ ┣ services/
+┃ ┃ ┣ skills/
+┃ ┃ ┣ 404.tsx
+┃ ┃ ┣ 500.tsx
+┃ ┃ ┣ index.tsx
+┃ ┃ ┣ _app.tsx
+┃ ┃ ┗ _document.tsx
+┃ ┣ sass/
+┃ ┃ ┣ base/
+┃ ┃ ┣ components/
+┃ ┃ ┣ layout/
+┃ ┃ ┣ pages/
+┃ ┃ ┣ themes/
+┃ ┃ ┣ utils/
+┃ ┃ ┗ main.scss
+┃ ┗ utilities/
+┃   ┣ classes/
+┃   ┣ helpers/
+┃   ┣ hooks/
+┃   ┣ types/
+┃   ┗ variables/
+┣ .czrc
+┣ .eslintrc.json
+┣ .gitignore
+┣ commitlint.config.js
+┣ next-env.d.ts
+┣ next-jsREADME.md
+┣ next.config.js
+┣ package-lock.json
+┣ package.json
+┣ README.md
+┗ tsconfig.json
 ```
 
 ### 3.2 Naming conventions

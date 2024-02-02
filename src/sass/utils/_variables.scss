@@ -22,10 +22,10 @@
 
 }
 
-@property --mask-image-rotation {
-    syntax: "<angle>";
+@property --mask-image-offset {
+    syntax: "<percentage>";
     inherits: false;
-    initial-value: 180deg;
+    initial-value: 80%;
 }
 
 ::backdrop {

@@ -1,4 +1,4 @@
-//React
+//? React
 import {
   ChangeEvent,
   FormEvent,
@@ -8,7 +8,7 @@ import {
   useRef,
 } from "react";
 
-//Next
+//? Next
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import router from "next/router";
 
@@ -24,20 +24,24 @@ import {
 
 import { projectCategories } from "@utilities/variables/common/portfolio/projects-categories.variables";
 import { projectsMadeType } from "@utilities/types/portfolio/projects.types";
+
+//? Shared components
 import {
   Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
+import Icons from "@components/shared/icons/Icons";
 
 import {
   PAGE_METADATA,
   OPEN_GRAPH,
 } from "@utilities/variables/shared/index-shared.variables";
 
+//? Common component
 import { PortfolioProjectCard } from "@components/common/portfolio/portfolio-page.components";
-import Icons from "@components/shared/icons/Icons";
 
+//? Helpers
 import {
   formatStringCase,
   removeAccents,
@@ -46,8 +50,6 @@ import {
   formatPrecisionNumber,
   formatShortDate,
 } from "@utilities/helpers/internalization.helpers";
-
-//Components
 
 /**
  * Portfolio page: `/portfolio`
@@ -347,7 +349,7 @@ export default function Portfolio(): JSX.Element {
       newSearchParams.set(key, value);
     }
 
-    router.replace({ search: newSearchParams.toString() }, undefined, {
+    router.replace({ search: String(newSearchParams) }, undefined, {
       shallow: true,
     });
   }
@@ -388,7 +390,7 @@ export default function Portfolio(): JSX.Element {
               id="search"
               list="search-datalist"
               value={projectCardsState.query}
-              placeholder="Search for a project by their title or date"
+              placeholder="Search for a project by its title"
               className="portfolio-page__input"
               onInput={handleSearchInput}
             />
@@ -457,7 +459,7 @@ export default function Portfolio(): JSX.Element {
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
               onChange={handleSortingOrderChange}
-              value={(projectCardsState.sortBy === "asc").toString()}
+              value={String(projectCardsState.sortBy === "asc")}
             />
           </fieldset>
         </form>
