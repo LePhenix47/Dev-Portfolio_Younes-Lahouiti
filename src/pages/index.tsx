@@ -127,8 +127,8 @@ export default function Home(): JSX.Element {
               <strong>
                 <span itemProp="name">Younes Lahouiti</span>
               </strong>
-              , a passionate <strong>web developer</strong> creating beautiful
-              and functional websites.
+              , a passionate <strong>fullstack developer</strong> creating
+              beautiful and functional websites.
               <em>
                 {" "}
                 Started with Scratch and Python, coding is my love. College

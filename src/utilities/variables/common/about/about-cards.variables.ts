@@ -4,7 +4,7 @@ import { SVG } from "@assets/index.assets";
 import { aboutCardsTypes } from "@utilities/types/about/about-cards.types";
 
 /**
- * Date where I started my web developer career
+ * Date where I started my fullstack developer career
  */
 const startingDate: string = "06/28/2022";
 /**

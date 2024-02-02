@@ -3,14 +3,14 @@ import { amountOfExperience } from "@utilities/variables/common/about/about-card
 export const PAGE_METADATA = {
   home: {
     title: "Home page",
-    description: `Hello! My name is Younes LAHOUITI and I am a skilled web developer with ${amountOfExperience} years of experience in JavaScript. My passion lies in creating captivating and immersive web experiences for users, utilizing modern web technologies to build dynamic and responsive websites. I am dedicated to crafting clean, efficient, and maintainable code that optimizes performance and scalability. Outside of work, I enjoy staying active by going to the gym and playing video-games. Thank you for taking the time to visit my portfolio. I look forward to collaborating with you!`,
+    description: `Hello! My name is Younes LAHOUITI and I am a skilled fullstack developer with ${amountOfExperience} years of experience in JavaScript. My passion lies in creating captivating and immersive web experiences for users, utilizing modern web technologies to build dynamic and responsive websites. I am dedicated to crafting clean, efficient, and maintainable code that optimizes performance and scalability. Outside of work, I enjoy staying active by going to the gym and playing video-games. Thank you for taking the time to visit my portfolio. I look forward to collaborating with you!`,
     pageUri: "/",
     needsIndexation: true,
     allowRobotCrawlers: true,
   },
   about: {
     title: "About page",
-    description: `Get to know me better! I'm Younes LAHOUITI, a passionate web developer with ${amountOfExperience} years of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences.`,
+    description: `Get to know me better! I'm Younes LAHOUITI, a passionate fullstack developer with ${amountOfExperience} years of experience in JavaScript. In this page, I share my story, skills, and interests. Learn about my professional journey and discover how I can help you build engaging web experiences.`,
     pageUri: "/about",
     needsIndexation: true,
     allowRobotCrawlers: true,
@@ -18,7 +18,7 @@ export const PAGE_METADATA = {
   skills: {
     title: "Skills page",
     description:
-      "Take a closer look at my technical skills as a web developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life",
+      "Take a closer look at my technical skills as a fullstack developer. From front-end to back-end technologies, I'm proficient in a range of tools and languages that can help bring your projects to life",
     pageUri: "/skills",
     needsIndexation: true,
     allowRobotCrawlers: true,
@@ -26,7 +26,7 @@ export const PAGE_METADATA = {
   services: {
     title: "Services page",
     description:
-      "Welcome to my services page. As a skilled web developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life!",
+      "Welcome to my services page. As a skilled fullstack developer with experience in integrating mockups and conducting unit and integration tests with Jest, I offer services in website development. I specialize in building dynamic and responsive websites using modern web technologies to enhance user experience. Whether you need a website built from scratch or require debugging of an existing one, I can help. Let's work together to bring your ideas to life!",
     pageUri: "/services",
     needsIndexation: true,
     allowRobotCrawlers: true,
