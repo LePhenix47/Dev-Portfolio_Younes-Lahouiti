@@ -41,9 +41,6 @@
 <a  href="https://www.framer.com/motion/"  target="_blank"  rel="noreferrer" title="Framer Motion">
 <img src="https://seeklogo.com/images/F/framer-motion-logo-DA1E33CAA1-seeklogo.com.png" width="36" height="36" alt="Framer motion"/>
 </a>
-<a  href="https://www.emailjs.com/"  target="_blank"  rel="noreferrer" title="EmailJS">
-<img src="https://www.emailjs.com/favicon/favicon-32x32.png" width="36" height="36" alt="EmailJS"/>
-</a>
 <a  href="https://tanstack.com/"  target="_blank"  rel="noreferrer" title="TanStackQuery a.k.a React Query v4">
 <img src="https://raw.githubusercontent.com/TanStack/query/main/media/logo-light.png" width="180" height="36" alt="TanStack Query(React Query)" style="-webkit-clip-path: polygon(0 0, 26% 0, 26% 100%, 0% 100%);
 clip-path: polygon(0 0, 26% 0, 26% 100%, 0% 100%);"/>

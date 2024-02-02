@@ -115,6 +115,25 @@
     width: 100%;
   }
 
+  &__send-form-feedback {
+    color: var(--_input-message-color);
+
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+
+    border-radius: 10px;
+
+    &--positive {
+      border: var(--_input-message-bg-success) 2px solid;
+    }
+
+    &--negative {
+      border: var(--_input-message-bg-error) 2px solid;
+    }
+  }
+
+
   &__fieldset {
     margin: auto;
     width: 100%;
@@ -131,6 +150,10 @@
 
     font-size: 20px;
   }
+
+  --_input-message-color: white;
+  --_input-message-bg-success: darkgreen;
+  --_input-message-bg-error: red;
 
   &__input-label-container {
     position: relative;
@@ -154,9 +177,7 @@
     }
   }
 
-  --_input-message-color: white;
-  --_input-message-bg-success: darkgreen;
-  --_input-message-bg-error: red;
+
 
   &__input-label-message {
     font-size: 14px;

@@ -12,7 +12,7 @@ import {
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import router from "next/router";
 
-//Variables
+//? Variables
 import {
   openClassroomsProjects,
   personalProjects,

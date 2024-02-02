@@ -10,11 +10,11 @@ import { contactMethods } from "@utilities/variables/common/contact/contact-meth
 
 //Libraries
 //EmailJS
-import { EmailJSResponseStatus, send } from "@emailjs/browser";
 //TanStack Query
 import { useMutation } from "@tanstack/react-query";
 import {
   BufferLoader,
+  Button,
   CanvasComponent,
   MetaData,
 } from "@components/shared/shared.components";
@@ -33,9 +33,8 @@ import {
   formatStringCase,
   testRegExp,
 } from "@utilities/helpers/string.helpers";
-import { error, log } from "@utilities/helpers/console.helpers";
+import { log } from "@utilities/helpers/console.helpers";
 import { getRealStringLength } from "@utilities/helpers/internalization.helpers";
-import { useFetchV2 } from "@utilities/hooks/useFetchV2.hook";
 
 /**
  * Contact page: `/contact`
@@ -133,56 +132,46 @@ export default function Contact(): JSX.Element {
   }
 
   /**
-   * Function that sends an email using the EmailJS API.
+   * Sends an email with the provided form values using a Discord webhook
    *
-   * This function makes a POST API call to send an email with the project details using the EmailJS API. It sets the required parameters for the API call, such as the service ID, template ID, and public key.
-   *
-   * @param {Object} formValue - An object containing the form field values (firstName, lastName, email, projectIdea).
-   * @returns {Promise<void>} A promise that resolves when the email is successfully sent or rejects if there is an error.
+   * @param formValue - The form values containing the first name, last name, email, and project idea.
+   * @returns A Promise that resolves to void.
+   * @throws Error if the fetch request fails.
    */
-  async function sendEmail(formValue: any): Promise<void> {
-    //Variables to make the call to the API
-    const SERVICE_ID = "service_fqz2fbf";
-    const TEMPLATE_ID = "template_bxtugu9";
-    const PUBLIC_KEY = "tv3PAMq9iM2pMiB62";
-
+  async function sendEmail(formValue: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    projectIdea: string;
+  }): Promise<void> {
     const { firstName, lastName, email, projectIdea } = formValue;
 
-    /**
-     * Template parameters under this form:
-     *
-     *  New message sent through the portfolio form by {{name}} at {{email}}:
-     *
-     * {{message}}
-     *
-     * Best wishes,
-     * EmailJS team
-     */
-    const templateParams = {
-      name: `${firstName} ${lastName}`,
-      email,
-      message: projectIdea,
+    const webhookURL = new URL(
+      "https://discord.com/api/webhooks/1189973123232182313/gmBkw_mr6Sn_r-nVgb07jTwAII_rxVnEJ_gC4HYHwh0h0oOtw4AdxajQa0P2mOGy5dEF"
+    );
+
+    const payload = {
+      embeds: [
+        {
+          title: `Project idea from ${firstName} ${lastName}:`,
+          description: projectIdea,
+          color: 6448228,
+          author: { name: `Email: ${email}` },
+        },
+      ],
     };
 
-    try {
-      const sendEmail: EmailJSResponseStatus = await send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        templateParams,
-        PUBLIC_KEY
-      );
+    const response: Response = await fetch(webhookURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-      const badQuery: boolean = sendEmail.status > 299;
-      if (badQuery) {
-        throw `The email was not sent, status: ${sendEmail.status}`;
-      }
-
-      log(
-        "%cSUCCESSFULLY sent the email!",
-        "background: green; color: white; padding: 5px"
-      );
-    } catch (apiError) {
-      error(apiError);
+    if (!response.ok) {
+      throw new Error(`Fetch failed, result: ${response}`);
     }
   }
 
@@ -190,7 +179,12 @@ export default function Contact(): JSX.Element {
    * Mutator that makes the POST API call to resend the form and send an email
    */
   const emailMutation = useMutation({
-    mutationFn: (formValues: object) => {
+    mutationFn: (formValues: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      projectIdea: string;
+    }) => {
       return sendEmail(formValues);
     },
     onMutate: () => {
@@ -220,8 +214,8 @@ export default function Contact(): JSX.Element {
   ): boolean {
     //We get the value of the input
     let valueOfInput: string =
-      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
-      (reference as MutableRefObject<any>).current.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target?.value ??
+      (reference as MutableRefObject<any>).current?.value;
     valueOfInput = valueOfInput.trim();
 
     //String must not include numbers
@@ -267,8 +261,8 @@ export default function Contact(): JSX.Element {
   ): boolean {
     //We get the value of the input
     let valueOfInput: string =
-      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
-      (reference as MutableRefObject<any>).current.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target?.value ??
+      (reference as MutableRefObject<any>).current?.value;
     valueOfInput = valueOfInput.trim();
 
     //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
@@ -292,8 +286,8 @@ export default function Contact(): JSX.Element {
   ): boolean {
     //We get the value of the input
     let valueOfInput: string =
-      (reference as React.ChangeEvent<HTMLTextAreaElement>).target.value ??
-      (reference as MutableRefObject<any>).current.value;
+      (reference as React.ChangeEvent<HTMLTextAreaElement>).target?.value ??
+      (reference as MutableRefObject<any>).current?.value;
     valueOfInput = valueOfInput.trim();
 
     const realStringLength: number = getRealStringLength(valueOfInput);
@@ -405,21 +399,31 @@ export default function Contact(): JSX.Element {
                 }
               />
             </fieldset>
-            <button
+            <Button
               type="submit"
-              className="link-button contact-page__send-form-button"
+              arrayOfClasses={"link-button contact-page__send-form-button".split(
+                /\s/g
+              )}
             >
               Hit me up!
               <Icons.PaperPlane width={24} height={24} fill={"currentColor"} />
-            </button>
+            </Button>
 
             {emailMutation.isIdle && null}
 
             {emailMutation.isLoading && <BufferLoader width={75} />}
 
-            {emailMutation.isSuccess && <p>Email sent successfully!</p>}
+            {emailMutation.isSuccess && (
+              <p className="contact-page__send-form-feedback contact-page__send-form-feedback--positive">
+                Email sent successfully!
+              </p>
+            )}
 
-            {emailMutation.isError && <p>{emailMutation.error}</p>}
+            {emailMutation.isError && (
+              <p className="contact-page__send-form-feedback contact-page__send-form-feedback--negative">
+                An unexpected error occured: {emailMutation.error.message}
+              </p>
+            )}
           </form>
         </section>
       </section>
