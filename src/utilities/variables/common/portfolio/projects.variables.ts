@@ -127,6 +127,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("12/30/2023"),
   },
+  {
+    title: "[Java-Angular] P6: Monde de Dév",
+    image: PNG_IMAGES.P6_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_P6_09022024",
+    type: "oc",
+    date: new Date("02/09/2024"),
+  },
 ];
 
 /**

@@ -70,3 +70,75 @@ export function scrollWindowTo(x: number = 0, y: number = 0): void {
 
   window.scrollTo(x, y);
 }
+
+/**
+ * Enters fullscreen mode for the specified HTML element.
+ *
+ * @async
+ * @param {HTMLElement} htmlElement - The HTML element to enter fullscreen mode.
+ * @param {Object} options - Additional options for fullscreen mode.
+ * @throws {Error} If the element is already in fullscreen mode.
+ */
+export async function enterFullscreenMode(
+  htmlElement: HTMLElement,
+  options: FullscreenOptions
+): Promise<void> {
+  try {
+    if (!htmlElement) {
+      throw new Error(
+        `Expected HTML element to be truthy but instead got ${htmlElement}`
+      );
+    }
+
+    if (document.fullscreenElement) {
+      throw new Error(
+        `You cannot enter fullscreen mode again if it is already in fullscreen`
+      );
+    }
+
+    const fullscreenRequest: (
+      options?: FullscreenOptions | undefined
+    ) => Promise<void> =
+      // @ts-ignore We need to use the webkit version here
+      htmlElement?.requestFullscreen || htmlElement?.webkitRequestFullscreen;
+
+    if (!fullscreenRequest) {
+      throw new Error("Fullscreen API is not supported");
+    }
+
+    // For Mozilla Firefox
+    window.focus();
+
+    await fullscreenRequest.call(htmlElement, options);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/**
+ * Exits fullscreen mode.
+ *
+ * @async
+ * @throws {Error} If the document is not currently in fullscreen mode.
+ */
+export async function exitFullscreenMode(): Promise<void> {
+  try {
+    if (!document.fullscreenElement) {
+      throw new Error(
+        `You cannot exit fullscreen mode if it is not currently in fullscreen`
+      );
+    }
+
+    const exitFullscreen: () => Promise<void> =
+      // @ts-ignore We need to use the webkit version here
+      document?.exitFullscreen || document?.webkitExitFullscreen;
+
+    if (!exitFullscreen) {
+      throw new Error("Fullscreen API is not supported");
+    }
+
+    await exitFullscreen.call(document);
+  } catch (error) {
+    console.error(error);
+  }
+}
