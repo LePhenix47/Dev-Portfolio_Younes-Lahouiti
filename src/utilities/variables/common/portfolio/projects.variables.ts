@@ -343,6 +343,13 @@ export const personalProjects: projectsMadeType = [
     type: "personal",
     date: new Date("09/04/2023"),
   },
+  {
+    title: "Text-to-speech",
+    image: PNG_IMAGES.TEXT_TO_SPEECH,
+    link: "https://github.com/LePhenix47/Text-To-Speech_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("02/04/2024"),
+  },
 ];
 
 /**
