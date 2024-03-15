@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
    */
   const queryClient: QueryClient = new QueryClient();
 
-  const pathname: string = usePathname();
+  const currentPathname: string = usePathname();
 
   return (
     <>
@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
            // ? Because the parent element of this anchor uses the `transform` property for the pages transitions, 
            // ? child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
             */}
-            {pathname.includes("/portfolio") && (
+            {currentPathname.includes("/portfolio") && (
               <Link
                 href="#top"
                 className={"portfolio-page__anchor"}
@@ -71,7 +71,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
               </Link>
             )}
 
-            <PageTransition pathname={pathname}>
+            <PageTransition>
               <Component {...pageProps} />
             </PageTransition>
           </PageLayout>
