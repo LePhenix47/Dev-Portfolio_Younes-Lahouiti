@@ -6,6 +6,7 @@ import {
   useMemo,
   useReducer,
   useRef,
+  useState,
 } from "react";
 
 //? Next
@@ -65,6 +66,8 @@ export default function Portfolio(): JSX.Element {
    * Reference to the portfolio page section to be used for the canvas element
    */
   const portfolioPageSectionRef = useRef<HTMLElement>(null);
+
+  const [showResetButton, setShowResetButton] = useState<boolean>(false);
 
   /**
    * State and dispatcher for managing project cards.
@@ -147,6 +150,28 @@ export default function Portfolio(): JSX.Element {
 
   /**
    * Handles input in the search bar to filter the project cards
+   */
+  function resetInput(e: MouseEvent): void {
+    const inputElement = e.currentTarget as HTMLInputElement;
+    inputElement.value = "";
+
+    projectCardsDispatch({
+      type: "SET_QUERY",
+      payload: "",
+    });
+
+    // Clone the existing search params to make modifications
+    updateSearchParams({ query: "" });
+
+    setShowResetButton(false);
+
+    const searchInputElement = searchInputRef.current as HTMLInputElement;
+
+    searchInputElement.focus();
+  }
+
+  /**
+   * Handles input in the search bar to filter the project cards
    * @param {FormEvent<HTMLInputElement>} e - The input event.
    */
   function handleSearchInput(e: FormEvent<HTMLInputElement>): void {
@@ -154,6 +179,8 @@ export default function Portfolio(): JSX.Element {
     // Update the URL with the new query parameter
     const inputElement = searchInputRef.current as HTMLInputElement;
     const newQuery = inputElement.value;
+
+    setShowResetButton(inputElement.value !== "");
 
     projectCardsDispatch({
       type: "SET_QUERY",
@@ -380,9 +407,23 @@ export default function Portfolio(): JSX.Element {
          */}
         <form className="portfolio-page__inputs-container">
           <fieldset className="portfolio-page__label-input">
-            <label htmlFor="search" className="portfolio-page__label">
-              <Icons.Search />
-            </label>
+            {!showResetButton && (
+              <label htmlFor="search" className="portfolio-page__label">
+                <Icons.Search />
+              </label>
+            )}
+
+            {showResetButton && (
+              <button
+                type="reset"
+                className="portfolio-page__input-reset-button"
+                // @ts-ignore
+                onClick={resetInput}
+              >
+                ×
+              </button>
+            )}
+
             <input
               ref={searchInputRef}
               type="search"

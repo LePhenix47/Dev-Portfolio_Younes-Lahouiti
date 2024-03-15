@@ -112,7 +112,27 @@
         width: 22px;
     }
 
+    &__input-reset-button {
+        color: var(--bg-primary);
+        background-color: var(--color-primary);
+
+        border-radius: 5px;
+
+        position: absolute;
+        top: 50%;
+        right: 15px;
+
+        translate: 0% -50%;
+
+        aspect-ratio: 1/1;
+        height: 22px;
+    }
+
     &__input {
+        --_datalist-picker-display: none;
+
+        --_cancel-button-display: none;
+
         width: 100%;
         @include inputs-styling;
         background-color: var(--semi-transparent-bg);
