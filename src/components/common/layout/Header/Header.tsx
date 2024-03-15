@@ -103,10 +103,6 @@ export default function Header(): JSX.Element {
   }, [routeLinksMap]);
 
   useEffect(() => {
-    console.log("Header re-render");
-  });
-
-  useEffect(() => {
     setStateForActiveLink();
     setUnderlineToLink();
   }, [router]);
