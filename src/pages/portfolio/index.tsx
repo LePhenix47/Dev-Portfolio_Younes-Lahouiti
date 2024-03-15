@@ -151,7 +151,7 @@ export default function Portfolio(): JSX.Element {
   /**
    * Handles input in the search bar to filter the project cards
    */
-  function resetInput(e: MouseEvent): void {
+  function resetInput(e: React.MouseEvent): void {
     const inputElement = e.currentTarget as HTMLInputElement;
     inputElement.value = "";
 
@@ -417,7 +417,6 @@ export default function Portfolio(): JSX.Element {
               <button
                 type="reset"
                 className="portfolio-page__input-reset-button"
-                // @ts-ignore
                 onClick={resetInput}
               >
                 ×
