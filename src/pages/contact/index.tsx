@@ -33,7 +33,6 @@ import {
   formatStringCase,
   testRegExp,
 } from "@utilities/helpers/string.helpers";
-import { log } from "@utilities/helpers/console.helpers";
 import { getRealStringLength } from "@utilities/helpers/internalization.helpers";
 
 /**
@@ -112,8 +111,6 @@ export default function Contact(): JSX.Element {
     const email: string = emailRef.current.value;
     const projectIdea: string = textAreaRef.current.value;
 
-    log({ firstName, lastName, email, projectIdea });
-
     //We verify that each one of them is correct
     const namesInputsAreValid: boolean =
       verifyNames(firstNameRef) && verifyNames(lastNameRef);
@@ -188,13 +185,26 @@ export default function Contact(): JSX.Element {
       return sendEmail(formValues);
     },
     onMutate: () => {
-      log("Attempting to send email");
+      console.log(
+        "%cAttempting to send email",
+        "background: darkblue; font-size: 16px; color: white; padding: 5px"
+      );
     },
     onSuccess: (data: any, variables: any) => {
-      log("Attempt SUCCEEDED!", data, variables);
+      console.log(
+        "%cAttempt SUCCEEDED!",
+        "background: darkgreen; font-size: 16px; color: white; padding: 5px",
+        data,
+        variables
+      );
     },
     onError: (error: any, variables: any) => {
-      log("Attempt FAILED", error, variables);
+      console.log(
+        "%cAttempt FAILED",
+        "background: darkred; font-size: 16px; color: white; padding: 5px",
+        error,
+        variables
+      );
     },
   });
 
@@ -294,8 +304,6 @@ export default function Contact(): JSX.Element {
 
     const messageIsAtRightLength: boolean =
       realStringLength >= 50 && realStringLength <= 2_000;
-
-    log({ messageIsAtRightLength });
 
     return messageIsAtRightLength;
   }

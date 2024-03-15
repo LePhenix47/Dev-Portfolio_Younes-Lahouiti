@@ -1,10 +1,5 @@
 //React
-import { log } from "@utilities/helpers/console.helpers";
-import {
-  addClass,
-  getStyleProperty,
-  removeClass,
-} from "@utilities/helpers/dom.helpers";
+import { addClass, removeClass } from "@utilities/helpers/dom.helpers";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 //Utils

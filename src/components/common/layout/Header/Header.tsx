@@ -190,7 +190,7 @@ export default function Header(): JSX.Element {
   async function showCopiedToolTip(): Promise<void> {
     //We copy the URL of the portfolio so that the visitor can share it.
     try {
-      copyTextToClipBoard("https://younes-portfolio-dev.vercel.app/");
+      copyTextToClipBoard(location.href);
       log("Copied to clipboard!");
     } catch (copyClipboardError) {
       error(copyClipboardError);

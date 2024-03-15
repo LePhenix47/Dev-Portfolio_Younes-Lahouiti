@@ -127,8 +127,6 @@ export default function CanvasComponent({
   }
 
   function cancelAnimation() {
-    console.log("cancel");
-
     const id: number = animationIdRef.current;
     cancelAnimationFrame(id);
   }

@@ -265,13 +265,18 @@
 
   &__text-area {
     min-height: 80px;
-    max-height: 80px;
 
     resize: none;
 
     &.active {
+      height: auto;
       resize: vertical;
       max-height: 1605px;
+    }
+
+    &:not(.active) {
+      height: 80px !important;
+      transition: height 300ms ease-in-out
     }
 
     @include inputs-styling;

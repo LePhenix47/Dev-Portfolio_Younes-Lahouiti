@@ -5,8 +5,6 @@ import React, { MutableRefObject, useEffect, useId, useState } from "react";
 import { inputType } from "@utilities/types/contact/input.types";
 import Icons from "@components/shared/icons/Icons";
 
-import { log } from "@utilities/helpers/console.helpers";
-
 /**
  * Represents an input label component for the contact page.
  *
@@ -121,7 +119,6 @@ export default function ContactInputLabel({
           onChange={(e) => {
             const textareaIsValid: boolean = onChangeCallback?.(e) || false;
 
-            log({ textareaIsValid });
             setIsInputValid(textareaIsValid);
 
             const textareaValueEmptyTruthiness =
@@ -162,7 +159,6 @@ export default function ContactInputLabel({
           onChange={(e) => {
             const inputIsValid: boolean = onChangeCallback?.(e) || false;
 
-            log({ inputIsValid });
             setIsInputValid(inputIsValid);
 
             const inputValueEmptyTruthiness = !reference.current?.value.length;
