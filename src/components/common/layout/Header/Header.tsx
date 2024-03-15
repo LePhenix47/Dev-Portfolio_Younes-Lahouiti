@@ -1,5 +1,5 @@
 //React
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 //Next
 import { NextRouter, useRouter } from "next/router";
@@ -25,7 +25,9 @@ export default function Header(): JSX.Element {
 
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
-  const [activeLinkDimensions, setActiveLinkDimensions] = useState<DOMRect>({
+  const [activeLinkDimensions, setActiveLinkDimensions] = useState<
+    Omit<DOMRect, "toJSON">
+  >({
     x: 0,
     y: 0,
     width: 0,
@@ -34,7 +36,6 @@ export default function Header(): JSX.Element {
     left: 0,
     right: 0,
     top: 0,
-    toJSON: () => {},
   });
 
   // Unordered list
@@ -55,66 +56,64 @@ export default function Header(): JSX.Element {
 
   const underlineListItemRef = useRef<HTMLLIElement>(null);
 
+  const [routeLinksMap, setRouteLinksMap] = useState(
+    new Map<string, NonNullable<HTMLAnchorElement>>()
+  );
+
+  function initializeRouteMap(): void {
+    const tempMap = new Map<string, NonNullable<HTMLAnchorElement>>();
+
+    tempMap.set("/", homeLinkPageRef.current!);
+    tempMap.set("/about", aboutLinkPageRef.current!);
+    tempMap.set("/skills", skillsLinkPageRef.current!);
+    tempMap.set("/services", servicesLinkPageRef.current!);
+    tempMap.set("/portfolio", portfolioLinkPageRef.current!);
+    tempMap.set("/contact", contactLinkPageRef.current!);
+
+    setRouteLinksMap(tempMap);
+  }
+
   /**
    * Sets the dimensions for the active link based on the current URL path.
    * Updates the `activeLinkDimensions` state with the computed dimensions.
    *
    * @returns {void}
-   */ function setStateForActiveLink(): void {
-    let anchorElement: HTMLAnchorElement | null = null;
-
-    let anchorDimensions: DOMRect | null = null;
-
+   */
+  function setStateForActiveLink(): void {
     const url = new URL(location.href);
-    switch (url.pathname.toLowerCase()) {
-      case "/": {
-        anchorElement = homeLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
-      case "/about": {
-        anchorElement = aboutLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
-      case "/skills": {
-        anchorElement = skillsLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
-      case "/services": {
-        anchorElement = servicesLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
-      case "/portfolio": {
-        anchorElement = portfolioLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
-      case "/contact": {
-        anchorElement = contactLinkPageRef.current as HTMLAnchorElement;
-        break;
-      }
 
-      default: {
-        return;
-      }
-    }
+    const { pathname } = url;
 
-    anchorDimensions = (
-      anchorElement as HTMLAnchorElement
-    ).getBoundingClientRect();
+    const anchorElement = routeLinksMap.get(
+      pathname.toLowerCase()
+    ) as HTMLAnchorElement;
 
-    setActiveLinkDimensions(anchorDimensions as DOMRect);
+    const anchorDimensions: DOMRect = anchorElement?.getBoundingClientRect();
+
+    setActiveLinkDimensions(anchorDimensions);
   }
 
   useEffect(() => {
+    initializeRouteMap();
+  }, []);
+
+  useEffect(() => {
     setStateForActiveLink();
+    setUnderlineToLink();
+  }, [routeLinksMap]);
+
+  useEffect(() => {
+    console.log("Header re-render");
+  });
+
+  useEffect(() => {
+    setStateForActiveLink();
+    setUnderlineToLink();
   }, [router]);
 
   useEffect(() => {
     setUnderlineToLink();
   }, [activeLinkDimensions]);
-
-  useEffect(() => {
-    setUnderlineToLink();
-  }, []);
 
   /**
    * Sets the position and width of the underline element based on the active link.
@@ -123,16 +122,17 @@ export default function Header(): JSX.Element {
    * @returns {void}
    */
   function setUnderlineToLink(): void {
-    const hasNotActiveLinkDimensions: boolean =
-      !activeLinkDimensions || !(activeLinkDimensions instanceof DOMRect);
+    const hasNotActiveLinkDimensions: boolean = !activeLinkDimensions;
     if (hasNotActiveLinkDimensions) {
       return;
     }
 
-    const hasInvalidWidth: boolean =
-      (activeLinkDimensions as DOMRect).width <= 0;
+    const hasInvalidWidth: boolean = activeLinkDimensions.width <= 0;
     if (hasInvalidWidth) {
-      warn(`The active link dimensions are invalid: ${activeLinkDimensions}`);
+      console.warn(
+        `The active link dimensions are invalid`,
+        activeLinkDimensions.width
+      );
     }
 
     const unorderedListElement = unorderedListRef.current as HTMLUListElement;
@@ -140,10 +140,9 @@ export default function Header(): JSX.Element {
     const computedUlDimensions: DOMRect =
       unorderedListElement.getBoundingClientRect();
 
-    const x: number =
-      (activeLinkDimensions as DOMRect).x - computedUlDimensions.x;
+    const x: number = activeLinkDimensions.x - computedUlDimensions.x;
 
-    const width: number = (activeLinkDimensions as DOMRect).width;
+    const { width } = activeLinkDimensions;
 
     const liUnderlineElement: HTMLLIElement =
       underlineListItemRef.current as HTMLLIElement;

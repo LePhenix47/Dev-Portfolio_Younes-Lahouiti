@@ -7,11 +7,6 @@ import Link from "next/link";
 //SASS
 import "@sass/main.scss";
 
-//Components
-
-//Framer motion library
-import { motion } from "framer-motion";
-
 //Utils
 //TanStack Query
 /**
@@ -29,6 +24,7 @@ import {
 } from "@tanstack/react-query";
 import PageLayout from "@components/common/layout/PageLayout";
 import Icons from "@components/shared/icons/Icons";
+import PageTransition from "@components/common/layout/PageTransition/PageTransition";
 
 /**
  * The `_app.tsx` file is the root component where all pages will pass through. It sets up the global layout, providers, and configurations for the entire app.
@@ -74,33 +70,9 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
             >
               <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
             </Link>
-            <motion.div
-              key={pathname}
-              initial="pageInitial"
-              animate="pageAnimate"
-              exit="pageExit"
-              variants={{
-                pageInitial: {
-                  opacity: 0,
-                  x: "-100vw",
-                },
-                pageAnimate: {
-                  opacity: 1,
-                  x: 0,
-                },
-                pageExit: {
-                  opacity: 0,
-                  x: "100vw",
-                },
-              }}
-              transition={{
-                type: "tween",
-                ease: "easeInOut",
-                duration: 0.5,
-              }}
-            >
+            <PageTransition pathname={pathname}>
               <Component {...pageProps} />
-            </motion.div>
+            </PageTransition>
           </PageLayout>
         </Hydrate>
       </TanStackProvider>
