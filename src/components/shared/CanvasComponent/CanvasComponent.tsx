@@ -1,6 +1,5 @@
 import { LineEffect } from "@utilities/classes/line-effect.class";
 import { warn } from "@utilities/helpers/console.helpers";
-import { isMobileViewport } from "@utilities/helpers/window.helpers";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
 /**
@@ -118,7 +117,7 @@ export default function CanvasComponent({
   }
 
   /**
-   * Animates the particles in the LineEffect effect.
+   * Animates the particles in the `LineEffect` effect.
    *
    * @returns {void}
    */
@@ -178,7 +177,7 @@ export default function CanvasComponent({
   }
 
   /**
-   * Animates the canvas element by clearing it and applying the LineEffect effect.
+   * Animates the canvas element by clearing it and applying the `LineEffect` effect.
    * @returns {void}
    */
   function animateCanvas(): void {
@@ -188,15 +187,16 @@ export default function CanvasComponent({
         return;
       }
 
-      //We clear the canvas from old paint
+      // * We clear the canvas from old paint
       clearCanvas(canvasRef.current);
 
-      //We animate the particles
+      // * We animate the particles
       startParticlesEffect();
 
-      //We loop the animation
+      // * We loop the animation
       animationIdRef.current = requestAnimationFrame(animateCanvas);
     } catch (error) {
+      console.error(error);
       cancelAnimation();
     }
   }
@@ -204,18 +204,18 @@ export default function CanvasComponent({
   useEffect(() => {
     initializeCanvasListeners();
 
-    // Create a ResizeObserver instance to watch for changes in the parent element's size
+    // * Create a ResizeObserver instance to watch for changes in the parent element's size
     const resizeObserver: ResizeObserver = new ResizeObserver(
       handleParentDimensionsChange
     );
 
-    // Observe the parent element
-    const parentElementExists: boolean = !!parentElement.current;
+    // * Observe the parent element
+    const parentElementExists: boolean = Boolean(parentElement.current);
     if (parentElementExists) {
       resizeObserver.observe(parentElement.current as HTMLElement);
     }
 
-    // Clean up the event listener on component unmount
+    // * Clean up the event listener on component unmount
     return () => {
       cancelAnimation();
       resizeObserver.disconnect();

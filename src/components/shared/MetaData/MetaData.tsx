@@ -88,13 +88,15 @@ export default function MetaData({
    *
    * @type {string}
    */
-  const indexationValue: string = !!needsIndexation ? "index" : "noindex";
+  const indexationValue: string = Boolean(needsIndexation)
+    ? "index"
+    : "noindex";
   /**
    * Value to determine whether the links in the page should be followed by the robot crawlers
    *
    * @type {string}
    */
-  const robotCrawlersValue: string = !!allowRobotCrawlers
+  const robotCrawlersValue: string = Boolean(allowRobotCrawlers)
     ? "follow"
     : "nofollow";
 

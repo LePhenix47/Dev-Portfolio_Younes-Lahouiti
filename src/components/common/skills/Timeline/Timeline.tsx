@@ -45,7 +45,7 @@ export default function Timeline({
         {arrayOfTimeLines.map((timeline: any, index: number) => {
           const { education, experience, establishment, yearSpan } = timeline;
 
-          const title = !!education ? education : experience;
+          const title = Boolean(education) ? education : experience;
 
           return (
             <div
