@@ -61,15 +61,16 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
            // ? Because the parent element of this anchor uses the `transform` property for the pages transitions, 
            // ? child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
             */}
-            <Link
-              href="#top"
-              className={`portfolio-page__anchor ${
-                !pathname.includes("/portfolio") && "hide"
-              }`}
-              target="_top"
-            >
-              <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
-            </Link>
+            {pathname.includes("/portfolio") && (
+              <Link
+                href="#top"
+                className={"portfolio-page__anchor"}
+                target="_top"
+              >
+                <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
+              </Link>
+            )}
+
             <PageTransition pathname={pathname}>
               <Component {...pageProps} />
             </PageTransition>
