@@ -65,6 +65,7 @@ import WEBSTORAGE_UTILITY from "@public/png/webstorage-icon.png";
 import COOKIES_UTILITY from "@public/png/cookie-utility-icon.png";
 import REACT_DATA_TABLE from "@public/png/Data Table.png";
 import COLOR_CONVERSION_PACKAGE from "@public/png/colorconversion- npm-icon.png";
+import TEXT_TO_SPEECH_UTILITY from "@public/png/text-to-speech-utility.png";
 
 // * Browser extensions
 import NDL from "@public/png/nommage des livrables.png";
@@ -135,6 +136,7 @@ const NPM_PROJECTS = {
   COOKIES_UTILITY,
   REACT_DATA_TABLE,
   COLOR_CONVERSION_PACKAGE,
+  TEXT_TO_SPEECH_UTILITY,
 };
 
 const BROWSER_EXTENSIONS = {

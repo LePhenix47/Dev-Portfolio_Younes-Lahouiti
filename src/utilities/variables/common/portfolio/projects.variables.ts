@@ -344,7 +344,7 @@ export const personalProjects: projectsMadeType = [
     date: new Date("09/04/2023"),
   },
   {
-    title: "Text-to-speech",
+    title: "Text to speech",
     image: PNG_IMAGES.TEXT_TO_SPEECH,
     link: "https://github.com/LePhenix47/Text-To-Speech_Younes-Lahouiti",
     type: "personal",
@@ -424,6 +424,13 @@ export const npmProjects: projectsMadeType = [
     link: "https://www.npmjs.com/package/@lephenix47/color-converter",
     type: "npm",
     date: new Date("06/07/2023"),
+  },
+  {
+    title: "Text to speech utility",
+    image: PNG_IMAGES.TEXT_TO_SPEECH_UTILITY,
+    link: "https://www.npmjs.com/package/@lephenix47/text-to-speech-utility",
+    type: "npm",
+    date: new Date("03/17/2024"),
   },
 ];
 
