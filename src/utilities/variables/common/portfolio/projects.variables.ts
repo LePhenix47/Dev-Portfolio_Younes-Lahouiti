@@ -439,6 +439,13 @@ export const npmProjects: projectsMadeType = [
     type: "npm",
     date: new Date("03/17/2024"),
   },
+  {
+    title: "Speech to text utility",
+    image: PNG_IMAGES.SPEECH_TO_TEXT_UTILITY,
+    link: "https://www.npmjs.com/package/@lephenix47/speech-to-text-utility",
+    type: "npm",
+    date: new Date("03/23/2024"),
+  },
 ];
 
 /**
