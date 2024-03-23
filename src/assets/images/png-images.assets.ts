@@ -52,6 +52,7 @@ import COLOR_MODEL_CONVERSION from "@public/png/Color model conversion.png";
 import REACT_NATIVE_APP from "@public/png/React Native app icon.png";
 import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/Advanced custom gradient.png";
 import TEXT_TO_SPEECH from "@public/png/Text-to-speech.png";
+import SPEECH_TO_TEXT from "@public/png/Speech-to-text.png";
 
 // * Professional
 import PORTFOLIO from "@public/png/portfolio-screenshot.png";
@@ -121,6 +122,7 @@ const PERSONAL_PROJECTS = {
   REACT_NATIVE_APP,
   ADVANCED_LINEAR_GRADIENT_CREATOR,
   TEXT_TO_SPEECH,
+  SPEECH_TO_TEXT,
 };
 
 const PROFESSIONAL_PROJECTS = {
