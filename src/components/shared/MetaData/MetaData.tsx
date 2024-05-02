@@ -117,6 +117,7 @@ export default function MetaData({
       <!-- Open Graph tags -->
        */}
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Younes developer portfolio" />
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -124,6 +125,8 @@ export default function MetaData({
       <meta property="og:image" content={image.url} />
       <meta property="og:image:width" content={imageWidth} />
       <meta property="og:image:height" content={imageHeight} />
+
+      <meta property="og:locale" content="en_US" />
 
       <meta property="og:url" content={pageUrl} />
       {/*
