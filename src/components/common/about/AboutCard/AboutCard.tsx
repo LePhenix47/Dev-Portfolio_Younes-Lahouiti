@@ -3,6 +3,12 @@ import React from "react";
 
 import Image from "next/image";
 
+type AboutCardProps = {
+  svgIcon: any;
+  title: string;
+  description: string;
+};
+
 /**
  * Represents a card component used in the About section.
  *
@@ -25,11 +31,7 @@ export default function AboutCard({
   svgIcon,
   title,
   description,
-}: {
-  svgIcon: any;
-  title: string;
-  description: string;
-}): JSX.Element {
+}: AboutCardProps): JSX.Element {
   return (
     <div className="card">
       <h3 className="card__title">

@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * HollowCheckIcon component.
@@ -19,10 +20,7 @@ import React from "react";
 export default function HollowCheckIcon({
   width,
   height,
-}: {
-  width: number;
-  height: number;
-}): JSX.Element {
+}: Omit<IconProps, "fill">): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

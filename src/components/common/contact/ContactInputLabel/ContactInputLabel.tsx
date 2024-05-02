@@ -5,6 +5,19 @@ import React, { MutableRefObject, useEffect, useId, useState } from "react";
 import { inputType } from "@utilities/types/contact/input.types";
 import Icons from "@components/shared/icons/Icons";
 
+type ContactInputLabelProps = {
+  labelText: string;
+  name: string;
+  reference: MutableRefObject<any>;
+  onChangeCallback?: any;
+  errorInputMessage?: string;
+  validInputMessage?: string;
+  inputType?: inputType | "";
+  placeholder?: string;
+  isTextArea?: boolean;
+  inputDefaultValue?: string;
+};
+
 /**
  * Represents an input label component for the contact page.
  *
@@ -52,18 +65,7 @@ export default function ContactInputLabel({
   placeholder = "",
   isTextArea = false,
   inputDefaultValue = "",
-}: {
-  labelText: string;
-  name: string;
-  reference: MutableRefObject<any>;
-  onChangeCallback?: any;
-  errorInputMessage?: string;
-  validInputMessage?: string;
-  inputType?: inputType | "";
-  placeholder?: string;
-  isTextArea?: boolean;
-  inputDefaultValue?: string;
-}): JSX.Element {
+}: ContactInputLabelProps): JSX.Element {
   /**
    * State for the input to get the effect with the label
    */

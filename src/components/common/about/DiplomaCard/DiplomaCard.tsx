@@ -1,6 +1,12 @@
 import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
+type DiplomaCardProps = {
+  diplomaTitle: string;
+  obtainedYearRangeDate: string;
+  pdfLink: string;
+};
+
 /**
  * Represents a diploma card component used in the About section.
  *
@@ -27,11 +33,7 @@ export default function DiplomaCard({
   diplomaTitle,
   obtainedYearRangeDate,
   pdfLink,
-}: {
-  diplomaTitle: string;
-  obtainedYearRangeDate: string;
-  pdfLink: string;
-}): JSX.Element {
+}: DiplomaCardProps): JSX.Element {
   return (
     <div className="about-page__diploma-card diploma-card">
       <div className="diploma-card__text">

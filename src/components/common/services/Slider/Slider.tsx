@@ -9,6 +9,8 @@ import { SliderCard } from "@components/common/services/services-page.components
 import Icons from "@components/shared/icons/Icons";
 import { isMobileViewport } from "@utilities/helpers/window.helpers";
 
+type SliderProps = { sliderCards: sliderCardTypes; cardToBeShown: number };
+
 /**
  * Represents a slider component to display cards with a left/right navigation and indexation buttons.
  *
@@ -31,10 +33,7 @@ import { isMobileViewport } from "@utilities/helpers/window.helpers";
 export default function Slider({
   sliderCards,
   cardToBeShown,
-}: {
-  sliderCards: sliderCardTypes;
-  cardToBeShown: number;
-}): JSX.Element {
+}: SliderProps): JSX.Element {
   //Boolean values to buffer the component
   const cardsToBeShownOverflow: boolean = cardToBeShown > sliderCards.length;
   const cardsToBeShownUnderflow: boolean = cardToBeShown < 0;

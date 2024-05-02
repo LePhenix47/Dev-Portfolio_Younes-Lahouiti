@@ -4,6 +4,11 @@ import React from "react";
 //Utils
 import { SkillCardList } from "@components/common/skills/skills-page.components";
 import { skill } from "@utilities/types/skills/skill.types";
+type SkillsCardProps = {
+  listClass: "skills-page__skills-front-end" | "skills-page__skills-back-end";
+  title: string;
+  skillsArray: skill;
+};
 
 /**
  * Represents a card displaying a list of skills used in the SkillsPage component.
@@ -30,11 +35,7 @@ export default function SkillsCard({
   listClass,
   title,
   skillsArray,
-}: {
-  listClass: "skills-page__skills-front-end" | "skills-page__skills-back-end";
-  title: string;
-  skillsArray: skill;
-}): JSX.Element {
+}: SkillsCardProps): JSX.Element {
   return (
     <div className="skills-page__card card">
       <h3 className="skills-page__card-title card__title">{title}</h3>

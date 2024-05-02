@@ -2,6 +2,11 @@
 import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
+type TimelineProps = {
+  arrayOfTimeLines: any[];
+  reverse?: boolean | undefined;
+};
+
 /**
  * Represents a timeline component displaying educational and work experiences.
  *
@@ -35,10 +40,7 @@ import React from "react";
 export default function Timeline({
   arrayOfTimeLines,
   reverse = false,
-}: {
-  arrayOfTimeLines: any[];
-  reverse?: boolean | undefined;
-}): JSX.Element {
+}: TimelineProps): JSX.Element {
   return (
     <div className="timeline__container">
       <section className="timeline">

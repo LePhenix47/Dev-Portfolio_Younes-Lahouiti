@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * OpenLinkIcon component.
@@ -21,11 +22,7 @@ export default function OpenLinkIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   const enlargedWidth = width * (1 + 1 / 3);
   const enlargedHeight = height * (1 + 1 / 3);
 

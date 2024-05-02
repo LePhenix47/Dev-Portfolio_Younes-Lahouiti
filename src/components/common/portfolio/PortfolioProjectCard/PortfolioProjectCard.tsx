@@ -6,6 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Icons from "@components/shared/icons/Icons";
 
+type PortfolioProjectCardProps = {
+  title: string;
+  image: any;
+  link: string;
+  formattedDate: string;
+  type: string;
+};
+
 /**
  * Represents a card displaying information about a portfolio project.
  *
@@ -34,13 +42,7 @@ export default function PortfolioProjectCard({
   link,
   formattedDate,
   type,
-}: {
-  title: string;
-  image: any;
-  link: string;
-  formattedDate: string;
-  type: string;
-}): JSX.Element {
+}: PortfolioProjectCardProps): JSX.Element {
   let sentenceToViewProjectCode: string = "";
 
   switch (type) {

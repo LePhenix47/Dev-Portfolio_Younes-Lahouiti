@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * ServicesMobileIcon component used in the <header> when the user has a small viewport device.
@@ -23,11 +24,7 @@ export default function ServicesMobileIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

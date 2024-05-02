@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * PaperPlaneIcon component.
@@ -21,11 +22,7 @@ export default function PaperPlaneIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

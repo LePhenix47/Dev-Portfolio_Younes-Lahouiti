@@ -1,3 +1,5 @@
+import { IconProps } from "../Icons";
+
 /**
  * BugIcon component.
  *
@@ -19,11 +21,7 @@ export default function BugIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   const enlargedWidth = width * 100;
   const enlargedHeight = height * 100;
 

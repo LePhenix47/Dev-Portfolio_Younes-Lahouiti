@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * SkillsMobileIcon component used in the <header> when the user has a small viewport device.
@@ -23,11 +24,7 @@ export default function SkillsMobileIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   const enlargedWidth = width * 17;
   const enlargedHeight = height * 17;
 

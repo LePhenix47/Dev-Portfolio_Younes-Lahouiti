@@ -19,6 +19,12 @@ import ServicesMobileIcon from "./ServicesMobileIcon/ServicesMobileIcon";
 import PortfolioMobileIcon from "./PortfolioMobileIcon/PortfolioMobileIcon";
 import ContactMobileIcon from "./ContactMobileIcon/ContactMobileIcon";
 
+export type IconProps = {
+  width: number;
+  height: number;
+  fill: string;
+};
+
 /**
  * A *compound component* that holds all the available SVG icons (as components) for the application
  *

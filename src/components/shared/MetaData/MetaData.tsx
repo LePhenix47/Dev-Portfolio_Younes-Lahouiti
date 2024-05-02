@@ -1,5 +1,20 @@
 import Head from "next/head";
 
+type MetaDataProps = {
+  title: string;
+  description: string;
+  pageUri: string;
+  needsIndexation: boolean;
+  allowRobotCrawlers: boolean;
+  openGraph: {
+    image: {
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+};
+
 /**
  * A component to set metadata and Open Graph tags for social media sharing.
  *
@@ -54,20 +69,7 @@ export default function MetaData({
   needsIndexation,
   allowRobotCrawlers,
   openGraph,
-}: {
-  title: string;
-  description: string;
-  pageUri: string;
-  needsIndexation: boolean;
-  allowRobotCrawlers: boolean;
-  openGraph: {
-    image: {
-      url: string;
-      width: number;
-      height: number;
-    };
-  };
-}): JSX.Element {
+}: MetaDataProps): JSX.Element {
   const { image } = openGraph;
 
   /**

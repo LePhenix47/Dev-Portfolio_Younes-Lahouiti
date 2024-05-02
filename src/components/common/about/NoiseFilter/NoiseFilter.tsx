@@ -1,3 +1,7 @@
+type NoiseFilterProps = {
+  imageId: string;
+};
+
 /**
  * Represents a noise filter SVG component used for applying a pixel noise effect with displacement to an image.
  *
@@ -16,9 +20,7 @@
  */
 export default function NoiseFilter({
   imageId,
-}: {
-  imageId: string;
-}): JSX.Element {
+}: NoiseFilterProps): JSX.Element {
   return (
     <svg className="svg-filter hide">
       <defs>

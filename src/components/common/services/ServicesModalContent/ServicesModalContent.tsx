@@ -5,6 +5,12 @@ import React from "react";
 import { serviceType } from "@utilities/types/services/services.types";
 import Icons from "@components/shared/icons/Icons";
 
+type ServicesModalContentProps = {
+  title: string;
+  description: string;
+  qualities: serviceType;
+};
+
 /**
  * Represents the content of a modal that displays information about a service.
  *
@@ -26,11 +32,7 @@ export default function ServicesModalContent({
   title,
   description,
   qualities,
-}: {
-  title: string;
-  description: string;
-  qualities: serviceType;
-}): JSX.Element {
+}: ServicesModalContentProps): JSX.Element {
   return (
     <section className="services-page__card-content">
       <h2 className="services-page__card-title">{title}</h2>

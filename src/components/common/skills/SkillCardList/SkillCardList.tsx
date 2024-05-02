@@ -1,6 +1,8 @@
 import Icons from "@components/shared/icons/Icons";
 import React from "react";
 
+type SkillCardListProps = { skill: string; level: string };
+
 /**
  * Represents a card item used in the SkillCardList component.
  *
@@ -21,10 +23,7 @@ import React from "react";
 export default function SkillCardList({
   skill,
   level,
-}: {
-  skill: string;
-  level: string;
-}): JSX.Element {
+}: SkillCardListProps): JSX.Element {
   return (
     <div className="skills-page__card-item">
       <Icons.FlourishedCheckmark width={24} height={24} />

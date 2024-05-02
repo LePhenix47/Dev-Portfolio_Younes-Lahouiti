@@ -5,7 +5,12 @@ import React from "react";
 import Image from "next/image";
 import { formatStringCase } from "@utilities/helpers/string.helpers";
 
-//Utils
+type ContactMethodCardProps = {
+  icon: any;
+  platform: string;
+  user: string;
+  link: string;
+};
 
 /**
  * Represents a contact method card component for the contact page.
@@ -34,12 +39,7 @@ export default function ContactMethodCard({
   platform,
   user,
   link,
-}: {
-  icon: any;
-  platform: string;
-  user: string;
-  link: string;
-}): JSX.Element {
+}: ContactMethodCardProps): JSX.Element {
   return (
     <div className="contact-page__contact-card card">
       <div className="contact-page__contact-card-icon-container">

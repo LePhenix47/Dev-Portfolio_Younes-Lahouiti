@@ -1,3 +1,7 @@
+type BufferLoaderProps = {
+  width: number;
+};
+
 /**
  * Represents a buffer loader component with a circular animation.
  *
@@ -14,9 +18,7 @@
  */
 export default function BufferLoader({
   width,
-}: {
-  width: number;
-}): JSX.Element {
+}: BufferLoaderProps): JSX.Element {
   return (
     <section>
       <svg viewBox="0 0 100 100" className="buffer-loader" width={width}>

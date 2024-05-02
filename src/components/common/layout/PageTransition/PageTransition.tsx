@@ -5,6 +5,10 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+type PageTransitionProps = {
+  children: ReactNode;
+};
+
 /**
  * Renders a page transition animation using Framer Motion.
  *
@@ -13,7 +17,7 @@ import { usePathname } from "next/navigation";
  * @param {string} props.pathname - The current pathname.
  * @returns {ReactNode} - The rendered page transition animation.
  */
-function PageTransition({ children }: { children: ReactNode }): JSX.Element {
+function PageTransition({ children }: PageTransitionProps): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 

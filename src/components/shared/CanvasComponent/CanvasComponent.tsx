@@ -2,6 +2,8 @@ import { LineEffect } from "@utilities/classes/line-effect.class";
 import { warn } from "@utilities/helpers/console.helpers";
 import React, { RefObject, useEffect, useRef, useState } from "react";
 
+type CanvasComponentProps = { parentElement: RefObject<HTMLElement> };
+
 /**
  * A component that renders a canvas element with the LineEffect effect.
  *
@@ -23,9 +25,7 @@ import React, { RefObject, useEffect, useRef, useState } from "react";
  */
 export default function CanvasComponent({
   parentElement,
-}: {
-  parentElement: RefObject<HTMLElement>;
-}): JSX.Element {
+}: CanvasComponentProps): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const animationIdRef = useRef<number>(0);

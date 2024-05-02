@@ -3,6 +3,13 @@ import Image from "next/image";
 import React from "react";
 import { formatStringCase } from "@utilities/helpers/string.helpers";
 
+type HomeSocialCardItemProps = {
+  srcIcon: string;
+  title: string;
+  link: string;
+  needsInversionOnDarkMode: boolean;
+};
+
 /**
  * Represents an item for the social media card on the home page.
  *
@@ -26,12 +33,7 @@ export default function HomeSocialCardItem({
   title,
   link,
   needsInversionOnDarkMode,
-}: {
-  srcIcon: string;
-  title: string;
-  link: string;
-  needsInversionOnDarkMode: boolean;
-}): JSX.Element {
+}: HomeSocialCardItemProps): JSX.Element {
   return (
     <li className="home-page__social-item">
       <Link

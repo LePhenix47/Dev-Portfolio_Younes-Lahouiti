@@ -8,6 +8,13 @@ import Image from "next/image";
 import { formatStringCase } from "@utilities/helpers/string.helpers";
 import { voidCallback } from "@utilities/types/void-callback.type";
 
+type ServicesCardProps = {
+  icon: any;
+  title: string;
+  description: string;
+  callback: voidCallback;
+};
+
 /**
  * Represents a card displaying information about a service.
  *
@@ -34,12 +41,7 @@ export default function ServicesCard({
   title,
   description,
   callback,
-}: {
-  icon: any;
-  title: string;
-  description: string;
-  callback: voidCallback;
-}): JSX.Element {
+}: ServicesCardProps): JSX.Element {
   return (
     <div className="services-page__card card" key={`${title}-${description}`}>
       <div className="services-page__card-icon">

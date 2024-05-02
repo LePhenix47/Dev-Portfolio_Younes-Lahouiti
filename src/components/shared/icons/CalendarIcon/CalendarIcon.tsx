@@ -1,3 +1,5 @@
+import { IconProps } from "../Icons";
+
 /**
  * CalendarIcon component.
  *
@@ -17,10 +19,7 @@
 export default function CalendarIcon({
   width,
   height,
-}: {
-  width: number;
-  height: number;
-}): JSX.Element {
+}: Omit<IconProps, "fill">): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

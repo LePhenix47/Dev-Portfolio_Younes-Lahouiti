@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * FlourishedCheckmarkIcon component.
@@ -19,10 +20,7 @@ import React from "react";
 export default function FlourishedCheckmarkIcon({
   width,
   height,
-}: {
-  width: number;
-  height: number;
-}): JSX.Element {
+}: Omit<IconProps, "fill">): JSX.Element {
   const enlargedWidth = width * 30;
   const enlargedHeight = height * 30;
   return (

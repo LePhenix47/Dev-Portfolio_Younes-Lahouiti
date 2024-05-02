@@ -1,4 +1,5 @@
 import React from "react";
+import { IconProps } from "../Icons";
 
 /**
  * RoundExclamationIcon component.
@@ -21,11 +22,7 @@ export default function RoundExclamationIcon({
   width,
   height,
   fill,
-}: {
-  width: number;
-  height: number;
-  fill: string;
-}): JSX.Element {
+}: IconProps): JSX.Element {
   const enlargedWidth = width * 32;
   const enlargedHeight = height * 32;
   return (
