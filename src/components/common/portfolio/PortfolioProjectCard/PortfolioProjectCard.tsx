@@ -43,29 +43,17 @@ export default function PortfolioProjectCard({
   formattedDate,
   type,
 }: PortfolioProjectCardProps): JSX.Element {
-  let sentenceToViewProjectCode: string = "";
+  const typeToSentenceMap = new Map<string, string>(
+    Object.entries({
+      npm: "View the library",
+      extension: "See the browser extension",
+      professional: "View the website",
+      personal: "View source code",
+    })
+  );
 
-  switch (type) {
-    case "npm": {
-      sentenceToViewProjectCode = "View the library";
-      break;
-    }
-
-    case "extension": {
-      sentenceToViewProjectCode = "See the browser extension";
-      break;
-    }
-
-    case "professional": {
-      sentenceToViewProjectCode = "View the website";
-      break;
-    }
-
-    default: {
-      sentenceToViewProjectCode = "View source code";
-      break;
-    }
-  }
+  const sentenceToViewProjectCode: string =
+    typeToSentenceMap.get(type) || "View source code";
 
   return (
     <div className="portfolio-page__project-card card">
