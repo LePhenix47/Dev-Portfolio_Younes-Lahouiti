@@ -1,7 +1,8 @@
 //React
 import { useRef } from "react";
 
-//Next
+// IMages
+import minifiedImage from "@public/jpg/profile-pic-small.jpg";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import { socialAccountVariables } from "@utilities/variables/common/home/social-
 //Components
 import {
   CanvasComponent,
+  LazyImageLoader,
   MetaData,
 } from "@components/shared/shared.components";
 
@@ -151,13 +153,14 @@ export default function Home(): JSX.Element {
             ref={blobDivRef}
           >
             <Icons.Blob />
-            <Image
+            <LazyImageLoader
               src={JPG_URLS.PROFILE_PIC_1}
               alt="Profile picture"
               height={170}
               width={130}
-              priority
-              className="home-page__profile-picture"
+              isPriority
+              imageClassName="home-page__profile-picture"
+              backgroundImageUrl={minifiedImage.src}
             />
           </div>
         </div>

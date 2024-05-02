@@ -31,64 +31,44 @@
   }
 
   &__image-container {
-    flex: 1;
-
     @include center-flex-column;
+
+    border-radius: 25px;
+    width: 30%;
+
+    @include mobile-only {
+      width: 75%;
+      margin: auto;
+    }
+
   }
 
   &__image {
-
-
-    object-position: center;
-
-
-    border-radius: 25px;
+    border-radius: inherit;
 
     mask-image: linear-gradient(180deg, black var(--mask-image-offset), transparent);
 
-    transition: --mask-image-offset 500ms ease-in-out;
+    transition: --mask-image-offset 500ms ease-in-out, opacity 250ms ease-in-out;
+
+    width: 100%;
+    height: 100%;
+    min-height: 410px;
+    max-height: 420px;
 
     filter: url(#pixel-noise);
 
+
     @include desktop-only {
       object-fit: contain;
-      max-height: 304px;
       width: auto;
-
-      scale: 135%;
-    }
-
-    @include desktop-small-only {
-      object-fit: cover;
-      max-height: 304px;
-      width: 50%;
-
-      scale: 135%;
     }
 
     @include laptop-only {
-      object-fit: cover;
-      max-height: 304px;
-      width: 50%;
-
-      scale: 135%;
-    }
-
-
-    @include tablet-only {
-      object-fit: cover;
-      height: 35%;
-      width: 55%;
-
-      scale: 100%
+      max-height: none;
     }
 
     @include mobile-only {
-      object-fit: cover;
-      height: 75%;
-      width: 75%;
-
-      scale: 100%
+      height: 820px;
     }
 
     &:hover {
@@ -97,7 +77,9 @@
   }
 
   &__text-cards-container {
-    flex: 2;
+
+    width: 60%;
+
     padding: 0 50px;
 
     @include tablet-only {
@@ -114,22 +96,18 @@
   }
 
   &__cards {
-    @include grid-auto(1, 3, 10px);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 
-    @include tablet-only {
-      @include grid(1, 2, 15px);
-
-      &>.card:last-child:not(:nth-last-child(2n)) {
-        grid-column: span 2;
-      }
-    }
-
-    @include mobile-only {
-      @include grid(1, 1, 15px);
+    &>* {
+      flex: 1 1 25%;
     }
   }
 
   &__card {
+
+
     @include center-flex-column(10px);
 
     min-width: 160px;

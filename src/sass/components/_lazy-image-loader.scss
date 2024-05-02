@@ -1,0 +1,26 @@
+@use "../utils/" as *;
+
+.lazy-image-loader {
+    display: block;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+
+    object-fit: cover;
+    object-position: center;
+
+    &.lazy-image-loader-loaded {
+        opacity: 1;
+    }
+
+    &__container {
+        --_url: none;
+        background-image: var(--_url);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &:has(>.lazy-image-loader-loaded) {
+            background-image: none !important;
+        }
+    }
+}

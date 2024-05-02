@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import minifiedImage from "@public/jpg/profile-pic-small-2.jpg";
+
 //Utils
 import { aboutCardsValues } from "@utilities/variables/common/about/about-cards.variables";
 
@@ -12,6 +14,7 @@ import { useRef } from "react";
 //Components
 import {
   CanvasComponent,
+  LazyImageLoader,
   MetaData,
 } from "@components/shared/shared.components";
 
@@ -77,7 +80,19 @@ export default function About(): JSX.Element {
         <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>
         <section className="about-page__introduction-content">
-          <section className="about-page__image-container">
+          <LazyImageLoader
+            src={JPG_URLS.PROFILE_PIC_2}
+            alt="Profile picture"
+            height={1_920}
+            width={1_080}
+            imageClassName="about-page__image"
+            containerClassName="about-page__image-container"
+            id={imageId}
+            backgroundImageUrl={minifiedImage.src}
+          />
+
+          <NoiseFilter imageId={imageId} />
+          {/* 
             <Image
               src={JPG_URLS.PROFILE_PIC_2}
               alt="Profile picture"
@@ -85,10 +100,8 @@ export default function About(): JSX.Element {
               width={1_080}
               className="about-page__image"
               id={imageId}
-            />
-            {/* Filter SVG to make the noise effect on my profile picture         */}
-            <NoiseFilter imageId={imageId} />
-          </section>
+            /> */}
+          {/* Filter SVG to make the noise effect on my profile picture         */}
           <section className="about-page__text-cards-container">
             <div className="about-page__cards">
               {/* BEGIN  */}

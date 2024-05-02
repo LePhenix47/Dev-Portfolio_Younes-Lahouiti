@@ -10,4 +10,14 @@ import MetaData from "./MetaData/MetaData";
 
 import ModalWindow from "./ModalWindow/ModalWindow";
 
-export { BufferLoader, Button, Bubble, CanvasComponent, MetaData, ModalWindow };
+import LazyImageLoader from "./LazyImageLoader/LazyImageLoader";
+
+export {
+  BufferLoader,
+  Button,
+  Bubble,
+  CanvasComponent,
+  MetaData,
+  ModalWindow,
+  LazyImageLoader,
+};
