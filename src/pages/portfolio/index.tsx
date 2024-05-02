@@ -178,7 +178,7 @@ export default function Portfolio(): JSX.Element {
     e.preventDefault();
     // Update the URL with the new query parameter
     const inputElement = searchInputRef.current as HTMLInputElement;
-    const newQuery = inputElement.value;
+    const newQuery: string = inputElement.value;
 
     setShowResetButton(inputElement.value !== "");
 
