@@ -11,6 +11,7 @@ import Icons from "@components/shared/icons/Icons";
 import { error, log, warn } from "@utilities/helpers/console.helpers";
 import { setStyleProperty } from "@utilities/helpers/dom.helpers";
 import { copyTextToClipBoard } from "@utilities/helpers/navigator.helpers";
+import { HeaderLinkProperties } from "@utilities/variables/common/layout/header.variables";
 
 /**
  * Header component representing the top navigation bar of the website.
@@ -57,18 +58,23 @@ export default function Header(): JSX.Element {
   const underlineListItemRef = useRef<HTMLLIElement>(null);
 
   const [routeLinksMap, setRouteLinksMap] = useState(
-    new Map<string, NonNullable<HTMLAnchorElement>>()
+    new Map<string, NonNullable<React.RefObject<HTMLAnchorElement>>>()
   );
 
   function initializeRouteMap(): void {
-    const tempMap = new Map<string, NonNullable<HTMLAnchorElement>>();
-
-    tempMap.set("/", homeLinkPageRef.current!);
-    tempMap.set("/about", aboutLinkPageRef.current!);
-    tempMap.set("/skills", skillsLinkPageRef.current!);
-    tempMap.set("/services", servicesLinkPageRef.current!);
-    tempMap.set("/portfolio", portfolioLinkPageRef.current!);
-    tempMap.set("/contact", contactLinkPageRef.current!);
+    const tempMap = new Map<
+      string,
+      NonNullable<React.RefObject<HTMLAnchorElement>>
+    >(
+      Object.entries({
+        "/": homeLinkPageRef,
+        "/about": aboutLinkPageRef,
+        "/skills": skillsLinkPageRef,
+        "/services": servicesLinkPageRef,
+        "/portfolio": portfolioLinkPageRef,
+        "/contact": contactLinkPageRef,
+      })
+    );
 
     setRouteLinksMap(tempMap);
   }
@@ -84,9 +90,8 @@ export default function Header(): JSX.Element {
 
     const { pathname } = url;
 
-    const anchorElement = routeLinksMap.get(
-      pathname.toLowerCase()
-    ) as HTMLAnchorElement;
+    const anchorElement = routeLinksMap.get(pathname.toLowerCase())!
+      ?.current as HTMLAnchorElement;
 
     const anchorDimensions: DOMRect = anchorElement?.getBoundingClientRect();
 
@@ -198,6 +203,51 @@ export default function Header(): JSX.Element {
     }
   }
 
+  const headerLinks: HeaderLinkProperties[] = [
+    {
+      href: "/",
+      name: "Home",
+      iconComponent: (
+        <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+    {
+      href: "/about",
+      name: "About",
+      iconComponent: (
+        <Icons.AboutMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+    {
+      href: "/skills",
+      name: "Skills",
+      iconComponent: (
+        <Icons.SkillsMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+    {
+      href: "/services",
+      name: "Services",
+      iconComponent: (
+        <Icons.ServicesMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+    {
+      href: "/portfolio",
+      name: "Portfolio",
+      iconComponent: (
+        <Icons.PortfolioMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+    {
+      href: "/contact",
+      name: "Contact",
+      iconComponent: (
+        <Icons.ContactMobile width={24} height={24} fill={"currentColor"} />
+      ),
+    },
+  ];
+
   return (
     <header className="header">
       <section className="header__open-menu-mobile">
@@ -229,102 +279,25 @@ export default function Header(): JSX.Element {
       </section>
       <nav className="header__nav">
         <ul className="header__list" ref={unorderedListRef}>
-          <li
-            className={`header__item
-          ${pathname === "/" && "active"}
-          `}
-          >
-            <Link href="/" className="header__item-link" ref={homeLinkPageRef}>
-              <Icons.HomeMobile width={24} height={24} fill={"currentColor"} />
-              Home
-            </Link>
-          </li>
-          <li
-            className={`header__item
-          ${pathname === "/about" && "active"}
-          `}
-          >
-            <Link
-              href="/about"
-              className="header__item-link"
-              ref={aboutLinkPageRef}
-            >
-              <Icons.AboutMobile width={24} height={24} fill={"currentColor"} />
-              About
-            </Link>
-          </li>
-          <li
-            className={`header__item
-          ${pathname === "/skills" && "active"}
-          `}
-          >
-            <Link
-              href="/skills"
-              className="header__item-link"
-              ref={skillsLinkPageRef}
-            >
-              <Icons.SkillsMobile
-                width={24}
-                height={24}
-                fill={"currentColor"}
-              />
-              Skills
-            </Link>
-          </li>
-          <li
-            className={`header__item
-          ${pathname === "/services" && "active"}
-          `}
-          >
-            <Link
-              href="/services"
-              className="header__item-link"
-              ref={servicesLinkPageRef}
-            >
-              <Icons.ServicesMobile
-                width={24}
-                height={24}
-                fill={"currentColor"}
-              />
-              Services
-            </Link>
-          </li>
-          <li
-            className={`header__item
-          ${pathname === "/portfolio" && "active"}
-          `}
-          >
-            <Link
-              href="/portfolio"
-              className="header__item-link"
-              ref={portfolioLinkPageRef}
-            >
-              <Icons.PortfolioMobile
-                width={24}
-                height={24}
-                fill={"currentColor"}
-              />
-              Portfolio
-            </Link>
-          </li>
-          <li
-            className={`header__item
-          ${pathname === "/contact" && "active"}
-          `}
-          >
-            <Link
-              href="/contact"
-              className="header__item-link"
-              ref={contactLinkPageRef}
-            >
-              <Icons.ContactMobile
-                width={24}
-                height={24}
-                fill={"currentColor"}
-              />
-              Contact
-            </Link>
-          </li>
+          {headerLinks.map((link: HeaderLinkProperties, index: number) => {
+            const { href, name, iconComponent } = link;
+            const isActive: boolean = pathname === href;
+
+            const linkRef: React.RefObject<HTMLAnchorElement> =
+              routeLinksMap.get(href)!;
+            return (
+              <li
+                className={`header__item ${isActive ? "active" : ""}`}
+                key={index}
+              >
+                <Link href={href} className="header__item-link" ref={linkRef}>
+                  {iconComponent}
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
+
           {/*  The &nbsp; is an HTML unicode character for non-breaking space */}
           <li
             className={"header__item header__item-follow"}
