@@ -40,6 +40,11 @@ export default function LazyImageLoader({
   backgroundImageUrl,
   isPriority,
 }: LazyImageLoaderProps): JSX.Element {
+  /**
+   * Handles the event when the image is loaded.
+   *
+   * @param {React.SyntheticEvent<HTMLImageElement, Event>} e - The event object.
+   */
   function onImageLoaded(e: React.SyntheticEvent<HTMLImageElement, Event>) {
     const imageElement = e.currentTarget as HTMLImageElement;
 
@@ -47,7 +52,7 @@ export default function LazyImageLoader({
   }
 
   return (
-    <div
+    <picture
       className={`lazy-image-loader__container ${containerClassName || ""}`}
       style={{
         // @ts-ignore
@@ -64,6 +69,6 @@ export default function LazyImageLoader({
         onLoad={onImageLoaded}
         priority={isPriority}
       />
-    </div>
+    </picture>
   );
 }
