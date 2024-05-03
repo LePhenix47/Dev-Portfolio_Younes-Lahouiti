@@ -90,7 +90,7 @@ const OC_PROJECTS = {
   P3_FSJAngular,
   P5_FSJAngular,
   P6_FSJAngular,
-};
+} as const;
 
 const PERSONAL_PROJECTS = {
   PASSWORD_GENERATOR,
@@ -124,13 +124,13 @@ const PERSONAL_PROJECTS = {
   ADVANCED_LINEAR_GRADIENT_CREATOR,
   TEXT_TO_SPEECH,
   SPEECH_TO_TEXT,
-};
+} as const;
 
 const PROFESSIONAL_PROJECTS = {
   PORTFOLIO,
   JENEE,
   UNCOVE,
-};
+} as const;
 
 const NPM_PROJECTS = {
   TIMEOUT_UTILITY,
@@ -141,11 +141,11 @@ const NPM_PROJECTS = {
   COLOR_CONVERSION_PACKAGE,
   TEXT_TO_SPEECH_UTILITY,
   SPEECH_TO_TEXT_UTILITY,
-};
+} as const;
 
 const BROWSER_EXTENSIONS = {
   NDL,
-};
+} as const;
 
 const PNG_IMAGES = {
   ...OC_PROJECTS,
@@ -153,6 +153,6 @@ const PNG_IMAGES = {
   ...PROFESSIONAL_PROJECTS,
   ...NPM_PROJECTS,
   ...BROWSER_EXTENSIONS,
-};
+} as const;
 
 export default PNG_IMAGES;

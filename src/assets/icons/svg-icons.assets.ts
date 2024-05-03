@@ -73,19 +73,19 @@ import DISCORD from "@public/svg/discord-icon.svg";
 
 import CODE_PEN from "@public/svg/codepen-icon.svg";
 
-const commonIcons = { OPEN_NEW_TAB, BUG, UP_ARROW };
+const commonIcons = { OPEN_NEW_TAB, BUG, UP_ARROW } as const;
 
-const homeIcons = { SEND_MAIL, BLOB };
+const homeIcons = { SEND_MAIL, BLOB } as const;
 
-const aboutIcons = { RESUME, MEDAL, BRIEFCASE, HEADSET };
+const aboutIcons = { RESUME, MEDAL, BRIEFCASE, HEADSET } as const;
 
-const skillsIcons = { BADGE_CHECK, CALENDAR };
+const skillsIcons = { BADGE_CHECK, CALENDAR } as const;
 
-const servicesIcons = { INTEGRATION, SETTINGS, CODE, CHECK };
+const servicesIcons = { INTEGRATION, SETTINGS, CODE, CHECK } as const;
 
-const portfolioIcons = { SEARCH };
+const portfolioIcons = { SEARCH } as const;
 
-const contactIcons = { EMAIL, SLACK, WHATSAPP };
+const contactIcons = { EMAIL, SLACK, WHATSAPP } as const;
 
 const socialIcons = {
   YOUTUBE,
@@ -96,7 +96,7 @@ const socialIcons = {
   NPM,
   DISCORD,
   CODE_PEN,
-};
+} as const;
 
 const mobileHeaderIcons = {
   HOME_HEADER,
@@ -105,7 +105,7 @@ const mobileHeaderIcons = {
   SERVICES_HEADER,
   PORTFOLIO_HEADER,
   CONTACT_HEADER,
-};
+} as const;
 
 const SVG = {
   commonIcons,
@@ -117,6 +117,6 @@ const SVG = {
   contactIcons,
   socialIcons,
   mobileHeaderIcons,
-};
+} as const;
 
 export default SVG;
