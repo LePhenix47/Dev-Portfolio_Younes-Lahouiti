@@ -1,9 +1,8 @@
 //Next
 
-import Image from "next/image";
 import Link from "next/link";
 
-import minifiedImage from "@public/jpg/profile-pic-small-2.jpg";
+import minifiedImage from "@public/jpg/about/profile-pic-small-2.jpg";
 
 //Utils
 import { aboutCardsValues } from "@utilities/variables/common/about/about-cards.variables";
@@ -92,15 +91,6 @@ export default function About(): JSX.Element {
           />
 
           <NoiseFilter imageId={imageId} />
-          {/* 
-            <Image
-              src={JPG_URLS.PROFILE_PIC_2}
-              alt="Profile picture"
-              height={1_920}
-              width={1_080}
-              className="about-page__image"
-              id={imageId}
-            /> */}
           {/* Filter SVG to make the noise effect on my profile picture         */}
           <section className="about-page__text-cards-container">
             <div className="about-page__cards">

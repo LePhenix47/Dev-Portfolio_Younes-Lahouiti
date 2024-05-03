@@ -2,9 +2,8 @@
 import { useRef } from "react";
 
 // IMages
-import minifiedImage from "@public/jpg/profile-pic-small.jpg";
+import minifiedImage from "@public/jpg/home/profile-pic-small.jpg";
 
-import Image from "next/image";
 import Link from "next/link";
 
 //Utils
