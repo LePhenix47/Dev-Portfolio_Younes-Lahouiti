@@ -2,13 +2,11 @@
 import { serviceType } from "@utilities/types/services/services.types";
 
 //Images
-import integrationIcon from "@public/svg/integration.svg";
-import debuggingIcon from "@public/svg/settings.svg";
-import apiIcon from "@public/svg/code.svg";
+import { SVG_ICONS } from "@assets/index.assets";
 
 export const offeredServices: serviceType = [
   {
-    icon: integrationIcon,
+    icon: SVG_ICONS.servicesIcons.INTEGRATION,
     title: "Integration and dynamization",
     description:
       " Integrate various systems and technologies to work together seamlessly",
@@ -21,7 +19,7 @@ export const offeredServices: serviceType = [
     ],
   },
   {
-    icon: debuggingIcon,
+    icon: SVG_ICONS.servicesIcons.SETTINGS,
     title: "Debugging and testing",
     description: " Identify and fix issues in code, and optimize performance",
     qualities: [
@@ -33,7 +31,7 @@ export const offeredServices: serviceType = [
     ],
   },
   {
-    icon: apiIcon,
+    icon: SVG_ICONS.servicesIcons.CODE,
     title: "API creation",
     description:
       "Design, develop and maintain APIs for use in software applications",

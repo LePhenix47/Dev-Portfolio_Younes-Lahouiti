@@ -1,6 +1,6 @@
 //Types
 import { getAmountOfExperience } from "@utilities/helpers/numbers.helpers";
-import { SVG } from "@assets/index.assets";
+import { SVG_ICONS } from "@assets/index.assets";
 import { aboutCardsTypes } from "@utilities/types/about/about-cards.types";
 
 /**
@@ -17,17 +17,17 @@ export const amountOfExperience: number = getAmountOfExperience(startingDate);
  */
 export const aboutCardsValues: aboutCardsTypes = [
   {
-    svgIcon: SVG.aboutIcons.MEDAL,
+    svgIcon: SVG_ICONS.aboutIcons.MEDAL,
     title: "Experience",
-    description: `+${amountOfExperience} year`,
+    description: `+${amountOfExperience} years`,
   },
   {
-    svgIcon: SVG.aboutIcons.BRIEFCASE,
+    svgIcon: SVG_ICONS.aboutIcons.BRIEFCASE,
     title: "Completed",
     description: "20+ Projects",
   },
   {
-    svgIcon: SVG.aboutIcons.HEADSET,
+    svgIcon: SVG_ICONS.aboutIcons.HEADSET,
     title: "Support",
     description: "7/7 Days",
   },

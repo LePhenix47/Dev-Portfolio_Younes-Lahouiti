@@ -1,77 +1,78 @@
 // Common icons
-import BUG from "@public/svg/bug.svg";
-
-import OPEN_NEW_TAB from "@public/svg/open-in-new-tab-icon.svg";
-
-import UP_ARROW from "@public/svg/arrow.svg";
+import UP_ARROW from "@public/svg/shared/arrow.svg";
 
 // Home
-import SEND_MAIL from "@public/svg/send.svg";
+import SEND_MAIL from "@public/svg/home/send.svg";
 
-import BLOB from "@public/svg/blob.svg";
+import BLOB from "@public/svg/home/blob.svg";
 
 // About
-import MEDAL from "@public/svg/medal.svg";
+import MEDAL from "@public/svg/about/medal.svg";
 
-import BRIEFCASE from "@public/svg/briefcase.svg";
+import BRIEFCASE from "@public/svg/about/briefcase.svg";
 
-import HEADSET from "@public/svg/headset.svg";
+import HEADSET from "@public/svg/about/headset.svg";
 
-import RESUME from "@public/svg/files.svg";
+import RESUME from "@public/svg/about/files.svg";
 
 // Skills
-import BADGE_CHECK from "@public/svg/badge-check.svg";
+import BADGE_CHECK from "@public/svg/skills/badge-check.svg";
 
-import CALENDAR from "@public/svg/calendar.svg";
+import CALENDAR from "@public/svg/skills/calendar.svg";
 
 // Services
-import INTEGRATION from "@public/svg/integration.svg";
+import INTEGRATION from "@public/svg/services/integration.svg";
 
-import SETTINGS from "@public/svg/settings.svg";
+import SETTINGS from "@public/svg/services/settings.svg";
 
-import CODE from "@public/svg/code.svg";
+import CODE from "@public/svg/services/code.svg";
 
-import CHECK from "@public/svg/check.svg";
+import CHECK from "@public/svg/services/check.svg";
 
 // Portfolio
-import SEARCH from "@public/svg/magnifying-glass.svg";
+import SEARCH from "@public/svg/portfolio/magnifying-glass.svg";
 
 // Contact
-import EMAIL from "@public/svg/email.svg";
+import EMAIL from "@public/svg/contact/email.svg";
 
-import SLACK from "@public/svg/slack-logo.svg";
+import SLACK from "@public/svg/social-icons/slack-logo.svg";
 
-import WHATSAPP from "@public/svg/whatsapp-logo.svg";
+import WHATSAPP from "@public/svg/social-icons/whatsapp-logo.svg";
 
-// Mobile
-import HOME_HEADER from "@public/svg/home-header.svg";
+// Header
+import HOME_HEADER from "@public/svg/layout/header/home-header.svg";
 
-import ABOUT_HEADER from "@public/svg/person-header.svg";
+import ABOUT_HEADER from "@public/svg/layout/header/person-header.svg";
 
-import SKILLS_HEADER from "@public/svg/skills-header.svg";
+import SKILLS_HEADER from "@public/svg/layout/header/skills-header.svg";
 
-import SERVICES_HEADER from "@public/svg/briefcase-header.svg";
+import SERVICES_HEADER from "@public/svg/layout/header/briefcase-header.svg";
 
-import PORTFOLIO_HEADER from "@public/svg/image-header.svg";
+import PORTFOLIO_HEADER from "@public/svg/layout/header/image-header.svg";
 
-import CONTACT_HEADER from "@public/svg/contact-header.svg";
+import CONTACT_HEADER from "@public/svg/layout/header/contact-header.svg";
+
+// Footer
+import BUG from "@public/svg/layout/footer/bug.svg";
+
+import OPEN_NEW_TAB from "@public/svg/layout/footer/open-in-new-tab-icon.svg";
 
 // Social icons
-import YOUTUBE from "@public/svg/youtube-icon.svg";
+import YOUTUBE from "@public/svg/social-icons/youtube-icon.svg";
 
-import TWITTER from "@public/svg/twitter-icon.svg";
+import X_TWITTER from "@public/svg/social-icons/twitter-icon.svg";
 
-import LINKEDIN from "@public/svg/linkedin-icon.svg";
+import LINKEDIN from "@public/svg/social-icons/linkedin-icon.svg";
 
-import GITHUB from "@public/svg/github-icon.svg";
+import GITHUB from "@public/svg/social-icons/github-icon.svg";
 
-import STACK_OVERFLOW from "@public/svg/stackoverflow-icon.svg";
+import STACK_OVERFLOW from "@public/svg/social-icons/stackoverflow-icon.svg";
 
-import NPM from "@public/svg/npm-icon.svg";
+import NPM from "@public/svg/social-icons/npm-icon.svg";
 
-import DISCORD from "@public/svg/discord-icon.svg";
+import DISCORD from "@public/svg/social-icons/discord-icon.svg";
 
-import CODE_PEN from "@public/svg/codepen-icon.svg";
+import CODE_PEN from "@public/svg/social-icons/codepen-icon.svg";
 
 const commonIcons = { OPEN_NEW_TAB, BUG, UP_ARROW } as const;
 
@@ -89,7 +90,7 @@ const contactIcons = { EMAIL, SLACK, WHATSAPP } as const;
 
 const socialIcons = {
   YOUTUBE,
-  TWITTER,
+  X_TWITTER,
   LINKEDIN,
   GITHUB,
   STACK_OVERFLOW,
@@ -107,7 +108,7 @@ const mobileHeaderIcons = {
   CONTACT_HEADER,
 } as const;
 
-const SVG = {
+const SVG_ICONS = {
   commonIcons,
   homeIcons,
   aboutIcons,
@@ -119,4 +120,4 @@ const SVG = {
   mobileHeaderIcons,
 } as const;
 
-export default SVG;
+export default SVG_ICONS;
