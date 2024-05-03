@@ -56,7 +56,7 @@ export default function PortfolioProjectCard({
     typeToSentenceMap.get(type) || "View source code";
 
   return (
-    <div className="portfolio-page__project-card card">
+    <li className="portfolio-page__project-card card">
       <div className="portfolio-page__project-card-image-container">
         <Image
           src={image}
@@ -83,6 +83,6 @@ export default function PortfolioProjectCard({
           </span>
         </Link>
       </div>
-    </div>
+    </li>
   );
 }

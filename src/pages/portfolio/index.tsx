@@ -537,7 +537,7 @@ export default function Portfolio(): JSX.Element {
           </nav>
         </div>
 
-        <div className="portfolio-page__project-cards-container">
+        <ul className="portfolio-page__project-cards-container">
           {/* Project cards */}
           {filteredAndSortedData.map((project) => {
             const { title, image, link, date, type } = project;
@@ -565,7 +565,7 @@ export default function Portfolio(): JSX.Element {
               ಠ_ಠ
             </p>
           )}
-        </div>
+        </ul>
       </section>
     </>
   );
