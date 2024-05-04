@@ -23,7 +23,7 @@ export default function PageLayout(props: {
       <Header />
 
       {/* The main content section */}
-      <main className="page-layout" ref={mainElementRef}>
+      <main className="page-layout" ref={mainElementRef} id={"main-content"}>
         {children}
       </main>
 

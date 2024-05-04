@@ -250,63 +250,73 @@ export default function Header(): JSX.Element {
 
   return (
     <header className="header">
-      <section className="header__open-menu-mobile">
-        <input
-          type="checkbox"
-          name="open-menu-button"
-          id="open-menu-button"
-          className="header__open-menu-mobile-checkbox"
-        />
-        <label
-          htmlFor="open-menu-button"
-          className="header__open-menu-mobile-label"
-        ></label>
-      </section>
-
-      <section
-        className="header__dev"
-        title="Share the portfolio link?"
-        onClick={showCopiedToolTip}
-      >
-        <p className="header__dev-name">Younes-Portfolio-Dev</p>
-        <div
-          className={`header__dev-pop-up ${
-            popUpOpen ? "header__dev-pop-up--active" : "fade-out"
-          }`}
+      <div className="header__wrapper">
+        <Link
+          className="header__skip-to-content"
+          href="#main-content"
+          tabIndex={2}
         >
-          <p className="header__dev-pop-up-paragraph">Copied!</p>
-        </div>
-      </section>
-      <nav className="header__nav">
-        <ul className="header__list" ref={unorderedListRef}>
-          {headerLinks.map((link: HeaderLinkProperties, index: number) => {
-            const { href, name, iconComponent } = link;
-            const isActive: boolean = pathname === href;
+          <p className="header__skip-to-content-text">Skip to content ?</p>
+        </Link>
 
-            const linkRef: React.RefObject<HTMLAnchorElement> =
-              routeLinksMap.get(href)!;
-            return (
-              <li
-                className={`header__item ${isActive ? "active" : ""}`}
-                key={index}
-              >
-                <Link href={href} className="header__item-link" ref={linkRef}>
-                  {iconComponent}
-                  {name}
-                </Link>
-              </li>
-            );
-          })}
+        <section className="header__open-menu-mobile">
+          <input
+            type="checkbox"
+            name="open-menu-button"
+            id="open-menu-button"
+            className="header__open-menu-mobile-checkbox"
+          />
+          <label
+            htmlFor="open-menu-button"
+            className="header__open-menu-mobile-label"
+          ></label>
+        </section>
 
-          {/*  The &nbsp; is an HTML unicode character for non-breaking space */}
-          <li
-            className={"header__item header__item-follow"}
-            ref={underlineListItemRef}
+        <section
+          className="header__dev"
+          title="Share the portfolio link?"
+          onClick={showCopiedToolTip}
+        >
+          <p className="header__dev-name">Younes-Portfolio-Dev</p>
+          <div
+            className={`header__dev-pop-up ${
+              popUpOpen ? "header__dev-pop-up--active" : "fade-out"
+            }`}
           >
-            &nbsp;
-          </li>
-        </ul>
-      </nav>
+            <p className="header__dev-pop-up-paragraph">Copied!</p>
+          </div>
+        </section>
+        <nav className="header__nav">
+          <ul className="header__list" ref={unorderedListRef}>
+            {headerLinks.map((link: HeaderLinkProperties, index: number) => {
+              const { href, name, iconComponent } = link;
+              const isActive: boolean = pathname === href;
+
+              const linkRef: React.RefObject<HTMLAnchorElement> =
+                routeLinksMap.get(href)!;
+              return (
+                <li
+                  className={`header__item ${isActive ? "active" : ""}`}
+                  key={index}
+                >
+                  <Link href={href} className="header__item-link" ref={linkRef}>
+                    {iconComponent}
+                    {name}
+                  </Link>
+                </li>
+              );
+            })}
+
+            {/*  The &nbsp; is an HTML unicode character for non-breaking space */}
+            <li
+              className={"header__item header__item-follow"}
+              ref={underlineListItemRef}
+            >
+              &nbsp;
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

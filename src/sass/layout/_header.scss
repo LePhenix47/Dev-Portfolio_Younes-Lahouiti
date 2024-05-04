@@ -1,11 +1,6 @@
 @use "../utils/" as *;
 
 .header {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     backdrop-filter: blur(10px);
 
     position: sticky;
@@ -20,11 +15,6 @@
     transition: translate 350ms ease-in-out,
         opacity 350ms ease-in-out;
 
-    @include tablet-only {
-        justify-content: center;
-        flex-direction: column;
-        gap: 15px;
-    }
 
     @include mobile-only {
         translate: 0% 100%;
@@ -41,10 +31,84 @@
         bottom: 0px;
         top: auto; //Removes the top
 
-        justify-content: center;
-        flex-direction: column;
-        gap: 15px;
     }
+
+    &__wrapper {
+        position: relative;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include tablet-only {
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @include mobile-only {
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+
+    &__skip-to-content {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        z-index: 3;
+
+        translate: 0 -150%;
+
+        background-color: var(--bg-primary);
+
+        border-radius: 10px;
+
+        transition: translate 350ms ease-in-out;
+
+        @include tablet-only {
+            left: 50%;
+            translate: -50% -200%;
+        }
+
+        @include mobile-only {
+            translate: 0 150%;
+        }
+
+        &:focus {
+            translate: 0 -50%;
+
+            @include tablet-only {
+                translate: -50% -100%;
+            }
+
+            @include mobile-only {
+                translate: 0 -25%;
+            }
+        }
+
+        @include mobile-only {
+            width: 100%;
+
+            height: 100%;
+        }
+
+        &-text {
+            text-align: center;
+            display: inline-block;
+
+            padding-block: 15px;
+            padding-inline: 30px;
+        }
+    }
+
 
 
     &:has(#open-menu-button:checked) {

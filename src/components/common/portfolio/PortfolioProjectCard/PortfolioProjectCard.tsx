@@ -64,6 +64,7 @@ export default function PortfolioProjectCard({
           width={500}
           height={500}
           className="portfolio-page__project-card-image"
+          placeholder="blur"
         />
       </div>
       <div className="portfolio-page__project-card-text">
