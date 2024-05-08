@@ -134,6 +134,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("02/09/2024"),
   },
+  {
+    title: "[Java-Angular] P10: BobApp",
+    image: PNG_IMAGES.P10_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_P10_20042024",
+    type: "oc",
+    date: new Date("04/20/2024"),
+  },
 ];
 
 /**

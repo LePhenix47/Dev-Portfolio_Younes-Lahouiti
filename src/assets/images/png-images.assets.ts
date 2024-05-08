@@ -20,6 +20,7 @@ import P2_FSJAngular from "@public/png/openclassrooms/P2-FS_Java-Angular-image.p
 import P3_FSJAngular from "@public/png/openclassrooms/P3-FS_Java-Angular-image.png";
 import P5_FSJAngular from "@public/png/openclassrooms/P5-FS_Java-Angular-image.png";
 import P6_FSJAngular from "@public/png/openclassrooms/P6-FS_Java-Angular-image.png";
+import P10_FSJAngular from "@public/png/openclassrooms/P10-FS_Java-Angular-image.png";
 
 // * Personal
 import PASSWORD_GENERATOR from "@public/png/personal-projects/Password generator.png";
@@ -90,6 +91,7 @@ const OC_PROJECTS = {
   P3_FSJAngular,
   P5_FSJAngular,
   P6_FSJAngular,
+  P10_FSJAngular,
 } as const;
 
 const PERSONAL_PROJECTS = {
