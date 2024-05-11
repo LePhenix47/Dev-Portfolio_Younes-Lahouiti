@@ -5,12 +5,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Icons from "@components/shared/icons/Icons";
+import { formatShortDate } from "@utilities/helpers/internalization.helpers";
 
 type PortfolioProjectCardProps = {
   title: string;
   image: any;
   link: string;
-  formattedDate: string;
+  date: Date | string;
   type: string;
 };
 
@@ -21,12 +22,12 @@ type PortfolioProjectCardProps = {
  * @param {string} title - The title of the portfolio project.
  * @param {any} image - The image representing the portfolio project.
  * @param {string} link - The link or URL associated with the portfolio project.
- * @param {string} formattedDate - The formatted date when the project was made.
+ * @param {Date | string} date - The date when the project was made.
  * @param {string} type - The type of the portfolio project (e.g., "npm", "extension", "professional").
  * @returns {JSX.Element} A JSX element representing the PortfolioProjectCard component.
  *
  * @example
-@component
+ * @component
  * // Example usage:
  * <PortfolioProjectCard
  *   title="Sample Project"
@@ -40,7 +41,7 @@ export default function PortfolioProjectCard({
   title,
   image,
   link,
-  formattedDate,
+  date,
   type,
 }: PortfolioProjectCardProps): JSX.Element {
   const typeToSentenceMap = new Map<string, string>(
@@ -51,6 +52,8 @@ export default function PortfolioProjectCard({
       personal: "View source code",
     })
   );
+
+  const formattedDate: string = formatShortDate(date);
 
   const sentenceToViewProjectCode: string =
     typeToSentenceMap.get(type) || "View source code";
@@ -70,8 +73,10 @@ export default function PortfolioProjectCard({
       <div className="portfolio-page__project-card-text">
         <h3 className="portfolio-page__project-card-title">{title}</h3>
         <p className="portfolio-page__project-card-date">
-          Made the: {formattedDate}
+          Made the:{" "}
+          <time dateTime={date.toLocaleString("en-US")}>{formattedDate}</time>
         </p>
+
         <Link
           href={link}
           target="_blank"

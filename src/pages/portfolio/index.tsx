@@ -73,6 +73,7 @@ export default function Portfolio(): JSX.Element {
    * State and dispatcher for managing project cards.
    */
   const [projectCardsState, projectCardsDispatch] = useReducer(
+    // @ts-ignore
     (
       state: {
         category: string;
@@ -542,13 +543,11 @@ export default function Portfolio(): JSX.Element {
           {filteredAndSortedData.map((project) => {
             const { title, image, link, date, type } = project;
 
-            const formattedDate: string = formatShortDate(date);
-
             return (
               <PortfolioProjectCard
                 title={title}
                 image={image}
-                formattedDate={formattedDate}
+                date={date}
                 link={link}
                 type={type}
                 key={`${title}-${link}`}
