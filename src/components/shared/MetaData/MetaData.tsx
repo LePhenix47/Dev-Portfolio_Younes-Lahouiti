@@ -124,6 +124,7 @@ export default function MetaData({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
 
+      <meta property="og:image:secure_url" content={image.url} />
       <meta property="og:image" content={image.url} />
       <meta property="og:image:width" content={imageWidth} />
       <meta property="og:image:height" content={imageHeight} />
@@ -131,6 +132,25 @@ export default function MetaData({
       <meta property="og:locale" content="en_US" />
 
       <meta property="og:url" content={pageUrl} />
+
+      {/* 
+      <!-- Twitter card tags -->
+      */}
+      <meta name="twitter:creator" content="Younes LAHOUITI"></meta>
+
+      <meta name="twitter:card" content="summary_large_image" />
+
+      <meta name="twitter:title" content={title} />
+
+      <meta name="twitter:description" content={description} />
+
+      <meta name="twitter:image" content={image.url} />
+
+      <meta
+        name="twitter:image:alt"
+        content="Picture of Younes, the developer behind the portfolio"
+      />
+
       {/*
          <!-- Title --> 
          */}
