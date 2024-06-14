@@ -32,6 +32,11 @@ import {
   setStyleProperty,
 } from "@utilities/helpers/dom.helpers";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+import { usePageTransitionContext } from "@context/PageTransition.context";
+
 /**
  * Home page component: `/`
  *
@@ -90,7 +95,7 @@ export default function Home(): JSX.Element {
         allowRobotCrawlers={home.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="home-page" ref={homePageSectionRef}>
+      <section className="home-page page-section" ref={homePageSectionRef}>
         <CanvasComponent parentElement={homePageSectionRef} />
         <aside className="home-page__socials">
           <ul className="home-page__social-list">

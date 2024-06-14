@@ -1,9 +1,12 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+"use client";
+import React, {
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/router";
-
-//Framer motion library
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { usePageTransitionContext } from "@context/PageTransition.context";
@@ -19,25 +22,30 @@ type PageTransitionProps = {
  *
  * @param {Object} props - The component props.
  * @param {ReactNode} props.children - The content to be rendered within the page transition.
- * @param {string} props.pathname - The current pathname.
  * @returns {ReactNode} - The rendered page transition animation.
  */
 function PageTransition({ children }: PageTransitionProps): JSX.Element {
-  const routes = [
-    "/",
-    "/about",
-    "/skills",
-    "/services",
-    "/portfolio",
-    "/contact",
-  ] as const;
-
   const [displayedChildren, setDisplayedChildren] =
     useState<ReactNode>(children);
-
   const divElementRef = useRef<HTMLDivElement>(null);
-
   const { timeline } = usePageTransitionContext();
+  const { contextSafe } = useGSAP();
+  const router = useRouter();
+
+  const exit = contextSafe(handleGsapPageChange);
+
+  function showTransition() {
+    // @ts-ignore
+    const didNotChangePage = children!.key === displayedChildren!.key;
+    if (didNotChangePage) {
+      return;
+    }
+
+    // @ts-ignore
+    console.log(children!.key, displayedChildren!.key);
+
+    opacityTransition();
+  }
 
   /**
    * Executes a GSAP page change animation and updates the displayed children.
@@ -47,22 +55,26 @@ function PageTransition({ children }: PageTransitionProps): JSX.Element {
   function handleGsapPageChange() {
     timeline.play().then(() => {
       setDisplayedChildren(children);
-      scrollTo(0, 0); // * Window object method
-
+      window.scrollTo(0, 0); // Window object method
       timeline.pause().clear();
     });
   }
 
-  useGSAP(() => {
-    // @ts-ignore We have check if the component changed
-    const didNotChangePage: boolean = children!.key === displayedChildren!.key;
-    if (didNotChangePage) {
-      console.log("Did not");
-      return;
-    }
-
-    handleGsapPageChange();
+  useLayoutEffect(() => {
+    showTransition();
   }, [children]);
+
+  useLayoutEffect(() => {
+    showTransition();
+  }, []);
+
+  function opacityTransition() {
+    gsap.to(divElementRef.current, { opacity: 0 }).then(() => {
+      setDisplayedChildren(children);
+      gsap.to(divElementRef.current, { opacity: 1 });
+      scrollTo(0, 0);
+    });
+  }
 
   return (
     <div className="page-transition" ref={divElementRef}>
@@ -70,4 +82,5 @@ function PageTransition({ children }: PageTransitionProps): JSX.Element {
     </div>
   );
 }
+
 export default PageTransition;
