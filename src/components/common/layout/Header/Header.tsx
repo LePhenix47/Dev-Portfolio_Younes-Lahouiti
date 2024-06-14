@@ -299,7 +299,12 @@ export default function Header(): JSX.Element {
                   className={`header__item ${isActive ? "active" : ""}`}
                   key={index}
                 >
-                  <Link href={href} className="header__item-link" ref={linkRef}>
+                  <Link
+                    href={href}
+                    className="header__item-link"
+                    ref={linkRef}
+                    scroll={false}
+                  >
                     {iconComponent}
                     {name}
                   </Link>

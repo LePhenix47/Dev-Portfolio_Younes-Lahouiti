@@ -53,7 +53,7 @@ export default function Skills(): JSX.Element {
         allowRobotCrawlers={skills.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="skills-page" ref={skillsPageSectionRef}>
+      <section className="skills-page page-section" ref={skillsPageSectionRef}>
         <CanvasComponent parentElement={skillsPageSectionRef} />
         <h1 className="skills-page__title">Skills</h1>
         <h2 className="skills-page__subtitle">My technical level</h2>

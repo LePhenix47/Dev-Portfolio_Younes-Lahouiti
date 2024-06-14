@@ -51,6 +51,7 @@ import {
   formatPrecisionNumber,
   formatShortDate,
 } from "@utilities/helpers/internalization.helpers";
+import Link from "next/link";
 
 /**
  * Portfolio page: `/portfolio`
@@ -393,7 +394,14 @@ export default function Portfolio(): JSX.Element {
         openGraph={OPEN_GRAPH}
       />
 
-      <section className="portfolio-page" ref={portfolioPageSectionRef}>
+      <section
+        className="portfolio-page page-section"
+        ref={portfolioPageSectionRef}
+      >
+        <Link href="#top" className={"portfolio-page__anchor"} target="_top">
+          <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
+        </Link>
+
         <CanvasComponent parentElement={portfolioPageSectionRef} />
 
         <h1 className="portfolio-page__title" id="top">

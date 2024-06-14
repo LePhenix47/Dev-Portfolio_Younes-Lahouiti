@@ -1,6 +1,10 @@
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useState, useEffect } from "react";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
+
+type PageLayoutProps = {
+  children: ReactNode;
+};
 
 /**
  * Component representing the layout for the entire website.
@@ -10,20 +14,14 @@ import Header from "./Header/Header";
  * @param {ReactNode} props.children - The children elements to be rendered inside the main content section.
  * @returns {JSX.Element} The JSX element representing the page layout.
  */
-export default function PageLayout(props: {
-  children: ReactNode;
-}): JSX.Element {
-  const mainElementRef = useRef<HTMLElement>(null);
-
-  const { children } = props;
-
+export default function PageLayout({ children }: PageLayoutProps): JSX.Element {
   return (
     <>
       {/* The header section */}
       <Header />
 
       {/* The main content section */}
-      <main className="page-layout" ref={mainElementRef} id={"main-content"}>
+      <main className="page-layout" id={"main-content"}>
         {children}
       </main>
 

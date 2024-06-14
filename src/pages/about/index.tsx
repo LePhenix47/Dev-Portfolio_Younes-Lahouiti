@@ -74,7 +74,7 @@ export default function About(): JSX.Element {
         allowRobotCrawlers={about.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="about-page" ref={aboutPageSectionRef}>
+      <section className="about-page page-section" ref={aboutPageSectionRef}>
         <CanvasComponent parentElement={aboutPageSectionRef} />
         <h1 className="about-page__title">About me</h1>
         <h2 className="about-page__subtitle">My introduction</h2>

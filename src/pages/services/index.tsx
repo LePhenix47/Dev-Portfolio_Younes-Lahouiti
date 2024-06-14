@@ -112,7 +112,10 @@ export default function Services(): JSX.Element {
         {windowContent}
       </ModalWindow>
 
-      <section className="services-page" ref={servicesPageSectionRef}>
+      <section
+        className="services-page page-section"
+        ref={servicesPageSectionRef}
+      >
         <CanvasComponent parentElement={servicesPageSectionRef} />
 
         <h1 className="services-page__title">Services</h1>

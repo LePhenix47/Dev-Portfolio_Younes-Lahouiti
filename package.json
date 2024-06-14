@@ -12,6 +12,8 @@
     "git:push-d": "npm run git:commit && npm run git:push"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.0",
+    "gsap": "^3.12.5",
     "@babel/eslint-parser": "^7.23.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",

@@ -25,6 +25,7 @@ import {
 import PageLayout from "@components/common/layout/PageLayout";
 import Icons from "@components/shared/icons/Icons";
 import PageTransition from "@components/common/layout/PageTransition/PageTransition";
+import PageTransitionProvider from "@context/PageTransition.context";
 
 /**
  * The `_app.tsx` file is the root component where all pages will pass through. It sets up the global layout, providers, and configurations for the entire app.
@@ -40,13 +41,26 @@ import PageTransition from "@components/common/layout/PageTransition/PageTransit
  * @param {AppProps} props - The AppProps object containing the `Component` and `pageProps`.
  * @returns {JSX.Element} The root JSX element for the entire app.
  */
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+export default function App({
+  Component,
+  pageProps,
+  router,
+}: AppProps): JSX.Element {
   /**
    * This `queryClient` constant ensures that data is not shared between different users and requests, while still only creating the QueryClient once per component lifecycle.
    */
   const queryClient: QueryClient = new QueryClient();
 
   const currentPathname: string = usePathname();
+
+  const routes = [
+    "/",
+    "/about",
+    "/skills",
+    "/services",
+    "/portfolio",
+    "/contact",
+  ] as const;
 
   return (
     <>
@@ -57,23 +71,11 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <TanStackProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <PageLayout>
-            {/* 
-           // ? Because the parent element of this anchor uses the `transform` property for the pages transitions, 
-           // ? child elements need to be positioned to the flow of the document, thus why we cannot use position: sticky nor position: fixed.
-            */}
-            {currentPathname.includes("/portfolio") && (
-              <Link
-                href="#top"
-                className={"portfolio-page__anchor"}
-                target="_top"
-              >
-                <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
-              </Link>
-            )}
-
-            <PageTransition>
-              <Component {...pageProps} />
-            </PageTransition>
+            <PageTransitionProvider>
+              <PageTransition>
+                <Component key={router.route} {...pageProps} />
+              </PageTransition>
+            </PageTransitionProvider>
           </PageLayout>
         </Hydrate>
       </TanStackProvider>

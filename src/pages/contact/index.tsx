@@ -318,7 +318,10 @@ export default function Contact(): JSX.Element {
         allowRobotCrawlers={contact.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="contact-page" ref={contactPageSectionRef}>
+      <section
+        className="contact-page page-section"
+        ref={contactPageSectionRef}
+      >
         <CanvasComponent parentElement={contactPageSectionRef} />
 
         <h1 className="contact-page__title">Contact me</h1>
