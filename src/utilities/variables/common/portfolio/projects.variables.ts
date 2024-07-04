@@ -141,6 +141,13 @@ export const openClassroomsProjects: projectsMadeType = [
     type: "oc",
     date: new Date("04/20/2024"),
   },
+  {
+    title: "[Java-Angular] P13: Your Car Your Way PoC (WebSockets & WebRTC)",
+    image: PNG_IMAGES.P13_FSJAngular,
+    link: "https://github.com/LePhenix47/Lahouiti_Younes_P13_21062024",
+    type: "oc",
+    date: new Date("06/21/2024"),
+  },
 ];
 
 /**
