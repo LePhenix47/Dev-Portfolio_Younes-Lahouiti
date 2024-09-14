@@ -22,12 +22,12 @@ export default function NoiseFilter({
   imageId,
 }: NoiseFilterProps): JSX.Element {
   return (
-    <svg className="svg-filter hide">
+    <svg className="svg-filter" width={0} height={0}>
       <defs>
         <filter id="pixel-noise">
           {/* 
-              Doc explaining how the turbulence filter SVG work:
-              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence
+              // ? Doc explaining how the turbulence filter SVG work:
+              // ? https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence
               */}
           <feTurbulence
             baseFrequency="0.5,0.5"
@@ -45,13 +45,13 @@ export default function NoiseFilter({
             />
           </feTurbulence>
           {/*
-              Doc explaining how displacement maps work:
-              https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap
+            // ? Doc explaining how displacement maps work:
+            // ? https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap
               */}
           <feDisplacementMap
-            //Image we want to apply the effect to
+            // * Image we want to apply the effect to
             in="SourceGraphic"
-            //Name of the result effect itself
+            // * Name of the result effect itself
             in2="static-effect"
             scale={1}
           >
