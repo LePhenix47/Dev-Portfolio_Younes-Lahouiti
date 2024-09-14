@@ -49,9 +49,7 @@ export default function HomeSocialCardItem({
           width={30}
           priority
           className={`home-page__social-image ${
-            needsInversionOnDarkMode
-              ? "home-page__social--dark-mode-inverted "
-              : ""
+            needsInversionOnDarkMode ? "invert--dark-mode-only " : ""
           }`}
         />
       </Link>

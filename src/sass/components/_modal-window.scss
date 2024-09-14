@@ -1,6 +1,7 @@
 @use "../utils/" as *;
 
 .modal-window {
+    --_close-button-width: 32px;
     --_scrollbar-margin-block: 30px;
     --_scrollbar-bg: transparent;
 
@@ -40,8 +41,8 @@
         position: absolute;
         right: 0;
 
+        width: var(--_close-button-width);
         aspect-ratio: 1/1;
-        height: 32px;
 
         background-color: currentColor;
 

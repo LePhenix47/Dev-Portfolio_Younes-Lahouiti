@@ -25,7 +25,7 @@
         --selection-color: white;
 
         //For the images
-        .home-page__social--dark-mode-inverted {
+        .invert--dark-mode-only {
             filter: invert(100%) hue-rotate(180deg);
         }
 

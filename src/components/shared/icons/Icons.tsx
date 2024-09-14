@@ -10,6 +10,7 @@ import FlourishedCheckmarkIcon from "./FlourishedCheckmarkIcon/FlourishedCheckma
 import HollowCheckIcon from "./HollowCheckIcon/HollowCheckIcon";
 import RoundCheckIcon from "./RoundCheckIcon/RoundCheckIcon";
 import RoundExclamationIcon from "./RoundExclamationIcon/RoundExclamationIcon";
+import WorldIcon from "./WorldIcon/WorldIcon";
 
 //Mobile navigation icons
 import HomeMobileIcon from "./HomeMobileIcon/HomeMobileIcon";
@@ -49,6 +50,7 @@ const Icons = {
   PortfolioMobile: PortfolioMobileIcon,
   ContactMobile: ContactMobileIcon,
   FlourishedCheckmark: FlourishedCheckmarkIcon,
+  World: WorldIcon,
 };
 
 export default Icons;
