@@ -24,7 +24,7 @@ import {
 } from "@utilities/variables/common/portfolio/projects.variables";
 
 import { projectCategories } from "@utilities/variables/common/portfolio/projects-categories.variables";
-import { projectsMadeType } from "@utilities/types/portfolio/projects.types";
+import { ProjectsMadeType } from "@utilities/types/portfolio/projects.types";
 
 //? Shared components
 import {
@@ -107,17 +107,17 @@ export default function Portfolio(): JSX.Element {
   /**
    * Memoized project card data for displaying on the page.
    */
-  const filteredAndSortedData: projectsMadeType = useMemo(() => {
-    const dataToShow: projectsMadeType = changeCards(
+  const filteredAndSortedData: ProjectsMadeType = useMemo(() => {
+    const dataToShow: ProjectsMadeType = changeCards(
       projectCardsState.category
     );
 
-    const filteredData: projectsMadeType = filterProjectsData(
+    const filteredData: ProjectsMadeType = filterProjectsData(
       dataToShow,
       projectCardsState.query
     );
 
-    const sortedData: projectsMadeType = sortProjectsData(
+    const sortedData: ProjectsMadeType = sortProjectsData(
       filteredData,
       projectCardsState.sortBy as (typeof sortOptions)[number],
       projectCardsState.sortOrder
@@ -259,14 +259,14 @@ export default function Portfolio(): JSX.Element {
 
   /**
    * Filters an array of projects based on the provided query.
-   * @param {projectsMadeType} data - The array of projects to filter.
+   * @param {ProjectsMadeType} data - The array of projects to filter.
    * @param {string} query - The search query.
-   * @returns {projectsMadeType} - The filtered array of projects.
+   * @returns {ProjectsMadeType} - The filtered array of projects.
    */
   function filterProjectsData(
-    data: projectsMadeType,
+    data: ProjectsMadeType,
     query: string
-  ): projectsMadeType {
+  ): ProjectsMadeType {
     return data.filter((project) => {
       const normalizedQuery: string = removeAccents(query.toLowerCase());
       const normalizedProjectTitle: string = removeAccents(
@@ -279,16 +279,16 @@ export default function Portfolio(): JSX.Element {
 
   /**
    * Sorts an array of projects by the specified options.
-   * @param {projectsMadeType} data - The array of projects to sort.
+   * @param {ProjectsMadeType} data - The array of projects to sort.
    * @param {(typeof sortOptions)[number]} sortBy - The property to sort by.
    * @param {string} sortOrder - The sorting order ('asc' or 'desc').
-   * @returns {projectsMadeType} - The sorted array of projects.
+   * @returns {ProjectsMadeType} - The sorted array of projects.
    */
   function sortProjectsData(
-    data: projectsMadeType,
+    data: ProjectsMadeType,
     sortBy: (typeof sortOptions)[number],
     sortOrder: string
-  ): projectsMadeType {
+  ): ProjectsMadeType {
     const sortedData = data.sort((a, b) => {
       const valueA: string | Date = a[sortBy];
       const valueB: string | Date = b[sortBy];
@@ -315,9 +315,9 @@ export default function Portfolio(): JSX.Element {
   /**
    * Changes the set of cards based on the selected category.
    * @param {string} category - The selected category.
-   * @returns {projectsMadeType} The updated set of projects.
+   * @returns {ProjectsMadeType} The updated set of projects.
    */
-  function changeCards(category: string): projectsMadeType {
+  function changeCards(category: string): ProjectsMadeType {
     switch (category) {
       case "openclassrooms": {
         //openclassroomsProjects

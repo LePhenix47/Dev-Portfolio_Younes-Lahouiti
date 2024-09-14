@@ -1,7 +1,7 @@
 //Next
 import { StaticImageData } from "next/image";
 
-export type projectsMadeType = {
+export type ProjectsMadeType = {
   title: string;
   image: StaticImageData;
   link: string;
