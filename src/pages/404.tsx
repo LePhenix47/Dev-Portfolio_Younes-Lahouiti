@@ -49,14 +49,14 @@ export default function Error404(): JSX.Element | null {
         allowRobotCrawlers={error404.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="error-404" ref={section404Ref}>
+      <section className="error-page page-section" ref={section404Ref}>
         <CanvasComponent parentElement={section404Ref} />
-        <h1 className="error-404__main-title">404</h1>
-        <h2 className="error-404__title">Oops!</h2>
-        <h3 className="error-404__subtitle">
+        <h1 className="error-page__main-title">404</h1>
+        <h2 className="error-page__title">Oops!</h2>
+        <h3 className="error-page__subtitle">
           It looks like you&apos;ve stumbled upon a missing page ¯\_(ツ)_/¯
         </h3>
-        <p className="error-404__paragraph">
+        <p className="error-page__paragraph">
           The <code>{asPath}</code> page you were searching for went out for a
           coffee break and forgot to come back.
           <br />

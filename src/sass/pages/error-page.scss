@@ -1,11 +1,18 @@
 @use "../utils/" as *;
 
-.error-500 {
-    width: 80%;
-    margin: 50px auto;
+.error-page {
     @include center-flex-column(25px);
 
     text-align: center;
+
+    &>:is(h1, h2, h3, p) {
+        width: 90%;
+        margin-inline: auto;
+    }
+
+    @include mobile-only {
+        min-height: 780px;
+    }
 
     &__main-title {
         font-size: 164px;

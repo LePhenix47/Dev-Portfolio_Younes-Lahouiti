@@ -5,12 +5,12 @@
     min-height: 74svh;
 
     @include desktop-small-only {
-        margin-block: 30px;
+        padding-block: 30px;
     }
 
 
     @include tablet-only {
-        margin-bottom: 50px;
+        padding-block: 50px;
         flex-direction: column;
     }
 
@@ -41,7 +41,7 @@
         justify-content: center;
 
         @include tablet-only {
-            margin-top: 75px;
+            margin-top: 25px;
         }
 
         @include mobile-only {

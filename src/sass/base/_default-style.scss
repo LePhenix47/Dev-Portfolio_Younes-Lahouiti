@@ -1,0 +1,11 @@
+@use "../utils/" as *;
+
+#__next {
+    display: grid;
+    grid-template-rows: auto 1fr auto; // ? auto for header, 1fraction for the main and auto for footer
+    min-height: 100svh;
+
+    @include mobile-only {
+        grid-template-rows: 1fr auto; // ? 1fraction for the main and auto for footer, the header is now positioned fixed
+    }
+}

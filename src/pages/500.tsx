@@ -31,15 +31,15 @@ export default function Error500(): JSX.Element {
         allowRobotCrawlers={error500.allowRobotCrawlers}
         openGraph={OPEN_GRAPH}
       />
-      <section className="error-500" ref={section500Ref}>
+      <section className="error-page page-section" ref={section500Ref}>
         <CanvasComponent parentElement={section500Ref} />
-        <h1 className="error-500__main-title">500</h1>
-        <h2 className="error-500__title">Oops!</h2>
-        <h3 className="error-500__subtitle">
+        <h1 className="error-page__main-title">500</h1>
+        <h2 className="error-page__title">Oops!</h2>
+        <h3 className="error-page__subtitle">
           It looks like our servers are experiencing some technical difficulties
           right now. (╯°□°）╯︵ ┻━┻
         </h3>
-        <p className="error-500__paragraph">
+        <p className="error-page__paragraph">
           Sorry, it looks like our servers are currently taking a coffee break
           and enjoying some downtime.
           <br />

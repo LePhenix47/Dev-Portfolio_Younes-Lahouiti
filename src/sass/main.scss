@@ -2,6 +2,7 @@
 @forward "./utils/js-classes";
 
 //Base
+@forward "./base/default-style";
 @forward "./base/normalization";
 @forward "./base/typography";
 
@@ -25,8 +26,7 @@
 @forward "./layout/footer";
 
 //Pages
-@forward "./pages/404-page";
-@forward "./pages/500-page";
+@forward "./pages/error-page.scss";
 @forward "./pages/home-page";
 @forward "./pages/about-page.scss";
 @forward "./pages/skills-page.scss";
