@@ -1,12 +1,12 @@
 //Types
 
 import { PNG_IMAGES } from "@assets/index.assets";
-import { projectsMadeType } from "@utilities/types/portfolio/projects.types";
+import { ProjectsMadeType } from "@utilities/types/portfolio/projects.types";
 
 /**
  * Constant containing projects from my OpenClassrooms traineeships
  */
-export const openClassroomsProjects: projectsMadeType = [
+export const openClassroomsProjects: ProjectsMadeType = [
   {
     title: "[DW] P3: ohmyfood",
     image: PNG_IMAGES.P3_DW,
@@ -153,7 +153,7 @@ export const openClassroomsProjects: projectsMadeType = [
 /**
  * Constant containing my personal projects
  */
-export const personalProjects: projectsMadeType = [
+export const personalProjects: ProjectsMadeType = [
   {
     title: "Password generator",
     image: PNG_IMAGES.PASSWORD_GENERATOR,
@@ -376,7 +376,7 @@ export const personalProjects: projectsMadeType = [
 /**
  * Constant containing my professional projects
  */
-export const professionalProjects: projectsMadeType = [
+export const professionalProjects: ProjectsMadeType = [
   {
     title: "Developer portfolio",
     image: PNG_IMAGES.PORTFOLIO,
@@ -403,7 +403,7 @@ export const professionalProjects: projectsMadeType = [
 /**
  * Constant containing my npm libraries
  */
-export const npmProjects: projectsMadeType = [
+export const npmProjects: ProjectsMadeType = [
   {
     title: "Timeout utility",
     image: PNG_IMAGES.TIMEOUT_UTILITY,
@@ -465,7 +465,7 @@ export const npmProjects: projectsMadeType = [
 /**
  * Constant containing my browser extensions
  */
-export const browserExtensionProjects: projectsMadeType = [
+export const browserExtensionProjects: ProjectsMadeType = [
   {
     title: "Nommage des livrables",
     image: PNG_IMAGES.NDL,
@@ -478,7 +478,7 @@ export const browserExtensionProjects: projectsMadeType = [
 /**
  * Constant containing all the projects
  */
-export const allProjects: projectsMadeType = openClassroomsProjects.concat(
+export const allProjects: ProjectsMadeType = openClassroomsProjects.concat(
   personalProjects,
   professionalProjects,
   npmProjects,
