@@ -139,17 +139,19 @@ export default function Portfolio(): JSX.Element {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
   useEffect(() => {
-    const category: string = searchParams.get("category") || "all";
-    const query: string = searchParams.get("query") || "";
-    const sortBy: string = searchParams.get("sort") || "date";
-    const sortOrder: string = searchParams.get("order") || "asc";
+    const paramsToDispatch: Array<[string, string]> = [
+      ["SET_QUERY", searchParams.get("query") || ""],
+      ["SET_SORT_BY", searchParams.get("sort") || "date"],
+      ["SET_CATEGORY", searchParams.get("category") || "all"],
+      ["TOGGLE_SORT_ORDER", searchParams.get("order") || "asc"],
+    ];
 
-    projectCardsDispatch({ type: "SET_CATEGORY", payload: category });
-    projectCardsDispatch({ type: "SET_QUERY", payload: query });
-    projectCardsDispatch({ type: "SET_SORT_BY", payload: sortBy });
-    projectCardsDispatch({ type: "TOGGLE_SORT_ORDER", payload: sortOrder });
+    for (const [type, payload] of paramsToDispatch) {
+      projectCardsDispatch({ type, payload });
+    }
+
+    setShowResetButton(Boolean(searchParams.get("query")));
   }, [searchParams]);
-
   /**
    * Handles input in the search bar to filter the project cards
    */
@@ -197,14 +199,41 @@ export default function Portfolio(): JSX.Element {
    * List of values for the search input's datalist.
    */
   const dataListValues = useMemo(() => {
-    return [
-      { value: "DW", description: "OC path: Web developer" },
-      { value: "JS-React", description: "OC path: Front-end developer" },
-      { value: "Java-Angular", description: "OC path: Fullstack developer" },
-      { value: "Audio", description: "Personal project" },
-      { value: "Color converter", description: "NPM library" },
+    const array = [
+      {
+        category: "openclassrooms",
+        value: "DW",
+        description: "OC path: Web developer",
+      },
+      {
+        category: "openclassrooms",
+        value: "JS-React",
+        description: "OC path: Front-end developer",
+      },
+      {
+        category: "openclassrooms",
+        value: "Java-Angular",
+        description: "OC path: Fullstack developer",
+      },
+      {
+        category: "personal",
+        value: "Audio",
+        description: "Personal project",
+      },
+      {
+        category: "npm",
+        value: "Color converter",
+        description: "NPM library",
+      },
     ] as const;
-  }, []);
+
+    return array.filter((dataList) => {
+      return (
+        projectCardsState.category === "all" ||
+        dataList.category === projectCardsState.category
+      );
+    });
+  }, [projectCardsState.category]);
 
   /**
    * List of sorting options.
@@ -414,7 +443,10 @@ export default function Portfolio(): JSX.Element {
         {/*
          // * Once support on React TSX I'll need to replace the `<form>` with a `<search>`
          */}
-        <form className="portfolio-page__inputs-container">
+        <form
+          className="portfolio-page__inputs-container"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <fieldset className="portfolio-page__label-input">
             {!showResetButton && (
               <label htmlFor="search" className="portfolio-page__label">
@@ -508,7 +540,7 @@ export default function Portfolio(): JSX.Element {
               className="portfolio-page__sorting-order-button hide"
               ref={checkboxValueRef}
               onChange={handleSortingOrderChange}
-              value={String(projectCardsState.sortBy === "asc")}
+              defaultChecked={projectCardsState.sortOrder === "asc"}
             />
           </fieldset>
         </form>
