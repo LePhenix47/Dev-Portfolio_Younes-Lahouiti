@@ -229,7 +229,7 @@ export default function Contact(): JSX.Element {
     valueOfInput = valueOfInput.trim();
 
     //String must not include numbers
-    const stringWithoutNumbersREGEX: RegExp = /^[^0-9]*$/;
+    const stringWithoutNumbersREGEX: RegExp = /^\D*$/;
 
     const valueDoesNotContainNumbers: boolean = testRegExp(
       valueOfInput,
@@ -277,7 +277,7 @@ export default function Contact(): JSX.Element {
 
     //We verify that the email respect this format: nickname@domain.domain (can also contain a subdomain)
     const emailREGEX: RegExp =
-      /^(?!\.)(?!.*\.\.)[a-zA-Z0-9.-]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,8})+(\.[a-zA-Z]{2,8})?$/;
+      /^(?!\.)(?!.*\.\.)(?![×÷])[A-Za-zÀ-ÿ0-9.-]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,8})+(\.[a-zA-Z]{2,8})?$/;
     const respectsEmailFormat: boolean = testRegExp(valueOfInput, emailREGEX);
 
     return respectsEmailFormat;
