@@ -17,15 +17,18 @@
     transition: translate 350ms ease-in-out;
 
     position: relative;
+    width: 100%;
 
 
     &__container {
+
+        --_container-gap: 25px;
         position: relative;
 
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 25px;
+        gap: var(--_container-gap);
 
         margin-left: 65%;
 
@@ -60,13 +63,13 @@
             top: 92%;
         }
 
-
+        --_x-offset:30px;
 
         &--left {
-            left: 30px;
+            left: var(--_x-offset);
 
             @include mobile-only {
-                left: 36px;
+                --_x-offset: 36px;
             }
 
             rotate: -90deg;
@@ -74,10 +77,10 @@
 
 
         &--right {
-            right: 30px;
+            right: var(--_x-offset);
 
             @include mobile-only {
-                right: 36px;
+                --_x-offset: 36px;
             }
 
             rotate: 90deg;
@@ -130,6 +133,7 @@
         }
 
         width: 400px;
+        height: 100%;
 
         min-height: 250px;
 

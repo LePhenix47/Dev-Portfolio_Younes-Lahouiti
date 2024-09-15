@@ -8,6 +8,8 @@ import { sliderCardTypes } from "@utilities/types/services/slider.types";
 import { SliderCard } from "@components/common/services/services-page.components";
 import Icons from "@components/shared/icons/Icons";
 import { isMobileViewport } from "@utilities/helpers/window.helpers";
+import { SliderCardRef } from "../SliderCard/SliderCard";
+import { getStyleProperty } from "@utilities/helpers/dom.helpers";
 
 type SliderProps = { sliderCards: sliderCardTypes; cardToBeShown: number };
 
@@ -38,6 +40,9 @@ export default function Slider({
   const cardsToBeShownOverflow: boolean = cardToBeShown > sliderCards.length;
   const cardsToBeShownUnderflow: boolean = cardToBeShown < 0;
 
+  const firstSliderCardRef = useRef<SliderCardRef>(null);
+  const containerRef = useRef<HTMLElement>(null);
+
   if (cardsToBeShownOverflow) {
     cardToBeShown = sliderCards.length;
   }
@@ -63,28 +68,19 @@ export default function Slider({
 
   const [axisXMovement, setAxisXMovement] = useState({});
 
-  /**
-   *
-   * Reference for the card width and gaps between them
-   *
-   * Does not change it's memory address with the `useRef` hook
-   */
-  const cardInfosRef: React.MutableRefObject<any> = useRef<any>({});
-
-  /**
-   * ⚠ If this value must ever be changed here, it must also be changed in the SASS code
-   */
-  cardInfosRef.current = { cardWidth: 400, cardGaps: 25 };
-
   useEffect(() => {
-    const isOnMobile: boolean = isMobileViewport();
+    const firstCardElement = firstSliderCardRef.current?.getCardRef() || null;
+    const { width } = firstCardElement!.getBoundingClientRect();
 
-    if (isOnMobile) {
-      cardInfosRef.current = { cardWidth: 200, cardGaps: 25 };
-    }
+    const containerElement: HTMLElement = containerRef.current!;
+    const containerGap = Number(
+      getStyleProperty("--_container-gap", containerElement).replace(
+        /(%|px)/,
+        ""
+      )
+    );
 
-    const totalCardWidth: number =
-      cardInfosRef.current.cardWidth + cardInfosRef.current.cardGaps;
+    const totalCardWidth: number = width + containerGap;
 
     //We translate the container to the left → (need to add a negative value)
     setAxisXMovement({
@@ -141,7 +137,11 @@ export default function Slider({
       >
         <Icons.UpArrow width={24} height={24} fill={"currentColor"} />
       </button>
-      <section className="slider__container" style={axisXMovement}>
+      <section
+        className="slider__container"
+        style={axisXMovement}
+        ref={containerRef}
+      >
         {sliderCards.map((card, index: number) => {
           const cardShouldNotBeShown: boolean = index + 1 > cardToBeShown;
 
@@ -156,6 +156,7 @@ export default function Slider({
               image={image}
               name={name}
               description={description}
+              ref={index === 0 ? firstSliderCardRef : null}
             />
           );
         })}

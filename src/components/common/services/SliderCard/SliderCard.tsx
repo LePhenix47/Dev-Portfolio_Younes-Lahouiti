@@ -1,8 +1,19 @@
 //React
-import React from "react";
+import React, { forwardRef, Ref, useImperativeHandle, useRef } from "react";
 
 //Next
 import Image, { StaticImageData } from "next/image";
+
+export interface SliderCardRef {
+  getCardRef: () => HTMLElement | null;
+}
+
+// Define props interface
+type SliderCardProps = {
+  image: StaticImageData;
+  name: string;
+  description: string;
+};
 
 /**
  * Represents a card used in the Slider component.
@@ -21,17 +32,16 @@ import Image, { StaticImageData } from "next/image";
  *   description="This is a testimonial from a satisfied customer."
  * />
  */
-export default function SliderCard({
-  image,
-  name,
-  description,
-}: {
-  image: StaticImageData;
-  name: string;
-  description: string;
-}): JSX.Element {
+function SliderCard(
+  { image, name, description }: SliderCardProps,
+  ref: Ref<SliderCardRef>
+): JSX.Element {
+  const cardRef = useRef<HTMLElement>(null);
+
+  useImperativeHandle(ref, () => ({ getCardRef: () => cardRef.current }), []);
+
   return (
-    <figure className="slider__card card">
+    <figure className="slider__card card" ref={cardRef}>
       <Image
         src={image}
         alt={`Customer: ${name}`}
@@ -47,3 +57,4 @@ export default function SliderCard({
     </figure>
   );
 }
+export default forwardRef(SliderCard);
