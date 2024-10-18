@@ -23,4 +23,9 @@ export const diplomas: {
     year: "2022-2023",
     pdf: PDF_URLS.frontEndDevDiploma,
   },
+  {
+    name: "Fullstack development RNCP title",
+    year: "2023-2024",
+    pdf: PDF_URLS.fullstackDevDiploma,
+  },
 ];
