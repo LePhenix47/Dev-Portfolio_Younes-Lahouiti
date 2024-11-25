@@ -104,6 +104,30 @@ export default function MetaData({
 
   const pageUrl: string = `https://younes-portfolio-dev.vercel.app${pageUri}`;
 
+  /**
+   * Retrieves the primary background color in hexadecimal format from the CSS variable `--bg-primary` applied to the React root element.
+   *
+   * @return {string} - The primary background color as a hexadecimal string.
+   */
+  function getCssBgColor(): string {
+    if (typeof window === "undefined") {
+      return "no-window";
+    }
+
+    const htmlTagElement: HTMLElement = document?.documentElement;
+    if (!htmlTagElement) {
+      return "none";
+    }
+
+    const rStyles: CSSStyleDeclaration = getComputedStyle(htmlTagElement);
+
+    const bgPrimaryHexColor = rStyles.getPropertyValue("--bg-secondary");
+
+    return bgPrimaryHexColor;
+  }
+
+  // const hexColor = getCssBgColor();
+
   return (
     <Head>
       {/*
@@ -155,6 +179,12 @@ export default function MetaData({
          <!-- Title --> 
          */}
       <title>{title}</title>
+
+      {/* 
+        <!-- Browser top navbar color --> 
+      */}
+      {/* <meta name="theme-color" content={hexColor} /> */}
+      <meta name="theme-color" content="" />
     </Head>
   );
 }
