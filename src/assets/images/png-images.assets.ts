@@ -55,6 +55,7 @@ import REACT_NATIVE_APP from "@public/png/personal-projects/React Native app ico
 import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/personal-projects/Advanced custom gradient.png";
 import TEXT_TO_SPEECH from "@public/png/personal-projects/Text-to-speech.png";
 import SPEECH_TO_TEXT from "@public/png/personal-projects/Speech-to-text.png";
+import ANIMATED_DND from "@public/png/personal-projects/Animated_drag-and-drop.png";
 
 // * Professional
 import PORTFOLIO from "@public/png/professional-projects/portfolio-screenshot.png";
@@ -128,6 +129,7 @@ const PERSONAL_PROJECTS = {
   ADVANCED_LINEAR_GRADIENT_CREATOR,
   TEXT_TO_SPEECH,
   SPEECH_TO_TEXT,
+  ANIMATED_DND,
 } as const;
 
 const PROFESSIONAL_PROJECTS = {

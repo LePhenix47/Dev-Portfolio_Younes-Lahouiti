@@ -371,6 +371,13 @@ export const personalProjects: ProjectsMadeType = [
     type: "personal",
     date: new Date("03/04/2024"),
   },
+  {
+    title: "Animated drag and drop",
+    image: PNG_IMAGES.ANIMATED_DND,
+    link: "https://github.com/LePhenix47/Animated-drag-and-drop_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("11/23/2024"),
+  },
 ];
 
 /**
