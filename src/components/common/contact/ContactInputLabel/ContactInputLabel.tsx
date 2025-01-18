@@ -1,9 +1,20 @@
 //React
-import React, { MutableRefObject, useEffect, useId, useState } from "react";
+import React, {
+  MutableRefObject,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 
 //Utils
 import { inputType } from "@utilities/types/contact/input.types";
 import Icons from "@components/shared/icons/Icons";
+import {
+  getStyleProperty,
+  setStyleProperty,
+} from "@utilities/helpers/dom.helpers";
+import { roundToFloat } from "@utilities/helpers/numbers.helpers";
 
 type ContactInputLabelProps = {
   labelText: string;
@@ -67,11 +78,6 @@ export default function ContactInputLabel({
   inputDefaultValue = "",
 }: ContactInputLabelProps): JSX.Element {
   /**
-   * State for the input to get the effect with the label
-   */
-  const [isInputActive, setIsInputActive] = useState<boolean>(false);
-
-  /**
    * State for the input to validate or invalidate the input
    */
   const [isValid, setIsInputValid] = useState<boolean>(false);
@@ -86,30 +92,59 @@ export default function ContactInputLabel({
    */
   const randomId: string = useId();
 
+  const inputLabelContainerRef = useRef<HTMLElement>(null);
+  const labelRef = useRef<HTMLLabelElement>(null);
+
+  useEffect(() => {
+    const { current: containerElement } = inputLabelContainerRef;
+    const { current: labelElement } = labelRef;
+
+    if (!containerElement || !labelElement) {
+      return;
+    }
+
+    const input =
+      containerElement.querySelector<HTMLInputElement>("input, textarea")!;
+
+    const labelDomRect = labelElement.getBoundingClientRect();
+
+    const scaleOnFocus: number =
+      document.activeElement === input || input.value === ""
+        ? Number(
+            getStyleProperty("--_label-scale-on-input-focus", containerElement)
+          )
+        : 1;
+
+    const labelWidthOnFocus = roundToFloat(
+      labelDomRect.width * scaleOnFocus,
+      2
+    );
+
+    setStyleProperty(
+      "--_border-clip-width",
+      `${labelWidthOnFocus}px`,
+      containerElement
+    );
+  }, []);
+
   return (
     <section
       className={`contact-page__input-label-container ${
         !isEmpty && "contact-page__input-label-container--empty-input"
       }`}
+      ref={inputLabelContainerRef}
     >
-      <label
-        htmlFor={`${name}-${randomId}`}
-        className={`contact-page__label ${isInputActive && "active"}`}
-      >
-        {labelText}
-      </label>
-
       {/* 
            We return either a textarea or an input depending on this boolean prop
       */}
       {isTextArea ? (
         <textarea
           required
-          className={`contact-page__text-area ${isInputActive && "active"}`}
+          className={`contact-page__text-area`}
           id={`${name}-${randomId}`}
           name={name}
           ref={reference}
-          placeholder={placeholder}
+          placeholder={placeholder || ""}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
             const textarea = e.currentTarget as HTMLTextAreaElement;
@@ -128,19 +163,6 @@ export default function ContactInputLabel({
 
             setIsEmpty(textareaValueEmptyTruthiness);
           }}
-          onFocus={() => {
-            setIsInputActive(true);
-          }}
-          onBlur={(e) => {
-            const input = e.currentTarget as HTMLTextAreaElement;
-            const valueOfInput: string = input.value.trim();
-
-            const inputIsEmpty: boolean = !valueOfInput;
-
-            if (inputIsEmpty) {
-              setIsInputActive(false);
-            }
-          }}
         ></textarea>
       ) : (
         <input
@@ -150,7 +172,7 @@ export default function ContactInputLabel({
           id={`${name}-${randomId}`}
           name={name}
           ref={reference}
-          placeholder={placeholder}
+          placeholder={placeholder || ""}
           defaultValue={inputDefaultValue}
           onInput={(e) => {
             const input = e.currentTarget as HTMLInputElement;
@@ -167,21 +189,16 @@ export default function ContactInputLabel({
 
             setIsEmpty(inputValueEmptyTruthiness);
           }}
-          onFocus={() => {
-            setIsInputActive(true);
-          }}
-          onBlur={(e) => {
-            const input = e.currentTarget as HTMLInputElement;
-            const valueOfInput: string = input.value.trim();
-
-            const inputIsEmpty: boolean = !valueOfInput;
-
-            if (inputIsEmpty) {
-              setIsInputActive(false);
-            }
-          }}
         />
       )}
+
+      <label
+        htmlFor={`${name}-${randomId}`}
+        className={`contact-page__label`}
+        ref={labelRef}
+      >
+        {labelText}
+      </label>
       <p
         className={`contact-page__input-label-message contact-page__input-label-message--error ${
           !isEmpty && !isValid ? "" : "hide"

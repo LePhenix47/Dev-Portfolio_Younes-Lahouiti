@@ -126,11 +126,11 @@
     border-radius: 10px;
 
     &--positive {
-      border: var(--_input-message-bg-success) 2px solid;
+      border: var(--_input-message-bg-success) var(--_border-width) solid;
     }
 
     &--negative {
-      border: var(--_input-message-bg-error) 2px solid;
+      border: var(--_input-message-bg-error) var(--_border-width) solid;
     }
   }
 
@@ -157,8 +157,26 @@
   --_input-message-bg-error: red;
 
   &__input-label-container {
+    display: flex;
+    flex-direction: column;
+
     position: relative;
     width: inherit;
+
+    --_border-clip-width: 85px;
+    --_border-width: 2px;
+
+    --_input-padding-inline: 15px;
+    --_input-padding-block: 10px;
+
+    --_transition-length: 150ms;
+
+    --_start-x: max(0px, calc(var(--_border-width) + var(--_input-padding-inline)));
+    --_end-x: max(0px, calc(var(--_start-x) + var(--_border-clip-width)));
+
+    --_label-scale-on-input-focus: 0.81;
+
+    --_label-inline-padding: 5px;
 
     /**
         If the container has inputs or textareas that aren't focused, add this color to the label
@@ -209,54 +227,91 @@
   &__label {
     display: inline-block;
 
-    padding: 0 5px;
+    padding-inline: var(--_label-inline-padding);
     border-radius: 100vmax;
 
     background-color: none;
     color: var(--color-secondary);
 
     position: absolute;
-    top: 34%;
+    top: 50%;
+    left: calc(var(--_input-padding-inline) + var(--_border-width) - var(--_label-inline-padding));
+    translate: 0 -50%;
 
-    &--text-area {
-      top: 31.5%;
+    transform-origin: center left;
+
+
+    font-size: 18px;
+
+    transition: top var(--_transition-length) ease-in-out,
+      left var(--_transition-length) ease-in-out,
+      translate var(--_transition-length) ease-in-out,
+      scale var(--_transition-length) ease-in-out,
+      background-color var(--_transition-length) ease-in-out,
+      color var(--_transition-length) ease-in-out;
+  }
+
+  :is(.contact-page__input, .contact-page__text-area) {
+    clip-path: polygon(0% 0%,
+        var(--_end-x) 0%,
+        var(--_end-x) var(--_border-width),
+        var(--_start-x) var(--_border-width),
+        var(--_start-x) 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%);
+
+    --_clip-transition-length: var(--_transition-length);
+    transition: border-color var(--_transition-length) ease-in-out,
+      background-color var(--_transition-length) ease-in-out, clip-path var(--_clip-transition-length) ease-in-out;
+
+    &:focus {
+
+      border-color: var(--scrollbar-thumb-bg-color);
+
+      &+.contact-page__label {
+        color: var(--scrollbar-thumb-bg-color);
+      }
     }
 
-    left: 23px;
+    &:is(:focus, :not(:placeholder-shown)) {
+      // Skibidi toilet, I'm going insane I've been on this for hours
 
-    scale: 115%;
+      clip-path: polygon(0% 0%,
+          /* Top-left corner */
+          var(--_start-x) 0%,
+          /* X start */
+          var(--_start-x) var(--_border-width),
+          /* Left border */
+          var(--_end-x) var(--_border-width),
+          /* X end with width */
+          var(--_end-x) 0%,
+          /* X end */
+          100% 0%,
+          /* Top-right corner */
+          100% 100%,
+          /* Bottom-right corner */
+          0% 100%
+          /* Bottom-left corner */
+        );
 
-    transition: top 250ms ease-in-out,
-    left 250ms ease-in-out,
-    translate 250ms ease-in-out,
-    scale 250ms ease-in-out,
-    background-color 250ms ease-in-out,
-    color 250ms ease-in-out;
 
-    &.active {
-      background-color: none;
-      background-image: linear-gradient(180deg,
-          transparent 50%,
-          var(--bg-primary) 50%);
-      color: currentColor;
+      &+.contact-page__label {
 
-      scale: 90%;
-      top: -12px;
-      left: 13px;
-
-      @include mobile-only {
-        background-image: linear-gradient(0deg,
-            transparent 35%,
-            var(--bg-primary) 0%);
+        scale: var(--_label-scale-on-input-focus);
+        top: calc(var(--_border-width) / 2);
+        left: calc(var(--_start-x));
       }
     }
   }
 
   &__input {
     @include inputs-styling;
+    border: var(--_border-width) solid var(--border-color);
+    padding-inline: var(--_input-padding-inline);
 
     width: 100%;
-    height: 75px;
+    min-height: 75px;
     font-size: 18px;
 
     border-radius: 20px;
@@ -265,22 +320,14 @@
   }
 
   &__text-area {
+    @include inputs-styling;
+    border: var(--_border-width) solid var(--border-color);
+    padding-inline: var(--_input-padding-inline);
+
     min-height: 80px;
 
     resize: none;
 
-    &.active {
-      height: auto;
-      resize: vertical;
-      max-height: 1605px;
-    }
-
-    &:not(.active) {
-      height: 80px !important;
-      transition: height 300ms ease-in-out
-    }
-
-    @include inputs-styling;
 
     background-color: var(--semi-transparent-bg);
 
@@ -291,5 +338,6 @@
     border-radius: 20px;
 
     font-size: 18px;
+
   }
 }

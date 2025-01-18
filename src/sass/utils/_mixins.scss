@@ -156,7 +156,7 @@
     border-radius: 5px;
 
     &:focus {
-        border: 2px solid var(--scrollbar-thumb-bg-color);
+        border-color: var(--scrollbar-thumb-bg-color);
     }
 
     padding: 10px 15px;
