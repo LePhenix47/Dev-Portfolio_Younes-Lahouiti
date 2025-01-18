@@ -226,3 +226,19 @@ export function reviver(key: string, value: any): any {
       return value;
   }
 }
+
+/**
+ * Splits a string into chunks of the specified size.
+ *
+ * @example
+ * const phoneNumber = "0123456789";
+ * splitStringIntoChunks(phoneNumber, 2); // Returns: ["01", "23", "45", "67", "89"]
+ *
+ * @param {string} [str=""] - The string to be split into chunks.
+ * @param {number} [chunkSize=1] - The size of each chunk.
+ * @returns {string[]} An array of strings, each of length `chunkSize`.
+ */
+export function splitStringIntoChunks(str = "", chunkSize = 1) {
+  const regex = new RegExp(`.{1,${chunkSize}}`, "g");
+  return str.match(regex) || []; // Use match and return the result or an empty array if no match
+}

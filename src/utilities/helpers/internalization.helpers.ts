@@ -275,148 +275,77 @@ export function getOrdinalSuffix(number: number): string {
   }
 }
 
+
 /**
+ * Format a relative time using the `Intl.RelativeTimeFormat` API.
  *
- * Returns a string representing the relative time format of the input date.
+ * @param {Date} relativeDateInput the Date object to format relatively
+ * @param {string} locale the locale to use for the formatting
+ * @param {Intl.RelativeTimeFormatOptions} [options] options for the `Intl.RelativeTimeFormat` API
+ * @param {Intl.RelativeTimeFormatOptions.localeMatcher} [options.localeMatcher="lookup"] the locale matching algorithm to use
+ * @param {Intl.RelativeTimeFormatOptions.numeric} [options.numeric="auto"] the numeric format to use
+ * @param {Intl.RelativeTimeFormatOptions.style} [options.style="short"] the length of the formatted relative time
  *
- * @param {Date} relativeDateInput - The date to be transformed into a relative time format.
- * @param {string} [locale] - A string with a BCP 47 language tag (i.e: `"en-US"`), or an array of such strings.
- * @param {Intl.RelativeTimeFormatOptions} [options] - An optional object with configuration options for the Intl.RelativeTimeFormat.
- *
- * Can be either these values for each property:
- * ```js
- * {
- *     localeMatcher: "best fit" | "lookup";
- *     numeric: "always" | "auto";
- *     style: "long" | "narrow" |; "short";
- * }
- *
- * ```
- *
- * @returns {string} A string representing the relative time format of the input date.
+ * @returns {string} the formatted relative time string
  */
 export function formatRelativeTime(
-  relativeDateInput: Date,
-  locale?: string,
-  options: Intl.RelativeTimeFormatOptions = {
-    localeMatcher: "best fit", // other values: "lookup"
-    numeric: "always", // other values: "auto"
-    style: "long", // other values: "short" or "narrow"
+  relativeDateInput,
+  locale,
+  options = {
+    localeMatcher: "lookup",
+    numeric: "always",
+    style: "short"
   }
-): any {
-  const formatter: Intl.RelativeTimeFormat = new Intl.RelativeTimeFormat(
-    locale,
-    options
-  );
-  const now: Date = new Date();
-
-  const diffInSeconds: number = Math.round(
+) {
+  const formatter = new Intl.RelativeTimeFormat(locale, options);
+  const now = new Date();
+  const diffInSeconds = Math.round(
     (relativeDateInput.getTime() - now.getTime()) / 1_000
   );
-
-  /**
-   * If the date is from the past or future (x units ago or in y units)
-   *
-   */
-  const relativeDirection: number = diffInSeconds >= 0 ? 1 : -1;
-
+  const relativeDirection = diffInSeconds >= 0 ? 1 : -1;
   const { unit, value } = getRelativeTimePeriod(diffInSeconds);
-
   return formatter.format(relativeDirection * value, unit);
 }
 
 /**
- *Returns the relative time period based on the input in seconds.
+ * Given a number of seconds from the present, returns an object with the nearest
+ * relative time period and the corresponding value. For example, if the input
+ * is 61 seconds, the output will be `{ value: 1, unit: "minute" }` since it's over a minute but under an hour.
  *
- *@param {number} dateInSeconds - The input date in seconds.
- *@returns {object} - The relative time period in string format.
+ * @param {number} dateInSeconds the difference in seconds from the present
+ * @returns {Object} an object with keys "value" and "unit"
+ * @prop {number} value the value of the relative time period
+ * @prop {string} unit the unit name of the relative time period
  */
-export function getRelativeTimePeriod(dateInSeconds: number): {
-  value: number;
-  unit: Intl.RelativeTimeFormatUnit;
-} {
-  /**
-   * The number of seconds in one minute.
-   */
-  const ONE_MINUTE_IN_SECONDS: number = 60;
+export function getRelativeTimePeriod(dateInSeconds) {
+  const absSeconds = Math.abs(dateInSeconds);
+  const isUnderOneMinute = absSeconds < 60;
+  if (isUnderOneMinute) {
+    return { value: absSeconds, unit: "seconds" };
+  }
+  const SECONDS_IN_UNITS_MAP = new Map(
+    Object.entries({
+      minute: 60,
+      hour: 3_600,
+      day: 86_400,
+      week: 604_800,
+      month: 2_629_800,
+      year: 31_557_600
+    })
+  );
+  const secondsMapKeys = Array.from(SECONDS_IN_UNITS_MAP.keys());
+  for (let i = 0; i < secondsMapKeys.length; i++) {
+    const secondsInNextUnit = SECONDS_IN_UNITS_MAP.get(secondsMapKeys[i + 1]);
+    if (absSeconds >= secondsInNextUnit) {
+      continue;
+    }
 
-  /**
-   * The number of seconds in one hour.
-   */
-  const ONE_HOUR_IN_SECONDS: number = 3_600;
-
-  /**
-   * The number of seconds in one day.
-   */
-  const ONE_DAY_IN_SECONDS: number = 86_400;
-
-  /**
-   * The number of seconds in one week.
-   */
-  const ONE_WEEK_IN_SECONDS: number = 604_800;
-
-  /**
-   * The number of seconds in one month.
-   */
-  const ONE_MONTH_IN_SECONDS: number = 2_629_800;
-
-  /**
-   * The number of seconds in one year.
-   */
-  const ONE_YEAR_IN_SECONDS: number = 31_557_600;
-
-  //If the number in seconds is negative, we transform it into a positive value
-  dateInSeconds = Math.abs(dateInSeconds);
-
-  // Check if the input date is under a minute
-  const isUnderAMinute: boolean = dateInSeconds < ONE_MINUTE_IN_SECONDS;
-
-  // Check if the input date is under an hour
-  const isUnderAnHour: boolean =
-    !isUnderAMinute && dateInSeconds < ONE_HOUR_IN_SECONDS;
-
-  // Check if the input date is under a day
-  const isUnderADay: boolean =
-    !isUnderAnHour && dateInSeconds < ONE_DAY_IN_SECONDS;
-
-  // Check if the input date is under a week
-  const isUnderAWeek: boolean =
-    !isUnderADay && dateInSeconds < ONE_WEEK_IN_SECONDS;
-
-  // Check if the input date is under a months
-  const isUnderAMonth: boolean =
-    !isUnderAWeek && dateInSeconds < ONE_MONTH_IN_SECONDS;
-
-  // Check if the input date is under a year
-  const isUnderAYear: boolean =
-    !isUnderAMonth && dateInSeconds < ONE_YEAR_IN_SECONDS;
-
-  if (isUnderAMinute) {
-    return { value: dateInSeconds, unit: "seconds" };
-  } else if (isUnderAnHour) {
-    //We get the amount of minutes
-    const minutes: number = Math.floor(dateInSeconds / ONE_MINUTE_IN_SECONDS);
-    return { value: minutes, unit: "minutes" };
-  } else if (isUnderADay) {
-    //We get the amount of hours
-    const hours: number = Math.floor(dateInSeconds / ONE_HOUR_IN_SECONDS);
-    return { value: hours, unit: "hours" };
-  } else if (isUnderAWeek) {
-    //We get the amount of days
-    const days: number = Math.floor(dateInSeconds / ONE_DAY_IN_SECONDS);
-    return { value: days, unit: "days" };
-  } else if (isUnderAMonth) {
-    //We get the amount of weeks
-    const weeks: number = Math.floor(dateInSeconds / ONE_WEEK_IN_SECONDS);
-    return { value: weeks, unit: "weeks" };
-  } else if (isUnderAYear) {
-    //We get the amount of months
-    const months: number = Math.floor(dateInSeconds / ONE_MONTH_IN_SECONDS);
-    return { value: months, unit: "months" };
-  } else {
-    //We get the amount of years
-    const years: number = Math.floor(dateInSeconds / ONE_YEAR_IN_SECONDS);
-    return { value: years, unit: "years" };
+    const unitName = secondsMapKeys[i];
+    const secondsInCurrentUnit = SECONDS_IN_UNITS_MAP.get(unitName);
+    return {
+      value: Math.floor(absSeconds / secondsInCurrentUnit),
+      unit: unitName
+    };
   }
 }
 
