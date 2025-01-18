@@ -32,6 +32,7 @@
 
   &__contact-cards-container {
     @include center-flex-column(25px);
+    align-self: flex-start;
 
     @include tablet-only {
       width: 100%;
