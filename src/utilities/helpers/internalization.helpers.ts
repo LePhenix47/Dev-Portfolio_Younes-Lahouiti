@@ -275,7 +275,6 @@ export function getOrdinalSuffix(number: number): string {
   }
 }
 
-
 /**
  * Format a relative time using the `Intl.RelativeTimeFormat` API.
  *
@@ -289,14 +288,14 @@ export function getOrdinalSuffix(number: number): string {
  * @returns {string} the formatted relative time string
  */
 export function formatRelativeTime(
-  relativeDateInput,
-  locale,
-  options = {
+  relativeDateInput: Date,
+  locale: string,
+  options: Intl.RelativeTimeFormatOptions = {
     localeMatcher: "lookup",
     numeric: "always",
-    style: "short"
+    style: "short",
   }
-) {
+): string {
   const formatter = new Intl.RelativeTimeFormat(locale, options);
   const now = new Date();
   const diffInSeconds = Math.round(
@@ -313,40 +312,48 @@ export function formatRelativeTime(
  * is 61 seconds, the output will be `{ value: 1, unit: "minute" }` since it's over a minute but under an hour.
  *
  * @param {number} dateInSeconds the difference in seconds from the present
- * @returns {Object} an object with keys "value" and "unit"
+ *
  * @prop {number} value the value of the relative time period
  * @prop {string} unit the unit name of the relative time period
+ * @returns {Object} an object with keys "value" and "unit"
  */
-export function getRelativeTimePeriod(dateInSeconds) {
+export function getRelativeTimePeriod(dateInSeconds: number): {
+  unit: Intl.RelativeTimeFormatUnit;
+  value: number;
+} {
   const absSeconds = Math.abs(dateInSeconds);
   const isUnderOneMinute = absSeconds < 60;
   if (isUnderOneMinute) {
     return { value: absSeconds, unit: "seconds" };
   }
-  const SECONDS_IN_UNITS_MAP = new Map(
+
+  const SECONDS_IN_UNITS_MAP = new Map<Intl.RelativeTimeFormatUnit, number>(
     Object.entries({
+      second: 1,
       minute: 60,
       hour: 3_600,
       day: 86_400,
       week: 604_800,
       month: 2_629_800,
-      year: 31_557_600
-    })
+      year: 31_557_600,
+    }) as [Intl.RelativeTimeFormatUnit, number][]
   );
   const secondsMapKeys = Array.from(SECONDS_IN_UNITS_MAP.keys());
   for (let i = 0; i < secondsMapKeys.length; i++) {
-    const secondsInNextUnit = SECONDS_IN_UNITS_MAP.get(secondsMapKeys[i + 1]);
+    const secondsInNextUnit = SECONDS_IN_UNITS_MAP.get(secondsMapKeys[i + 1])!;
     if (absSeconds >= secondsInNextUnit) {
       continue;
     }
 
     const unitName = secondsMapKeys[i];
-    const secondsInCurrentUnit = SECONDS_IN_UNITS_MAP.get(unitName);
+    const secondsInCurrentUnit = SECONDS_IN_UNITS_MAP.get(unitName)!;
     return {
       value: Math.floor(absSeconds / secondsInCurrentUnit),
-      unit: unitName
+      unit: unitName,
     };
   }
+
+  throw new Error("Unexpected case: Unable to determine relative time period");
 }
 
 /**
