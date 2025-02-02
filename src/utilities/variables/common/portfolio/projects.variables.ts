@@ -405,6 +405,13 @@ export const professionalProjects: ProjectsMadeType = [
     type: "professional",
     date: new Date("10/02/2023"),
   },
+  {
+    title: "Developer portfolio API (Hono + Bun)",
+    image: PNG_IMAGES.BUN_HONO,
+    link: "https://github.com/LePhenix47/Dev-Portfolio-Back-End_Younes-Lahouiti",
+    type: "professional",
+    date: new Date("01/26/2025"),
+  },
 ];
 
 /**

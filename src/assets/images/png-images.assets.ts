@@ -61,6 +61,7 @@ import ANIMATED_DND from "@public/png/personal-projects/Animated_drag-and-drop.p
 import PORTFOLIO from "@public/png/professional-projects/portfolio-screenshot.png";
 import JENEE from "@public/png/professional-projects/Jenee-logo.png";
 import UNCOVE from "@public/png/professional-projects/Uncove-logo.png";
+import BUN_HONO from "@public/png/professional-projects/bun-hono-back-end-image.png";
 
 // * NPM
 import TIMEOUT_UTILITY from "@public/png/npm/hourglass-clepsydra-icon.png";
@@ -136,6 +137,7 @@ const PROFESSIONAL_PROJECTS = {
   PORTFOLIO,
   JENEE,
   UNCOVE,
+  BUN_HONO,
 } as const;
 
 const NPM_PROJECTS = {
