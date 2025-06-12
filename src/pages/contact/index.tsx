@@ -1,5 +1,5 @@
 //React
-import { MutableRefObject, useRef } from "react";
+import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
 
 //Next
 
@@ -69,7 +69,69 @@ export default function Contact(): JSX.Element {
    */
   const textAreaRef = useRef<any>(null);
 
+  /**
+   * Checks if at least one of the form fields has been filled out.
+   *
+   * @returns {boolean} True if any field is non-empty, otherwise false.
+   */
+  function hasFilledAtLeastOneField(): boolean {
+    const firstName = firstNameRef.current?.value.trim();
+    const lastName = lastNameRef.current?.value.trim();
+    const email = emailRef.current?.value.trim();
+    const projectIdea = textAreaRef.current?.value.trim();
+
+    return Boolean(firstName || lastName || email || projectIdea);
+  }
+
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    /**
+     * Warns the user with a native confirmation dialog when attempting to leave the page
+     * (provided the user hasn't previously disabled or bypassed such warnings in the browser).
+     *
+     * @param {BeforeUnloadEvent} e - The beforeunload event object.
+     */
+    const warnBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+
+    /**
+     * Conditionally registers or removes the `beforeunload` warning based on form state.
+     */
+    const handler = () => {
+      if (hasFilledAtLeastOneField()) {
+        window.addEventListener("beforeunload", warnBeforeUnload, {
+          signal: abortController.signal,
+        });
+      } else {
+        window.removeEventListener("beforeunload", warnBeforeUnload);
+      }
+    };
+
+    const inputs = [
+      firstNameRef.current,
+      lastNameRef.current,
+      emailRef.current,
+      textAreaRef.current,
+    ];
+
+    // Attach listeners
+
+    for (const input of inputs) {
+      input.addEventListener("input", handler, {
+        signal: abortController.signal,
+      });
+    }
+
+    // Cleanup
+    return () => {
+      abortController.abort();
+    };
+  }, []);
   /*
+
 
   # To validate the form
 
@@ -98,8 +160,10 @@ export default function Contact(): JSX.Element {
    *
    * @returns {void}
    */
-  function submitForm(): void {
+  function submitForm(e: React.FormEvent<HTMLFormElement>): void {
     //We get their values
+    e.preventDefault();
+
     const firstName: string = formatStringCase(
       firstNameRef.current.value,
       "titlecase"
@@ -143,22 +207,18 @@ export default function Contact(): JSX.Element {
   }): Promise<void> {
     const { firstName, lastName, email, projectIdea } = formValue;
 
-    const webhookURL = new URL(
-      "https://discord.com/api/webhooks/1189973123232182313/gmBkw_mr6Sn_r-nVgb07jTwAII_rxVnEJ_gC4HYHwh0h0oOtw4AdxajQa0P2mOGy5dEF"
+    const contactApiUrl = new URL(
+      "https://youneslahouiti.com/portfolio/api/v1.0/contact"
     );
 
     const payload = {
-      embeds: [
-        {
-          title: `Project idea from ${firstName} ${lastName}:`,
-          description: projectIdea,
-          color: 6448228,
-          author: { name: `Email: ${email}` },
-        },
-      ],
+      projectIdea,
+      firstName,
+      lastName,
+      email,
     };
 
-    const response: Response = await fetch(webhookURL, {
+    const response: Response = await fetch(contactApiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -349,21 +409,14 @@ export default function Contact(): JSX.Element {
 
             {/*      End        */}
           </div>
-          <form
-            action="#"
-            className="contact-page__form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              submitForm();
-            }}
-          >
+          <form action="#" className="contact-page__form" onSubmit={submitForm}>
             <fieldset className="contact-page__fieldset">
               <legend className="contact-page__legend">
                 Write me your project!
               </legend>
               {/*  Could create a for loop here*/}
               <ContactInputLabel
-                name="first-name"
+                name="firstName"
                 labelText="First name"
                 reference={firstNameRef}
                 inputType="text"
@@ -375,7 +428,7 @@ export default function Contact(): JSX.Element {
               />
 
               <ContactInputLabel
-                name="last-name"
+                name="lastName"
                 labelText="Last name"
                 reference={lastNameRef}
                 inputType="text"
@@ -394,12 +447,12 @@ export default function Contact(): JSX.Element {
                 onChangeCallback={verifyEmail}
                 validInputMessage={"Valid"}
                 errorInputMessage={
-                  "Email does not respect this format: nickname@extension.domain"
+                  "Email does not respect this format: nickname@domain.extension"
                 }
               />
 
               <ContactInputLabel
-                name="project"
+                name="projectIdea"
                 labelText="Project"
                 reference={textAreaRef}
                 isTextArea
