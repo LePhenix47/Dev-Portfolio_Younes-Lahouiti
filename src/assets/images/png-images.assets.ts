@@ -56,6 +56,8 @@ import ADVANCED_LINEAR_GRADIENT_CREATOR from "@public/png/personal-projects/Adva
 import TEXT_TO_SPEECH from "@public/png/personal-projects/Text-to-speech.png";
 import SPEECH_TO_TEXT from "@public/png/personal-projects/Speech-to-text.png";
 import ANIMATED_DND from "@public/png/personal-projects/Animated_drag-and-drop.png";
+import CHESS from "@public/png/personal-projects/Chess.png";
+import YOUTUBE_TIMESTAMP_HELPER from "@public/png/personal-projects/Youtube-timestamp-helper.png";
 
 // * Professional
 import PORTFOLIO from "@public/png/professional-projects/portfolio-screenshot.png";
@@ -131,6 +133,8 @@ const PERSONAL_PROJECTS = {
   TEXT_TO_SPEECH,
   SPEECH_TO_TEXT,
   ANIMATED_DND,
+  CHESS,
+  YOUTUBE_TIMESTAMP_HELPER,
 } as const;
 
 const PROFESSIONAL_PROJECTS = {

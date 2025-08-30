@@ -378,6 +378,20 @@ export const personalProjects: ProjectsMadeType = [
     type: "personal",
     date: new Date("11/23/2024"),
   },
+  {
+    title: "Chess board",
+    image: PNG_IMAGES.CHESS,
+    link: "https://github.com/LePhenix47/Chess_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("04/13/2025"),
+  },
+  {
+    title: "Youtube chapters helper",
+    image: PNG_IMAGES.YOUTUBE_TIMESTAMP_HELPER,
+    link: "https://github.com/LePhenix47/Youtube-Timestamp-helper_Younes-Lahouiti",
+    type: "personal",
+    date: new Date("08/03/2025"),
+  },
 ];
 
 /**
