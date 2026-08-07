@@ -111,19 +111,19 @@ export default function ContactInputLabel({
     const scaleOnFocus: number =
       document.activeElement === input || input.value === ""
         ? Number(
-            getStyleProperty("--_label-scale-on-input-focus", containerElement)
+            getStyleProperty("--_label-scale-on-input-focus", containerElement),
           )
         : 1;
 
     const labelWidthOnFocus = roundToFloat(
       labelDomRect.width * scaleOnFocus,
-      2
+      2,
     );
 
     setStyleProperty(
       "--_border-clip-width",
       `${labelWidthOnFocus}px`,
-      containerElement
+      containerElement,
     );
   }, []);
 
@@ -140,7 +140,7 @@ export default function ContactInputLabel({
       {isTextArea ? (
         <textarea
           required
-          className={`contact-page__text-area`}
+          className={`contact-page__text-area many-lines`}
           id={`${name}-${randomId}`}
           name={name}
           ref={reference}

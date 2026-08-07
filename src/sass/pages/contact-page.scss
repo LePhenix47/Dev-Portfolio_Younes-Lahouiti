@@ -157,7 +157,7 @@
   --_input-message-bg-error: red;
 
   &__input-label-container {
-    display: flex;
+    display: grid;
     flex-direction: column;
 
     position: relative;
@@ -323,11 +323,6 @@
     @include inputs-styling;
     border: var(--_border-width) solid var(--border-color);
     padding-inline: var(--_input-padding-inline);
-
-    min-height: 80px;
-
-    resize: vertical;
-
 
     background-color: var(--semi-transparent-bg);
 

@@ -89,3 +89,12 @@
 .invert {
     filter: invert(100%) hue-rotate(180deg);
 }
+
+.many-lines {
+    --_min-lines: 3;
+    --_max-lines: 10;
+    min-height: calc(var(--_min-lines) * 1lh);
+    max-height: calc(var(--_max-lines) * 1lh);
+    field-sizing: content;
+    resize: none;
+}
