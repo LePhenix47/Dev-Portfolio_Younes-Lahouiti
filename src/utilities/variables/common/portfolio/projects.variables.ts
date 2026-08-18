@@ -392,6 +392,13 @@ export const personalProjects: ProjectsMadeType = [
     type: "personal",
     date: new Date("08/03/2025"),
   },
+  {
+    title: "ThreeJS Galaxy",
+    image: PNG_IMAGES.GALAXY_3D,
+    link: "https://github.com/LePhenix47/ThreeJS_test/blob/shader-galaxy/",
+    type: "personal",
+    date: new Date("06/27/2026"),
+  },
 ];
 
 /**
@@ -510,5 +517,5 @@ export const allProjects: ProjectsMadeType = openClassroomsProjects.concat(
   personalProjects,
   professionalProjects,
   npmProjects,
-  browserExtensionProjects
+  browserExtensionProjects,
 );

@@ -58,6 +58,7 @@ import SPEECH_TO_TEXT from "@public/png/personal-projects/Speech-to-text.png";
 import ANIMATED_DND from "@public/png/personal-projects/Animated_drag-and-drop.png";
 import CHESS from "@public/png/personal-projects/Chess.png";
 import YOUTUBE_TIMESTAMP_HELPER from "@public/png/personal-projects/Youtube-timestamp-helper.png";
+import GALAXY_3D from "@public/png/personal-projects/Galaxy-3D.png";
 
 // * Professional
 import PORTFOLIO from "@public/png/professional-projects/portfolio-screenshot.png";
@@ -135,6 +136,7 @@ const PERSONAL_PROJECTS = {
   ANIMATED_DND,
   CHESS,
   YOUTUBE_TIMESTAMP_HELPER,
+  GALAXY_3D,
 } as const;
 
 const PROFESSIONAL_PROJECTS = {
